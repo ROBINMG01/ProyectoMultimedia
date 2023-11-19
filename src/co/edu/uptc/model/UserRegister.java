@@ -1,9 +1,7 @@
 package co.edu.uptc.model;
 
-public class UserRegister {
+public abstract class UserRegister {
 
-    private String name, email, password;
+    public  abstract void userRegister();
     
-    public UserRegister(String name, String email, String password){
-    }
 }
