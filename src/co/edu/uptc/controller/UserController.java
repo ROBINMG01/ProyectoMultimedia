@@ -139,10 +139,10 @@ public class UserController {
                     break;
                 case 1:
                     // Ver el tráiler de la serie
-                    // Agregar aquí la lógica para ver el tráiler de la serie
+                    // OJOOOOOOOO, aca debemos colcoar la logica del trailer de la serie
                     break;
                 case 2:
-                    // Devolverse al menu anterior
+                    // Devolver al menu anterior
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
@@ -319,9 +319,8 @@ public class UserController {
                 String confirmPassword = new String(confirmPasswordField.getPassword());
 
                 if (newPassword.equals(confirmPassword)) {
-                    // Aquí puedes realizar la lógica para cambiar la contraseña
+                    // Aquí debo realizar la lógica para cambiar la contraseña
                     // Utiliza la variable newPassword para obtener la nueva contraseña ingresada
-                    // y realiza las acciones necesarias
                     JOptionPane.showMessageDialog(null, "Password changed successfully");
                 } else {
                     JOptionPane.showMessageDialog(null, "Passwords do not match", "Error",

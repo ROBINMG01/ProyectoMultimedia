@@ -97,7 +97,7 @@ public class BuscarSerieImpl {
                             //     if (movie.getName().equals(selectedMovie)) {
                             //         String trailerUrl = movie.getTrailerUrl();
                             //         if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                            //             // Aquí puedes agregar la lógica para abrir el enlace del tráiler
+                            //             // OJOOOOOOOOO!!!!! Aca va la logica de poder verl el trailer con la URL
                             //             JOptionPane.showMessageDialog(null, "Opening trailer...");
                             //         } else {
                             //             JOptionPane.showMessageDialog(null,
@@ -111,7 +111,7 @@ public class BuscarSerieImpl {
                             //     if (serie.getName().equals(selectedMovie)) {
                             //         String trailerUrl = serie.getTrailerUrl();
                             //         if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                            //             // Aquí puedes agregar la lógica para abrir el enlace del tráiler
+                            //             // OJOOOOOOOOO!!!!! Aca va la logica de poder verl el trailer con la URL
                             //             JOptionPane.showMessageDialog(null, "Opening trailer...");
                             //         } else {
                             //             JOptionPane.showMessageDialog(null,
