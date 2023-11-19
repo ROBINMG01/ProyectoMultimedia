@@ -1,7 +1,6 @@
 package co.edu.uptc.controller;
 
-import java.awt.Desktop;
-import java.net.URI;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import co.edu.uptc.model.Movie;
@@ -22,10 +21,16 @@ public class UserController {
     }
 
     public void showMovieCatalog() {
-        ArrayList<String> movies = utilitaries.getMovieCatalog();
+        ArrayList<Movie> movies = utilitaries.getMovieCatalog();
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie:",
-                "Movie Catalog", JOptionPane.PLAIN_MESSAGE, null, movies.toArray(), movies.get(0));
+        ArrayList<String> movieNames = new ArrayList<>();
+        for (Movie movie : movies) {
+            movieNames.add(movie.getName());
+        }
+
+        String selectedMovie =
+                (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
+                        JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
@@ -40,7 +45,7 @@ public class UserController {
                 case 0:
                     // Ver descripción de la película
                     Movie selectedMovieObj = null;
-                    for (Movie movie : listMovies) {
+                    for (Movie movie : movies) {
                         if (movie.getName().equals(selectedMovie)) {
                             selectedMovieObj = movie;
                             break;
@@ -59,31 +64,26 @@ public class UserController {
                     // Ver el tráiler de la película
                     // Movie selectedMovieOb = null;
                     // for (Movie movie : listMovies) {
-                    //     if (movie.getName().equals(selectedMovie)) {
-                    //         selectedMovieObj = movie;
-                    //         break;
-                    //     }
+                    // if (movie.getName().equals(selectedMovie)) {
+                    // selectedMovieObj = movie;
+                    // break;
+                    // }
                     // }
 
                     // if (selectedMovieOb != null) {
-                    //     String trailerUrl = selectedMovieOb.getTrailerUrl();
-                    //     if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                    //         try {
-                    //             Desktop.getDesktop().browse(new URI(trailerUrl));
-                    //         } catch (Exception e) {
-                    //             JOptionPane.showMessageDialog(null,
-                    //                     "Error opening trailer: " + e.getMessage(), "Error",
-                    //                     JOptionPane.ERROR_MESSAGE);
-                    //         }
-                    //     } else {
-                    //         JOptionPane.showMessageDialog(null,
-                    //                 "Trailer not available for this movie.", "Information",
-                    //                 JOptionPane.INFORMATION_MESSAGE);
-                    //     }
+                    // String trailerUrl = selectedMovieOb.getTrailerUrl();
+                    // if (trailerUrl != null && !trailerUrl.isEmpty()) {
+                    // // Aquí puedes agregar la lógica para abrir el enlace del tráiler
+                    // JOptionPane.showMessageDialog(null, "Opening trailer...");
                     // } else {
-                    //     JOptionPane.showMessageDialog(null, "Movie not found.");
+                    // JOptionPane.showMessageDialog(null,
+                    // "Trailer not available for this movie.", "Information",
+                    // JOptionPane.INFORMATION_MESSAGE);
                     // }
-                    break;
+                    // } else {
+                    // JOptionPane.showMessageDialog(null, "Movie not found.");
+                    // }
+                    // break;
                 case 2:
                     // Salir
                     // Aquí puedes agregar la lógica para salir del programa
@@ -98,19 +98,62 @@ public class UserController {
         }
     }
 
-
     public void showSeriesCatalog() {
-        ArrayList<String> series = utilitaries.getSeriesCatalog();
+        ArrayList<Serie> series = utilitaries.getSeriesCatalog();
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series:",
-                "Series Catalog", JOptionPane.PLAIN_MESSAGE, null, series.toArray(), series.get(0));
+        ArrayList<String> seriesNames = new ArrayList<>();
+        for (Serie serie : series) {
+            seriesNames.add(serie.getName());
+        }
+
+        String selectedSeries =
+                (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
+                        JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
+
+            // Mostrar tres botones adicionales
+            String[] buttons = {"View Description", "Watch Trailer", "Exit"};
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
+                    "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    buttons, buttons[0]);
+
+            switch (choice) {
+                case 0:
+                    // Ver descripción de la serie
+                    Serie selectedSerieObj = null;
+                    for (Serie serie : series) {
+                        if (serie.getName().equals(selectedSeries)) {
+                            selectedSerieObj = serie;
+                            break;
+                        }
+                    }
+
+                    if (selectedSerieObj != null) {
+                        String description = selectedSerieObj.getDescription();
+                        JOptionPane.showMessageDialog(null, "Serie Description:\n" + description);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Serie not found.");
+                    }
+                    break;
+                case 1:
+                    // Ver el tráiler de la serie
+                    // Agregar aquí la lógica para ver el tráiler de la serie
+                    break;
+                case 2:
+                    // Devolverse al menu anterior
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid option. Please select a valid option.");
+                    break;
+            }
         } else {
             JOptionPane.showMessageDialog(null, "You have exited the series catalog option.");
         }
     }
+
 
     public void showFavorites() {
         ArrayList<String> favoriteSeries = new ArrayList<>();
@@ -123,6 +166,11 @@ public class UserController {
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+
+            if (selectedOption == null) {
+                backToMenu = true; // Si el usuario ha cancelado la operación, salir del bucle
+                continue;
+            }
 
             switch (selectedOption) {
                 case "View favorites":
@@ -149,10 +197,16 @@ public class UserController {
                         ArrayList<String> catalog;
                         ArrayList<String> favorites;
                         if (selectedCatalogOption.equals("Series")) {
-                            catalog = utilitaries.getSeriesCatalog();
+                            catalog = new ArrayList<>();
+                            for (Serie serie : utilitaries.getSeriesCatalog()) {
+                                catalog.add(serie.getName());
+                            }
                             favorites = favoriteSeries;
                         } else {
-                            catalog = utilitaries.getMovieCatalog();
+                            catalog = new ArrayList<>();
+                            for (Movie movie : utilitaries.getMovieCatalog()) {
+                                catalog.add(movie.getName());
+                            }
                             favorites = favoriteMovies;
                         }
 
@@ -173,6 +227,7 @@ public class UserController {
                                 "You have canceled the addition of the favorite.");
                     }
                     break;
+
                 case "Remove favorite":
                     ArrayList<String> allFavorites = new ArrayList<>();
                     allFavorites.addAll(favoriteSeries);
@@ -235,7 +290,6 @@ public class UserController {
     }
 
 
-
     public void showAccountSettings() {
         String[] options = {"Change password"};
 
@@ -286,7 +340,7 @@ public class UserController {
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> actors,
             ArrayList<String> chapters) {
-        Serie serie = new Serie(name, description, duration, actors, chapters);
+        Serie serie = new Serie(name, description, actors);
         listSeries.add(serie);
         return true;
     }

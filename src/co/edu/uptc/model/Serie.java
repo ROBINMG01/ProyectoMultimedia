@@ -12,13 +12,11 @@ public class Serie {
     public Serie() {
     }
     
-    public Serie(String name, String description, int duration, ArrayList<String> listActors,
-            ArrayList<String> listChapters) {
+    public Serie(String name, String description, ArrayList<String> listActors) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.listActors = listActors;
-        ListChapters = listChapters;
     }
     public String getName() {
         return name;

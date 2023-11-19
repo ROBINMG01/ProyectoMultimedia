@@ -15,9 +15,9 @@ public class UserRegister {
         while (!exit) {
             String option = JOptionPane
                     .showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
-                            + "[2] Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
-                            + "[4] Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
-                            + "[6]. Salir\n" + "Ingrese el número de la opción deseada:");
+                            + "[2]. Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
+                            + "[4]. Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
+                            + "[6]. Salir\n" + "\nIngrese el número de la opción deseada:");
 
             switch (option) {
                 case "1":
