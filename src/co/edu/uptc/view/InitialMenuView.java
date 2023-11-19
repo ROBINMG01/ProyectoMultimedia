@@ -1,9 +1,7 @@
 package co.edu.uptc.view;
 
-import java.net.URL;
 import java.awt.Color;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -22,7 +20,7 @@ public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     public static void main(String[] args) {
-           int x=0;
+        int x = 0;
         // crear el admin
         controler.createAdmin();
         // login
@@ -71,7 +69,7 @@ public class InitialMenuView {
                 case "Login": {
                     boolean exits = false;
                     int auu = 0;
-                    
+
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -159,12 +157,7 @@ public class InitialMenuView {
                     break;
 
                 case "Register": {
-                 
 
-
-            
-
-                  
                     boolean exits = false;
                     String firstName = "";
                     String lastName = "";
@@ -282,22 +275,7 @@ public class InitialMenuView {
                             exits = true;
                         }
                     } while (!exits);
-                }  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                }
 
                     break;
                 case "exit": {
