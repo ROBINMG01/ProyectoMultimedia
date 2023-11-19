@@ -2,23 +2,24 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 
-public class Serie {
+public class Serie extends Film{
     private String name;
     private String description;
-    private int duration;
-    private ArrayList<String> listActors;
-    private ArrayList<String> ListChapters;
+    private String duration;
+    private String listActors;
+    private ArrayList<Serie> listSeries;
+    private String listChapters;
 
     public Serie() {
     }
     
-    public Serie(String name, String description, int duration, ArrayList<String> listActors,
-            ArrayList<String> listChapters) {
+    public Serie(String name, String description, String duration, String listActors,
+            String listChapters) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.listActors = listActors;
-        ListChapters = listChapters;
+        this.listChapters = listChapters;
     }
     public String getName() {
         return name;
@@ -32,27 +33,31 @@ public class Serie {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
-    public ArrayList<String> getListActors() {
+    public String getListActors() {
         return listActors;
     }
-    public void setListActors(ArrayList<String> listActors) {
+    public void setListActors(String listActors) {
         this.listActors = listActors;
     }
-    public ArrayList<String> getListChapters() {
-        return ListChapters;
+    public String getListChapters() {
+        return listChapters;
     }
-    public void setListChapters(ArrayList<String> listChapters) {
-        ListChapters = listChapters;
+    public void setListChapters(String listChapters) {
+        this.listChapters = listChapters;
+    }
+    @Override
+    public void AddDates() {
+        listSeries.add(new Serie(name, description, duration, listActors, listChapters));
     }
     @Override
     public String toString() {
         return "Series [name=" + name + ", description=" + description + ", duration=" + duration + ", listActors="
-                + listActors + ", ListChapters=" + ListChapters + "]";
+                + listActors + ", ListChapters=" + listChapters + "]";
     }
 }
