@@ -1,24 +1,24 @@
 package co.edu.uptc.model;
 
 import javax.swing.JOptionPane;
+import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 
 public class UserRegister {
 
     public static void main(String[] args) {
-        UserController userController = new UserController();
 
-        // Muestra el menú hasta que el usuario elija la opción de salir
+        UserController userController = new UserController();
+        BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
+
         boolean exit = false;
         while (!exit) {
-            // Muestra el menú y obtiene la opción seleccionada por el usuario.
-            String option = JOptionPane.showInputDialog("Welcome to the multimedia project\n"
-                    + "[1]. View movie catalog\n" + "[2] View series catalog\n"
-                    + "[3]. Search series\n" + "[4] View my favorites\n"
-                    + "[5]. View my playback history\n" + "[6]. Account settings\n" + "[7]. Exit\n"
-                    + "Enter the number of the desired option:");
+            String option = JOptionPane
+                    .showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
+                            + "[2] Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
+                            + "[4] Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
+                            + "[6]. Salir\n" + "Ingrese el número de la opción deseada:");
 
-            // Realizar una acción basada en la opción seleccionada
             switch (option) {
                 case "1":
                     userController.showMovieCatalog();
@@ -27,23 +27,23 @@ public class UserRegister {
                     userController.showSeriesCatalog();
                     break;
                 case "3":
-                    userController.searchSeries();
+                    buscarSerieImpl.buscar();
                     break;
                 case "4":
                     userController.showFavorites();
                     break;
                 case "5":
-                    userController.showPlaybackHistory();
-                    break;
-                case "6":
                     userController.showAccountSettings();
                     break;
-                case "7":
+                case "6":
                     exit = true;
+                    JOptionPane.showMessageDialog(null, "Hasta luego, ¡vuelve pronto!", "Despedida",
+                            JOptionPane.INFORMATION_MESSAGE);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                            "Opción inválida. Por favor, seleccione una opción válida.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     break;
             }
         }
