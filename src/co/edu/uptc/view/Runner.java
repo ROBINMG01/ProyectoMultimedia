@@ -12,11 +12,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 
 public class Runner {
     public static void main(String[] args) {
         Serie serie = new Serie();
+        Movie movie = new Movie();
         String name = "", description = "";
         int w = 0, duration = 0, au = 0, aux = 0;
         AdminController adminController = new AdminController();
@@ -55,7 +57,7 @@ public class Runner {
 
                     break;
                 case "View movies":
-                    adminController.viewSeries(adminController.getListSeries(), serie, "Selec movie to view");
+                    adminController.viewMovies(adminController.getListMovies(), movie, "Selec movie to view");
 
                     break;
                 case "add series":
@@ -196,7 +198,7 @@ public class Runner {
                         if (!name.isEmpty() && !description.isEmpty() && duration != 0) {
                             // Agregar la serie
                             adminController.addMovie(name, description, duration, null);
-                            au = 1; // No sé qué hace au, pero aquí lo mantengo
+                            au = 1; 
                         } else {
                             JOptionPane.showMessageDialog(null, "Complete todos los campos correctamente.");
                         }
@@ -207,7 +209,7 @@ public class Runner {
                         if (option == JOptionPane.NO_OPTION) {
                             // Salir del programa o realizar otras acciones necesarias
 
-                            w = 2; // No sé qué hace w, pero aquí lo mantengo
+                            w = 2;
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Operación cancelada");

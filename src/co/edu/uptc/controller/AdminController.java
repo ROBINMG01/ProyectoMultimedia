@@ -126,13 +126,25 @@ public class AdminController {
         // Crear un nuevo JList
         JList<Movie> jList = new JList<Movie>(listMovies.toArray(new Movie[0]));
 
+        // Establecer el renderizador de celdas del JList
+        jList.setCellRenderer(new DefaultListCellRenderer() {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                    boolean cellHasFocus) {
+                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,
+                        cellHasFocus);
+                Serie serie = (Serie) value;
+                label.setText(serie.getName());
+                return label;
+            }
+        });
+
         // Agregar un ListSelectionListener al JList
         jList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 Movie selectedMovie = (Movie) jList.getSelectedValue();
                 JOptionPane.showMessageDialog(panel,
                         "Name: " + selectedMovie.getName() + "\nDescription: " + selectedMovie.getDescription()
-                                + "\nDuration" + selectedMovie.getDuration());
+                                + "\nDuration: " + selectedMovie.getDuration());
             }
         });
 
