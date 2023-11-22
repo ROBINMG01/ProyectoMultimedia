@@ -9,17 +9,19 @@ public class Serie extends Film{
     private String listActors;
     private ArrayList<Serie> listSeries;
     private String listChapters;
+    private String gender;
 
     public Serie() {
     }
     
     public Serie(String name, String description, String duration, String listActors,
-            String listChapters) {
+            String listChapters, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.listActors = listActors;
         this.listChapters = listChapters;
+        this.gender = gender;
     }
     public String getName() {
         return name;
@@ -51,13 +53,30 @@ public class Serie extends Film{
     public void setListChapters(String listChapters) {
         this.listChapters = listChapters;
     }
-    @Override
-    public void AddDates() {
-        listSeries.add(new Serie(name, description, duration, listActors, listChapters));
+    public ArrayList<Serie> getListSeries() {
+        return listSeries;
+    }
+
+    public void setListSeries(ArrayList<Serie> listSeries) {
+        this.listSeries = listSeries;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
     @Override
+    public void AddDates() {
+        listSeries.add(new Serie(name, description, duration, listActors, listChapters, gender));
+    }
+
+    @Override
     public String toString() {
-        return "-> Series [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + "\nlistActors="
-                + listActors + ".\nListChapters=" + listChapters + "]\n\n";
+        return "Serie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ".\ngender=" 
+                + gender +".\nlistActors=" + listActors + ".\nlistChapters=" + listChapters 
+                + "]\n\n";
     }
 }

@@ -8,15 +8,17 @@ public class Movie extends Film{
     private String duration;
     private ArrayList<Movie> listMovies;
     private String listActors;
+    private String gender;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, String duration, String string) {
+    public Movie(String name, String description, String duration, String string, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.listActors = string;
+        this.gender = gender;
     }
     public String getName() {
         return name;
@@ -42,14 +44,31 @@ public class Movie extends Film{
     public void setListActors(String listActors) {
         this.listActors = listActors;
     }
+    
+    public ArrayList<Movie> getListMovies() {
+        return listMovies;
+    }
+
+    public void setListMovies(ArrayList<Movie> listMovies) {
+        this.listMovies = listMovies;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
     @Override
     public void AddDates() {
-        listMovies.add(new Movie(name, description, duration, listActors));
+        listMovies.add(new Movie(name, description, duration, listActors, gender));
     }
 
     @Override
     public String toString() {
-        return "-> Movie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ".\nactors=" + listActors
-                + "]\n\n";
+        return "Movie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ", gender=" 
+        + gender  + ", listActors=" + listActors + "]\n\n";
     }
 }
