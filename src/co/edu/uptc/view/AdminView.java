@@ -1,198 +1,84 @@
 package co.edu.uptc.view;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 import co.edu.uptc.controller.AdminController;
-import co.edu.uptc.model.Movie;
-import co.edu.uptc.model.Serie;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class AdminView {
 
-    /*static String menu = "1. Add movie\n" + "2. Add series\n" + "3. Show movie\n" + "4. Show series\n"
-            + "5. Update movie\n" + "6. Update series\n" + "7. Delete movie\n" + "8.Delete serie\n" + "9. Exit\n";*/
-    static int option = 0, option2 = 0;
-    static String name = "", duration = "", nameUpdate = "", description = "", actor = "", chapters = "",
-            listActors = "";
-    static String selection = "";
-    static boolean verefication = false;
-    static String[] menu = { "Add Movie", "Add Serie", "Show Movies", "Show Series", "Update Movies",
-            "Update Series" };
     static AdminController Ac = new AdminController();
-    static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-        menuAdmin();
+        SwingUtilities.invokeLater(() -> {
+            createAndShowGUI();
+        });
+    }
+    public static void createAndShowGUI() {
+        JFrame frame = new JFrame("Admin View");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+        frame.setLayout(new GridLayout(2, 2));
+
+        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie" };
+        boolean condition = false;
+        do {
+            String selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            performSelectedAction(selectedAction);
+            if (selectedAction != null) {
+                condition = false;
+            } else {
+                condition = true;
+            }
+        } while (condition == false);
     }
 
-    public static void menuAdmin() {
+    public static void performSelectedAction(String selectedAction) {
+        switch (selectedAction) {
+            case "Add Movie":
+                addMovie();
+                break;
+            case "Add Serie":
+                addSerie();
+                break;
+            case "View Movies":
+                showMovies();
+                break;
+            case "View Series":
+                showSeries();
+                break;
+            case "Update Movie":
+                System.out.println("golaa");
+                updateMovie();
+                break;
+            case "Update Serie":
+                updateSerie();
+                break;
+        }
+    }
+
+    public static void addMovie() {
+        String name = "";
+        String description = "";
+        String duration = "";
+        String listActors = "";
+        int ver = 0;
+        boolean exit = false;
+        int option = 0;
 
         do {
-            do {
-                try {
-                    selection = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                            "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, menu, menu[0]);
-                    /*
-                     * System.out.println(menu);
-                     * System.out.println("Input option");
-                     * option = sc.nextInt();
-                     * sc.nextLine();
-                     */
-                    verefication = true;
-                } catch (java.util.InputMismatchException e) {
-                    // System.out.println("Invalid option");
-                    sc.nextLine();
-                    verefication = false;
-                }
-            } while (verefication == false);
-            switch (selection) {
-                case "Add Movie":
-                    if (addMovie()) {
-                        JOptionPane.showMessageDialog(null, "Movie add sucesfully");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Movie add sucesfully");
-                    }
-                    // System.out.println("------------------------");
-                    break;
-                case "Add Serie":
-                    if (addSerie()) {
-                        System.out.println("Movie add sucesfully");
-                    } else {
-                        System.out.println("Movie wasn't add sucesfully");
-                    }
-                    System.out.println("------------------------");
-                    break;
-                case "Show Movies":
-                    ///for (Movie movies : Ac.showListMovies()) {
-
-                        JOptionPane.showMessageDialog(null, Ac.showListMovies());
-                        //System.out.println(movies);
-                    //}
-                    //System.out.println("------------------------");
-                    break;
-                case "Show Series":
-                    for (Serie series : Ac.showListSeries()) {
-                        System.out.println(series);
-                    }
-                    System.out.println("------------------------");
-                    break;
-                case "Update Movies":
-                    if (updateMovie()) {
-                        System.out.println("Movie update sacesfully");
-                    } else {
-                        System.out.println("Movie wasn't update sucesfully");
-                    }
-                    break;
-                case "Update Series":
-                    if (updateSeries()) {
-                        System.out.println("Serie update sacesfully");
-                    } else {
-                        System.out.println("Serie wasn't update sucesfully");
-                    }
-                    break;
-                case "8":
-                    System.out.println("Title");
-                    name = sc.nextLine();
-                    System.out.println("Description");
-                    description = sc.nextLine();
-                    do {
-                        try {
-                            System.out.println("Duration in minutes");
-                            duration = sc.nextLine();
-                            verefication = true;
-                        } catch (java.util.InputMismatchException e) {
-                            System.out.println("Invalid option");
-                            sc.nextLine();
-                            verefication = false;
-                        }
-
-                    } while (verefication == false);
-                    System.out.println("actors");
-                    listActors = sc.nextLine();
-                    //Ac.addMoviee(name, description, duration, listActors);
-                    //ySystem.out.println(Ac.showMovie());
-                default:
-                    break;
+            JPanel panel = new JPanel(new GridLayout(4, 2));
+            if (ver == 1) {
+                name = "";
+                description = "";
+                duration = "";
+                listActors = "";
             }
-        } while (option != 9);
-        sc.close();
-    }
+            JTextField nameField = new JTextField(name);
+            JTextField authorField = new JTextField(listActors);
+            JTextField descriptionField = new JTextField(description);
+            JTextField durationField = new JTextField(duration);
 
-    public static boolean addMovie() {
-        JPanel panel = new JPanel(new GridLayout(4, 4, 2, 2));
-
-        JTextField nameField = new JTextField();
-        JTextField authorField = new JTextField();
-        JTextField descriptionField = new JTextField();
-        JTextField durationField = new JTextField();
-
-        panel.add(new JLabel("Name of the movie:"));
-        panel.add(nameField);
-        panel.add(new JLabel("Author:"));
-        panel.add(authorField);
-        panel.add(new JLabel("Description:"));
-        panel.add(descriptionField);
-        panel.add(new JLabel("Duration:"));
-        panel.add(durationField);
-        int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
-        
-        String name = nameField.getText();
-        String description = descriptionField.getText();
-        String duration = durationField.getText();
-        String listActors = authorField.getText();
-
-        return Ac.addMovie(name, description, duration, listActors);
-    }
-
-    public static boolean addSerie() {
-        JPanel panel = new JPanel(new GridLayout(4, 4, 2, 2));
-
-        JTextField nameField = new JTextField();
-        JTextField authorField = new JTextField();
-        JTextField descriptionField = new JTextField();
-        JTextField durationField = new JTextField();
-        JTextField chaptersField = new JTextField();
-
-        panel.add(new JLabel("Serie name"));
-        panel.add(nameField);
-        panel.add(new JLabel("Description"));
-        panel.add(descriptionField);
-        panel.add(new JLabel("Authors"));
-        panel.add(authorField);
-        panel.add(new JLabel("Duration"));
-        panel.add(durationField);
-        int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
-        
-        String name = nameField.getText();
-        String description = descriptionField.getText();
-        String duration = durationField.getText();
-        String listActors = authorField.getText();
-        String chapters = chaptersField.getText();
-
-        return Ac.addSerie(name, description, duration, listActors, chapters);
-    }
-
-    public static boolean updateMovie() {
-        JPanel panel = new JPanel(new GridLayout(4, 4, 2, 2));
-        String nameUpdate = JOptionPane.showInputDialog("Input Movie Update");
-
-
-        if (Ac.searchMovie(nameUpdate) != -1) {
-            JTextField nameField = new JTextField();
-            JTextField authorField = new JTextField();
-            JTextField descriptionField = new JTextField();
-            JTextField durationField = new JTextField();
-    
             panel.add(new JLabel("Name of the movie:"));
             panel.add(nameField);
             panel.add(new JLabel("Author:"));
@@ -201,75 +87,322 @@ public class AdminView {
             panel.add(descriptionField);
             panel.add(new JLabel("Duration:"));
             panel.add(durationField);
-            int result = JOptionPane.showConfirmDialog(null, panel, "Update Movie", JOptionPane.OK_CANCEL_OPTION);
-            
-            String name = nameField.getText();
-            String description = descriptionField.getText();
-            String duration = durationField.getText();
-            String listActors = authorField.getText();
-    
-            return Ac.updateMovie(nameUpdate, name, description, duration, listActors);
-        }
-        return false;
+
+            int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
+
+            if (result == JOptionPane.OK_OPTION) {
+                name = nameField.getText();
+                description = descriptionField.getText();
+                duration = durationField.getText();
+                listActors = authorField.getText();
+
+                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Failed to add movieeee");
+                    exit = verification();
+                    ver = 0;
+                } else {
+                    if (Ac.addMovie(name, description, duration, listActors)) {
+                        JOptionPane.showMessageDialog(null, "Movie added successfully");
+                        ver = 1;
+                        option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
+                                "Continue?", JOptionPane.YES_NO_OPTION);
+                        if (option == JOptionPane.OK_OPTION) {
+                            ver = 1;
+                            exit = false;
+                        } else {
+                            exit = true;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to add movie");
+                        exit = verification();
+                        ver = 0;
+                    }
+                }
+            } else {
+                exit = true;
+            }
+        } while (!exit);
+
     }
 
-    public static boolean updateSeries() {
+    public static void addSerie() {
 
+        String name = "";
+        String description = "";
+        String duration = "";
+        String listActors = "";
+        String chapters = "";
+        int ver = 0;
+        boolean exit = false;
+        int option = 0;
 
-        JPanel panel = new JPanel(new GridLayout(4, 4, 2, 2));
-        if (Ac.searchSeries(nameUpdate) != -1) {
-            JTextField nameField = new JTextField();
-            JTextField authorField = new JTextField();
-            JTextField descriptionField = new JTextField();
-            JTextField durationField = new JTextField();
-    
-            panel.add(new JLabel("Name of the movie:"));
+        do {
+            JPanel panel = new JPanel(new GridLayout(5, 2));
+            if (ver == 1) {
+                name = "";
+                description = "";
+                duration = "";
+                listActors = "";
+                chapters = "";
+            }
+            JTextField nameField = new JTextField(name);
+            JTextField authorField = new JTextField(listActors);
+            JTextField descriptionField = new JTextField(description);
+            JTextField durationField = new JTextField(duration);
+            JTextField chaptersField = new JTextField();
+
+            panel.add(new JLabel("Name of the movie"));
             panel.add(nameField);
-            panel.add(new JLabel("Author:"));
+            panel.add(new JLabel("Author"));
             panel.add(authorField);
-            panel.add(new JLabel("Description:"));
+            panel.add(new JLabel("Description"));
             panel.add(descriptionField);
-            panel.add(new JLabel("Duration:"));
+            panel.add(new JLabel("Duration"));
             panel.add(durationField);
-            int result = JOptionPane.showConfirmDialog(null, panel, "Update Movie", JOptionPane.OK_CANCEL_OPTION);
-            
-            String name = nameField.getText();
-            String description = descriptionField.getText();
-            String duration = durationField.getText();
-            String listActors = authorField.getText();
-    
-            return Ac.updateMovie(nameUpdate, name, description, duration, listActors);
-        }
-        return false;
+            panel.add(new JLabel("Charapters"));
+            panel.add(chaptersField);
+
+            int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
+
+            if (result == JOptionPane.OK_OPTION) {
+                name = nameField.getText();
+                description = descriptionField.getText();
+                duration = durationField.getText();
+                listActors = authorField.getText();
+                chapters = chaptersField.getText();
+
+                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()
+                        || chapters.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Failed to add serie");
+                    exit = verification();
+                    ver = 0;
+                } else {
+                    if (Ac.addSerie(name, description, duration, listActors, chapters)) {
+                        JOptionPane.showMessageDialog(null, "Serie added successfully");
+                        ver = 1;
+                        option = JOptionPane.showConfirmDialog(null, "Do you want to add another serie?",
+                                "Continue?", JOptionPane.YES_NO_OPTION);
+                        if (option == JOptionPane.OK_OPTION) {
+                            ver = 1;
+                            exit = false;
+                        } else {
+                            exit = true;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to add serie");
+                        exit = verification();
+                        ver = 0;
+                    }
+                }
+            } else {
+                exit = true;
+            }
+        } while (!exit);
     }
 
-    public static void ShowGrafic() {
-        JPanel panel = new JPanel();
-        JTextField nameField = new JTextField(10);
-        JTextField descriptionField = new JTextField(10);
-        JTextField durationField = new JPasswordField(10);
-        JTextField actorsField = new JPasswordField(10);
+    public static void showMovies() {
+        JTextArea textArea = new JTextArea(Ac.showListMovies().toString());
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        JOptionPane.showMessageDialog(null, scrollPane, "View Movies", JOptionPane.PLAIN_MESSAGE);
+    }
 
-        /*
-         * String seleccion = (String) JOptionPane.showInputDialog(null,
-         * "Seleccione una opción:",
-         * "Opciones de Inicio", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionsHome,
-         * optionsHome[0]);
-         */
+    public static void showSeries() {
+        JTextArea textArea = new JTextArea(Ac.showListSeries().toString());
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        JOptionPane.showMessageDialog(null, scrollPane, "View Series", JOptionPane.PLAIN_MESSAGE);
+    }
 
-        // Agregar los componentes al panel
-        panel.add(new JLabel("Name Movie:"));
-        panel.add(nameField);
-        panel.add(new JLabel("Description"));
-        panel.add(descriptionField);
-        panel.add(new JLabel("Duration"));
-        panel.add(durationField);
-        panel.add(new JLabel("Actors"));
-        panel.add(actorsField);
+    public static void updateMovie() {
+        String name = "";
+        String description = "";
+        String duration = "";
+        String listActors = "";
+        String selectedAction = "";
+        int ver = 0;
+        boolean exit = false;
+        boolean exit2 = false;
+        int option = 0;
+        ArrayList<String> namesMovies = new ArrayList<>();
+        String showNamesMovies[];
 
-        String name = nameField.getText();
-        String destription = descriptionField.getText();
-        String duration = durationField.getText();
-        String actors = actorsField.getText();
+        for (int i = 0; i < Ac.showListMovies().size(); i++) {
+            namesMovies.add(Ac.showListMovies().get(i).getName());
+        }
+
+        showNamesMovies = namesMovies.toArray(new String[namesMovies.size()]);
+        do {
+            selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+
+            if (selectedAction != null) {
+                do {
+                    JPanel panel = new JPanel(new GridLayout(5, 2));
+                    if (ver == 1) {
+                        name = "";
+                        description = "";
+                        duration = "";
+                        listActors = "";
+                    }
+                    JTextField nameField = new JTextField(name);
+                    JTextField authorField = new JTextField(listActors);
+                    JTextField descriptionField = new JTextField(description);
+                    JTextField durationField = new JTextField(duration);
+
+                    panel.add(new JLabel("Name of the movie:"));
+                    panel.add(nameField);
+                    panel.add(new JLabel("Author:"));
+                    panel.add(authorField);
+                    panel.add(new JLabel("Description:"));
+                    panel.add(descriptionField);
+                    panel.add(new JLabel("Duration:"));
+                    panel.add(durationField);
+
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie",
+                            JOptionPane.OK_CANCEL_OPTION);
+
+                    if (result == JOptionPane.OK_OPTION) {
+                        name = nameField.getText();
+                        description = descriptionField.getText();
+                        duration = durationField.getText();
+                        listActors = authorField.getText();
+                        System.out.println("Nombre enviado "+selectedAction);
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Failed to Update movie");
+                            exit = verification();
+                            ver = 0;
+                        } else {
+                            if (Ac.updateMovie(selectedAction, name, description, duration, listActors)) {
+                                JOptionPane.showMessageDialog(null, "Movie update successfully");
+                                ver = 1;
+                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another movie?",
+                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.OK_OPTION) {
+                                    ver = 1;
+                                    exit = true;
+                                } else {
+                                    exit = true;
+                                    exit2 = true;
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Failed to update movie");
+                                exit = verification();
+                                ver = 0;
+                            }
+                        }
+                    } else {
+                        exit = true;
+                    }
+                } while (!exit);
+            } else {
+                exit2 = true;
+            }
+        } while (!exit2);
+    }
+
+    public static void updateSerie() {
+
+        String name = "";
+        String description = "";
+        String duration = "";
+        String listActors = "";
+        String chapters = "";
+        String selectedAction = "";
+        int ver = 0;
+        boolean exit = false;
+        boolean exit2 = false;
+        int option = 0;
+        ArrayList<String> namesSerie = new ArrayList<>();
+        String showNamesSeries[];
+
+        for (int i = 0; i < Ac.showListSeries().size(); i++) {
+            namesSerie.add(Ac.showListSeries().get(i).getName());
+        }
+
+        showNamesSeries = namesSerie.toArray(new String[namesSerie.size()]);
+
+        do {
+            selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+
+            if (selectedAction != null) {
+                do {
+                    JPanel panel = new JPanel(new GridLayout(5, 2));
+                    if (ver == 1) {
+                        name = "";
+                        description = "";
+                        duration = "";
+                        listActors = "";
+                        chapters = "";
+                    }
+                    JTextField nameField = new JTextField(name);
+                    JTextField authorField = new JTextField(listActors);
+                    JTextField descriptionField = new JTextField(description);
+                    JTextField durationField = new JTextField(duration);
+                    JTextField chaptersrsField = new JTextField(chapters);
+
+
+                    panel.add(new JLabel("Name of the movie:"));
+                    panel.add(nameField);
+                    panel.add(new JLabel("Author:"));
+                    panel.add(authorField);
+                    panel.add(new JLabel("Description:"));
+                    panel.add(descriptionField);
+                    panel.add(new JLabel("Duration:"));
+                    panel.add(durationField);
+                    panel.add(new JLabel("Chapters:"));
+                    panel.add(chaptersrsField);
+
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Serie",
+                            JOptionPane.OK_CANCEL_OPTION);
+
+                    if (result == JOptionPane.OK_OPTION) {
+                        name = nameField.getText();
+                        description = descriptionField.getText();
+                        duration = durationField.getText();
+                        listActors = authorField.getText();
+                        chapters = chaptersrsField.getText();
+
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty() || chapters.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Failed to Update serie");
+                            exit = verification();
+                            ver = 0;
+                        } else {
+                            if (Ac.updateSeries(selectedAction, name, description, duration, listActors, chapters)) {
+                                JOptionPane.showMessageDialog(null, "Serie update successfully");
+                                ver = 1;
+                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another serie?",
+                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.OK_OPTION) {
+                                    ver = 1;
+                                    exit = true;
+                                } else {
+                                    exit = true;
+                                    exit2 = true;
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Failed to update movie");
+                                exit = verification();
+                                ver = 0;
+                            }
+                        }
+                    } else {
+                        exit = true;
+                    }
+                } while (!exit);
+            } else {
+                exit2 = true;
+            }
+        } while (!exit2);
+    }
+
+    public static boolean verification() {
+        int option = 0;
+        option = JOptionPane.showConfirmDialog(null, "Do you want try agan update?",
+                "Continue?", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

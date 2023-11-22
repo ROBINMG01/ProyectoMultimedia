@@ -57,7 +57,7 @@ public class Serie extends Film{
     }
     @Override
     public String toString() {
-        return "Series [name=" + name + ", description=" + description + ", duration=" + duration + ", listActors="
-                + listActors + ", ListChapters=" + listChapters + "]";
+        return "-> Series [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + "\nlistActors="
+                + listActors + ".\nListChapters=" + listChapters + "]\n\n";
     }
 }

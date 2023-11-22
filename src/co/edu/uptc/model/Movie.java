@@ -49,7 +49,7 @@ public class Movie extends Film{
 
     @Override
     public String toString() {
-        return "Movie \n[name=" + name + ", \ndescription=" + description + ", \nduration=" + duration + ", \nactors=" + listActors
-                + "]\n";
+        return "-> Movie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ".\nactors=" + listActors
+                + "]\n\n";
     }
 }
