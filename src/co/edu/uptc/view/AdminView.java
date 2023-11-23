@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class AdminView {
 
-    static AdminController Ac = new AdminController();
+    static AdminController ac = new AdminController();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -24,10 +24,10 @@ public class AdminView {
         String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie" };
         boolean condition = false;
         do {
-            String selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            performSelectedAction(selectedAction);
-            if (selectedAction != null) {
+            performSelectedaction(selectedaction);
+            if (selectedaction != null) {
                 condition = false;
             } else {
                 condition = true;
@@ -35,8 +35,8 @@ public class AdminView {
         } while (condition == false);
     }
 
-    public static void performSelectedAction(String selectedAction) {
-        switch (selectedAction) {
+    public static void performSelectedaction(String selectedaction) {
+        switch (selectedaction) {
             case "Add Movie":
                 addMovie();
                 break;
@@ -63,7 +63,7 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listActors = "";
+        String listactors = "";
         String gender = "";
         int ver = 0;
         boolean exit = false;
@@ -75,11 +75,11 @@ public class AdminView {
                 name = "";
                 description = "";
                 duration = "";
-                listActors = "";
+                listactors = "";
                 gender = "";
             }
             JTextField nameField = new JTextField(name);
-            JTextField authorField = new JTextField(listActors);
+            JTextField authorField = new JTextField(listactors);
             JTextField descriptionField = new JTextField(description);
             JTextField durationField = new JTextField(duration);
             JTextField genderField = new JTextField(gender);
@@ -101,16 +101,16 @@ public class AdminView {
                 name = nameField.getText();
                 description = descriptionField.getText();
                 duration = durationField.getText();
-                listActors = authorField.getText();
+                listactors = authorField.getText();
                 gender = genderField.getText();
 
-                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()
+                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
                         || gender.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Failed to add movieeee");
                     exit = verification();
                     ver = 0;
                 } else {
-                    if (Ac.addMovie(name, description, duration, listActors, gender)) {
+                    if (ac.addMovie(name, description, duration, listactors, gender)) {
                         JOptionPane.showMessageDialog(null, "Movie added successfully");
                         ver = 1;
                         option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
@@ -139,7 +139,7 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listActors = "";
+        String listactors = "";
         String chapters = "";
         String gender = "";
         int ver = 0;
@@ -152,12 +152,12 @@ public class AdminView {
                 name = "";
                 description = "";
                 duration = "";
-                listActors = "";
+                listactors = "";
                 chapters = "";
                 gender = "";
             }
             JTextField nameField = new JTextField(name);
-            JTextField authorField = new JTextField(listActors);
+            JTextField authorField = new JTextField(listactors);
             JTextField descriptionField = new JTextField(description);
             JTextField durationField = new JTextField(duration);
             JTextField chaptersField = new JTextField();
@@ -182,17 +182,17 @@ public class AdminView {
                 name = nameField.getText();
                 description = descriptionField.getText();
                 duration = durationField.getText();
-                listActors = authorField.getText();
+                listactors = authorField.getText();
                 chapters = chaptersField.getText();
                 gender = genderField.getText();
 
-                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()
+                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
                         || chapters.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Failed to add serie");
                     exit = verification();
                     ver = 0;
                 } else {
-                    if (Ac.addSerie(name, description, duration, listActors, chapters, gender)) {
+                    if (ac.addSerie(name, description, duration, listactors, chapters, gender)) {
                         JOptionPane.showMessageDialog(null, "Serie added successfully");
                         ver = 1;
                         option = JOptionPane.showConfirmDialog(null, "Do you want to add another serie?",
@@ -216,13 +216,13 @@ public class AdminView {
     }
 
     public static void showMovies() {
-        JTextArea textArea = new JTextArea(Ac.showListMovies().toString());
+        JTextArea textArea = new JTextArea(ac.showListMovies().toString());
         JScrollPane scrollPane = new JScrollPane(textArea);
         JOptionPane.showMessageDialog(null, scrollPane, "View Movies", JOptionPane.PLAIN_MESSAGE);
     }
 
     public static void showSeries() {
-        JTextArea textArea = new JTextArea(Ac.showListSeries().toString());
+        JTextArea textArea = new JTextArea(ac.showListSeries().toString());
         JScrollPane scrollPane = new JScrollPane(textArea);
         JOptionPane.showMessageDialog(null, scrollPane, "View Series", JOptionPane.PLAIN_MESSAGE);
     }
@@ -231,8 +231,8 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listActors = "";
-        String selectedAction = "";
+        String listactors = "";
+        String selectedaction = "";
         String gender = "";
         int ver = 0;
         boolean exit = false;
@@ -242,20 +242,20 @@ public class AdminView {
 
         do {
             showNamesMovies = arrayNameMovies().toArray(new String[arrayNameMovies().size()]);
-            selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
-            if (selectedAction != null) {
+            if (selectedaction != null) {
                 do {
                     JPanel panel = new JPanel(new GridLayout(5, 2));
                     if (ver == 1) {
                         name = "";
                         description = "";
                         duration = "";
-                        listActors = "";
+                        listactors = "";
                         gender = "";
                     }
                     JTextField nameField = new JTextField(name);
-                    JTextField authorField = new JTextField(listActors);
+                    JTextField authorField = new JTextField(listactors);
                     JTextField descriptionField = new JTextField(description);
                     JTextField durationField = new JTextField(duration);
                     JTextField genderField = new JTextField(gender);
@@ -278,15 +278,15 @@ public class AdminView {
                         name = nameField.getText();
                         description = descriptionField.getText();
                         duration = durationField.getText();
-                        listActors = authorField.getText();
+                        listactors = authorField.getText();
                         gender = genderField.getText();
-                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
                                 || gender.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Failed to Update movie");
                             exit = verification();
                             ver = 0;
                         } else {
-                            if (Ac.updateMovie(selectedAction, name, description, duration, listActors, gender)) {
+                            if (ac.updateMovie(selectedaction, name, description, duration, listactors, gender)) {
                                 JOptionPane.showMessageDialog(null, "Movie update successfully");
                                 ver = 1;
                                 option = JOptionPane.showConfirmDialog(null, "Do you want to update another movie?",
@@ -319,9 +319,9 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listActors = "";
+        String listactors = "";
         String chapters = "";
-        String selectedAction = "";
+        String selectedaction = "";
         String gender = "";
         int ver = 0;
         boolean exit = false;
@@ -331,22 +331,22 @@ public class AdminView {
 
         do {
             showNamesSeries = arrayNameSeries().toArray(new String[arrayNameSeries().size()]);
-            selectedAction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
 
-            if (selectedAction != null) {
+            if (selectedaction != null) {
                 do {
                     JPanel panel = new JPanel(new GridLayout(6, 2));
                     if (ver == 1) {
                         name = "";
                         description = "";
                         duration = "";
-                        listActors = "";
+                        listactors = "";
                         chapters = "";
                         gender = "";
                     }
                     JTextField nameField = new JTextField(name);
-                    JTextField authorField = new JTextField(listActors);
+                    JTextField authorField = new JTextField(listactors);
                     JTextField descriptionField = new JTextField(description);
                     JTextField durationField = new JTextField(duration);
                     JTextField chaptersrsField = new JTextField(chapters);
@@ -372,17 +372,17 @@ public class AdminView {
                         name = nameField.getText();
                         description = descriptionField.getText();
                         duration = durationField.getText();
-                        listActors = authorField.getText();
+                        listactors = authorField.getText();
                         chapters = chaptersrsField.getText();
                         gender = genderField.getText();
 
-                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listActors.isEmpty()
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
                                 || chapters.isEmpty() || gender.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Failed to Update serie");
                             exit = verification();
                             ver = 0;
                         } else {
-                            if (Ac.updateSeries(selectedAction, name, description, duration, listActors, chapters,
+                            if (ac.updateSeries(selectedaction, name, description, duration, listactors, chapters,
                                     gender)) {
                                 JOptionPane.showMessageDialog(null, "Serie update successfully");
                                 ver = 1;
@@ -424,8 +424,8 @@ public class AdminView {
 
     public static ArrayList<String> arrayNameMovies() {
         ArrayList<String> namesMovies = new ArrayList<>();
-        for (int i = 0; i < Ac.showListMovies().size(); i++) {
-            namesMovies.add(Ac.showListMovies().get(i).getName());
+        for (int i = 0; i < ac.showListMovies().size(); i++) {
+            namesMovies.add(ac.showListMovies().get(i).getName());
         }
 
         return namesMovies;
@@ -433,8 +433,8 @@ public class AdminView {
 
     public static ArrayList<String> arrayNameSeries() {
         ArrayList<String> namesSeries = new ArrayList<>();
-        for (int i = 0; i < Ac.showListSeries().size(); i++) {
-            namesSeries.add(Ac.showListSeries().get(i).getName());
+        for (int i = 0; i < ac.showListSeries().size(); i++) {
+            namesSeries.add(ac.showListSeries().get(i).getName());
         }
         return namesSeries;
     }
