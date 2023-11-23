@@ -1,4 +1,4 @@
-package co.edu.uptc.test;
+package co.edu.uptc.view;
 
 import javax.swing.JOptionPane;
 import co.edu.uptc.controller.BuscarSerieImpl;
