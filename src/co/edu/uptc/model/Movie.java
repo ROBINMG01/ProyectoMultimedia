@@ -2,22 +2,23 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 
-public class Movie extends Film{
+public class Movie {
     private String name;
     private String description;
-    private String duration;
-    private ArrayList<Movie> listMovies;
-    private String listActors;
+    private int duration;
+    private ArrayList<String> listActors;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, String duration, String string) {
+    public Movie(String name, String description, int duration, ArrayList<String> listActors) {
         this.name = name;
         this.description = description;
         this.duration = duration;
-        this.listActors = string;
+        this.listActors = listActors;
     }
+    public Movie(String name2, String description2, String duration2, String actors) {}
+
     public String getName() {
         return name;
     }
@@ -30,26 +31,25 @@ public class Movie extends Film{
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
-    public String getListActors() {
+    public ArrayList<String> getListActors() {
         return listActors;
     }
-    public void setListActors(String listActors) {
+    public void setListActors(ArrayList<String> listActors) {
         this.listActors = listActors;
     }
     @Override
-    public void AddDates() {
-        listMovies.add(new Movie(name, description, duration, listActors));
+    public String toString() {
+        return "Movie [name=" + name + ", description=" + description + ", duration=" + duration + ", actors=" + listActors
+                + "]";
     }
 
-    @Override
-    public String toString() {
-        return "Movie \n[name=" + name + ", \ndescription=" + description + ", \nduration=" + duration + ", \nactors=" + listActors
-                + "]\n";
-    }
+    public void setDuration(String duration2) {}
+
+    public void setListActors(String actors) {}
 }

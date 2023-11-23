@@ -10,7 +10,7 @@ public class Serie extends Film{
     private ArrayList<Serie> listSeries;
     private String listChapters;
 
-    public Serie() {
+    public Serie(String name2, String description2, ArrayList<String> actors) {
     }
     
     public Serie(String name, String description, String duration, String listActors,
@@ -19,7 +19,6 @@ public class Serie extends Film{
         this.description = description;
         this.duration = duration;
         this.listActors = listActors;
-        this.listChapters = listChapters;
     }
     public String getName() {
         return name;
