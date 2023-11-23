@@ -22,7 +22,7 @@ public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     public static void main(String[] args) {
-           int x=0;
+        int x = 0;
         // crear el admin
         controler.createAdmin();
         // login
@@ -32,7 +32,7 @@ public class InitialMenuView {
         // predeterminado id
         int idUser = 100;
         int au = 0;
-        String optionsHome[] = { "Login", "Register" };
+        String optionsHome[] = { "Login", "Register", "Visitor" };
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -71,7 +71,7 @@ public class InitialMenuView {
                 case "Login": {
                     boolean exits = false;
                     int auu = 0;
-                    
+
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -159,150 +159,159 @@ public class InitialMenuView {
                     break;
 
                 case "Register": {
-                 
+                    boolean aux = false;
 
-
-            
-
-                  
-                    boolean exits = false;
                     String firstName = "";
                     String lastName = "";
 
                     String email = "";
+
                     do {
+                        int i = 0;
+                        boolean exits = false;
+                        do {
 
-                        if (au == 0) {
-                            firstName = "";
-                            lastName = "";
+                            if (au == 0) {
+                                firstName = "";
+                                lastName = "";
 
-                            email = "";
-                        }
-                        JPanel panel = new JPanel();
+                                email = "";
+                            }
+                            JPanel panel = new JPanel();
 
-                        JTextField firstNameField = new JTextField(firstName, 10);
-                        JPasswordField passwordField = new JPasswordField(10);
-                        JPasswordField confirmPasswordField = new JPasswordField(10);
-                        JTextField lastNameField = new JTextField(lastName, 10);
-                        JTextField emailField = new JTextField(email, 10);
+                            JTextField firstNameField = new JTextField(firstName, 10);
+                            JPasswordField passwordField = new JPasswordField(10);
+                            JPasswordField confirmPasswordField = new JPasswordField(10);
+                            JTextField lastNameField = new JTextField(lastName, 10);
+                            JTextField emailField = new JTextField(email, 10);
 
-                        // Agregar los componentes al panel
-                        panel.add(new JLabel("First Name:"));
-                        panel.add(firstNameField);
-                        panel.add(new JLabel("Last Name:"));
-                        panel.add(lastNameField);
+                            // Agregar los componentes al panel
+                            panel.add(new JLabel("First Name:"));
+                            panel.add(firstNameField);
+                            panel.add(new JLabel("Last Name:"));
+                            panel.add(lastNameField);
 
-                        panel.add(new JLabel("Email:"));
-                        panel.add(emailField);
-                        panel.add(new JLabel("Password:"));
-                        panel.add(passwordField);
-                        panel.add(new JLabel("Confirm Password:"));
-                        panel.add(confirmPasswordField);
+                            panel.add(new JLabel("Email:"));
+                            panel.add(emailField);
+                            panel.add(new JLabel("Password:"));
+                            panel.add(passwordField);
+                            panel.add(new JLabel("Confirm Password:"));
+                            panel.add(confirmPasswordField);
 
-                        // para que aparezca en vertical
-                        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-                        // color del panel
-                        panel.setBackground(Color.CYAN);
+                            // para que aparezca en vertical
+                            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                            // color del panel
+                            panel.setBackground(Color.CYAN);
 
-                        // icono de la imagen
-                        ImageIcon iconChef = new ImageIcon("img\\chef.png");
+                            // icono de la imagen
+                            ImageIcon iconChef = new ImageIcon("img\\chef.png");
 
-                        // Obtener la imagen del ImageIcon original
-                        Image chefImg = iconChef.getImage();
+                            // Obtener la imagen del ImageIcon original
+                            Image chefImg = iconChef.getImage();
 
-                        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
-                        newWidth = 150;
-                        newHeight = 150;
+                            // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+                            newWidth = 150;
+                            newHeight = 150;
 
-                        // Redimensionar la imagen
-                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                            // Redimensionar la imagen
+                            Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
-                        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
-                        ImageIcon imgchef = new ImageIcon(chefImgs);
+                            // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+                            ImageIcon imgchef = new ImageIcon(chefImgs);
 
-                        int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
-                                JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
+                            int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
+                                    JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
 
-                        if (resultado == JOptionPane.OK_OPTION) {
-                            firstName = firstNameField.getText();
-                            lastName = lastNameField.getText();
+                            if (resultado == JOptionPane.OK_OPTION) {
+                                firstName = firstNameField.getText();
+                                lastName = lastNameField.getText();
 
-                            email = emailField.getText();
-                            String password = new String(passwordField.getPassword());
-                            String confirmPassword = new String(confirmPasswordField.getPassword());
+                                email = emailField.getText();
+                                String password = new String(passwordField.getPassword());
+                                String confirmPassword = new String(confirmPasswordField.getPassword());
 
-                            if (!firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()
-                                    && !confirmPassword.isEmpty()) {
-                                if (password.equals(confirmPassword)) {
-                                    // valida que el email cumpla con lo minimi
-                                    int emailRevi = controler.isEmailUnique(email);
-                                    // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin = controler.validatePassword(confirmPassword);
-                                    // vreificar de que el cooreo no se repita
-                                    int uniqueEmail = controler.uniqueEmail(email);
-                                    if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
-                                        // crear usuario
-                                        controler.user(new User(firstName, lastName, email, password, Role.user));
+                                if (!firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()
+                                        && !confirmPassword.isEmpty()) {
+                                    if (password.equals(confirmPassword)) {
+                                        // valida que el email cumpla con lo minimi
+                                        int emailRevi = controler.isEmailUnique(email);
+                                        // valida que la contraseña cumpla con lo minimo
+                                        int validePassworMin = controler.validatePassword(confirmPassword);
+                                        // vreificar de que el cooreo no se repita
+                                        int uniqueEmail = controler.uniqueEmail(email);
+                                        if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
+                                            // crear usuario
+                                            controler.user(new User(firstName, lastName, email, password, Role.user));
 
-                                        // añadir al la lista de usuarios
-                                        controler.userRegister();
-                                        au = 0;
-                                        JOptionPane.showMessageDialog(null, "Registered user");
-                                    } else if (uniqueEmail == 2) {
+                                            // añadir al la lista de usuarios
+                                            controler.userRegister();
+                                            i = 1;
+                                            au = 0;
+                                            JOptionPane.showMessageDialog(null, "Registered user");
+                                        } else if (uniqueEmail == 2) {
+                                            au = 1;
+                                            email = "****";
+                                            JOptionPane.showMessageDialog(null, "Email used error");
+                                        } else if (emailRevi == 1) {
+                                            au = 1;
+                                            email = "****";
+                                            JOptionPane.showMessageDialog(null, "Invalid email format error");
+                                        } else if (validePassworMin == 3) {
+                                            au = 1;
+
+                                            JOptionPane.showMessageDialog(null,
+                                                    "la contraseña no comple con lo esperado");
+
+                                        }
+
+                                    } else {
                                         au = 1;
-                                        email = "****";
-                                        JOptionPane.showMessageDialog(null, "Email used error");
-                                    } else if (emailRevi == 1) {
-                                        au = 1;
-                                        email = "****";
-                                        JOptionPane.showMessageDialog(null, "Invalid email format error");
-                                    } else if (validePassworMin == 3) {
-                                        au = 1;
-
-                                        JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
-
+                                        JOptionPane.showMessageDialog(null, "Passwords do not match");
                                     }
-
                                 } else {
                                     au = 1;
-                                    JOptionPane.showMessageDialog(null, "Passwords do not match");
+                                    JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
+                                }
+                                if (i == 0) {
+
+                                    int option = JOptionPane.showConfirmDialog(null,
+                                            "Try again?",
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    if (option == JOptionPane.NO_OPTION) {
+                                        exits = true;
+                                    }
+                                }else{
+                                    exits=true;
                                 }
                             } else {
-                                au = 1;
-                                JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
-                            }
-
-                            int option = JOptionPane.showConfirmDialog(null, "Do you want to register another user?",
-                                    "Continue?", JOptionPane.YES_NO_OPTION);
-                            if (option == JOptionPane.NO_OPTION) {
+                                JOptionPane.showMessageDialog(null, "Operation cancelled");
                                 exits = true;
+                                au = 0;
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Operation cancelled");
-                            exits = true;
+                        } while (!exits);
+                        int option = JOptionPane.showConfirmDialog(null,
+                                "Do you want to register another user?",
+                                "Continue?", JOptionPane.YES_NO_OPTION);
+                        au = 0;
+                        if (option == JOptionPane.NO_OPTION) {
+                            aux = true;
                         }
-                    } while (!exits);
-                }  
+                    } while (!aux);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                }
 
                     break;
                 case "exit": {
                     JOptionPane.showMessageDialog(null, "salida con éxito");
                     exit = -1;
+                    break;
+                }
+
+                case "Visitor": {
+
+                    // visitante aca vaaaaaaaaaaaaa
+                    // !!!!!!!!!!!!!!!
+                    System.out.println("visitante ");
                     break;
                 }
 
