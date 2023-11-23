@@ -1,14 +1,9 @@
 package co.edu.uptc.view;
 
-import java.awt.Color;
 import java.awt.Image;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
@@ -58,7 +53,7 @@ public class Runner {
                     break;
                 case "View movies":
                     adminController.viewMovies(adminController.getListMovies(), movie, "Selec movie to view");
-                    
+
                 case "exit":
                     JOptionPane.showMessageDialog(null, "salida con éxito");
                     w = 10;
