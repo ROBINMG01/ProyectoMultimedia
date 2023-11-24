@@ -8,14 +8,14 @@ public class Serie {
     private int duration;
     private ArrayList<String> listActors;
     private ArrayList<Serie> listSeries;
-    private String listChapters;
+    private ArrayList<String> listChapters;
     private String gender;
 
     public Serie() {
     }
     
     public Serie(String name, String description, int duration, ArrayList<String> listActors,
-            String listChapters, String gender) {
+            ArrayList<String> listChapters, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -47,10 +47,10 @@ public class Serie {
     public void setListActors(ArrayList<String> listActors) {
         this.listActors = listActors;
     }
-    public String getListChapters() {
+    public ArrayList<String> getListChapters() {
         return listChapters;
     }
-    public void setListChapters(String listChapters) {
+    public void setListChapters(ArrayList<String> listChapters) {
         this.listChapters = listChapters;
     }
     public ArrayList<Serie> getListSeries() {
