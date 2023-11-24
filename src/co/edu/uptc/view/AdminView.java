@@ -10,6 +10,7 @@ public class AdminView {
     static AdminController ac = new AdminController();
 
     public static void main(String[] args) {
+        System.out.println("Hola");
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
