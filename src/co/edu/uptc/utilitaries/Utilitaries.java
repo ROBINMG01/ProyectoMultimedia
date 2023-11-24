@@ -1,6 +1,7 @@
-package co.edu.uptc.test;
+package co.edu.uptc.utilitaries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
@@ -17,15 +18,17 @@ public class Utilitaries {
     }
 
     public void loadMovies(){
-        listMovies.add(new Movie("Avengers: Endgame","Los vengadores defenderan la realidad", "3h", "Robert, Hemwoth, Carolina", "Ficción"));
-        listMovies.add(new Movie("El caballero de la noche","una nueva entrega de nuestro superhéroe enmascarado", "2h 32m", "Christian Bale, Heath Ledger, Michael Caine", "Acción"));
-        listMovies.add(new Movie("El origen","Dom Cobb (DiCaprio) es un experto en el arte de apropiarse", "1202", "DiCaprio, Joseph Gordon-Levitt, Tom Hardy", "Ficción"));
-        listMovies.add(new Movie("Tiempos Violentos","Tiempos Violentos narra tres historias intercaladas", "2h 30m", "John Travolta, Uma Thurman, Samuel L. Jackson", "Aventura"));
-        listMovies.add(new Movie("Fight Club","Dolph Lundgren se entrena un poco mientras ayuda a Rebecca", "1h 30m", " Amy Johnston, Cortney Palm, Rey Goyos", "Acción"));
-        listMovies.add(new Movie("Sueños de Libertad","Andrew Dufresne es acusado del asesinato de su mujer", "2h 22m", "Morgan Freeman, Gene Hackman, Robert Duvall", "Aventura"));
-        listMovies.add(new Movie("El Padrino","América, años 40", "2h 55m", "Marlon Brando, Al Pacino, Robert Duvall", "Acción"));
-        listMovies.add(new Movie("Interstellar","Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne", "2h 49m", "Matthew McConaughey, Anne Hathaway, Jessica", "Ficción"));
-        listMovies.add(new Movie("Matrix"," La película es cinética, atmosférica, visualmente impresionante y alucinante", "2h 16m", "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss", "Ficción"));
+
+        listMovies.add(new Movie("Avengers: Endgame", "Los vengadores defenderan la realidad",195 , new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Avengers: Endgame","Los vengadores defenderan la realidad", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("El caballero de la noche","una nueva entrega de nuestro superhéroe enmascarado", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("El origen","Dom Cobb (DiCaprio) es un experto en el arte de apropiarse", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Tiempos Violentos","Tiempos Violentos narra tres historias intercaladas", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Fight Club","Dolph Lundgren se entrena un poco mientras ayuda a Rebecca", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Sueños de Libertad","Andrew Dufresne es acusado del asesinato de su mujer", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("El Padrino","América, años 40", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Interstellar","Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
+        listMovies.add(new Movie("Matrix"," La película es cinética, atmosférica, visualmente impresionante y alucinante", 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth","Carolina")), "Ficción"));
     }
 
         public void loadSeries(){
