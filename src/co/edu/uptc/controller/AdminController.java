@@ -119,24 +119,8 @@ public class AdminController {
         JOptionPane.showMessageDialog(null, panel, mensaje, JOptionPane.PLAIN_MESSAGE);
     }
 
-    public void viewMovies(ArrayList<Movie> listMovies, Movie movie, String mensaje) {
-        // Crear un nuevo JPanel
-        JPanel panel = new JPanel();
-
-        // Crear un nuevo JList
-        JList<Movie> jList = new JList<Movie>(listMovies.toArray(new Movie[0]));
-
-        // Establecer el renderizador de celdas del JList
-        jList.setCellRenderer(new DefaultListCellRenderer() {
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
-                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,
-                        cellHasFocus);
-                Serie serie = (Serie) value;
-                label.setText(serie.getName());
-                return label;
-            }
-        });
+    public void viewMovies(ArrayList<Movie> listMovies, Movie movie, JList<Movie> jList,
+            Component panel) {
 
         // Agregar un ListSelectionListener al JList
         jList.addListSelectionListener(new ListSelectionListener() {
@@ -148,14 +132,6 @@ public class AdminController {
             }
         });
 
-        // Agregar el JList a un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(jList);
-
-        // Agregar el JScrollPane al JPanel
-        panel.add(scrollPane);
-
-        // Mostrar el JPanel en una ventana emergente JOptionPane
-        JOptionPane.showMessageDialog(null, panel, mensaje, JOptionPane.PLAIN_MESSAGE);
     }
 
 }
