@@ -14,7 +14,6 @@ public class AdminController {
     private Serie serie;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
-    private ArrayList<String> listActors;
     private ArrayList<String> listActorsTwo;
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
@@ -27,11 +26,8 @@ public class AdminController {
     public AdminController() {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
-        listActors = new ArrayList<>();
         listActorsTwo = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
-        namesMovies = new ArrayList<>();
-        namesSeries = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
         movie = new Movie();
@@ -137,9 +133,11 @@ public class AdminController {
     }
 
     public ArrayList<String> namesMovies(){
+        namesMovies = new ArrayList<>();
         for (int i = 0; i < listMovies.size(); i++) {
             namesMovies.add(listMovies.get(i).getName());
         }
+        System.out.println("tamaño del array names en cc "+ namesMovies.size() );
         return namesMovies;
     }
 

@@ -69,6 +69,7 @@ public class AdminView {
         String actor = "";
         int ver = 0;
         boolean exit = false;
+        boolean exit2 = false;
         int option = 0;
         ac.showListActorsTwo().clear();
 
@@ -79,6 +80,7 @@ public class AdminView {
                 duration = "";
                 gender = "";
                 ac.showListActorsTwo().clear();
+                System.out.println(ac.showListActorsTwo());
             }
             do {
                 JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -121,7 +123,7 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addActors(authorField);
                             } while (!exit);
-                            ac.addMovie(name, description, dutation2, ac.showListActorsTwo(), gender);
+                          ///////////////////////
                             exit = true;
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
@@ -132,17 +134,21 @@ public class AdminView {
                                     "Continue?", JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.OK_OPTION) {
                                 ver = 1;
-                                exit = false;
+                                exit = true;
+                                exit2 = false;
                             } else {
                                 exit = true;
+                                exit2 = true;
                             }
                         }
                     }
                 } else {
                     exit = true;
+                    exit2 = true;
                 }
             } while (!exit);
-        } while (!exit);
+              ac.addMovie(name, description, dutation2, ac.showListActorsTwo(), gender);
+        } while (!exit2);
     }
 
     public static void addSerie() {
@@ -158,7 +164,7 @@ public class AdminView {
         boolean exit = false;
         int option = 0;
         ac.showListActorsTwo().clear();
-        ac.showListChaptersTwo();
+        ac.showListChaptersTwo().clear();
 
         do {
             if (ver == 1) {
@@ -175,7 +181,7 @@ public class AdminView {
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
                 JTextField genderField = new JTextField(gender);
-                
+
                 panel.add(new JLabel("Name of the serie"));
                 panel.add(nameField);
                 panel.add(new JLabel("Description"));
@@ -186,7 +192,7 @@ public class AdminView {
                 panel.add(genderField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
-            
+
                 if (result == JOptionPane.OK_OPTION) {
                     name = nameField.getText();
                     description = descriptionField.getText();
@@ -221,7 +227,8 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addChapter(chapterField);
                             } while (!exit);
-                            ac.addSerie(name, description, duration2, ac.showListActorsTwo(), ac.showListChaptersTwo(), gender);
+                            ac.addSerie(name, description, duration2, ac.showListActorsTwo(), ac.showListChaptersTwo(),
+                                    gender);
                             exit = true;
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
@@ -238,11 +245,11 @@ public class AdminView {
                             }
                         }
                     }
-                }else{
+                } else {
                     exit = true;
                 }
             } while (!exit);
-        }while (!exit);
+        } while (!exit);
     }
 
     public static void showMovies() {
@@ -261,55 +268,92 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listactors = "";
-        String selectedaction = "";
+        int duration2 = 0;
+        String actor = "";
         String gender = "";
+        String selectedaction = "";
         int ver = 0;
         boolean exit = false;
         boolean exit2 = false;
+        int option = 0;
         String showNamesMovies[];
-
+        ac.showListActorsTwo().clear();
+        
         do {
-            //pasa los nombres de las peliculas de un ArrayList a un arreglo
-            showNamesMovies = ac.namesMovies().toArray(new String[ac.namesMovies().size()]);
+            System.out.println("1--------------------------------------------------------");
+            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray()]);
+            System.out.println("tamaño de shownames runner "+ showNamesMovies.length);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
-            if (selectedaction != null) {
+            for (int i = 0; i < showNamesMovies.length; i++) {
+                System.out.println(showNamesMovies[i]);
+            }
+            System.out.println("-----------------------------------------------------------");
+                    if (selectedaction != null) {
+                if (ver == 1) {
+                    name = "";
+                    description = "";
+                    duration = "";
+                    gender = "";
+                    ac.showListActorsTwo();
+                }
                 do {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
-                    if (ver == 1) {
-                        name = "";
-                        description = "";
-                        duration = "";
-                        gender = "";
-                    }
                     JTextField nameField = new JTextField(name);
                     JTextField descriptionField = new JTextField(description);
                     JTextField durationField = new JTextField(duration);
                     JTextField genderField = new JTextField(gender);
 
-                    panel.add(new JLabel("Name of the movie:"));
+                    panel.add(new JLabel("Name of the serie"));
                     panel.add(nameField);
-                    panel.add(new JLabel("Description:"));
+                    panel.add(new JLabel("Description"));
                     panel.add(descriptionField);
-                    panel.add(new JLabel("Duration:"));
+                    panel.add(new JLabel("Duration"));
                     panel.add(durationField);
-                    panel.add(new JLabel("Gender:"));
+                    panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie",
-                            JOptionPane.OK_CANCEL_OPTION);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie", JOptionPane.OK_CANCEL_OPTION);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
                         description = descriptionField.getText();
                         duration = durationField.getText();
                         gender = genderField.getText();
-                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
-                                || gender.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Failed to Update movie");
+
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Failed to update serie");
                             exit = verification();
                             ver = 0;
+                        } else {
+                            try {
+                                duration2 = Integer.parseInt(duration);
+                                do {
+                                    JPanel panell = new JPanel(new GridLayout(1, 2));
+                                    JTextField authorField = new JTextField(actor);
+                                    panell.add(new JLabel("Author:"));
+                                    panell.add(authorField);
+
+                                    option = JOptionPane.showConfirmDialog(null, panell,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addActors(authorField);
+                                } while (!exit);
+                                ac.updateMovie(selectedaction, name, description, duration2, ac.showListActorsTwo(), gender);
+                                exit = true;
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                                exit = false;
+                            }
+                            if (duration2 != 0) {
+                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another Movie?",
+                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.OK_OPTION) {
+                                    ver = 1;
+                                    exit = false;
+                                } else {
+                                    exit = true;
+                                }
+                            }
                         }
                     } else {
                         exit = true;
@@ -336,7 +380,7 @@ public class AdminView {
         String showNamesSeries[];
 
         do {
-            showNamesSeries = ac.namesSeries().toArray(new String[ac.namesSeries().size()]);
+            showNamesSeries = ac.namesSeries().toArray(new String[ tamañoArray()]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
 
@@ -388,28 +432,6 @@ public class AdminView {
                             exit = verification();
                             ver = 0;
                         } else {
-                            /*
-                             * if (ac.updateSeries(selectedaction, name, description, duration, listactors,
-                             * chapters,
-                             * gender)) {
-                             * JOptionPane.showMessageDialog(null, "Serie update successfully");
-                             * ver = 1;
-                             * option = JOptionPane.showConfirmDialog(null,
-                             * "Do you want to update another serie?",
-                             * "Continue?", JOptionPane.YES_NO_OPTION);
-                             * if (option == JOptionPane.OK_OPTION) {
-                             * ver = 1;
-                             * exit = true;
-                             * } else {
-                             * exit = true;
-                             * exit2 = true;
-                             * }
-                             * } else {
-                             * JOptionPane.showMessageDialog(null, "Failed to update movie");
-                             * exit = verification();
-                             * ver = 0;
-                             * }
-                             */
                         }
                     } else {
                         exit = true;
@@ -478,5 +500,9 @@ public class AdminView {
             }
         }
         return true;
+    }
+
+    public static int tamañoArray(){
+        return ac.namesMovies().size();
     }
 }
