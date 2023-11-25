@@ -64,75 +64,84 @@ public class AdminView {
         String name = "";
         String description = "";
         String duration = "";
-        String listactors = "";
+        int dutation2 = 0;
         String gender = "";
+        String actor = "";
         int ver = 0;
         boolean exit = false;
         int option = 0;
 
         do {
-            JPanel panel = new JPanel(new GridLayout(5, 2));
             if (ver == 1) {
                 name = "";
                 description = "";
                 duration = "";
-                listactors = "";
                 gender = "";
+                ac.showListActorsTwo().clear();
             }
-            JTextField nameField = new JTextField(name);
-            JTextField authorField = new JTextField(listactors);
-            JTextField descriptionField = new JTextField(description);
-            JTextField durationField = new JTextField(duration);
-            JTextField genderField = new JTextField(gender);
+            do {
+                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JTextField nameField = new JTextField(name);
+                JTextField descriptionField = new JTextField(description);
+                JTextField durationField = new JTextField(duration);
+                JTextField genderField = new JTextField(gender);
 
-            panel.add(new JLabel("Name of the movie:"));
-            panel.add(nameField);
-            panel.add(new JLabel("Author:"));
-            panel.add(authorField);
-            panel.add(new JLabel("Description:"));
-            panel.add(descriptionField);
-            panel.add(new JLabel("Duration:"));
-            panel.add(durationField);
-            panel.add(new JLabel("Gender:"));
-            panel.add(genderField);
+                panel.add(new JLabel("Name of the movie:"));
+                panel.add(nameField);
+                panel.add(new JLabel("Description:"));
+                panel.add(descriptionField);
+                panel.add(new JLabel("Duration:"));
+                panel.add(durationField);
+                panel.add(new JLabel("Gender:"));
+                panel.add(genderField);
 
-            int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
 
-            if (result == JOptionPane.OK_OPTION) {
-                name = nameField.getText();
-                description = descriptionField.getText();
-                duration = durationField.getText();
-                listactors = authorField.getText();
-                gender = genderField.getText();
+                if (result == JOptionPane.OK_OPTION) {
+                    name = nameField.getText();
+                    description = descriptionField.getText();
+                    duration = durationField.getText();
+                    gender = genderField.getText();
 
-                if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || listactors.isEmpty()
-                        || gender.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Failed to add movieeee");
-                    exit = verification();
-                    ver = 0;
-                } else {
-                    if (ac.addMovie(name, description, duration, listactors, gender)) {
-                        JOptionPane.showMessageDialog(null, "Movie added successfully");
-                        ver = 1;
-                        option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
-                                "Continue?", JOptionPane.YES_NO_OPTION);
-                        if (option == JOptionPane.OK_OPTION) {
-                            ver = 1;
-                            exit = false;
-                        } else {
-                            exit = true;
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failed to add movie");
+                    if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Failed to add movieeee");
                         exit = verification();
                         ver = 0;
-                    }
-                }
-            } else {
-                exit = true;
-            }
-        } while (!exit);
+                    } else {
+                        try {
+                            dutation2 = Integer.parseInt(duration);
+                            do {
+                                JPanel panell = new JPanel(new GridLayout(1, 2));
+                                JTextField authorField = new JTextField(actor);
+                                panell.add(new JLabel("Author:"));
+                                panell.add(authorField);
 
+                                option = JOptionPane.showConfirmDialog(null, panell,
+                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                exit = addActors(authorField);
+                            } while (!exit);
+                            ac.addMovie(name, description, dutation2, ac.showListActorsTwo(), gender);
+                            exit = true;
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                            exit = false;
+                        }
+                        if (dutation2 != 0) {
+                            option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
+                                    "Continue?", JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                ver = 1;
+                                exit = false;
+                            } else {
+                                exit = true;
+                            }
+                        }
+                    }
+                } else {
+                    exit = true;
+                }
+            } while (!exit);
+        } while (!exit);
     }
 
     public static void addSerie() {
@@ -193,22 +202,25 @@ public class AdminView {
                     exit = verification();
                     ver = 0;
                 } else {
-                    if (ac.addSerie(name, description, duration, listactors, chapters, gender)) {
-                        JOptionPane.showMessageDialog(null, "Serie added successfully");
-                        ver = 1;
-                        option = JOptionPane.showConfirmDialog(null, "Do you want to add another serie?",
-                                "Continue?", JOptionPane.YES_NO_OPTION);
-                        if (option == JOptionPane.OK_OPTION) {
-                            ver = 1;
-                            exit = false;
-                        } else {
-                            exit = true;
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Failed to add serie");
-                        exit = verification();
-                        ver = 0;
-                    }
+                    /*
+                     * if (ac.addSerie(name, description, duration, listactors, chapters, gender)) {
+                     * JOptionPane.showMessageDialog(null, "Serie added successfully");
+                     * ver = 1;
+                     * option = JOptionPane.showConfirmDialog(null,
+                     * "Do you want to add another serie?",
+                     * "Continue?", JOptionPane.YES_NO_OPTION);
+                     * if (option == JOptionPane.OK_OPTION) {
+                     * ver = 1;
+                     * exit = false;
+                     * } else {
+                     * exit = true;
+                     * }
+                     * } else {
+                     * JOptionPane.showMessageDialog(null, "Failed to add serie");
+                     * exit = verification();
+                     * ver = 0;
+                     * }
+                     */
                 }
             } else {
                 exit = true;
@@ -287,23 +299,27 @@ public class AdminView {
                             exit = verification();
                             ver = 0;
                         } else {
-                            if (ac.updateMovie(selectedaction, name, description, duration, listactors, gender)) {
-                                JOptionPane.showMessageDialog(null, "Movie update successfully");
-                                ver = 1;
-                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another movie?",
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
-                                if (option == JOptionPane.OK_OPTION) {
-                                    ver = 1;
-                                    exit = true;
-                                } else {
-                                    exit = true;
-                                    exit2 = true;
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Failed to update movie");
-                                exit = verification();
-                                ver = 0;
-                            }
+                            /*
+                             * if (ac.updateMovie(selectedaction, name, description, duration, listactors,
+                             * gender)) {
+                             * JOptionPane.showMessageDialog(null, "Movie update successfully");
+                             * ver = 1;
+                             * option = JOptionPane.showConfirmDialog(null,
+                             * "Do you want to update another movie?",
+                             * "Continue?", JOptionPane.YES_NO_OPTION);
+                             * if (option == JOptionPane.OK_OPTION) {
+                             * ver = 1;
+                             * exit = true;
+                             * } else {
+                             * exit = true;
+                             * exit2 = true;
+                             * }
+                             * } else {
+                             * JOptionPane.showMessageDialog(null, "Failed to update movie");
+                             * exit = verification();
+                             * ver = 0;
+                             * }
+                             */
                         }
                     } else {
                         exit = true;
@@ -383,24 +399,28 @@ public class AdminView {
                             exit = verification();
                             ver = 0;
                         } else {
-                            if (ac.updateSeries(selectedaction, name, description, duration, listactors, chapters,
-                                    gender)) {
-                                JOptionPane.showMessageDialog(null, "Serie update successfully");
-                                ver = 1;
-                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another serie?",
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
-                                if (option == JOptionPane.OK_OPTION) {
-                                    ver = 1;
-                                    exit = true;
-                                } else {
-                                    exit = true;
-                                    exit2 = true;
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Failed to update movie");
-                                exit = verification();
-                                ver = 0;
-                            }
+                            /*
+                             * if (ac.updateSeries(selectedaction, name, description, duration, listactors,
+                             * chapters,
+                             * gender)) {
+                             * JOptionPane.showMessageDialog(null, "Serie update successfully");
+                             * ver = 1;
+                             * option = JOptionPane.showConfirmDialog(null,
+                             * "Do you want to update another serie?",
+                             * "Continue?", JOptionPane.YES_NO_OPTION);
+                             * if (option == JOptionPane.OK_OPTION) {
+                             * ver = 1;
+                             * exit = true;
+                             * } else {
+                             * exit = true;
+                             * exit2 = true;
+                             * }
+                             * } else {
+                             * JOptionPane.showMessageDialog(null, "Failed to update movie");
+                             * exit = verification();
+                             * ver = 0;
+                             * }
+                             */
                         }
                     } else {
                         exit = true;
@@ -414,7 +434,7 @@ public class AdminView {
 
     public static boolean verification() {
         int option = 0;
-        option = JOptionPane.showConfirmDialog(null, "Do you want try agan update?",
+        option = JOptionPane.showConfirmDialog(null, "Do you want try agan?",
                 "Continue?", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             return false;
@@ -438,5 +458,30 @@ public class AdminView {
             namesSeries.add(ac.showListSeries().get(i).getName());
         }
         return namesSeries;
+    }
+
+    public static boolean addActors(JTextField authorField) {
+        int option = 0;
+        String actor = "";
+
+        if (option == JOptionPane.OK_OPTION) {
+            actor = authorField.getText();
+            if (actor.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Failed to add actor");
+                return verification();
+            } else {
+                ac.addListActors(actor);
+                JOptionPane.showMessageDialog(null, "PASOOO222222");
+                option = JOptionPane.showConfirmDialog(null, "Do you want to add another actor?",
+                        "Continue?", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                    actor = "";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+        return true;
     }
 }
