@@ -1,15 +1,9 @@
 package co.edu.uptc.view;
 
-import java.awt.Component;
 import java.awt.Image;
 
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
@@ -18,10 +12,7 @@ import co.edu.uptc.model.Serie;
 
 public class Runner {
     public static void main(String[] args) {
-        Serie serie = new Serie();
-        Movie movie = new Movie();
-        String name = "", description = "";
-        int w = 0, duration = 0, au = 0, aux = 0;
+        int w = 0, aux = 0;
         AdminController adminController = new AdminController();
         String optionHome[] = { "View series", "View movies" };
         do {
@@ -54,45 +45,44 @@ public class Runner {
             }
             switch (seleccion) {
                 case "View series":
-                    adminController.viewSeries(adminController.getListSeries(), serie, "Selec serie to view");
+                    if (adminController.getListSeries().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
+                    } else {
+                        for (int i = 0; i < adminController.getListSeries().size(); i++) {
+                            aux = Integer.parseInt(JOptionPane
+                                    .showInputDialog("[" + (i + 1) + "] " +
+                                            "select a serie" + "\n"
+                                            + adminController.showListSeries().get(i)));
+                        }
+
+                        Serie serieSelec = adminController.getListSeries().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, serieSelec.toString());
+                    }
 
                     break;
                 case "View movies":
-                    JPanel panel = new JPanel();
-
-                    // Crear un nuevo JList
-                    JList<Movie> jList = new JList<Movie>(adminController.getListMovies().toArray(new Movie[0]));
-                    // Establecer el renderizador de celdas del JList
-                    jList.setCellRenderer(new DefaultListCellRenderer() {
-                        public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                boolean isSelected,
-                                boolean cellHasFocus) {
-                            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,
-                                    cellHasFocus);
-                            Serie serie = (Serie) value;
-                            label.setText(serie.getName());
-                            return label;
+                    if (adminController.getListMovies().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
+                    } else {
+                        for (int i = 0; i < adminController.getListMovies().size(); i++) {
+                            aux = Integer.parseInt(JOptionPane
+                                    .showInputDialog("[" + (i + 1) + "] " +
+                                            "select a movie" + "\n"
+                                            + adminController.showListMovies().get(i)));
                         }
-                    });
-                    adminController.viewMovies(adminController.getListMovies(), movie, jList,
-                            panel);
 
-                    // Agregar el JList a un JScrollPane
-                    JScrollPane scrollPane = new JScrollPane(jList);
-
-                    // Agregar el JScrollPane al JPanel
-                    panel.add(scrollPane);
-
-                    // Mostrar el JPanel en una ventana emergente JOptionPane
-                    JOptionPane.showMessageDialog(null, panel, "Selec movie to vies", JOptionPane.PLAIN_MESSAGE);
+                        Movie movieSelect = adminController.getListMovies().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, movieSelect.toString());
+                    }
+                    break;
 
                 case "exit":
-                    JOptionPane.showMessageDialog(null, "salida con éxito");
+                    JOptionPane.showMessageDialog(null, "successful exit");
                     w = 10;
                     break;
 
                 default:
-                    System.out.println("Opcion incorrecta");
+                    System.out.println("invalid option");
                     break;
             }
         } while (w != 10);

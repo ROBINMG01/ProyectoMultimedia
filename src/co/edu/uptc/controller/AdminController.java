@@ -1,16 +1,6 @@
 package co.edu.uptc.controller;
 
-import java.awt.Component;
 import java.util.ArrayList;
-
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
@@ -44,29 +34,31 @@ public class AdminController {
         serie = new Serie();
     }
 
-    public boolean addMovie(String name, String description, int duration, ArrayList<String> actors) {
+    public boolean addMovie(String name, String description, int duration, String gender, ArrayList<String> actors) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
+        movie.setGender(gender);
         movie.setListActors(actors);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, actors));
+            listMovies.add(new Movie(name, description, duration, gender, actors));
             return true;
         }
         return false;
     }
 
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> actors,
+    public boolean addSerie(String name, String description, int duration, String gender, ArrayList<String> actors,
             ArrayList<String> chapters) {
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
+        serie.setGender(gender);
         serie.setListActors(actors);
         serie.setListChapters(chapters);
 
         if (name.equals(serie.getName()) && duration == serie.getDuration()) {
-            listSeries.add(new Serie(name, description, duration, actors, chapters));
+            listSeries.add(new Serie(name, description, duration, gender, actors, chapters));
             return true;
         }
         return false;
@@ -80,58 +72,24 @@ public class AdminController {
         return listSeries;
     }
 
-    public void viewSeries(ArrayList<Serie> listSeries, Serie serie, String mensaje) {
-        // Crear un nuevo JPanel
-        JPanel panel = new JPanel();
-
-        // Crear un nuevo JList
-        JList<Serie> jList = new JList<Serie>(listSeries.toArray(new Serie[0]));
-
-        // Establecer el renderizador de celdas del JList
-        jList.setCellRenderer(new DefaultListCellRenderer() {
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
-                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,
-                        cellHasFocus);
-                Serie serie = (Serie) value;
-                label.setText(serie.getName());
-                return label;
+    public ArrayList<Movie> filterMoviesByGenre(ArrayList<Movie> listMovies, String gener) {
+        ArrayList<Movie> filteredMovies = new ArrayList<Movie>();
+        for (Movie movie : listMovies) {
+            if (movie.getGender().equals(gener)) {
+                filteredMovies.add(movie);
             }
-        });
-
-        // Agregar un ListSelectionListener al JList
-        jList.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                Serie selectedSerie = (Serie) jList.getSelectedValue();
-                JOptionPane.showMessageDialog(panel,
-                        "Name: " + selectedSerie.getName() + "\nDescription: " + selectedSerie.getDescription()
-                                + "\nDuration: " + selectedSerie.getDuration());
-            }
-        });
-
-        // Agregar el JList a un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(jList);
-
-        // Agregar el JScrollPane al JPanel
-        panel.add(scrollPane);
-
-        // Mostrar el JPanel en una ventana emergente JOptionPane
-        JOptionPane.showMessageDialog(null, panel, mensaje, JOptionPane.PLAIN_MESSAGE);
+        }
+        return filteredMovies;
     }
 
-    public void viewMovies(ArrayList<Movie> listMovies, Movie movie, JList<Movie> jList,
-            Component panel) {
-
-        // Agregar un ListSelectionListener al JList
-        jList.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                Movie selectedMovie = (Movie) jList.getSelectedValue();
-                JOptionPane.showMessageDialog(panel,
-                        "Name: " + selectedMovie.getName() + "\nDescription: " + selectedMovie.getDescription()
-                                + "\nDuration: " + selectedMovie.getDuration());
+    public ArrayList<Serie> filterSeriesByGenre(ArrayList<Serie> listSeries, String gender) {
+        ArrayList<Serie> filteredSeries = new ArrayList<Serie>();
+        for (Serie serie : listSeries) {
+            if (movie.getGender().equals(gender)) {
+                filteredSeries.add(serie);
             }
-        });
-
+        }
+        return filteredSeries;
     }
 
 }
