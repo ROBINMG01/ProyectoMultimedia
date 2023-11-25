@@ -16,6 +16,9 @@ public class AdminController {
     private ArrayList<Serie> listSeries;
     private ArrayList<String> listActors;
     private ArrayList<String> listActorsTwo;
+    private ArrayList<String> listChaptersTwo;
+    private ArrayList<String> namesMovies;
+    private ArrayList<String> namesSeries;
     private Utilitaries utilitaries;
 
     //private Movie movie1 = new Movie(); for class abstract
@@ -26,6 +29,9 @@ public class AdminController {
         listSeries = new ArrayList<>();
         listActors = new ArrayList<>();
         listActorsTwo = new ArrayList<>();
+        listChaptersTwo = new ArrayList<>();
+        namesMovies = new ArrayList<>();
+        namesSeries = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
         movie = new Movie();
@@ -118,7 +124,29 @@ public class AdminController {
         listActorsTwo.add(name);
     }
 
+    public void addListChapters(String chapter){
+        listChaptersTwo.add(chapter);
+    }
+
     public ArrayList<String> showListActorsTwo(){
         return listActorsTwo;
+    }
+
+    public ArrayList<String> showListChaptersTwo(){
+        return listChaptersTwo;
+    }
+
+    public ArrayList<String> namesMovies(){
+        for (int i = 0; i < listMovies.size(); i++) {
+            namesMovies.add(listMovies.get(i).getName());
+        }
+        return namesMovies;
+    }
+
+    public ArrayList<String> namesSeries(){
+        for (int i = 0; i < listSeries.size(); i++) {
+            namesSeries.add(listSeries.get(i).getName());
+        }
+        return namesSeries;
     }
 }
