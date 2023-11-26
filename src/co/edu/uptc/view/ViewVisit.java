@@ -1,0 +1,91 @@
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
+import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
+
+public class ViewVisit {
+
+    public void visitView() {
+        int w = 0, aux = 0;
+        AdminController adminController = new AdminController();
+        String optionHome[] = { "View series", "View movies" };
+        do {
+            UIManager.put("OptionPane.cancelButtonText", "Exit the application");
+            UIManager.put("OptionPane.okButtonText", "select");
+            // icono de la imagen
+            ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+
+            // Obtener la imagen del ImageIcon original
+            Image originalImage = icon.getImage();
+
+            // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+            int newWidth = 250;
+            int newHeight = 250;
+
+            // Redimensionar la imagen
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+            // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+            ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+            String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Opciones de Inicio", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionHome,
+                    optionHome[0]);
+            // para que influya en todos
+            UIManager.put("OptionPane.cancelButtonText", "Back");
+            UIManager.put("OptionPane.okButtonText", "Accept");
+            if (seleccion == null) {
+                seleccion = "exit";
+            }
+            switch (seleccion) {
+                case "View series":
+                    if (adminController.showListSeries().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
+                    } else {
+                        for (int i = 0; i < adminController.showListSeries().size(); i++) {
+                            aux = Integer.parseInt(JOptionPane
+                                    .showInputDialog("[" + (i + 1) + "] " +
+                                            "select a serie" + "\n"
+                                            + adminController.showListSeries().get(i)));
+                        }
+
+                        Serie serieSelec = adminController.showListSeries().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, serieSelec.toString());
+                    }
+
+                    break;
+                case "View movies":
+                    if (adminController.showListMovies().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
+                    } else {
+                        for (int i = 0; i < adminController.showListMovies().size(); i++) {
+                            aux = Integer.parseInt(JOptionPane
+                                    .showInputDialog("[" + (i + 1) + "] " +
+                                            "select a movie" + "\n"
+                                            + adminController.showListMovies().get(i)));
+                        }
+
+                        Movie movieSelect = adminController.showListMovies().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, movieSelect.toString());
+                    }
+                    break;
+
+                case "exit":
+                    JOptionPane.showMessageDialog(null, "successful exit");
+                    w = 10;
+                    break;
+
+                default:
+                    System.out.println("invalid option");
+                    break;
+            }
+        } while (w != 10);
+    }
+
+}

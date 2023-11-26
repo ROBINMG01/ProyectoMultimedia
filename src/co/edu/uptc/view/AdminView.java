@@ -1,9 +1,17 @@
-package co.edu.uptc.view;
 
-import javax.swing.*;
-import co.edu.uptc.controller.AdminController;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import co.edu.uptc.controller.AdminController;
 
 public class AdminView {
 
@@ -15,23 +23,23 @@ public class AdminView {
         frame.setSize(400, 300);
         frame.setLayout(new GridLayout(2, 2));
 
-        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie","Exit" };
+        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
+                "Exit" };
         boolean condition = false;
         do {
-              UIManager.put("OptionPane.cancelButtonText", "Cancel");
+            UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
             String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                     // para que influya en todos
-          
-                   
-          if(selectedaction== null){
-            selectedaction="exit";
-            break;
-          }
-            if ( selectedaction.equals("exit")) {
+            // para que influya en todos
+
+            if (selectedaction == null) {
+                selectedaction = "exit";
+                break;
+            }
+            if (selectedaction.equals("exit")) {
                 condition = false;
-                
+
             } else {
                 condition = true;
                 performSelectedaction(selectedaction);
@@ -60,8 +68,8 @@ public class AdminView {
             case "Update Serie":
                 updateSerie();
                 break;
-                  case "Exit":
-                
+            case "Exit":
+
                 break;
         }
     }

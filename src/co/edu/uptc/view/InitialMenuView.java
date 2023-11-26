@@ -1,9 +1,6 @@
-package co.edu.uptc.view;
 
-import java.net.URL;
 import java.awt.Color;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
