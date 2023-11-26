@@ -21,7 +21,7 @@ public class UserController {
     }
 
     public void showMovieCatalog() {
-        ArrayList<Movie> movies = utilitaries.getMovieCatalog();
+        ArrayList<Movie> movies = utilitaries.loadMovies();
 
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movies) {
@@ -99,7 +99,7 @@ public class UserController {
     }
 
     public void showSeriesCatalog() {
-        ArrayList<Serie> series = utilitaries.getSeriesCatalog();
+        ArrayList<Serie> series = utilitaries.loadSeries();
 
         ArrayList<String> seriesNames = new ArrayList<>();
         for (Serie serie : series) {
@@ -198,13 +198,13 @@ public class UserController {
                         ArrayList<String> favorites;
                         if (selectedCatalogOption.equals("Series")) {
                             catalog = new ArrayList<>();
-                            for (Serie serie : utilitaries.getSeriesCatalog()) {
+                            for (Serie serie : utilitaries.loadSeries()) {
                                 catalog.add(serie.getName());
                             }
                             favorites = favoriteSeries;
                         } else {
                             catalog = new ArrayList<>();
-                            for (Movie movie : utilitaries.getMovieCatalog()) {
+                            for (Movie movie : utilitaries.loadMovies()) {
                                 catalog.add(movie.getName());
                             }
                             favorites = favoriteMovies;
@@ -332,14 +332,14 @@ public class UserController {
 
     public boolean addMovie(String name, String description, int duration,
             ArrayList<String> actors) {
-        Movie movie = new Movie(name, description, duration, actors);
+        Movie movie = new Movie(name, description, duration, actors, description);
         listMovies.add(movie);
         return true;
     }
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> actors,
             ArrayList<String> chapters) {
-        Serie serie = new Serie(name, description, actors);
+        Serie serie = new Serie(name, description, duration, actors, chapters, description);
         listSeries.add(serie);
         return true;
     }

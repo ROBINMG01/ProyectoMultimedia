@@ -15,8 +15,8 @@ public class BuscarSerieImpl {
 
     public void buscar() {
         // Catálogo de películas y series con año de lanzamiento y género.
-        ArrayList<Movie> movieCatalog = utilitaries.getMovieCatalog();
-        ArrayList<Serie> seriesCatalog = utilitaries.getSeriesCatalog();
+        ArrayList<Movie> movieCatalog = utilitaries.loadMovies();
+        ArrayList<Serie> seriesCatalog = utilitaries.loadSeries();
 
         // Opciones de búsqueda
         String[] options = {"Search by name"};
