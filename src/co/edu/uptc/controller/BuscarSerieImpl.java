@@ -17,6 +17,7 @@ public class BuscarSerieImpl {
         // Catálogo de películas y series con año de lanzamiento y género.
         ArrayList<Movie> movieCatalog = utilitaries.getMovieCatalog();
         ArrayList<Serie> seriesCatalog = utilitaries.getSeriesCatalog();
+        
 
         // Opciones de búsqueda
         String[] options = {"Search by name"};
@@ -48,6 +49,7 @@ public class BuscarSerieImpl {
                         }
                     }
                     for (Serie serie : seriesCatalog) {
+                        System.out.println(serie.getName());
                         if (serie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
                             // Mostrar solo el nombre de la serie
                             result += serie.getName() + "\n";

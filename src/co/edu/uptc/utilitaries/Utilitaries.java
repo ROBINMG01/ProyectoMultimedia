@@ -11,11 +11,10 @@ public class Utilitaries {
 
     public Utilitaries() {
         movieCatalog = new ArrayList<>();
-        seriesCatalog = new ArrayList<>();
+        seriesCatalog = new ArrayList<Serie>();
          MovieCatalog();
-         SeriesCatalog();
     }
-
+ 
     private void MovieCatalog() {
         movieCatalog.add(new Movie("Avengers: Endgame", "Nuestros queridos héroes entenderán realmente cuán frágil es esta realidad y los sacrificios que deben hacerse para defenderla", 180, new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina"))));
         movieCatalog.add(new Movie("The Dark Knight", "Una nueva entrega de nuestro superhéroe enmascarado, quien con una dosis inmensa de acción y drama nos promete atraparnos con cada escena a lo largo del film", 152, new ArrayList<>(Arrays.asList("Christian Bale", "Heath Ledger", "Michael Caine"))));
