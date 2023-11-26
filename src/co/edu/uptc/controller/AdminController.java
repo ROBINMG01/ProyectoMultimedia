@@ -2,8 +2,6 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 
-import javax.security.auth.Subject;
-
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
@@ -20,7 +18,7 @@ public class AdminController {
     private ArrayList<String> namesSeries;
     private Utilitaries utilitaries;
 
-    //ROBIN
+    // ROBIN
     public AdminController() {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
@@ -33,24 +31,26 @@ public class AdminController {
         serie = new Serie();
     }
 
-    //ROBIN
-    public boolean addMovie(String name, String description, int duration, ArrayList<String> listActors, String gender){
+    // ROBIN
+    public boolean addMovie(String name, String description, int duration, ArrayList<String> listActors,
+            String gender) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
         movie.setListActors(listActors);
         movie.setGender(gender);
-        
+
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
             listMovies.add(new Movie(name, description, duration, listActors, gender));
             return true;
         }
         return false;
-        
+
     }
 
-    //ROBIN
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> listActors, ArrayList<String> chapters, String gender){
+    // ROBIN
+    public boolean addSerie(String name, String description, int duration, ArrayList<String> listActors,
+            ArrayList<String> chapters, String gender) {
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
@@ -65,29 +65,30 @@ public class AdminController {
         return false;
     }
 
-    //ROBIN
-    public int searchMovie(String name){
+    // ROBIN
+    public int searchMovie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
-            if(listMovies.get(i).getName().equals(name)){
+            if (listMovies.get(i).getName().equals(name)) {
                 return i;
             }
         }
         return -1;
     }
 
-    //ROBIN
-    public int searchSeries(String name){
+    // ROBIN
+    public int searchSeries(String name) {
         for (int i = 0; i < listSeries.size(); i++) {
-            if(listSeries.get(i).getName().equals(name)){
+            if (listSeries.get(i).getName().equals(name)) {
                 return i;
             }
         }
         return -1;
     }
 
-    //ROBIN
-    public boolean updateMovie(String name, String nameUpdate, String description, int duration, ArrayList<String> actors, String gender){
-        if (searchMovie(name)!= -1) {
+    // ROBIN
+    public boolean updateMovie(String name, String nameUpdate, String description, int duration,
+            ArrayList<String> actors, String gender) {
+        if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
             listMovies.get(position).setDescription(description);
@@ -99,9 +100,10 @@ public class AdminController {
         return false;
     }
 
-    //ROBIN
-    public boolean updateSeries(String name, String nameUpdate, String description, int duration, ArrayList<String> listActors, ArrayList<String> chapters, String gender){
-        if (searchSeries(name)!= -1) {
+    // ROBIN
+    public boolean updateSeries(String name, String nameUpdate, String description, int duration,
+            ArrayList<String> listActors, ArrayList<String> chapters, String gender) {
+        if (searchSeries(name) != -1) {
             int position = searchSeries(name);
             listSeries.get(position).setName(nameUpdate);
             listSeries.get(position).setDescription(description);
@@ -114,36 +116,36 @@ public class AdminController {
         return false;
     }
 
-    //ROBIN
-    public ArrayList<Movie> showListMovies(){
+    // ROBIN
+    public ArrayList<Movie> showListMovies() {
         return listMovies;
     }
 
-    //ROBIN
-    public ArrayList<Serie> showListSeries(){
+    // ROBIN
+    public ArrayList<Serie> showListSeries() {
         return listSeries;
     }
 
-    public void addListActors(String name){
+    public void addListActors(String name) {
         listActorsTwo.add(name);
     }
 
-    //ROBIN
-    public void addListChapters(String chapter){
+    // ROBIN
+    public void addListChapters(String chapter) {
         listChaptersTwo.add(chapter);
     }
 
-    public ArrayList<String> showListActorsTwo(){
+    public ArrayList<String> showListActorsTwo() {
         return listActorsTwo;
     }
 
-    //ROBIN
-    public ArrayList<String> showListChaptersTwo(){
+    // ROBIN
+    public ArrayList<String> showListChaptersTwo() {
         return listChaptersTwo;
     }
 
-    //ROBIN
-    public ArrayList<String> namesMovies(){
+    // ROBIN
+    public ArrayList<String> namesMovies() {
         namesMovies = new ArrayList<>();
         for (int i = 0; i < listMovies.size(); i++) {
             namesMovies.add(listMovies.get(i).getName());
@@ -151,13 +153,29 @@ public class AdminController {
         return namesMovies;
     }
 
-    //ROBIN
-    public ArrayList<String> namesSeries(){
+    // ROBIN
+    public ArrayList<String> namesSeries() {
         namesSeries = new ArrayList<>();
         System.out.println(listSeries.size());
         for (int i = 0; i < listSeries.size(); i++) {
             namesSeries.add(listSeries.get(i).getName());
         }
         return namesSeries;
+    }
+
+    public ArrayList<Movie> getListMovies() {
+        return listMovies;
+    }
+
+    public void setListMovies(ArrayList<Movie> listMovies) {
+        this.listMovies = listMovies;
+    }
+
+    public ArrayList<Serie> getListSeries() {
+        return listSeries;
+    }
+
+    public void setListSeries(ArrayList<Serie> listSeries) {
+        this.listSeries = listSeries;
     }
 }
