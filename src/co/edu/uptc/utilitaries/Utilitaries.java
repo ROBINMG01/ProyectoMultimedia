@@ -43,11 +43,9 @@ public class Utilitaries {
         return listMovies;
     }
 
-    /*public void loadSeries() {
-        listSeries.add(new Serie("Loki", "Loki es llevado ante la misteriosa organización llamada AVT", "45 m Capitulo",
-                "Andrew, Monica, Robert", "Capitulo1, Capitulo2, Capitulo3, Capitulo4, Capitulo5, Capitulo6",
-                "Ficción"));
-        listSeries.add(new Serie("Strange Things", "Es una serie de televisión dramática de misterio", "1h Capitulo",
-                "Marthe, Bill, Carlos", "Capitulo1, Capitulo2, Capitulo3", "Drama"));
-    }*/
+    public ArrayList<Serie> loadSeries() {
+        listSeries.add(new Serie("Loki", "Loki es llevado ante la misteriosa organización llamada AVT",120 , new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), new ArrayList<>(Arrays.asList("Tiem´po", "Busqueda", "Contralejo")), "Marvel"));
+        listSeries.add(new Serie("Strange Things", "Es una serie de televisión dramática de misterio",45 , new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos")), new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3")), "Ficcion"));
+        return listSeries;
+}
 }
