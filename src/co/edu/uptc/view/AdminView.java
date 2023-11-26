@@ -9,28 +9,32 @@ public class AdminView {
 
     AdminController ac = new AdminController();
 
-    public void menuAdmin() {
-        SwingUtilities.invokeLater(() -> {
-            createAndShowGUI();
-        });
-    }
-
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Admin View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
         frame.setLayout(new GridLayout(2, 2));
 
-        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie" };
+        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie","Exit" };
         boolean condition = false;
         do {
+              UIManager.put("OptionPane.cancelButtonText", "Cancel");
+            UIManager.put("OptionPane.okButtonText", "Ok");
             String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            performSelectedaction(selectedaction);
-            if (selectedaction != null) {
+                     // para que influya en todos
+          
+                   
+          if(selectedaction== null){
+            selectedaction="exit";
+            break;
+          }
+            if ( selectedaction.equals("exit")) {
                 condition = false;
+                
             } else {
                 condition = true;
+                performSelectedaction(selectedaction);
             }
         } while (condition == false);
     }
@@ -56,10 +60,13 @@ public class AdminView {
             case "Update Serie":
                 updateSerie();
                 break;
+                  case "Exit":
+                
+                break;
         }
     }
 
-    public  void addMovie() {
+    public void addMovie() {
         String name = "";
         String description = "";
         String duration = "";
@@ -249,7 +256,7 @@ public class AdminView {
                     exit2 = true;
                 }
             } while (!exit);
-            ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(),gender);
+            ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(), gender);
             JOptionPane.showMessageDialog(null, "Serie added sucessfully");
         } while (!exit2);
     }
@@ -334,8 +341,9 @@ public class AdminView {
                                     option = JOptionPane.showConfirmDialog(null, panell,
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addActors(authorField);
-                                    if(option == JOptionPane.OK_OPTION) {
-                                        ac.updateMovie(selectedaction, name, description, duration2, arrayAutors(), gender);
+                                    if (option == JOptionPane.OK_OPTION) {
+                                        ac.updateMovie(selectedaction, name, description, duration2, arrayAutors(),
+                                                gender);
                                         JOptionPane.showMessageDialog(null, "Movie update sucessfully");
                                     }
                                 } while (!exit);
@@ -452,12 +460,13 @@ public class AdminView {
                                         JTextField chapterField = new JTextField(chapter);
                                         panel2.add(new JLabel("Chapter:"));
                                         panel2.add(chapterField);
-    
+
                                         option = JOptionPane.showConfirmDialog(null, panel2,
                                                 "Continue?", JOptionPane.YES_NO_OPTION);
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
-                                            ac.updateSeries(selectedaction, name, description, duration2, arrayAutors(), arrayChapters(), gender);
+                                            ac.updateSeries(selectedaction, name, description, duration2, arrayAutors(),
+                                                    arrayChapters(), gender);
                                             JOptionPane.showMessageDialog(null, "Serie update sucessfully");
                                         }
                                     } while (!exit);
@@ -554,7 +563,7 @@ public class AdminView {
     public int tamañoArray(int num) {
         if (num == 1) {
             return ac.namesMovies().size();
-        }  
+        }
         return ac.namesSeries().size();
     }
 

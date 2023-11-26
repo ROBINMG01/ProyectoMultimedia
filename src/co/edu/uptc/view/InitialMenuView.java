@@ -22,7 +22,7 @@ public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     public static void main(String[] args) {
-           int x=0;
+        int x = 0;
         // crear el admin
         controler.createAdmin();
         // login
@@ -71,7 +71,7 @@ public class InitialMenuView {
                 case "Login": {
                     boolean exits = false;
                     int auu = 0;
-                    
+
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -127,11 +127,13 @@ public class InitialMenuView {
 
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
-                                            //////// !!!!!!!!!!!!!
+                                            UserRegisterView ur = new UserRegisterView();
+                                            ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
                                             AdminView av = new AdminView();
-                                            av.menuAdmin();
+                                            av.createAndShowGUI();
+                                            System.out.println("es el admin");
                                         }
                                     } else {
                                         auu = 1;
@@ -158,12 +160,7 @@ public class InitialMenuView {
                     break;
 
                 case "Register": {
-                 
 
-
-            
-
-                  
                     boolean exits = false;
                     String firstName = "";
                     String lastName = "";
@@ -281,22 +278,7 @@ public class InitialMenuView {
                             exits = true;
                         }
                     } while (!exits);
-                }  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                }
 
                     break;
                 case "exit": {
