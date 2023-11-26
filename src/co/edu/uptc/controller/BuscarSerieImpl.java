@@ -48,6 +48,7 @@ public class BuscarSerieImpl {
                         }
                     }
                     for (Serie serie : seriesCatalog) {
+                        System.out.println(serie.getName());
                         if (serie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
                             // Mostrar solo el nombre de la serie
                             result += serie.getName() + "\n";
