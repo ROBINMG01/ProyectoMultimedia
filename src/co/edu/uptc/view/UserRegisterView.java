@@ -4,9 +4,9 @@ import javax.swing.JOptionPane;
 import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 
-public class Runner {
+public class UserRegisterView {
 
-    public static void main(String[] args) {
+  public void userRegisterView(){
 
         UserController userController = new UserController();
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
