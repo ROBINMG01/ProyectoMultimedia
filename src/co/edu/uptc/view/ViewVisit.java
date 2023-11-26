@@ -1,8 +1,11 @@
 
 import java.awt.Image;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
@@ -45,35 +48,42 @@ public class ViewVisit {
             }
             switch (seleccion) {
                 case "View series":
-                    if (adminController.showListSeries().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
-                    } else {
-                        for (int i = 0; i < adminController.showListSeries().size(); i++) {
-                            aux = Integer.parseInt(JOptionPane
-                                    .showInputDialog("[" + (i + 1) + "] " +
-                                            "select a serie" + "\n"
-                                            + adminController.showListSeries().get(i)));
-                        }
-
-                        Serie serieSelec = adminController.showListSeries().get(aux - 1);
-                        JOptionPane.showMessageDialog(null, serieSelec.toString());
+                    DefaultListModel<String> mmodelSeries = new DefaultListModel<>();
+                    for (int i = 0; i < adminController.getListSeries().size(); i++) {
+                        mmodelSeries.addElement("[" + (i + 1) + "]" + adminController.getListSeries().get(i).getName());
                     }
+
+                    // Crear una instancia de JList con el modelo de lista
+                    JList<String> listSeries = new JList<>(mmodelSeries);
+
+                    // Agregar la lista a un JScrollPane para que tenga barras de desplazamiento
+                    JScrollPane scrollPaneSeries = new JScrollPane(listSeries);
+
+                    // Mostrar el JScrollPane en un diálogo
+                    aux = Integer.parseInt(JOptionPane.showInputDialog(null, scrollPaneSeries));
+
+                    Serie serieSelec = adminController.getListSeries().get(aux - 1);
+                    JOptionPane.showMessageDialog(null, serieSelec.toString());
 
                     break;
                 case "View movies":
-                    if (adminController.showListMovies().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Empty list, please enter data");
-                    } else {
-                        for (int i = 0; i < adminController.showListMovies().size(); i++) {
-                            aux = Integer.parseInt(JOptionPane
-                                    .showInputDialog("[" + (i + 1) + "] " +
-                                            "select a movie" + "\n"
-                                            + adminController.showListMovies().get(i)));
-                        }
-
-                        Movie movieSelect = adminController.showListMovies().get(aux - 1);
-                        JOptionPane.showMessageDialog(null, movieSelect.toString());
+                    DefaultListModel<String> modelMovies = new DefaultListModel<>();
+                    for (int i = 0; i < adminController.getListMovies().size(); i++) {
+                        modelMovies.addElement("[" + (i + 1) + "]" + adminController.getListMovies().get(i).getName());
                     }
+
+                    // Crear una instancia de JList con el modelo de lista
+                    JList<String> listMovies = new JList<>(modelMovies);
+
+                    // Agregar la lista a un JScrollPane para que tenga barras de desplazamiento
+                    JScrollPane scrollPaneMovies = new JScrollPane(listMovies);
+
+                    // Mostrar el JScrollPane en un diálogo
+                    aux = Integer.parseInt(JOptionPane.showInputDialog(null, scrollPaneMovies));
+
+                    Movie movieSelect = adminController.getListMovies().get(aux - 1);
+                    JOptionPane.showMessageDialog(null, movieSelect.toString());
+
                     break;
 
                 case "exit":

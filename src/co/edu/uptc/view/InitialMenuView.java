@@ -29,7 +29,7 @@ public class InitialMenuView {
         // predeterminado id
         int idUser = 100;
         int au = 0;
-        String optionsHome[] = { "Login", "Register" };
+        String optionsHome[] = { "Login", "Register", "Visit" };
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -278,6 +278,11 @@ public class InitialMenuView {
                 }
 
                     break;
+                case "Visit": {
+                    ViewVisit viewVisit = new ViewVisit();
+                    viewVisit.visitView();
+                    break;
+                }
                 case "exit": {
                     JOptionPane.showMessageDialog(null, "salida con éxito");
                     exit = -1;

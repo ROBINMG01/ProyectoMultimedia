@@ -162,4 +162,20 @@ public class AdminController {
         }
         return namesSeries;
     }
+
+    public ArrayList<Movie> getListMovies() {
+        return listMovies;
+    }
+
+    public void setListMovies(ArrayList<Movie> listMovies) {
+        this.listMovies = listMovies;
+    }
+
+    public ArrayList<Serie> getListSeries() {
+        return listSeries;
+    }
+
+    public void setListSeries(ArrayList<Serie> listSeries) {
+        this.listSeries = listSeries;
+    }
 }
