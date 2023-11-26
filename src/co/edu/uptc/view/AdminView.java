@@ -7,16 +7,15 @@ import java.util.ArrayList;
 
 public class AdminView {
 
-    static AdminController ac = new AdminController();
+    AdminController ac = new AdminController();
 
-    public static void main(String[] args) {
-        System.out.println("Hola");
+    public void menuAdmin() {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
     }
 
-    public static void createAndShowGUI() {
+    public void createAndShowGUI() {
         JFrame frame = new JFrame("Admin View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
@@ -36,7 +35,7 @@ public class AdminView {
         } while (condition == false);
     }
 
-    public static void performSelectedaction(String selectedaction) {
+    public void performSelectedaction(String selectedaction) {
         switch (selectedaction) {
             case "Add Movie":
                 addMovie();
@@ -60,7 +59,7 @@ public class AdminView {
         }
     }
 
-    public static void addMovie() {
+    public  void addMovie() {
         String name = "";
         String description = "";
         String duration = "";
@@ -80,7 +79,6 @@ public class AdminView {
                 duration = "";
                 gender = "";
                 ac.showListActorsTwo().clear();
-                System.out.println(ac.showListActorsTwo());
             }
             do {
                 JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -123,10 +121,9 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addActors(authorField);
                             } while (!exit);
-                            ///////////////////////
                             exit = true;
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                            JOptionPane.showMessageDialog(null, "No input a number");
                             exit = false;
                         }
                         if (dutation2 != 0) {
@@ -148,10 +145,11 @@ public class AdminView {
                 }
             } while (!exit);
             ac.addMovie(name, description, dutation2, arrayAutors(), gender);
+            JOptionPane.showMessageDialog(null, "Movie added sucessfully");
         } while (!exit2);
     }
 
-    public static void addSerie() {
+    public void addSerie() {
 
         String name = "";
         String description = "";
@@ -230,7 +228,7 @@ public class AdminView {
                             } while (!exit);
                             exit = true;
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                            JOptionPane.showMessageDialog(null, "No input a number");
                             exit = false;
                         }
                         if (duration2 != 0) {
@@ -251,24 +249,24 @@ public class AdminView {
                     exit2 = true;
                 }
             } while (!exit);
-            ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(),
-                    gender);
+            ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(),gender);
+            JOptionPane.showMessageDialog(null, "Serie added sucessfully");
         } while (!exit2);
     }
 
-    public static void showMovies() {
+    public void showMovies() {
         JTextArea textArea = new JTextArea(ac.showListMovies().toString());
         JScrollPane scrollPane = new JScrollPane(textArea);
         JOptionPane.showMessageDialog(null, scrollPane, "View Movies", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static void showSeries() {
+    public void showSeries() {
         JTextArea textArea = new JTextArea(ac.showListSeries().toString());
         JScrollPane scrollPane = new JScrollPane(textArea);
         JOptionPane.showMessageDialog(null, scrollPane, "View Series", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static void updateMovie() {
+    public void updateMovie() {
         String name = "";
         String description = "";
         String duration = "";
@@ -338,11 +336,12 @@ public class AdminView {
                                     exit = addActors(authorField);
                                     if(option == JOptionPane.OK_OPTION) {
                                         ac.updateMovie(selectedaction, name, description, duration2, arrayAutors(), gender);
+                                        JOptionPane.showMessageDialog(null, "Movie update sucessfully");
                                     }
                                 } while (!exit);
                                 exit = true;
                             } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                                JOptionPane.showMessageDialog(null, "No input a number");
                                 exit = false;
                             }
                             if (duration2 != 0) {
@@ -370,7 +369,7 @@ public class AdminView {
         } while (!exit2);
     }
 
-    public static void updateSerie() {
+    public void updateSerie() {
 
         String name = "";
         String description = "";
@@ -459,12 +458,13 @@ public class AdminView {
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
                                             ac.updateSeries(selectedaction, name, description, duration2, arrayAutors(), arrayChapters(), gender);
+                                            JOptionPane.showMessageDialog(null, "Serie update sucessfully");
                                         }
                                     } while (!exit);
                                 }
                                 exit = true;
                             } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, "la duracion debe ser un numero");
+                                JOptionPane.showMessageDialog(null, "No input a number");
                                 exit = false;
                             }
                             if (duration2 != 0) {
@@ -492,7 +492,7 @@ public class AdminView {
         } while (!exit2);
     }
 
-    public static boolean verification() {
+    public boolean verification() {
         int option = 0;
         option = JOptionPane.showConfirmDialog(null, "Do you want try agan?",
                 "Continue?", JOptionPane.YES_NO_OPTION);
@@ -503,7 +503,7 @@ public class AdminView {
         }
     }
 
-    public static boolean addActors(JTextField authorField) {
+    public boolean addActors(JTextField authorField) {
         int option = 0;
         String actor = "";
 
@@ -527,7 +527,7 @@ public class AdminView {
         return true;
     }
 
-    public static boolean addChapter(JTextField chapterField) {
+    public boolean addChapter(JTextField chapterField) {
         int option = 0;
         String chapter = "";
 
@@ -551,14 +551,14 @@ public class AdminView {
         return true;
     }
 
-    public static int tamañoArray(int num) {
+    public int tamañoArray(int num) {
         if (num == 1) {
             return ac.namesMovies().size();
         }  
         return ac.namesSeries().size();
     }
 
-    public static ArrayList<String> arrayAutors() {
+    public ArrayList<String> arrayAutors() {
         ArrayList<String> listAutors = new ArrayList<>();
         for (int i = 0; i < ac.showListActorsTwo().size(); i++) {
             listAutors.add(ac.showListActorsTwo().get(i));
@@ -567,7 +567,7 @@ public class AdminView {
         return listAutors;
     }
 
-    public static ArrayList<String> arrayChapters() {
+    public ArrayList<String> arrayChapters() {
         ArrayList<String> listChapters = new ArrayList<>();
         for (int i = 0; i < ac.showListChaptersTwo().size(); i++) {
             listChapters.add(ac.showListChaptersTwo().get(i));

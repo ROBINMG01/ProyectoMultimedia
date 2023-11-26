@@ -24,74 +24,25 @@ public class AdminController {
     public AdminController() {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
-<<<<<<< HEAD
-        listActors = new ArrayList<>();
-        //listCharapter = new ArrayList<>();
-        loadSeries();
-=======
         listActorsTwo = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
         listSeries = utilitaries.loadSeries();
->>>>>>> feature/MUL-19
         movie = new Movie();
-        serie = new Serie(null, null, listActors);
+        serie = new Serie();
     }
 
-<<<<<<< HEAD
-
-    public void loadSeries(){
-        listSeries.add(new Serie("Loki","Loki es llevado ante la misteriosa organización llamada AVT (Autoridad de Variación Temporal) después de los acontecimientos ocurridos en Avengers: Endgame (2019) y se le da a elegir enfrentarse a ser borrado de la existencia debido a que es una variante de tiempo o ayudar a arreglar la línea de tiempo y detener una amenaza mayor.", "45 m Capitulo", "Andrew, Monica, Robert", "Capitulo1, Capitulo2, Capitulo3, Capitulo4, Capitulo5, Capitulo6"));
-        listSeries.add(new Serie("Strange Things","Es una serie de televisión dramática de misterio que está ambientada en una localidad de Indiana", "1h Capitulo", "Marthe, Bill, Carlos", "Capitulo1, Capitulo2, Capitulo3"));
-    }
-
-    /*
-     * Method for class abstract
-    public void addMoviee(String name, String description, String duration, String actors){
-        movie1.setName(name);
-        movie1.setDescription(description);
-        movie1.setDuration(duration);
-        movie1.setListActors(actors);
-
-
-    }
-    
-    Method for class abstract
-    public void addSeriee(String name, String description, String duration, String actors, String chapters){
-        serie1.setName(name);
-        serie1.setDescription(description);
-        serie1.setDuration(duration);
-        serie1.setListActors(actors);
-        serie1.setListChapters(chapters);
-    }
-
-    public String showMovie(){
-        return movie1.toString();
-    }
-
-    public String showSerie(){
-        return serie1.toString();
-    }*/
-
-    public boolean addMovie(String name, String description, String duration, String actors){
-=======
     //ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listActors, String gender){
->>>>>>> feature/MUL-19
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
         movie.setListActors(listActors);
         movie.setGender(gender);
         
-<<<<<<< HEAD
-        if (name.equals(movie.getName()) && duration.equals(movie.getDuration())) {
-            listMovies.add(new Movie(name, description, duration, actors));
-=======
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
             listMovies.add(new Movie(name, description, duration, listActors, gender));
->>>>>>> feature/MUL-19
             return true;
         }
         return false;
