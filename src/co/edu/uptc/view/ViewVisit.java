@@ -1,4 +1,3 @@
-package co.edu.uptc.view;
 
 import java.awt.Image;
 
@@ -10,8 +9,9 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 
-public class Runner {
-    public static void main(String[] args) {
+public class ViewVisit {
+
+    public void visitView() {
         int w = 0, aux = 0;
         AdminController adminController = new AdminController();
         String optionHome[] = { "View series", "View movies" };
@@ -86,7 +86,6 @@ public class Runner {
                     break;
             }
         } while (w != 10);
-
     }
 
 }
