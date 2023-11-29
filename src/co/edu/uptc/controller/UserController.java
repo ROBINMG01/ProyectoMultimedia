@@ -73,7 +73,6 @@ public class UserController {
                     // if (selectedMovieOb != null) {
                     // String trailerUrl = selectedMovieOb.getTrailerUrl();
                     // if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                    // // Aquí puedes agregar la lógica para abrir el enlace del tráiler
                     // JOptionPane.showMessageDialog(null, "Opening trailer...");
                     // } else {
                     // JOptionPane.showMessageDialog(null,
@@ -85,8 +84,6 @@ public class UserController {
                     // }
                     // break;
                 case 2:
-                    // Salir
-                    // Aquí puedes agregar la lógica para salir del programa
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
