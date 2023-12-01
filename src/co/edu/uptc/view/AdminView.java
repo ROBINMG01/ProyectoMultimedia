@@ -22,26 +22,26 @@ public class AdminView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
         frame.setLayout(new GridLayout(2, 2));
-
-        String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                "Exit" };
         boolean condition = false;
+
         do {
+            String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
+                    "Exit" };
+            condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
             String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            // para que influya en todos
 
             if (selectedaction == null) {
-                selectedaction = "exit";
+                condition = true;
+                //selectedaction = "exit";
                 break;
-            }
-            if (selectedaction.equals("exit")) {
-                condition = false;
+            }else if(selectedaction.equals("exit")) {
+                condition = true;
 
             } else {
-                condition = true;
+                condition = false;
                 performSelectedaction(selectedaction);
             }
         } while (condition == false);
