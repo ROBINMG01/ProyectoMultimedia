@@ -41,17 +41,19 @@ public class BuscarSerieImpl {
                 case "Search by name":
                     String searchedItem = JOptionPane
                             .showInputDialog("Enter the name of the item you want to search:");
-                    for (Movie movie : movieCatalog) {
-                        if (movie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
-                            // Mostrar solo el nombre de la película
-                            result += movie.getName() + "\n";
+                    if (searchedItem != null) {
+                        searchedItem = searchedItem.toLowerCase();
+                        for (Movie movie : movieCatalog) {
+                            if (movie.getName().toLowerCase().contains(searchedItem)) {
+                                // Mostrar solo el nombre de la película
+                                result += movie.getName() + "\n";
+                            }
                         }
-                    }
-                    for (Serie serie : seriesCatalog) {
-                        System.out.println(serie.getName());
-                        if (serie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
-                            // Mostrar solo el nombre de la serie
-                            result += serie.getName() + "\n";
+                        for (Serie serie : seriesCatalog) {
+                            if (serie.getName().toLowerCase().contains(searchedItem)) {
+                                // Mostrar solo el nombre de la serie
+                                result += serie.getName() + "\n";
+                            }
                         }
                     }
                     break;
@@ -94,35 +96,9 @@ public class BuscarSerieImpl {
                             break;
                         case 1:
                             // Ver el tráiler de la película o serie
-                            // for (Movie movie : movieCatalog) {
-                            //     if (movie.getName().equals(selectedMovie)) {
-                            //         String trailerUrl = movie.getTrailerUrl();
-                            //         if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                            //             // OJOOOOOOOOO!!!!! Aca va la logica de poder verl el trailer con la URL
-                            //             JOptionPane.showMessageDialog(null, "Opening trailer...");
-                            //         } else {
-                            //             JOptionPane.showMessageDialog(null,
-                            //                     "Trailer not available for this movie.", "Information",
-                            //                     JOptionPane.INFORMATION_MESSAGE);
-                            //         }
-                            //         break;
-                            //     }
-                            // }
-                            // for (Serie serie : seriesCatalog) {
-                            //     if (serie.getName().equals(selectedMovie)) {
-                            //         String trailerUrl = serie.getTrailerUrl();
-                            //         if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                            //             // OJOOOOOOOOO!!!!! Aca va la logica de poder verl el trailer con la URL
-                            //             JOptionPane.showMessageDialog(null, "Opening trailer...");
-                            //         } else {
-                            //             JOptionPane.showMessageDialog(null,
-                            //                     "Trailer not available for this series.", "Information",
-                            //                     JOptionPane.INFORMATION_MESSAGE);
-                            //         }
-                            //         break;
-                            //     }
-                            // }
-                            // break;
+                            // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer con la URL
+                            JOptionPane.showMessageDialog(null, "Opening trailer...");
+                            break;
                         default:
                             JOptionPane.showMessageDialog(null,
                                     "Invalid option. Please select a valid option.");

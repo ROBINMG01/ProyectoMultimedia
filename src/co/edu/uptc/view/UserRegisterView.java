@@ -1,4 +1,5 @@
 package co.edu.uptc.view;
+
 import javax.swing.JOptionPane;
 
 import co.edu.uptc.controller.AdminController;
@@ -6,25 +7,24 @@ import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 
 public class UserRegisterView {
-private UserController userController;
+    private UserController userController;
 
+    public UserRegisterView(AdminController ad) {
+        this.userController = new UserController(ad);
+    }
 
-public UserRegisterView(AdminController ad){
-    this.userController=new UserController(ad);
-}
     public void userRegisterView() {
-
-      
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
-        boolean exit = false;
-        while (!exit) {
+        while (userController.exit) {
             String option = JOptionPane
                     .showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
                             + "[2]. Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
                             + "[4]. Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
                             + "[6]. Salir\n" + "\nIngrese el número de la opción deseada:");
-
+            if (option == null) {
+                break;
+            }
             switch (option) {
                 case "1":
                     userController.showMovieCatalog();
@@ -42,7 +42,7 @@ public UserRegisterView(AdminController ad){
                     userController.showAccountSettings();
                     break;
                 case "6":
-                    exit = true;
+                    userController.exit = false;
                     JOptionPane.showMessageDialog(null, "Hasta luego, ¡vuelve pronto!", "Despedida",
                             JOptionPane.INFORMATION_MESSAGE);
                     break;
