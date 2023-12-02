@@ -1,3 +1,4 @@
+package co.edu.uptc.view;
 
 import java.awt.Color;
 import java.awt.Image;
