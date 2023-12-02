@@ -1,4 +1,5 @@
 package co.edu.uptc.view;
+
 import java.awt.Image;
 
 import javax.swing.DefaultListModel;
@@ -15,8 +16,8 @@ import co.edu.uptc.model.Serie;
 public class ViewVisit {
     private AdminController adminController;
 
-    public ViewVisit(AdminController ad){
-        this.adminController=ad;
+    public ViewVisit(AdminController ad) {
+        this.adminController = ad;
     }
 
     public void visitView() {

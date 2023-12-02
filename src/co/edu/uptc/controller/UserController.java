@@ -28,6 +28,8 @@ public class UserController {
 
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
+        //ArrayList<Movie> movies = utilitaries.loadMovies();
+        AdminController ad = new AdminController();
 
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movies) {
