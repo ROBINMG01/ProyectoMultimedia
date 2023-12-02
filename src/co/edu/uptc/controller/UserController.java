@@ -12,20 +12,22 @@ import co.edu.uptc.utilitaries.Utilitaries;
 
 public class UserController {
     private AdminController ad;
+    public boolean exit;
 
     public UserController(AdminController ad) {
         this.ad = ad;
+        this.exit = true;
     }
 
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private Utilitaries utilitaries;
-    // llamar la clase de Admin
 
     public UserController() {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
         utilitaries = new Utilitaries();
+        this.exit = true;
     }
 
     public void showMovieCatalog() {
@@ -43,8 +45,7 @@ public class UserController {
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
 
-            // Mostrar tres botones adicionales
-            String[] buttons = { "View Description", "Watch Trailer", "Exit" };
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -70,31 +71,11 @@ public class UserController {
 
                 case 1:
                     // Ver el tráiler de la película
-                    // Movie selectedMovieOb = null;
-                    // for (Movie movie : listMovies) {
-                    // if (movie.getName().equals(selectedMovie)) {
-                    // selectedMovieObj = movie;
-                    // break;
-                    // }
-                    // }
-
-                    // if (selectedMovieOb != null) {
-                    // String trailerUrl = selectedMovieOb.getTrailerUrl();
-                    // if (trailerUrl != null && !trailerUrl.isEmpty()) {
-                    // // Aquí puedes agregar la lógica para abrir el enlace del tráiler
-                    // JOptionPane.showMessageDialog(null, "Opening trailer...");
-                    // } else {
-                    // JOptionPane.showMessageDialog(null,
-                    // "Trailer not available for this movie.", "Information",
-                    // JOptionPane.INFORMATION_MESSAGE);
-                    // }
-                    // } else {
-                    // JOptionPane.showMessageDialog(null, "Movie not found.");
-                    // }
-                    // break;
+                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                    break;
                 case 2:
-                    // Salir
-                    // Aquí puedes agregar la lógica para salir del programa
+                    // Volver al menú anterior
+                    exit = false;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
@@ -120,8 +101,7 @@ public class UserController {
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
 
-            // Mostrar tres botones adicionales
-            String[] buttons = { "View Description", "Watch Trailer", "Exit" };
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -146,10 +126,11 @@ public class UserController {
                     break;
                 case 1:
                     // Ver el tráiler de la serie
-                    // OJOOOOOOOO, aca debemos colcoar la logica del trailer de la serie
+                    JOptionPane.showMessageDialog(null, "Opening trailer...");
                     break;
                 case 2:
-                    // Devolver al menu anterior
+                    // Volver al menú anterior
+                    exit = false;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
@@ -353,5 +334,9 @@ public class UserController {
 
     public ArrayList<Serie> showListSeries() {
         return listSeries;
+    }
+
+    public boolean isExit() {
+        return exit;
     }
 }

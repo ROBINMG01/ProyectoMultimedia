@@ -142,7 +142,7 @@ public class AdminView {
                             } while (!exit);
                             exit = true;
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Duration no is a number");
+                            JOptionPane.showMessageDialog(null, "No input a number");
                             exit = false;
                         }
                         if (dutation2 != 0) {
@@ -164,7 +164,7 @@ public class AdminView {
                 }
             } while (!exit);
             ac.addMovie(name, description, dutation2, arrayAutors(), gender);
-            //JOptionPane.showMessageDialog(null, "Movie added sucessfully");
+            JOptionPane.showMessageDialog(null, "Movie added sucessfully");
         } while (!exit2);
     }
 

@@ -12,8 +12,6 @@ public class AdminController {
     private Serie serie;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
- 
-
     private ArrayList<String> listActorsTwo;
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
@@ -43,7 +41,7 @@ public class AdminController {
         movie.setGender(gender);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(movie);
+            listMovies.add(new Movie(name, description, duration, listActors, gender));
             return true;
         }
         return false;
@@ -164,15 +162,14 @@ public class AdminController {
         }
         return namesSeries;
     }
-       public ArrayList<Movie> getListMovies() {
+
+    public ArrayList<Movie> getListMovies() {
         return listMovies;
     }
 
     public void setListMovies(ArrayList<Movie> listMovies) {
         this.listMovies = listMovies;
     }
-
-
 
     public ArrayList<Serie> getListSeries() {
         return listSeries;
