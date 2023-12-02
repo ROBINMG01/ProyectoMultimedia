@@ -104,7 +104,7 @@ public class UserController {
     }
 
     public void showSeriesCatalog() {
-        ArrayList<Serie> series = utilitaries.loadSeries();
+        ArrayList<Serie> series = ad.showListSeries();
 
         ArrayList<String> seriesNames = new ArrayList<>();
         for (Serie serie : series) {
@@ -200,7 +200,7 @@ public class UserController {
                         ArrayList<String> favorites;
                         if (selectedCatalogOption.equals("Series")) {
                             catalog = new ArrayList<>();
-                            for (Serie serie : utilitaries.loadSeries()) {
+                            for (Serie serie : ad.showListSeries()) {
                                 catalog.add(serie.getName());
                             }
                             favorites = favoriteSeries;
