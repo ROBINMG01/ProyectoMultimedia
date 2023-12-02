@@ -1,7 +1,5 @@
 package co.edu.uptc.view;
 
-import javax.swing.JOptionPane;
-
 import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 

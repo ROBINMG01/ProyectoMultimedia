@@ -12,14 +12,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
+import co.edu.uptc.controller.UserController;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
-
+static AdminController adminController = new AdminController();
     public static void main(String[] args) {
+       
+       
         int x = 0;
         // crear el admin
         controler.createAdmin();
@@ -125,11 +129,13 @@ public class InitialMenuView {
 
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
-                                            UserRegisterView ur = new UserRegisterView();
+    
+                                            UserRegisterView ur = new UserRegisterView(adminController);
+                                           
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView();
+                                             AdminView av = new AdminView(adminController);
                                             av.createAndShowGUI();
                                             System.out.println("es el admin");
                                         }
@@ -280,7 +286,7 @@ public class InitialMenuView {
 
                     break;
                 case "Visit": {
-                    ViewVisit viewVisit = new ViewVisit();
+                    ViewVisit viewVisit = new ViewVisit(adminController);
                     viewVisit.visitView();
                     break;
                 }
