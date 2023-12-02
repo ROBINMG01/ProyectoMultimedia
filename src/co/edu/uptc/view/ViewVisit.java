@@ -1,5 +1,14 @@
 package co.edu.uptc.view;
 
+import java.awt.Image;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
