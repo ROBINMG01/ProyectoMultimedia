@@ -13,10 +13,14 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 
 public class ViewVisit {
+    private AdminController adminController;
+
+    public ViewVisit(AdminController ad){
+        this.adminController=ad;
+    }
 
     public void visitView() {
         int w = 0, aux = 0;
-        AdminController adminController = new AdminController();
         String optionHome[] = { "View series", "View movies" };
         do {
             UIManager.put("OptionPane.cancelButtonText", "Exit the application");

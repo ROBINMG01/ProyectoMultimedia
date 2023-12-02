@@ -1,4 +1,5 @@
 package co.edu.uptc.view;
+
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -14,8 +15,11 @@ import javax.swing.UIManager;
 import co.edu.uptc.controller.AdminController;
 
 public class AdminView {
+    private AdminController ac;
 
-    AdminController ac = new AdminController();
+    public AdminView(AdminController ac) {
+        this.ac = ac;
+    }
 
     public void createAndShowGUI() {
         JFrame frame = new JFrame("Admin View");
@@ -35,8 +39,9 @@ public class AdminView {
 
             if (selectedaction == null) {
                 condition = true;
+                // selectedaction = "exit";
                 break;
-            }else if(selectedaction.equals("exit")) {
+            } else if (selectedaction.equals("exit")) {
                 condition = true;
 
             } else {

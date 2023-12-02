@@ -1,14 +1,20 @@
 package co.edu.uptc.view;
 import javax.swing.JOptionPane;
 
+import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 
 public class UserRegisterView {
+private UserController userController;
 
+
+public UserRegisterView(AdminController ad){
+    this.userController=new UserController(ad);
+}
     public void userRegisterView() {
 
-        UserController userController = new UserController();
+      
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
         boolean exit = false;

@@ -1,6 +1,5 @@
 package co.edu.uptc.controller;
 
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import co.edu.uptc.model.Movie;
@@ -10,9 +9,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 
 public class UserController {
+    private AdminController ad;
+
+    public UserController(AdminController ad) {
+        this.ad = ad;
+    }
+
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private Utilitaries utilitaries;
+    // llamar la clase de Admin
 
     public UserController() {
         listMovies = new ArrayList<>();
@@ -21,24 +27,23 @@ public class UserController {
     }
 
     public void showMovieCatalog() {
+        ArrayList<Movie> movies = ad.showListMovies();
         //ArrayList<Movie> movies = utilitaries.loadMovies();
         AdminController ad = new AdminController();
-         ArrayList<Movie> movies = ad.showListMovies();
 
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movies) {
             movieNames.add(movie.getName());
         }
 
-        String selectedMovie =
-                (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
-                        JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
+                JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
 
             // Mostrar tres botones adicionales
-            String[] buttons = {"View Description", "Watch Trailer", "Exit"};
+            String[] buttons = { "View Description", "Watch Trailer", "Exit" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -108,15 +113,14 @@ public class UserController {
             seriesNames.add(serie.getName());
         }
 
-        String selectedSeries =
-                (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
-                        JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
+                JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
 
             // Mostrar tres botones adicionales
-            String[] buttons = {"View Description", "Watch Trailer", "Exit"};
+            String[] buttons = { "View Description", "Watch Trailer", "Exit" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -156,15 +160,13 @@ public class UserController {
         }
     }
 
-
     public void showFavorites() {
         ArrayList<String> favoriteSeries = new ArrayList<>();
         ArrayList<String> favoriteMovies = new ArrayList<>();
 
         boolean backToMenu = false;
         while (!backToMenu) {
-            String[] options =
-                    {"View favorites", "Add favorite", "Remove favorite", "Modify favorite"};
+            String[] options = { "View favorites", "Add favorite", "Remove favorite", "Modify favorite" };
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
@@ -190,7 +192,7 @@ public class UserController {
                     JOptionPane.showMessageDialog(null, message);
                     break;
                 case "Add favorite":
-                    String[] catalogOptions = {"Series", "Movies"};
+                    String[] catalogOptions = { "Series", "Movies" };
                     String selectedCatalogOption = (String) JOptionPane.showInputDialog(null,
                             "Select a catalog:", "Add Favorite", JOptionPane.PLAIN_MESSAGE, null,
                             catalogOptions, catalogOptions[0]);
@@ -291,9 +293,8 @@ public class UserController {
         }
     }
 
-
     public void showAccountSettings() {
-        String[] options = {"Change password"};
+        String[] options = { "Change password" };
 
         String message = "Account settings:\n";
         for (String option : options) {
@@ -310,8 +311,7 @@ public class UserController {
             JLabel passwordLabel = new JLabel("New Password:");
             JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
 
-            Object[] inputFields =
-                    {passwordLabel, passwordField, confirmPasswordLabel, confirmPasswordField};
+            Object[] inputFields = { passwordLabel, passwordField, confirmPasswordLabel, confirmPasswordField };
 
             int result = JOptionPane.showConfirmDialog(null, inputFields, "Change Password",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
