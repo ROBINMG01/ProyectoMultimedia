@@ -72,7 +72,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Name = " + name + ".\nDescription = " + description + ".\nDuration = " + duration + "\nGender = "
-                + gender + "\nAuthors=" + listAuthors;
+        return "Name = " + name + ".\nDescription = " + description + ".\nDuration = " + duration + ".\nGender = "
+                + gender + ".\nAuthors=" + listAuthors;
     }
 }

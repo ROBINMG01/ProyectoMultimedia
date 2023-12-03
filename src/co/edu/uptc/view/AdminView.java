@@ -246,18 +246,34 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addActors(authorField);
                             } while (!exit);
-                            do {
-                                exit = false;
-                                JPanel panel2 = new JPanel(new GridLayout(1, 2));
-                                JTextField chapterField = new JTextField(chapter);
-                                panel2.add(new JLabel("Chapter:"));
-                                panel2.add(chapterField);
+                            if (!arrayAutors().isEmpty()) {
+                                do {
+                                    exit = false;
+                                    JPanel panel2 = new JPanel(new GridLayout(1, 2));
+                                    JTextField chapterField = new JTextField(chapter);
+                                    panel2.add(new JLabel("Chapter:"));
+                                    panel2.add(chapterField);
 
-                                option = JOptionPane.showConfirmDialog(null, panel2,
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
-                                exit = addChapter(chapterField);
-                            } while (!exit);
-                            exit = true;
+                                    option = JOptionPane.showConfirmDialog(null, panel2,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addChapter(chapterField);
+                                } while (!exit);
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "The series was not added because there are no authors");
+                                exit = verification();
+                                ver = 0;
+                            }
+                            if (!arrayChapters().isEmpty()) {
+                                ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(), gender);
+                                JOptionPane.showMessageDialog(null, "Serie added sucessfully");
+                                exit = true;
+                            } else if(!arrayAutors().isEmpty()) {
+                                JOptionPane.showMessageDialog(null,
+                                        "The series was not added because there are no chapters.");
+                                exit = verification();
+                                ver = 0;
+                            }
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null, "No input a number");
                             exit = false;
@@ -280,8 +296,6 @@ public class AdminView {
                     exit2 = true;
                 }
             } while (!exit);
-            ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(), gender);
-            JOptionPane.showMessageDialog(null, "Serie added sucessfully");
         } while (!exit2);
     }
 
