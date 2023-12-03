@@ -1,16 +1,11 @@
 package co.edu.uptc.view;
 
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -268,7 +263,7 @@ public class AdminView {
                                 ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(), gender);
                                 JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                 exit = true;
-                            } else if(!arrayAutors().isEmpty()) {
+                            } else if (!arrayAutors().isEmpty()) {
                                 JOptionPane.showMessageDialog(null,
                                         "The series was not added because there are no chapters.");
                                 exit = verification();
