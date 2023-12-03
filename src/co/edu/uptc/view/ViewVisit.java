@@ -1,4 +1,5 @@
 package co.edu.uptc.view;
+
 import java.awt.Image;
 
 import javax.swing.DefaultListModel;
@@ -15,15 +16,16 @@ import co.edu.uptc.model.Serie;
 public class ViewVisit {
     private AdminController adminController;
 
-    public ViewVisit(AdminController ad){
-        this.adminController=ad;
+    public ViewVisit(AdminController ad) {
+        this.adminController = ad;
     }
 
     public void visitView() {
         int w = 0, aux = 0;
+        boolean inputIsValid = false;
         String optionHome[] = { "View series", "View movies" };
         do {
-            UIManager.put("OptionPane.cancelButtonText", "Exit the application");
+            UIManager.put("OptionPane.cancelButtonText", "Back");
             UIManager.put("OptionPane.okButtonText", "select");
             // icono de la imagen
             ImageIcon icon = new ImageIcon("img\\recetario.jpg");
@@ -64,16 +66,48 @@ public class ViewVisit {
                     JScrollPane scrollPaneSeries = new JScrollPane(listSeries);
 
                     // Mostrar el JScrollPane en un diálogo
-                    aux = Integer.parseInt(JOptionPane.showInputDialog(null, scrollPaneSeries));
+                    inputIsValid = false;
 
-                    Serie serieSelec = adminController.getListSeries().get(aux - 1);
-                    JOptionPane.showMessageDialog(null, serieSelec.toString());
+                    do {
+                        try {
+                            // Intenta obtener la entrada del usuario como String
+                            String input = JOptionPane.showInputDialog(null, scrollPaneSeries);
+
+                            // Si el usuario hace clic en Cancelar, sal del bucle
+                            if (input == null) {
+                                break;
+                            }
+
+                            // Intenta convertir la entrada a un entero
+                            aux = Integer.parseInt(input);
+
+                            // Verifica si el número está en el rango válido
+                            if (aux >= 1 && aux <= adminController.getListSeries().size()) {
+                                inputIsValid = true;
+                            } else {
+                                // Muestra un mensaje de error si el número está fuera de rango
+                                JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                        } catch (NumberFormatException e) {
+                            // Captura la excepción si la entrada no es un número entero
+                            JOptionPane.showMessageDialog(null, "Ingrese un número entero válido.", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (!inputIsValid);
+
+                    // Si el usuario hizo clic en Cancelar, la variable 'aux' seguirá siendo 0
+                    if (aux > 0) {
+                        Serie serieSelec = adminController.getListSeries().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, serieSelec.toString());
+                    }
 
                     break;
                 case "View movies":
                     DefaultListModel<String> modelMovies = new DefaultListModel<>();
                     for (int i = 0; i < adminController.getListMovies().size(); i++) {
-                        modelMovies.addElement("[" + (i + 1) + "]" + adminController.getListMovies().get(i).getName());
+                        modelMovies
+                                .addElement("[" + (i + 1) + "]" + adminController.getListMovies().get(i).getName());
                     }
 
                     // Crear una instancia de JList con el modelo de lista
@@ -83,11 +117,41 @@ public class ViewVisit {
                     JScrollPane scrollPaneMovies = new JScrollPane(listMovies);
 
                     // Mostrar el JScrollPane en un diálogo
-                    aux = Integer.parseInt(JOptionPane.showInputDialog(null, scrollPaneMovies));
+                    inputIsValid = false;
 
-                    Movie movieSelect = adminController.getListMovies().get(aux - 1);
-                    JOptionPane.showMessageDialog(null, movieSelect.toString());
+                    do {
 
+                        try {
+                            // Intenta obtener la entrada del usuario como String
+                            String input = JOptionPane.showInputDialog(null, scrollPaneMovies);
+
+                            // Si el usuario hace clic en Cancelar, sal del bucle
+                            if (input == null) {
+                                break;
+                            }
+
+                            // Intenta convertir la entrada a un entero
+                            aux = Integer.parseInt(input);
+
+                            // Verifica si el número está en el rango válido
+                            if (aux >= 1 && aux <= adminController.getListMovies().size()) {
+                                inputIsValid = true;
+                            } else {
+                                // Muestra un mensaje de error si el número está fuera de rango
+                                JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                        } catch (NumberFormatException e) {
+                            // Captura la excepción si la entrada no es un número entero
+                            JOptionPane.showMessageDialog(null, "Ingrese un número entero válido.", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (!inputIsValid);
+
+                    if (aux > 0) {
+                        Movie movieSelect = adminController.getListMovies().get(aux - 1);
+                        JOptionPane.showMessageDialog(null, movieSelect.toString());
+                    }
                     break;
 
                 case "exit":

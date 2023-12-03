@@ -1,13 +1,14 @@
 package co.edu.uptc.controller;
 
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
-import co.edu.uptc.controller.AdminController;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
 
 public class UserController {
     private ArrayList<Movie> listMovies;
@@ -29,9 +30,10 @@ public class UserController {
 
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
+        // ArrayList<Movie> movies = utilitaries.loadMovies();
 
         ArrayList<String> movieNames = new ArrayList<>();
-        for (Movie movie : movies) {
+        for (Movie movie : ad.showListMovies()) {
             movieNames.add(movie.getName());
         }
 
@@ -84,7 +86,7 @@ public class UserController {
     }
 
     public void showSeriesCatalog() {
-        ArrayList<Serie> series = ad.showListSeries();
+        ArrayList<Serie> series = utilitaries.loadSeries();
 
         ArrayList<String> seriesNames = new ArrayList<>();
         for (Serie serie : series) {
@@ -180,7 +182,7 @@ public class UserController {
                         ArrayList<String> favorites;
                         if (selectedCatalogOption.equals("Series")) {
                             catalog = new ArrayList<>();
-                            for (Serie serie : ad.showListSeries()) {
+                            for (Serie serie : utilitaries.loadSeries()) {
                                 catalog.add(serie.getName());
                             }
                             favorites = favoriteSeries;
