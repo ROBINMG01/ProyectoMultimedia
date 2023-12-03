@@ -31,7 +31,7 @@ public class InitialMenuView {
         // menu
 
         // predeterminado id
-
+        int idUser = 100;
         int au = 0;
         String optionsHome[] = { "Login", "Register", "Visit" };
 
