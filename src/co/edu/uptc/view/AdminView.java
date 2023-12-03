@@ -127,8 +127,11 @@ public class AdminView {
                     gender = genderField.getText();
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Failed to add movieeee");
+                        JOptionPane.showMessageDialog(null, "Failed to add movie");
                         exit = verification();
+                        if (exit == true) {
+                            exit2 = true;
+                        }
                         ver = 0;
                     } else {
                         try {
@@ -143,12 +146,20 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addActors(authorField);
                             } while (!exit);
-                            exit = true;
+                            if (!arrayAutors().isEmpty()) {
+                                ac.addMovie(name, description, dutation2, arrayAutors(), gender);
+                                JOptionPane.showMessageDialog(null, "Movie added sucessfully");
+                                exit = true;
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Movie wasn't added for");
+                                exit = verification();
+                                ver = 0;
+                            }
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "No input a number");
+                            JOptionPane.showMessageDialog(null, "No input a number in duration");
                             exit = false;
                         }
-                        if (dutation2 != 0) {
+                        if (dutation2 != 0 && exit != false) {
                             option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
                                     "Continue?", JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.OK_OPTION) {
@@ -166,8 +177,6 @@ public class AdminView {
                     exit2 = true;
                 }
             } while (!exit);
-            ac.addMovie(name, description, dutation2, arrayAutors(), gender);
-            JOptionPane.showMessageDialog(null, "Movie added sucessfully");
         } while (!exit2);
     }
 
@@ -289,11 +298,11 @@ public class AdminView {
 
             if (selectedaction != null) {
                 JOptionPane.showMessageDialog(null, ac.showListMovies().get(ac.searchMovie(
-                 selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE);
-                 option = JOptionPane.showConfirmDialog(null,
-                 "Do you want to view another Movie?",
-                 "Continue?", JOptionPane.YES_NO_OPTION);
-                 
+                        selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE);
+                option = JOptionPane.showConfirmDialog(null,
+                        "Do you want to view another Movie?",
+                        "Continue?", JOptionPane.YES_NO_OPTION);
+
                 if (option != JOptionPane.OK_OPTION) {
                     exit = true;
                 }
@@ -316,11 +325,11 @@ public class AdminView {
 
             if (selectedaction != null) {
                 JOptionPane.showMessageDialog(null, ac.showListSeries().get(ac.searchSeries(
-                 selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE);
-                 option = JOptionPane.showConfirmDialog(null,
-                 "Do you want to view another Serie?",
-                 "Continue?", JOptionPane.YES_NO_OPTION);
-                 
+                        selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE);
+                option = JOptionPane.showConfirmDialog(null,
+                        "Do you want to view another Serie?",
+                        "Continue?", JOptionPane.YES_NO_OPTION);
+
                 if (option != JOptionPane.OK_OPTION) {
                     exit = true;
                 }
