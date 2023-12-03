@@ -322,8 +322,8 @@ public class UserController {
     }
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> actors,
-            ArrayList<String> chapters) {
-        Serie serie = new Serie(name, description, duration, actors, chapters, description);
+            ArrayList<String> chapters, ArrayList<String> listActors) {
+        Serie serie = new Serie(name, description, duration, actors, chapters, description, listActors);
         listSeries.add(serie);
         return true;
     }

@@ -53,16 +53,17 @@ public class AdminController {
 
     // ROBIN
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> chapters, String gender) {
+            ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
         serie.setlistAuthors(listAuthors);
         serie.setListChapters(chapters);
         serie.setGender(gender);
+        serie.setListActors(listActors);
 
         if (name.equals(serie.getName()) && duration == serie.getDuration()) {
-            listSeries.add(new Serie(name, description, duration, listAuthors, chapters, gender));
+            listSeries.add(new Serie(name, description, duration, listAuthors, chapters, gender, listActors));
             return true;
         }
         return false;
@@ -106,7 +107,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateSeries(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> listAuthors, ArrayList<String> chapters, String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
         if (searchSeries(name) != -1) {
             int position = searchSeries(name);
             listSeries.get(position).setName(nameUpdate);
@@ -115,6 +116,7 @@ public class AdminController {
             listSeries.get(position).setlistAuthors(listAuthors);
             listSeries.get(position).setListChapters(chapters);
             listSeries.get(position).setGender(gender);
+            listSeries.get(position).setListActors(listActors);
             return true;
         }
         return false;
@@ -135,7 +137,7 @@ public class AdminController {
     }
 
     public void addlistActors(String name) {
-        listAuthors.add(name);
+        listActors.add(name);
     }
 
     // ROBIN

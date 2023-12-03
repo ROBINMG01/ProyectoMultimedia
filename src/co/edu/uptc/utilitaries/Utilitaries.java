@@ -54,10 +54,12 @@ public class Utilitaries {
         public ArrayList<Serie> loadSeries() {
                 listSeries.add(new Serie("Loki", "Loki es llevado ante la misteriosa organización llamada AVT", 120,
                                 new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
-                                new ArrayList<>(Arrays.asList("Tiem´po", "Busqueda", "Contralejo")), "Marvel"));
+                                new ArrayList<>(Arrays.asList("Tiem´po", "Busqueda", "Contralejo")), 
+                                "Marvel", new ArrayList<>(Arrays.asList("Tiem´po", "Busqueda", "Contralejo"))));
                 listSeries.add(new Serie("Strange Things", "Es una serie de televisión dramática de misterio", 45,
                                 new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos")),
-                                new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3")), "Ficcion"));
+                                new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3")), 
+                                "Ficcion", new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos"))));
                 return listSeries;
         }
 }

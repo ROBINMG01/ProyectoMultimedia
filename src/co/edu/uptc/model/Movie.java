@@ -20,7 +20,7 @@ public class Movie {
         this.description = description;
         this.duration = duration;
         this.listAuthors = listAuthors;
-        this.gender = gender;
+        this.listActors = listActors;
         this.gender = gender;
     }
 
