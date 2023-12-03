@@ -1,5 +1,7 @@
 package co.edu.uptc.view;
 
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -22,15 +24,11 @@ public class AdminView {
     }
 
     public void createAndShowGUI() {
-        JFrame frame = new JFrame("Admin View");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
-        frame.setLayout(new GridLayout(2, 2));
         boolean condition = false;
 
         do {
             String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                    "Exit" };
+                    "deleteMovie", "deleteSerie", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -72,8 +70,13 @@ public class AdminView {
             case "Update Serie":
                 updateSerie();
                 break;
+            case "deleteMovie":
+                deleteMovie();
+                break;
+            case "deleteSerie":
+                deleteSerie();
+                break;
             case "Exit":
-
                 break;
         }
     }
@@ -89,7 +92,7 @@ public class AdminView {
         boolean exit = false;
         boolean exit2 = false;
         int option = 0;
-        ac.showListActorsTwo().clear();
+        ac.showlistAuthors().clear();
 
         do {
             if (ver == 1) {
@@ -97,7 +100,7 @@ public class AdminView {
                 description = "";
                 duration = "";
                 gender = "";
-                ac.showListActorsTwo().clear();
+                ac.showlistAuthors().clear();
             }
             do {
                 JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -181,7 +184,7 @@ public class AdminView {
         boolean exit = false;
         boolean exit2 = false;
         int option = 0;
-        ac.showListActorsTwo().clear();
+        ac.showlistAuthors().clear();
         ac.showListChaptersTwo().clear();
 
         do {
@@ -190,7 +193,7 @@ public class AdminView {
                 description = "";
                 duration = "";
                 gender = "";
-                ac.showListActorsTwo().clear();
+                ac.showlistAuthors().clear();
                 ac.showListChaptersTwo().clear();
             }
             do {
@@ -274,15 +277,57 @@ public class AdminView {
     }
 
     public void showMovies() {
-        JTextArea textArea = new JTextArea(ac.showListMovies().toString());
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        JOptionPane.showMessageDialog(null, scrollPane, "View Movies", JOptionPane.PLAIN_MESSAGE);
+        String selectedaction = "";
+        int option = 0;
+        String showNamesMovies[];
+        boolean exit = false;
+
+        do {
+            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+
+            if (selectedaction != null) {
+                JOptionPane.showMessageDialog(null, ac.showListMovies().get(ac.searchMovie(
+                 selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE);
+                 option = JOptionPane.showConfirmDialog(null,
+                 "Do you want to view another Movie?",
+                 "Continue?", JOptionPane.YES_NO_OPTION);
+                 
+                if (option != JOptionPane.OK_OPTION) {
+                    exit = true;
+                }
+            } else {
+                exit = true;
+            }
+        } while (exit == false);
     }
 
     public void showSeries() {
-        JTextArea textArea = new JTextArea(ac.showListSeries().toString());
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        JOptionPane.showMessageDialog(null, scrollPane, "View Series", JOptionPane.PLAIN_MESSAGE);
+        String selectedaction = "";
+        int option = 0;
+        String showNamesSeries[];
+        boolean exit = false;
+
+        do {
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+
+            if (selectedaction != null) {
+                JOptionPane.showMessageDialog(null, ac.showListSeries().get(ac.searchSeries(
+                 selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE);
+                 option = JOptionPane.showConfirmDialog(null,
+                 "Do you want to view another Serie?",
+                 "Continue?", JOptionPane.YES_NO_OPTION);
+                 
+                if (option != JOptionPane.OK_OPTION) {
+                    exit = true;
+                }
+            } else {
+                exit = true;
+            }
+        } while (exit == false);
     }
 
     public void updateMovie() {
@@ -298,19 +343,20 @@ public class AdminView {
         boolean exit2 = false;
         int option = 0;
         String showNamesMovies[];
-        ac.showListActorsTwo().clear();
+        ac.showlistAuthors().clear();
 
         do {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+            System.out.println(selectedaction);
             if (selectedaction != null) {
                 if (ver == 1) {
                     name = "";
                     description = "";
                     duration = "";
                     gender = "";
-                    ac.showListActorsTwo().clear();
+                    ac.showlistAuthors().clear();
                 }
                 do {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -404,20 +450,20 @@ public class AdminView {
         boolean exit2 = false;
         int option = 0;
         String showNamesSeries[];
-        ac.showListActorsTwo().clear();
+        ac.showlistAuthors().clear();
         ac.showListChaptersTwo().clear();
 
         do {
             showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
             if (selectedaction != null) {
                 if (ver == 1) {
                     name = "";
                     description = "";
                     duration = "";
                     gender = "";
-                    ac.showListActorsTwo().clear();
+                    ac.showlistAuthors().clear();
                     ac.showListChaptersTwo().clear();
                 }
                 do {
@@ -534,7 +580,7 @@ public class AdminView {
                 JOptionPane.showMessageDialog(null, "Failed to add actor");
                 return verification();
             } else {
-                ac.addListActors(actor);
+                ac.addlistAuthors(actor);
                 option = JOptionPane.showConfirmDialog(null, "Do you want to add another actor?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.OK_OPTION) {
@@ -581,8 +627,8 @@ public class AdminView {
 
     public ArrayList<String> arrayAutors() {
         ArrayList<String> listAutors = new ArrayList<>();
-        for (int i = 0; i < ac.showListActorsTwo().size(); i++) {
-            listAutors.add(ac.showListActorsTwo().get(i));
+        for (int i = 0; i < ac.showlistAuthors().size(); i++) {
+            listAutors.add(ac.showlistAuthors().get(i));
         }
 
         return listAutors;
@@ -594,5 +640,71 @@ public class AdminView {
             listChapters.add(ac.showListChaptersTwo().get(i));
         }
         return listChapters;
+    }
+
+    public void deleteMovie() {
+        boolean exit2 = false;
+        int option = 0;
+        String selectedaction = "";
+        String showNamesMovies[];
+        do {
+            if (!ac.namesMovies().isEmpty()) {
+                showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
+                selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                        "Movie", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+                if (selectedaction != null) {
+                    if (ac.deleteMovie(selectedaction) == true) {
+                        JOptionPane.showMessageDialog(null, "Movie delete succesfully");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Movie wasn't delete");
+                    }
+                    option = JOptionPane.showConfirmDialog(null, "Do you want to delete another Movie?",
+                            "Continue?", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.OK_OPTION) {
+                        exit2 = false;
+                    } else {
+                        exit2 = true;
+                    }
+                } else {
+                    exit2 = true;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No movies to eliminate");
+                exit2 = true;
+            }
+        } while (exit2 == false);
+    }
+
+    public void deleteSerie() {
+        boolean exit2 = false;
+        int option = 0;
+        String selectedaction = "";
+        String showNamesSeries[];
+        do {
+            if (!ac.namesSeries().isEmpty()) {
+                showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
+                selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                        "Serie", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+                if (selectedaction != null) {
+                    if (ac.deleteSerie(selectedaction) == true) {
+                        JOptionPane.showMessageDialog(null, "Serie delete succesfully");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Serie wasn't delete");
+                    }
+                    option = JOptionPane.showConfirmDialog(null, "Do you want to delete another Serie?",
+                            "Continue?", JOptionPane.YES_NO_OPTION);
+                    if (option == JOptionPane.OK_OPTION) {
+                        exit2 = false;
+                    } else {
+                        exit2 = true;
+                    }
+                } else {
+                    exit2 = true;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No series to eliminate");
+                exit2 = true;
+            }
+        } while (exit2 == false);
     }
 }

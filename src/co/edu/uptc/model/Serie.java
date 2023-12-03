@@ -7,20 +7,20 @@ public class Serie {
     private String description;
     private int duration;
     private String gender;
-    private ArrayList<String> listActors;
+    private ArrayList<String> listAuthors;
     private ArrayList<Serie> listSeries;
     private ArrayList<String> listChapters;
 
     public Serie() {
     }
 
-    public Serie(String name, String description, int duration, ArrayList<String> listActors,
+    public Serie(String name, String description, int duration, ArrayList<String> listAuthors,
             ArrayList<String> listChapters, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.gender = gender;
-        this.listActors = listActors;
+        this.listAuthors = listAuthors;
         this.listChapters = listChapters;
         this.gender = gender;
     }
@@ -57,12 +57,12 @@ public class Serie {
         this.gender = gender;
     }
 
-    public ArrayList<String> getListActors() {
-        return listActors;
+    public ArrayList<String> getlistAuthors() {
+        return listAuthors;
     }
 
-    public void setListActors(ArrayList<String> listActors) {
-        this.listActors = listActors;
+    public void setlistAuthors(ArrayList<String> listAuthors) {
+        this.listAuthors = listAuthors;
     }
 
     public ArrayList<String> getListChapters() {
@@ -83,8 +83,7 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "Serie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ".\ngender="
-                + gender + ".\nlistActors=" + listActors + ".\nlistChapters=" + listChapters
-                + "]\n\n";
+        return "Name = " + name + ".\nDescription = " + description + ".\nDuration = " + duration
+                + ".\nGender = " + gender + ".\nAuthors = " + listAuthors + "\nChapters = " + listChapters;
     }
 }
