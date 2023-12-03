@@ -13,6 +13,7 @@ public class AdminController {
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private ArrayList<String> listAuthors;
+    private ArrayList<String> listActors;
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
@@ -23,6 +24,7 @@ public class AdminController {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
         listAuthors = new ArrayList<>();
+        listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
@@ -33,15 +35,16 @@ public class AdminController {
 
     // ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender) {
+            String gender, ArrayList<String> listActors) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
         movie.setlistAuthors(listAuthors);
+        movie.setListActors(listActors);
         movie.setGender(gender);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors, gender));
+            listMovies.add(new Movie(name, description, duration, listAuthors,listActors,gender));
             return true;
         }
         return false;
@@ -87,13 +90,14 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> actors, String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> listActors,String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
             listMovies.get(position).setDescription(description);
             listMovies.get(position).setDuration(duration);
-            listMovies.get(position).setlistAuthors(actors);
+            listMovies.get(position).setlistAuthors(listAuthors);
+            listMovies.get(position).setListActors(listActors);
             listMovies.get(position).setGender(gender);
             return true;
         }
@@ -130,6 +134,10 @@ public class AdminController {
         listAuthors.add(name);
     }
 
+    public void addlistActors(String name) {
+        listAuthors.add(name);
+    }
+
     // ROBIN
     public void addListChapters(String chapter) {
         listChaptersTwo.add(chapter);
@@ -137,6 +145,10 @@ public class AdminController {
 
     public ArrayList<String> showlistAuthors() {
         return listAuthors;
+    }
+
+    public ArrayList<String> showlistActors() {
+        return listActors;
     }
 
     // ROBIN

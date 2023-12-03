@@ -315,8 +315,8 @@ public class UserController {
     }
 
     public boolean addMovie(String name, String description, int duration,
-            ArrayList<String> actors) {
-        Movie movie = new Movie(name, description, duration, actors, description);
+            ArrayList<String> authors, ArrayList<String> actors, String gender) {
+        Movie movie = new Movie(name, description, duration, authors, actors, gender);
         listMovies.add(movie);
         return true;
     }

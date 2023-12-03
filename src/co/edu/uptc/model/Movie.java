@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class Movie {
     private String name;
-    private String description;
+    private String gender;
     private int duration;
     private ArrayList<Movie> listMovies;
     private ArrayList<String> listAuthors;
-    private String gender;
+    private ArrayList<String> listActors;
+    private String description;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, int duration, ArrayList<String> listAuthors, String gender) {
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
+            ArrayList<String> listActors, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -70,9 +72,17 @@ public class Movie {
         this.gender = gender;
     }
 
+    public ArrayList<String> getListActors() {
+        return listActors;
+    }
+
+    public void setListActors(ArrayList<String> listActors) {
+        this.listActors = listActors;
+    }
+
     @Override
     public String toString() {
-        return "Name = " + name + ".\nDescription = " + description + ".\nDuration = " + duration + ".\nGender = "
-                + gender + ".\nAuthors=" + listAuthors;
+        return "Name = " + name + ".\nGender = " + gender + ".\nDuration = " + duration + ".\nAuthors = " 
+        + listAuthors + "\nActors = " + listActors + "\nDescription = " + description;
     }
 }
