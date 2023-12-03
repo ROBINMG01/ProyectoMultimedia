@@ -8,6 +8,7 @@ import co.edu.uptc.utilitaries.Utilitaries;
 
 public class BuscarSerieImpl {
     private Utilitaries utilitaries;
+    private boolean backToMenu = false;
 
     public BuscarSerieImpl() {
         utilitaries = new Utilitaries();
@@ -19,7 +20,7 @@ public class BuscarSerieImpl {
         ArrayList<Serie> seriesCatalog = utilitaries.loadSeries();
 
         // Opciones de búsqueda
-        String[] options = {"Search by name"};
+        String[] searchOptions = {"Search by name"};
 
         // Bucle para volver a la pantalla de búsqueda
         boolean backToSearch = true;
@@ -27,7 +28,7 @@ public class BuscarSerieImpl {
             // Muestra las opciones de búsqueda en un cuadro de diálogo
             String selectedOption =
                     (String) JOptionPane.showInputDialog(null, "Select a search option:",
-                            "Search", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                            "Search", JOptionPane.PLAIN_MESSAGE, null, searchOptions, searchOptions[0]);
 
             // Comprobar si se seleccionó "Cancelar" en el cuadro de diálogo
             if (selectedOption == null) {
@@ -71,7 +72,7 @@ public class BuscarSerieImpl {
 
                 if (selectedMovie != null) {
                     // Mostrar opciones adicionales
-                    String[] buttons = {"View Description", "Watch Trailer"};
+                    String[] buttons = {"View Description", "Watch Trailer", "Back"};
                     int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                             "Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                             buttons, buttons[0]);
@@ -99,21 +100,32 @@ public class BuscarSerieImpl {
                             // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer con la URL
                             JOptionPane.showMessageDialog(null, "Opening trailer...");
                             break;
+                        case 2:
+                            // Volver al menú anterior
+                            backToMenu = true;
+                            return;
                         default:
                             JOptionPane.showMessageDialog(null,
                                     "Invalid option. Please select a valid option.");
-                            break;
+                            return;
                     }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No results found for the search.");
             }
 
-            // Preguntar si desea realizar otra búsqueda
-            int continueOption = JOptionPane.showConfirmDialog(null, "Do you want to continue searching?", "Continue", JOptionPane.YES_NO_OPTION);
-            if (continueOption == JOptionPane.NO_OPTION) {
-                backToSearch = false;
+            // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+            String[] continueOptions = {"Continue searching", "Back to menu"};
+            int continueOption = JOptionPane.showOptionDialog(null, "Do you want to continue searching or go back to the menu?", "Continue", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+
+            if (continueOption == 1) {
+                backToMenu = true;
+                return;
             }
         }
+    }
+
+    public boolean isBackToMenu() {
+        return backToMenu;
     }
 }
