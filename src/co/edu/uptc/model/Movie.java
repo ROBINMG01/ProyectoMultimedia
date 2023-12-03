@@ -7,17 +7,17 @@ public class Movie {
     private String description;
     private int duration;
     private ArrayList<Movie> listMovies;
-    private ArrayList<String> listActors;
+    private ArrayList<String> listAuthors;
     private String gender;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, int duration, ArrayList<String> listActors, String gender) {
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
-        this.listActors = listActors;
+        this.listAuthors = listAuthors;
         this.gender = gender;
         this.gender = gender;
     }
@@ -46,12 +46,12 @@ public class Movie {
         this.duration = duration;
     }
 
-    public ArrayList<String> getListActors() {
-        return listActors;
+    public ArrayList<String> getlistAuthors() {
+        return listAuthors;
     }
 
-    public void setListActors(ArrayList<String> listActors) {
-        this.listActors = listActors;
+    public void setlistAuthors(ArrayList<String> listAuthors) {
+        this.listAuthors = listAuthors;
     }
 
     public ArrayList<Movie> getListMovies() {
@@ -72,7 +72,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ", gender="
-                + gender + ", listActors=" + listActors + "]\n\n";
+        return "Name = " + name + ".\nDescription = " + description + ".\nDuration = " + duration + ".\nGender = "
+                + gender + ".\nAuthors=" + listAuthors;
     }
 }
