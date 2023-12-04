@@ -41,12 +41,12 @@ public class AdminView {
 
             } else {
                 condition = false;
-                performSelectedaction(selectedaction);
+                selected(selectedaction);
             }
         } while (condition == false);
     }
 
-    public void performSelectedaction(String selectedaction) {
+    public void selected(String selectedaction) {
         switch (selectedaction) {
             case "Add Movie":
                 addMovie();
