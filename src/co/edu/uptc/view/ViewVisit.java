@@ -21,6 +21,7 @@ public class ViewVisit {
     }
 
     public void visitView() {
+
         int w = 0, aux = 0;
         boolean inputIsValid = false;
         String optionHome[] = { "View series", "View movies" };
@@ -54,6 +55,7 @@ public class ViewVisit {
             }
             switch (seleccion) {
                 case "View series":
+
                     DefaultListModel<String> mmodelSeries = new DefaultListModel<>();
                     for (int i = 0; i < adminController.getListSeries().size(); i++) {
                         mmodelSeries.addElement("[" + (i + 1) + "]" + adminController.getListSeries().get(i).getName());
@@ -104,6 +106,7 @@ public class ViewVisit {
 
                     break;
                 case "View movies":
+
                     DefaultListModel<String> modelMovies = new DefaultListModel<>();
                     for (int i = 0; i < adminController.getListMovies().size(); i++) {
                         modelMovies

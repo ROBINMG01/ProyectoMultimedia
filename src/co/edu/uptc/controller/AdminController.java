@@ -1,6 +1,8 @@
 package co.edu.uptc.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
@@ -179,7 +181,7 @@ public class AdminController {
         this.listSeries = listSeries;
     }
 
-    public boolean deleteMovie(String name){
+    public boolean deleteMovie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listMovies.get(i).getName().equals(name)) {
                 listMovies.remove(i);
@@ -189,7 +191,7 @@ public class AdminController {
         return false;
     }
 
-    public boolean deleteSerie(String name){
+    public boolean deleteSerie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {
                 listSeries.remove(i);
@@ -198,4 +200,18 @@ public class AdminController {
         }
         return false;
     }
+
+    public List<String> filterMoviesByGender(ArrayList<Movie> listMovies, String gender) {
+        return listMovies.stream()
+                .filter(movie -> movie.getGender().equals(gender))
+                .map(Movie::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Serie> filterSeriesByGender(ArrayList<Serie> listSeries, String gender) {
+        return listSeries.stream()
+                .filter(serie -> serie.getGender().equalsIgnoreCase(gender))
+                .collect(Collectors.toList());
+    }
+
 }
