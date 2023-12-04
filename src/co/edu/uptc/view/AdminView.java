@@ -143,8 +143,20 @@ public class AdminView {
                                         "Continue?", JOptionPane.YES_NO_OPTION);
                                 exit = addActors(authorField);
                             } while (!exit);
-                            if (!arrayAutors().isEmpty()) {
-                                ac.addMovie(name, description, dutation2, arrayAutors(), gender);
+                            if (!arrayAuthors().isEmpty()) {
+                                do {
+                                    JPanel panell = new JPanel(new GridLayout(1, 2));
+                                    JTextField actorField = new JTextField(actor);
+                                    panell.add(new JLabel("Actor:"));
+                                    panell.add(actorField);
+                                    System.out.println("hola");
+                                    option = JOptionPane.showConfirmDialog(null, panell,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addActors(actorField);
+                                } while (!exit);
+                            }
+                            if (!arrayActors().isEmpty()) {
+                                ac.addMovie(name, description, dutation2, arrayAuthors(), gender, arrayActors());
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -645,13 +657,13 @@ public class AdminView {
         return ac.namesSeries().size();
     }
 
-    public ArrayList<String> arrayAutors() {
-        ArrayList<String> listAutors = new ArrayList<>();
+    public ArrayList<String> arrayAuthors() {
+        ArrayList<String> listAuthors = new ArrayList<>();
         for (int i = 0; i < ac.showlistAuthors().size(); i++) {
-            listAutors.add(ac.showlistAuthors().get(i));
+            listAuthors.add(ac.showlistAuthors().get(i));
         }
 
-        return listAutors;
+        return listAuthors;
     }
 
     public ArrayList<String> arrayChapters() {
