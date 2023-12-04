@@ -155,7 +155,7 @@ public class AdminView {
                                     JTextField actorField = new JTextField(actor);
                                     panell.add(new JLabel("Actor:"));
                                     panell.add(actorField);
-    
+                                    System.out.println("hola");
                                     option = JOptionPane.showConfirmDialog(null, panell,
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addActors(actorField);
