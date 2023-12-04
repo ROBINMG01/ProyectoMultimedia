@@ -15,20 +15,27 @@ public class UserRegisterView {
     private UserController userController;
     private AdminController ad;
     private Utilitaries utilitaries;
+    private ArrayList<Serie> favoriteSeries;
+    private ArrayList<Movie> favoriteMovies;
+    
 
     public UserRegisterView(AdminController ad) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.utilitaries = new Utilitaries();
+        this.favoriteSeries = new ArrayList<>();
+        this.favoriteMovies = new ArrayList<>();
     }
+
     public void userRegisterView() {
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
         while (userController.isExit()) {
-            String option = JOptionPane.showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
-                    + "[2]. Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
-                    + "[4]. Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n" + "[6]. Salir\n"
-                    + "\nIngrese el número de la opción deseada:");
+            String option = JOptionPane
+                    .showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
+                            + "[2]. Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
+                            + "[4]. Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
+                            + "[6]. Salir\n" + "\nIngrese el número de la opción deseada:");
             if (option == null) {
                 break;
             }
@@ -70,13 +77,14 @@ public class UserRegisterView {
             movieNames.add(movie.getName());
         }
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
-                JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
+        String selectedMovie =
+                (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
+                        JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -125,13 +133,14 @@ public class UserRegisterView {
             seriesNames.add(serie.getName());
         }
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
-                JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
+        String selectedSeries =
+                (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
+                        JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -170,14 +179,15 @@ public class UserRegisterView {
             JOptionPane.showMessageDialog(null, "You have exited the series catalog option.");
         }
     }
-
+    
     public void showFavorites() {
         ArrayList<String> favoriteSeries = new ArrayList<>();
         ArrayList<String> favoriteMovies = new ArrayList<>();
 
         boolean backToMenu = false;
         while (!backToMenu) {
-            String[] options = { "View favorites", "Add favorite", "Remove favorite", "Modify favorite" };
+            String[] options =
+                    {"View favorites", "Add favorite", "Remove favorite"};
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
@@ -203,7 +213,7 @@ public class UserRegisterView {
                     JOptionPane.showMessageDialog(null, message);
                     break;
                 case "Add favorite":
-                    String[] catalogOptions = { "Series", "Movies" };
+                    String[] catalogOptions = {"Series", "Movies"};
                     String selectedCatalogOption = (String) JOptionPane.showInputDialog(null,
                             "Select a catalog:", "Add Favorite", JOptionPane.PLAIN_MESSAGE, null,
                             catalogOptions, catalogOptions[0]);
@@ -265,37 +275,7 @@ public class UserRegisterView {
                                 "You have canceled the removal of the favorite.");
                     }
                     break;
-                case "Modify favorite":
-                    ArrayList<String> allFavorite = new ArrayList<>();
-                    allFavorite.addAll(favoriteSeries);
-                    allFavorite.addAll(favoriteMovies);
 
-                    String favoriteToModify = (String) JOptionPane.showInputDialog(null,
-                            "Select the favorite you want to modify:", "Modify Favorite",
-                            JOptionPane.PLAIN_MESSAGE, null, allFavorite.toArray(),
-                            allFavorite.get(0));
-                    if (favoriteToModify != null) {
-                        String newValue = JOptionPane
-                                .showInputDialog("Enter the new value for the selected favorite:");
-                        if (newValue != null) {
-                            if (favoriteSeries.contains(favoriteToModify)) {
-                                int index = favoriteSeries.indexOf(favoriteToModify);
-                                favoriteSeries.set(index, newValue);
-                            } else if (favoriteMovies.contains(favoriteToModify)) {
-                                int index = favoriteMovies.indexOf(favoriteToModify);
-                                favoriteMovies.set(index, newValue);
-                            }
-                            JOptionPane.showMessageDialog(null,
-                                    "The favorite has been modified successfully.");
-                        } else {
-                            JOptionPane.showMessageDialog(null,
-                                    "You have canceled the modification of the favorite.");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null,
-                                "You have canceled the modification of the favorite.");
-                    }
-                    break;
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid option. Please select a valid option.");
@@ -305,7 +285,7 @@ public class UserRegisterView {
     }
 
     public void showAccountSettings() {
-        String[] options = { "Change password" };
+        String[] options = {"Change password"};
 
         String message = "Account settings:\n";
         for (String option : options) {
@@ -322,7 +302,8 @@ public class UserRegisterView {
             JLabel passwordLabel = new JLabel("New Password:");
             JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
 
-            Object[] inputFields = { passwordLabel, passwordField, confirmPasswordLabel, confirmPasswordField };
+            Object[] inputFields =
+                    {passwordLabel, passwordField, confirmPasswordLabel, confirmPasswordField};
 
             int result = JOptionPane.showConfirmDialog(null, inputFields, "Change Password",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
