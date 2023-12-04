@@ -1,16 +1,11 @@
 package co.edu.uptc.view;
 
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -18,6 +13,7 @@ import co.edu.uptc.controller.AdminController;
 
 public class AdminView {
     private AdminController ac;
+    ViewVisit viewVisit = new ViewVisit();
 
     public AdminView(AdminController ac) {
         this.ac = ac;
@@ -112,7 +108,6 @@ public class AdminView {
                 JTextField nameField = new JTextField(name);
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
-                JTextField genderField = new JTextField(gender);
 
                 panel.add(new JLabel("Name of the movie:"));
                 panel.add(nameField);
@@ -120,8 +115,6 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration:"));
                 panel.add(durationField);
-                panel.add(new JLabel("Gender:"));
-                panel.add(genderField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
 
@@ -129,7 +122,8 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = genderField.getText();
+
+                    gender = viewVisit.viewGenderMovie(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add movie");
@@ -230,7 +224,6 @@ public class AdminView {
                 JTextField nameField = new JTextField(name);
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
-                JTextField genderField = new JTextField(gender);
 
                 panel.add(new JLabel("Name of the serie"));
                 panel.add(nameField);
@@ -238,8 +231,6 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration"));
                 panel.add(durationField);
-                panel.add(new JLabel("Gender"));
-                panel.add(genderField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
 
@@ -247,7 +238,7 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = genderField.getText();
+                    gender = viewVisit.viewGenderSerie(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
