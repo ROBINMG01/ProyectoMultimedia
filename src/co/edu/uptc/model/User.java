@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class User {
     private String firstName;
     private String lastName;
-   
+
     private String email;
     private String password;
     private Role role;
-       private ArrayList<Movie> listMovies;
+    private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
 
-    public User(String firstName, String lastName,  String email, String password, Role role) {
+    public User(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
-     
+
         this.email = email;
         this.password = password;
         this.role = role;
@@ -37,7 +37,7 @@ public class User {
         this.lastName = lastName;
     }
 
-  
+
 
     public String getEmail() {
         return this.email;
