@@ -390,16 +390,35 @@ public class UserRegisterView {
                         && !confirmPassword.isEmpty()) {
                     if (password.equals(confirmPassword)) {
                         // valida que el email cumpla con lo minimi
-                        int emailRevi = controler.isEmailUnique(email);
-                        // valida que la contraseña cumpla con lo minimo
-                        int validePassworMin = controler.validatePassword(confirmPassword);
+                        int emailRevi;
+                        if (email.equals(user.getEmail())) {
+                            emailRevi = 0;
+                        } else {
+                            emailRevi = controler.isEmailUnique(email);
+                        }
+
+                        int validePassworMin;
+                        // valida que si modifico la contraseña
+                        if (confirmPassword.equals(user.getPassword())) {
+                            validePassworMin = 0;
+                        } else {
+                            // valida que la contraseña cumpla con lo minimo
+                            validePassworMin = controler.validatePassword(confirmPassword);
+                        }
+
                         // vreificar de que el cooreo no se repita
-                        int uniqueEmail = controler.uniqueEmail(email);
+                        int uniqueEmail = controler.uniqueEmailUserRegister(email, user);
                         if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
                             // crear usuario
                             controler.user(new User(firstName, lastName, email, password, Role.user));
 
                             // modificar al la lista de usuarios
+                            user.setLastName(lastName);
+                            user.setFirstName(firstName);
+                            user.setEmail(email);
+                            user.setPassword(confirmPassword);
+
+
                             controler.modifyUser(user);
                             au = 0;
                             JOptionPane.showMessageDialog(null, "modified user");
