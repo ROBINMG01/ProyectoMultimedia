@@ -5,9 +5,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -84,12 +87,14 @@ public class AdminView {
         String duration = "";
         int dutation2 = 0;
         String gender = "";
+        String author = "";
         String actor = "";
         int ver = 0;
         boolean exit = false;
         boolean exit2 = false;
         int option = 0;
         ac.showlistAuthors().clear();
+        ac.showlistActors().clear();
 
         do {
             if (ver == 1) {
@@ -98,6 +103,7 @@ public class AdminView {
                 duration = "";
                 gender = "";
                 ac.showlistAuthors().clear();
+                ac.showlistActors().clear();
             }
             do {
                 JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -135,20 +141,32 @@ public class AdminView {
                             dutation2 = Integer.parseInt(duration);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
-                                JTextField authorField = new JTextField(actor);
+                                JTextField authorField = new JTextField(author);
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
 
                                 option = JOptionPane.showConfirmDialog(null, panell,
                                         "Continue?", JOptionPane.YES_NO_OPTION);
-                                exit = addActors(authorField);
+                                exit = addAuthors(authorField);
                             } while (!exit);
-                            if (!arrayAutors().isEmpty()) {
-                                ac.addMovie(name, description, dutation2, arrayAutors(), gender);
+                            if (!arrayAuthors().isEmpty()) {
+                                do {
+                                    JPanel panell = new JPanel(new GridLayout(1, 2));
+                                    JTextField actorField = new JTextField(actor);
+                                    panell.add(new JLabel("Actor:"));
+                                    panell.add(actorField);
+    
+                                    option = JOptionPane.showConfirmDialog(null, panell,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addActors(actorField);
+                                } while (!exit);
+                            }
+                            if (!arrayActors().isEmpty()) {
+                                ac.addMovie(name, description, dutation2, arrayAuthors(), gender, arrayActors());
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
-                                JOptionPane.showMessageDialog(null, "Movie wasn't added for");
+                                JOptionPane.showMessageDialog(null, "Movie wasn't added");
                                 exit = verification();
                                 ver = 0;
                             }
@@ -183,6 +201,7 @@ public class AdminView {
         String description = "";
         String duration = "";
         int duration2 = 0;
+        String author = "";
         String actor = "";
         String chapter = "";
         String gender = "";
@@ -192,6 +211,7 @@ public class AdminView {
         int option = 0;
         ac.showlistAuthors().clear();
         ac.showListChaptersTwo().clear();
+        ac.showlistActors().clear();
 
         do {
             if (ver == 1) {
@@ -201,6 +221,7 @@ public class AdminView {
                 gender = "";
                 ac.showlistAuthors().clear();
                 ac.showListChaptersTwo().clear();
+                ac.showlistActors().clear();
             }
             do {
                 JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -235,15 +256,33 @@ public class AdminView {
                             duration2 = Integer.parseInt(duration);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
-                                JTextField authorField = new JTextField(actor);
+                                JTextField authorField = new JTextField(author);
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
 
                                 option = JOptionPane.showConfirmDialog(null, panell,
                                         "Continue?", JOptionPane.YES_NO_OPTION);
-                                exit = addActors(authorField);
+                                exit = addAuthors(authorField);
                             } while (!exit);
-                            if (!arrayAutors().isEmpty()) {
+                            if (!arrayAuthors().isEmpty()) {
+                                do {
+                                    exit = false;
+                                    JPanel panel2 = new JPanel(new GridLayout(1, 2));
+                                    JTextField actorField = new JTextField(actor);
+                                    panel2.add(new JLabel("Actor"));
+                                    panel2.add(actorField);
+
+                                    option = JOptionPane.showConfirmDialog(null, panel2,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addActors(actorField);
+                                } while (!exit);
+                            }else{
+                                JOptionPane.showMessageDialog(null,
+                                        "The series was not added because there are no authors");
+                                exit = verification();
+                                ver = 0;
+                            }
+                            if (!arrayActors().isEmpty()) {
                                 do {
                                     exit = false;
                                     JPanel panel2 = new JPanel(new GridLayout(1, 2));
@@ -255,24 +294,24 @@ public class AdminView {
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addChapter(chapterField);
                                 } while (!exit);
-                            } else {
+                            } else if(!arrayActors().isEmpty()){
                                 JOptionPane.showMessageDialog(null,
-                                        "The series was not added because there are no authors");
+                                        "The series was not added because there are no actors");
                                 exit = verification();
                                 ver = 0;
                             }
                             if (!arrayChapters().isEmpty()) {
-                                ac.addSerie(name, description, duration2, arrayAutors(), arrayChapters(), gender);
+                                ac.addSerie(name, description, duration2, arrayAuthors(), arrayChapters(), gender, arrayActors());
                                 JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                 exit = true;
-                            } else if (!arrayAutors().isEmpty()) {
+                            } else if (!arrayChapters().isEmpty()) {
                                 JOptionPane.showMessageDialog(null,
                                         "The series was not added because there are no chapters.");
                                 exit = verification();
                                 ver = 0;
                             }
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "No input a number");
+                            JOptionPane.showMessageDialog(null, "No input a number in duration");
                             exit = false;
                         }
                         if (duration2 != 0) {
@@ -305,7 +344,7 @@ public class AdminView {
         do {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+                    "Movie", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
 
             if (selectedaction != null) {
                 JOptionPane.showMessageDialog(null, ac.showListMovies().get(ac.searchMovie(
@@ -364,6 +403,7 @@ public class AdminView {
         int option = 0;
         String showNamesMovies[];
         ac.showlistAuthors().clear();
+        ac.showlistActors().clear();
 
         do {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
@@ -418,13 +458,29 @@ public class AdminView {
 
                                     option = JOptionPane.showConfirmDialog(null, panell,
                                             "Continue?", JOptionPane.YES_NO_OPTION);
-                                    exit = addActors(authorField);
-                                    if (option == JOptionPane.OK_OPTION) {
-                                        ac.updateMovie(selectedaction, name, description, duration2, arrayAutors(),
-                                                gender);
-                                        JOptionPane.showMessageDialog(null, "Movie update sucessfully");
+                                    exit = addAuthors(authorField);
+                                    if (option != JOptionPane.OK_OPTION) {
+                                        exit2 = true;
                                     }
                                 } while (!exit);
+                                if (exit2 != true) {
+                                    do {
+                                        exit = false;
+                                        JPanel panell = new JPanel(new GridLayout(1, 2));
+                                        JTextField actorField = new JTextField(actor);
+                                        panell.add(new JLabel("Actor:"));
+                                        panell.add(actorField);
+
+                                        option = JOptionPane.showConfirmDialog(null, panell,
+                                                "Continue?", JOptionPane.YES_NO_OPTION);
+                                        exit = addActors(actorField);
+                                        if (option == JOptionPane.OK_OPTION) {
+                                            ac.updateMovie(selectedaction, name, description, duration2, arrayAuthors(),
+                                                    arrayActors(), gender);
+                                            JOptionPane.showMessageDialog(null, "Movie update sucessfully");
+                                        }
+                                    } while (!exit);
+                                }
                                 exit = true;
                             } catch (Exception e) {
                                 JOptionPane.showMessageDialog(null, "No input a number");
@@ -472,6 +528,7 @@ public class AdminView {
         String showNamesSeries[];
         ac.showlistAuthors().clear();
         ac.showListChaptersTwo().clear();
+        ac.showlistAuthors().clear();
 
         do {
             showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
@@ -485,6 +542,7 @@ public class AdminView {
                     gender = "";
                     ac.showlistAuthors().clear();
                     ac.showListChaptersTwo().clear();
+                    ac.showlistActors().clear();
                 }
                 do {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
@@ -531,6 +589,22 @@ public class AdminView {
                                         exit2 = true;
                                     }
                                 } while (!exit);
+                                if (exit2  != true) {
+                                    exit2 = false;
+                                    do {
+                                    JPanel panell = new JPanel(new GridLayout(1, 2));
+                                    JTextField actorField = new JTextField(actor);
+                                    panell.add(new JLabel("Actor"));
+                                    panell.add(actorField);
+
+                                    option = JOptionPane.showConfirmDialog(null, panell,
+                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                    exit = addActors(actorField);
+                                    if (option != JOptionPane.OK_OPTION) {
+                                        exit2 = true;
+                                    }
+                                } while (!exit);
+                                }
                                 if (exit2 != true) {
                                     do {
                                         exit = false;
@@ -543,8 +617,8 @@ public class AdminView {
                                                 "Continue?", JOptionPane.YES_NO_OPTION);
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
-                                            ac.updateSeries(selectedaction, name, description, duration2, arrayAutors(),
-                                                    arrayChapters(), gender);
+                                            ac.updateSeries(selectedaction, name, description, duration2, arrayAuthors(),
+                                                    arrayChapters(), gender, arrayActors());
                                             JOptionPane.showMessageDialog(null, "Serie update sucessfully");
                                         }
                                     } while (!exit);
@@ -572,7 +646,6 @@ public class AdminView {
                     }
                 } while (!exit);
             } else {
-                System.out.println("jejejs");
                 exit = true;
                 exit2 = true;
             }
@@ -590,17 +663,41 @@ public class AdminView {
         }
     }
 
-    public boolean addActors(JTextField authorField) {
+    public boolean addAuthors(JTextField authorField) {
+        int option = 0;
+        String author = "";
+
+        if (option == JOptionPane.OK_OPTION) {
+            author = authorField.getText();
+            if (author.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Failed to add author");
+                return verification();
+            } else {
+                ac.addlistAuthors(author);
+                option = JOptionPane.showConfirmDialog(null, "Do you want to add another author?",
+                        "Continue?", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                    author = "";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean addActors(JTextField actorField) {
         int option = 0;
         String actor = "";
 
         if (option == JOptionPane.OK_OPTION) {
-            actor = authorField.getText();
+            actor = actorField.getText();
             if (actor.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Failed to add actor");
                 return verification();
             } else {
-                ac.addlistAuthors(actor);
+                ac.addlistActors(actor);
                 option = JOptionPane.showConfirmDialog(null, "Do you want to add another actor?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.OK_OPTION) {
@@ -645,13 +742,21 @@ public class AdminView {
         return ac.namesSeries().size();
     }
 
-    public ArrayList<String> arrayAutors() {
-        ArrayList<String> listAutors = new ArrayList<>();
+    public ArrayList<String> arrayAuthors() {
+        ArrayList<String> listAuthors = new ArrayList<>();
         for (int i = 0; i < ac.showlistAuthors().size(); i++) {
-            listAutors.add(ac.showlistAuthors().get(i));
+            listAuthors.add(ac.showlistAuthors().get(i));
         }
 
-        return listAutors;
+        return listAuthors;
+    }
+
+    public ArrayList<String> arrayActors() {
+        ArrayList<String> listActors = new ArrayList<>();
+        for (int i = 0; i < ac.showlistActors().size(); i++) {
+            listActors.add(ac.showlistActors().get(i));
+        }
+        return listActors;
     }
 
     public ArrayList<String> arrayChapters() {
