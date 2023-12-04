@@ -20,7 +20,7 @@ public class AdminView {
         this.ac = ac;
     }
 
-    public void createAndShowGUI() {
+    public void menuAdmin() {
         boolean condition = false;
 
         do {
