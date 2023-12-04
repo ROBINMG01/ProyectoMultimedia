@@ -129,7 +129,7 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur = new UserRegisterView(adminController);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
 
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
