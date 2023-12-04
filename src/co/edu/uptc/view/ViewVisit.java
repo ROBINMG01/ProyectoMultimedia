@@ -173,8 +173,6 @@ public class ViewVisit {
     }
 
     public String viewGenderMovie(String gender) {
-        int w = 0, aux = 0;
-        boolean inputIsValid = false;
         String optionHome[] = { "Accion", "Comedia", "Aventura", "Drama", "Terror" };
         UIManager.put("OptionPane.cancelButtonText", "Back");
         UIManager.put("OptionPane.okButtonText", "select");
@@ -233,8 +231,6 @@ public class ViewVisit {
     }
 
     public String viewGenderSerie(String gender) {
-        int w = 0, aux = 0;
-        boolean inputIsValid = false;
         String optionHome[] = { "Accion", "Comedia", "Aventura", "Drama", "Terror" };
         UIManager.put("OptionPane.cancelButtonText", "Back");
         UIManager.put("OptionPane.okButtonText", "select");

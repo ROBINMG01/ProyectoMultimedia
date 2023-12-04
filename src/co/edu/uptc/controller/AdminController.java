@@ -46,7 +46,7 @@ public class AdminController {
         movie.setGender(gender);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors,listActors,gender));
+            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
             return true;
         }
         return false;
@@ -93,7 +93,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> listAuthors, ArrayList<String> listActors,String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
