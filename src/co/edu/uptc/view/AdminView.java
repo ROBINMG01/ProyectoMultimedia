@@ -75,6 +75,9 @@ public class AdminView {
             case "deleteSerie":
                 deleteSerie();
                 break;
+            case "userRegisters":
+                deleteSerie();
+                break;
             case "Exit":
                 break;
         }
