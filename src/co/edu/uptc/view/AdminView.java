@@ -24,7 +24,7 @@ public class AdminView {
 
         do {
             String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                    "deleteMovie", "deleteSerie", "Exit" };
+                    "deleteMovie", "deleteSerie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
