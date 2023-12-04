@@ -1,26 +1,41 @@
 package co.edu.uptc.view;
 
 import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Image;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.BuscarSerieImpl;
+import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
+import co.edu.uptc.model.User;
 import co.edu.uptc.utilitaries.Utilitaries;
 
 public class UserRegisterView {
     private UserController userController;
     private AdminController ad;
     private Utilitaries utilitaries;
+    private User user; 
 
-    public UserRegisterView(AdminController ad) {
+    public UserRegisterView(AdminController ad, User user) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.utilitaries = new Utilitaries();
+        this.user=user;
     }
+
+
+
     public void userRegisterView() {
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
@@ -46,7 +61,7 @@ public class UserRegisterView {
                     showFavorites();
                     break;
                 case "5":
-                    showAccountSettings();
+                    showAccountSettings(user);
                     break;
                 case "6":
                     userController.setExit(false);
@@ -304,42 +319,125 @@ public class UserRegisterView {
         }
     }
 
-    public void showAccountSettings() {
-        String[] options = { "Change password" };
+    public void showAccountSettings(User user) {
+        ControlerInitialMenuView controler = new ControlerInitialMenuView();
+        int au = 0;
+        boolean exits = false;
+                    String firstName = "";
+                    String lastName = "";
 
-        String message = "Account settings:\n";
-        for (String option : options) {
-            message += option + "\n";
-        }
+                    String email = "";
+                    do {
 
-        int choice = JOptionPane.showOptionDialog(null, message, "Account Settings",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                        if (au == 0) {
+                            firstName = "";
+                            lastName = "";
 
-        if (choice == 0) {
-            JPasswordField passwordField = new JPasswordField();
-            JPasswordField confirmPasswordField = new JPasswordField();
+                            email = "";
+                        }
+                        JPanel panel = new JPanel();
 
-            JLabel passwordLabel = new JLabel("New Password:");
-            JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
+                        JTextField firstNameField = new JTextField(firstName, 10);
+                        JPasswordField passwordField = new JPasswordField(10);
+                        JPasswordField confirmPasswordField = new JPasswordField(10);
+                        JTextField lastNameField = new JTextField(lastName, 10);
+                        JTextField emailField = new JTextField(email, 10);
 
-            Object[] inputFields = { passwordLabel, passwordField, confirmPasswordLabel, confirmPasswordField };
+                        // Agregar los componentes al panel
+                        panel.add(new JLabel("First Name:"));
+                        panel.add(firstNameField);
+                        panel.add(new JLabel("Last Name:"));
+                        panel.add(lastNameField);
 
-            int result = JOptionPane.showConfirmDialog(null, inputFields, "Change Password",
-                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        panel.add(new JLabel("Email:"));
+                        panel.add(emailField);
+                        panel.add(new JLabel("Password:"));
+                        panel.add(passwordField);
+                        panel.add(new JLabel("Confirm Password:"));
+                        panel.add(confirmPasswordField);
 
-            if (result == JOptionPane.OK_OPTION) {
-                String newPassword = new String(passwordField.getPassword());
-                String confirmPassword = new String(confirmPasswordField.getPassword());
+                        // para que aparezca en vertical
+                        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                        // color del panel
+                        panel.setBackground(Color.CYAN);
 
-                if (newPassword.equals(confirmPassword)) {
-                    // Aquí debo realizar la lógica para cambiar la contraseña
-                    // Utiliza la variable newPassword para obtener la nueva contraseña ingresada
-                    JOptionPane.showMessageDialog(null, "Password changed successfully");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Passwords do not match", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
+                        // icono de la imagen
+                        ImageIcon iconChef = new ImageIcon("img\\chef.png");
+
+                        // Obtener la imagen del ImageIcon original
+                        Image chefImg = iconChef.getImage();
+
+                        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+                       int  newWidth = 150;
+                        int newHeight = 150;
+
+                        // Redimensionar la imagen
+                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+                        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+                        ImageIcon imgchef = new ImageIcon(chefImgs);
+
+                        int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
+                                JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
+
+                        if (resultado == JOptionPane.OK_OPTION) {
+                            firstName = firstNameField.getText();
+                            lastName = lastNameField.getText();
+
+                            email = emailField.getText();
+                            String password = new String(passwordField.getPassword());
+                            String confirmPassword = new String(confirmPasswordField.getPassword());
+
+                            if (!firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()
+                                    && !confirmPassword.isEmpty()) {
+                                if (password.equals(confirmPassword)) {
+                                    // valida que el email cumpla con lo minimi
+                                    int emailRevi = controler.isEmailUnique(email);
+                                    // valida que la contraseña cumpla con lo minimo
+                                    int validePassworMin = controler.validatePassword(confirmPassword);
+                                    // vreificar de que el cooreo no se repita
+                                    int uniqueEmail = controler.uniqueEmail(email);
+                                    if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
+                                        // crear usuario
+                                        controler.user(new User(firstName, lastName, email, password, Role.user));
+
+                                        // añadir al la lista de usuarios
+                                        controler.userRegister();
+                                        au = 0;
+                                        JOptionPane.showMessageDialog(null, "Registered user");
+                                    } else if (uniqueEmail == 2) {
+                                        au = 1;
+                                        email = "****";
+                                        JOptionPane.showMessageDialog(null, "Email used error");
+                                    } else if (emailRevi == 1) {
+                                        au = 1;
+                                        email = "****";
+                                        JOptionPane.showMessageDialog(null, "Invalid email format error");
+                                    } else if (validePassworMin == 3) {
+                                        au = 1;
+
+                                        JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
+
+                                    }
+
+                                } else {
+                                    au = 1;
+                                    JOptionPane.showMessageDialog(null, "Passwords do not match");
+                                }
+                            } else {
+                                au = 1;
+                                JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
+                            }
+
+                            int option = JOptionPane.showConfirmDialog(null, "Do you want to register another user?",
+                                    "Continue?", JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.NO_OPTION) {
+                                exits = true;
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Operation cancelled");
+                            exits = true;
+                        }
+                    } while (!exits); 
     }
 }

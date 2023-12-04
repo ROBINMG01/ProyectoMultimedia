@@ -1,5 +1,7 @@
 package co.edu.uptc.model;
 
+import java.util.ArrayList;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -7,6 +9,8 @@ public class User {
     private String email;
     private String password;
     private Role role;
+       private ArrayList<Movie> listMovies;
+    private ArrayList<Serie> listSeries;
 
     public User(String firstName, String lastName,  String email, String password, Role role) {
         this.firstName = firstName;
@@ -58,6 +62,22 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public ArrayList<Movie> getListMovies() {
+        return this.listMovies;
+    }
+
+    public void setListMovies(ArrayList<Movie> listMovies) {
+        this.listMovies = listMovies;
+    }
+
+    public ArrayList<Serie> getListSeries() {
+        return this.listSeries;
+    }
+
+    public void setListSeries(ArrayList<Serie> listSeries) {
+        this.listSeries = listSeries;
     }
 
 }
