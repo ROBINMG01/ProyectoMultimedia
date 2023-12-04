@@ -20,6 +20,9 @@ public class ViewVisit {
         this.adminController = ad;
     }
 
+    public ViewVisit() {
+    }
+
     public void visitView() {
 
         int w = 0, aux = 0;
@@ -167,6 +170,126 @@ public class ViewVisit {
                     break;
             }
         } while (w != 10);
+    }
+
+    public String viewGenderMovie(String gender) {
+        int w = 0, aux = 0;
+        boolean inputIsValid = false;
+        String optionHome[] = { "Accion", "Comedia", "Aventura", "Drama", "Terror" };
+        UIManager.put("OptionPane.cancelButtonText", "Back");
+        UIManager.put("OptionPane.okButtonText", "select");
+        // icono de la imagen
+        ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+
+        // Obtener la imagen del ImageIcon original
+        Image originalImage = icon.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        int newWidth = 250;
+        int newHeight = 250;
+
+        // Redimensionar la imagen
+        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione un Genero:",
+                "Opciones de pelicula", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionHome,
+                optionHome[0]);
+        // para que influya en todos
+        UIManager.put("OptionPane.cancelButtonText", "Back");
+        UIManager.put("OptionPane.okButtonText", "Accept");
+        if (seleccion == null) {
+            seleccion = "exit";
+        }
+        switch (seleccion) {
+            case "Accion":
+                gender = "Accion";
+
+                break;
+            case "Comedia":
+                gender = "Comedia";
+
+                break;
+            case "Aventura":
+                gender = "Aventura";
+                break;
+            case "Drama":
+                gender = "Drama";
+                break;
+            case "Terror":
+                gender = "Terror";
+
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(null, "Comando invalido", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+        return gender;
+
+    }
+
+    public String viewGenderSerie(String gender) {
+        int w = 0, aux = 0;
+        boolean inputIsValid = false;
+        String optionHome[] = { "Accion", "Comedia", "Aventura", "Drama", "Terror" };
+        UIManager.put("OptionPane.cancelButtonText", "Back");
+        UIManager.put("OptionPane.okButtonText", "select");
+        // icono de la imagen
+        ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+
+        // Obtener la imagen del ImageIcon original
+        Image originalImage = icon.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        int newWidth = 250;
+        int newHeight = 250;
+
+        // Redimensionar la imagen
+        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione un Genero:",
+                "Opciones de serie", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionHome,
+                optionHome[0]);
+        // para que influya en todos
+        UIManager.put("OptionPane.cancelButtonText", "Back");
+        UIManager.put("OptionPane.okButtonText", "Accept");
+        if (seleccion == null) {
+            seleccion = "exit";
+        }
+        switch (seleccion) {
+            case "Accion":
+                gender = "Accion";
+
+                break;
+            case "Comedia":
+                gender = "Comedia";
+
+                break;
+            case "Aventura":
+                gender = "Aventura";
+                break;
+            case "Drama":
+                gender = "Drama";
+                break;
+            case "Terror":
+                gender = "Terror";
+
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(null, "Comando invalido", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+        return gender;
+
     }
 
 }

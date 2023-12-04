@@ -1,16 +1,11 @@
 package co.edu.uptc.view;
 
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -18,6 +13,7 @@ import co.edu.uptc.controller.AdminController;
 
 public class AdminView {
     private AdminController ac;
+    ViewVisit viewVisit = new ViewVisit();
 
     public AdminView(AdminController ac) {
         this.ac = ac;
@@ -118,8 +114,6 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration:"));
                 panel.add(durationField);
-                panel.add(new JLabel("Gender:"));
-                panel.add(genderField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
 
@@ -127,7 +121,8 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = genderField.getText();
+
+                    gender = viewVisit.viewGenderMovie(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add movie");
@@ -155,7 +150,7 @@ public class AdminView {
                                     JTextField actorField = new JTextField(actor);
                                     panell.add(new JLabel("Actor:"));
                                     panell.add(actorField);
-    
+
                                     option = JOptionPane.showConfirmDialog(null, panell,
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addActors(actorField);
@@ -236,8 +231,6 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration"));
                 panel.add(durationField);
-                panel.add(new JLabel("Gender"));
-                panel.add(genderField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
 
@@ -245,7 +238,7 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = genderField.getText();
+                    gender = viewVisit.viewGenderSerie(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
@@ -276,7 +269,7 @@ public class AdminView {
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addActors(actorField);
                                 } while (!exit);
-                            }else{
+                            } else {
                                 JOptionPane.showMessageDialog(null,
                                         "The series was not added because there are no authors");
                                 exit = verification();
@@ -294,14 +287,15 @@ public class AdminView {
                                             "Continue?", JOptionPane.YES_NO_OPTION);
                                     exit = addChapter(chapterField);
                                 } while (!exit);
-                            } else if(!arrayActors().isEmpty()){
+                            } else if (!arrayActors().isEmpty()) {
                                 JOptionPane.showMessageDialog(null,
                                         "The series was not added because there are no actors");
                                 exit = verification();
                                 ver = 0;
                             }
                             if (!arrayChapters().isEmpty()) {
-                                ac.addSerie(name, description, duration2, arrayAuthors(), arrayChapters(), gender, arrayActors());
+                                ac.addSerie(name, description, duration2, arrayAuthors(), arrayChapters(), gender,
+                                        arrayActors());
                                 JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                 exit = true;
                             } else if (!arrayChapters().isEmpty()) {
@@ -589,21 +583,21 @@ public class AdminView {
                                         exit2 = true;
                                     }
                                 } while (!exit);
-                                if (exit2  != true) {
+                                if (exit2 != true) {
                                     exit2 = false;
                                     do {
-                                    JPanel panell = new JPanel(new GridLayout(1, 2));
-                                    JTextField actorField = new JTextField(actor);
-                                    panell.add(new JLabel("Actor"));
-                                    panell.add(actorField);
+                                        JPanel panell = new JPanel(new GridLayout(1, 2));
+                                        JTextField actorField = new JTextField(actor);
+                                        panell.add(new JLabel("Actor"));
+                                        panell.add(actorField);
 
-                                    option = JOptionPane.showConfirmDialog(null, panell,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
-                                    exit = addActors(actorField);
-                                    if (option != JOptionPane.OK_OPTION) {
-                                        exit2 = true;
-                                    }
-                                } while (!exit);
+                                        option = JOptionPane.showConfirmDialog(null, panell,
+                                                "Continue?", JOptionPane.YES_NO_OPTION);
+                                        exit = addActors(actorField);
+                                        if (option != JOptionPane.OK_OPTION) {
+                                            exit2 = true;
+                                        }
+                                    } while (!exit);
                                 }
                                 if (exit2 != true) {
                                     do {
@@ -617,7 +611,8 @@ public class AdminView {
                                                 "Continue?", JOptionPane.YES_NO_OPTION);
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
-                                            ac.updateSeries(selectedaction, name, description, duration2, arrayAuthors(),
+                                            ac.updateSeries(selectedaction, name, description, duration2,
+                                                    arrayAuthors(),
                                                     arrayChapters(), gender, arrayActors());
                                             JOptionPane.showMessageDialog(null, "Serie update sucessfully");
                                         }
