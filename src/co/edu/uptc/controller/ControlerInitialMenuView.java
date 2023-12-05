@@ -123,4 +123,12 @@ public class ControlerInitialMenuView extends UserRegister {
         } // El correo electrónico es único
         return 0;
     }
+
+
+
+    // retornar usuarios 
+
+    public ArrayList<User> users(){
+        return users;
+    }
 }

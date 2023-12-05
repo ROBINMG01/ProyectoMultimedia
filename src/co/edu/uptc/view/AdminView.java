@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import java.awt.GridLayout;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -9,14 +10,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+
+
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.controller.ControlerInitialMenuView;
+import co.edu.uptc.persistence.Archive;
 
 public class AdminView {
     private AdminController ac;
+    private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
 
-    public AdminView(AdminController ac) {
+    public AdminView(AdminController ac, ControlerInitialMenuView controlerInitialMenuView) {
         this.ac = ac;
+        this.controlerInitialMenuView=controlerInitialMenuView;
     }
 
     public void menuAdmin() {
@@ -72,7 +79,13 @@ public class AdminView {
                 deleteSerie();
                 break;
             case "userRegisters":
-                deleteSerie();
+              Archive userManager = new Archive();
+             File directory = new File("ruta_del_directorio");
+              if (!directory.exists()) {
+            directory.mkdirs(); // Crea los directorios si no existen
+        }
+        userManager.archiveUser(controlerInitialMenuView.users(), "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence");
+       
                 break;
             case "Exit":
                 break;
@@ -837,5 +850,13 @@ public class AdminView {
                 exit2 = true;
             }
         } while (exit2 == false);
+    }
+
+
+
+    // metodo de archivo
+
+    public void archiveUsers(){
+        
     }
 }

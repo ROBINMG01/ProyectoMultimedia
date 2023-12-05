@@ -134,7 +134,7 @@ public class InitialMenuView {
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView(adminController);
+                                            AdminView av = new AdminView(adminController,controler );
                                             av.menuAdmin();
                                             System.out.println("es el admin");
                                         }
