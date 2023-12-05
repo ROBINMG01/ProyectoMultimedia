@@ -1,0 +1,14 @@
+=======================================
+           Lista de Usuarios
+=======================================
+
+FirstName            LastName             Email                Password             Role       ListMovies                     ListSeries                    
+--------------------------------------------------------------------------------------------------------------------
+1                    1                    1                    1                    user      N/A                           N/A                           
+
+ADMN                 Admin                Admin@gmail.com      123                  admin     N/A                           N/A                           
+
+Juan                 barrera              Juandavid@gmail.com  J12345d@             user      N/A                           N/A                           
+
+camilo               rodiguez             camilo@gmail.com     J12345d@             user      N/A                           N/A                           
+

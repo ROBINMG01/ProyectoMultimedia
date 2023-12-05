@@ -80,11 +80,8 @@ public class AdminView {
                 break;
             case "userRegisters":
               Archive userManager = new Archive();
-             File directory = new File("ruta_del_directorio");
-              if (!directory.exists()) {
-            directory.mkdirs(); // Crea los directorios si no existen
-        }
-        userManager.archiveUser(controlerInitialMenuView.users(), "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence");
+         
+        userManager.archiveUsers( "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence\\Users.txt", controlerInitialMenuView.users());
        
                 break;
             case "Exit":
