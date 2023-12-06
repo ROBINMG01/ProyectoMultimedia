@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import java.awt.GridLayout;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -9,14 +10,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+
+
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.controller.ControlerInitialMenuView;
+import co.edu.uptc.persistence.Archive;
 
 public class AdminView {
     private AdminController ac;
+    private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
 
-    public AdminView(AdminController ac) {
+    public AdminView(AdminController ac, ControlerInitialMenuView controlerInitialMenuView) {
         this.ac = ac;
+        this.controlerInitialMenuView=controlerInitialMenuView;
     }
 
     public void menuAdmin() {
@@ -24,7 +31,7 @@ public class AdminView {
 
         do {
             String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                    "deleteMovie", "deleteSerie", "Exit" };
+                    "deleteMovie", "deleteSerie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -60,7 +67,6 @@ public class AdminView {
                 showSeries();
                 break;
             case "Update Movie":
-                System.out.println("golaa");
                 updateMovie();
                 break;
             case "Update Serie":
@@ -71,6 +77,12 @@ public class AdminView {
                 break;
             case "deleteSerie":
                 deleteSerie();
+                break;
+            case "userRegisters":
+              Archive userManager = new Archive();
+         
+        userManager.archiveUsers( "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence\\Users.txt", controlerInitialMenuView.users());
+       
                 break;
             case "Exit":
                 break;
@@ -393,6 +405,7 @@ public class AdminView {
         boolean exit = false;
         boolean exit2 = false;
         int option = 0;
+        int position = 0;
         String showNamesMovies[];
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
@@ -401,8 +414,12 @@ public class AdminView {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
-            System.out.println(selectedaction);
+            position = ac.searchMovie(selectedaction);
             if (selectedaction != null) {
+                name = ac.showListMovies().get(position).getName();
+                description = ac.showListMovies().get(position).getDescription();
+                duration = String.valueOf(ac.showListMovies().get(position).getDuration());
+                gender = ac.showListMovies().get(position).getGender();
                 if (ver == 1) {
                     name = "";
                     description = "";
@@ -412,10 +429,10 @@ public class AdminView {
                 }
                 do {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
-                    JTextField nameField = new JTextField(name);
-                    JTextField descriptionField = new JTextField(description);
-                    JTextField durationField = new JTextField(duration);
-                    JTextField genderField = new JTextField(gender);
+                    JTextField nameField = new JTextField(name, 15);
+                    JTextField descriptionField = new JTextField(description, 15);
+                    JTextField durationField = new JTextField(duration,15);
+                    JTextField genderField = new JTextField(gender, 15);
 
                     panel.add(new JLabel("Name of the serie"));
                     panel.add(nameField);
@@ -509,6 +526,7 @@ public class AdminView {
         String description = "";
         String duration = "";
         int duration2 = 0;
+        int position = 0;
         String actor = "";
         String chapter = "";
         String gender = "";
@@ -526,7 +544,12 @@ public class AdminView {
             showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+            position = ac.searchSeries(selectedaction);
             if (selectedaction != null) {
+                name = ac.showListSeries().get(position).getName();
+                description = ac.showListSeries().get(position).getDescription();
+                duration = String.valueOf(ac.showListSeries().get(position).getDuration());
+                gender = ac.showListSeries().get(position).getGender();
                 if (ver == 1) {
                     name = "";
                     description = "";
@@ -538,10 +561,10 @@ public class AdminView {
                 }
                 do {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
-                    JTextField nameField = new JTextField(name);
-                    JTextField descriptionField = new JTextField(description);
-                    JTextField durationField = new JTextField(duration);
-                    JTextField genderField = new JTextField(gender);
+                    JTextField nameField = new JTextField(name, 15);
+                    JTextField descriptionField = new JTextField(description, 15);
+                    JTextField durationField = new JTextField(duration, 15);
+                    JTextField genderField = new JTextField(gender, 15);
 
                     panel.add(new JLabel("Name of the serie"));
                     panel.add(nameField);
@@ -824,5 +847,13 @@ public class AdminView {
                 exit2 = true;
             }
         } while (exit2 == false);
+    }
+
+
+
+    // metodo de archivo
+
+    public void archiveUsers(){
+        
     }
 }

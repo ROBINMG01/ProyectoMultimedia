@@ -43,7 +43,7 @@ public class InitialMenuView {
             UIManager.put("OptionPane.okButtonText", "select");
 
             // icono de la imagen
-            ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+            ImageIcon icon = new ImageIcon("src\\co\\edu\\uptc\\image\\logo UPTCine.jpg");
 
             // Obtener la imagen del ImageIcon original
             Image originalImage = icon.getImage();
@@ -98,7 +98,7 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconLogin = new ImageIcon("img\\login.jpeg");
+                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -134,7 +134,7 @@ public class InitialMenuView {
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView(adminController);
+                                            AdminView av = new AdminView(adminController,controler );
                                             av.menuAdmin();
                                             System.out.println("es el admin");
                                         }
@@ -201,10 +201,10 @@ public class InitialMenuView {
                         // para que aparezca en vertical
                         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                         // color del panel
-                        panel.setBackground(Color.CYAN);
+                        panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconChef = new ImageIcon("img\\chef.png");
+                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
