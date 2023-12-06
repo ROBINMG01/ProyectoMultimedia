@@ -32,7 +32,7 @@ public class ViewVisit {
             UIManager.put("OptionPane.cancelButtonText", "Back");
             UIManager.put("OptionPane.okButtonText", "select");
             // icono de la imagen
-            ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+            ImageIcon icon = new ImageIcon("C:\\Users\\Camilo Andres\\Desktop\\logo.jpg");
 
             // Obtener la imagen del ImageIcon original
             Image originalImage = icon.getImage();
@@ -177,7 +177,7 @@ public class ViewVisit {
         UIManager.put("OptionPane.cancelButtonText", "Back");
         UIManager.put("OptionPane.okButtonText", "select");
         // icono de la imagen
-        ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Camilo Andres\\Desktop\\logo.jpg");
 
         // Obtener la imagen del ImageIcon original
         Image originalImage = icon.getImage();
@@ -235,7 +235,7 @@ public class ViewVisit {
         UIManager.put("OptionPane.cancelButtonText", "Back");
         UIManager.put("OptionPane.okButtonText", "select");
         // icono de la imagen
-        ImageIcon icon = new ImageIcon("img\\recetario.jpg");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Camilo Andres\\Desktop\\logo.jpg");
 
         // Obtener la imagen del ImageIcon original
         Image originalImage = icon.getImage();
