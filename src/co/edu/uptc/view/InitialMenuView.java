@@ -1,17 +1,5 @@
 package co.edu.uptc.view;
 
-import java.awt.Color;
-import java.awt.Image;
-
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
@@ -98,7 +86,7 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
+                        ImageIcon iconLogin = new ImageIcon("");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -134,7 +122,7 @@ public class InitialMenuView {
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView(adminController,controler );
+                                            AdminView av = new AdminView(adminController, controler);
                                             av.menuAdmin();
                                             System.out.println("es el admin");
                                         }
