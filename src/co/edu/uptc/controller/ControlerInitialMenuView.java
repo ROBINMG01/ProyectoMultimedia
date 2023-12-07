@@ -2,11 +2,14 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 import co.edu.uptc.model.UserRegister;
+import co.edu.uptc.persistence.Archive;
+
 
 public class ControlerInitialMenuView extends UserRegister {
     private ArrayList<User> users;
@@ -131,4 +134,46 @@ public class ControlerInitialMenuView extends UserRegister {
     public ArrayList<User> users(){
         return users;
     }
+
+
+
+
+
+    public String encriptar(String texto, int clave) {
+        StringBuilder textoEncriptado = new StringBuilder();
+
+        for (int i = 0; i < texto.length(); i++) {
+            char caracter = texto.charAt(i);
+
+            if (Character.isLetter(caracter) || Character.isDigit(caracter)) {
+                // Verifica si el caracter es una letra o un número
+                char base = Character.isUpperCase(caracter) ? 'A' : 'a';
+
+                // Aplica la fórmula del cifrado César y agrega el caracter encriptado al StringBuilder
+                textoEncriptado.append((char) (((caracter - base + clave) % 26 + 26) % 26 + base));
+            } else {
+                // Mantén los caracteres no alfabéticos ni numéricos sin cambios
+                textoEncriptado.append(caracter);
+            }
+        }
+
+        return textoEncriptado.toString();
+    }
+
+    public String desencriptar(String textoEncriptado, int clave) {
+        // Método para desencriptar un texto encriptado con el cifrado César
+        return encriptar(textoEncriptado, -clave);
+        // Invoca el método de encriptación con la clave negativa para realizar el descifrado
+    }
+
+
+// metodo que llena la info con arcgivo
+
+public void llenaInfo(){
+    Archive a= new Archive();
+    this.users=a.readUserInfoFromFile("src\\co\\edu\\uptc\\archive\\Keep.txt");
+}
+
+
+
 }

@@ -80,4 +80,10 @@ public class User {
         this.listSeries = listSeries;
     }
 
+    @Override
+    public String toString() {
+        return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password
+                + ", role=" + role + ", listMovies=" + listMovies + ", listSeries=" + listSeries + "]";
+    }
+
 }

@@ -5,11 +5,13 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.BuscarSerieImpl;
@@ -19,6 +21,7 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
+import co.edu.uptc.persistence.Archive;
 import co.edu.uptc.utilitaries.Utilitaries;
 
 public class UserRegisterView {
@@ -26,12 +29,14 @@ public class UserRegisterView {
     private AdminController ad;
     private Utilitaries utilitaries;
     private User user;
+    private ControlerInitialMenuView controlerInitialMenuView;
 
-    public UserRegisterView(AdminController ad, User user) {
+    public UserRegisterView(AdminController ad, User user,ControlerInitialMenuView controlerInitialMenuView) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.utilitaries = new Utilitaries();
         this.user = user;
+        this.controlerInitialMenuView=controlerInitialMenuView;
     }
 
     public void userRegisterView() {
@@ -60,6 +65,9 @@ public class UserRegisterView {
                     break;
                 case "5":
                     showAccountSettings(user);
+                    Archive archive= new Archive();
+                                        // ARCHIVO QUE GUARDA 
+archive.saveUserInfoToFile( controlerInitialMenuView.users(),"src\\co\\edu\\uptc\\archive\\Keep.txt");
                     break;
                 case "6":
                     userController.setExit(false);
@@ -116,6 +124,7 @@ public class UserRegisterView {
                 case 1:
                     // Ver el tráiler de la película
                     JOptionPane.showMessageDialog(null, "Opening trailer...");
+                    
                     break;
                 case 2:
                     // Volver al menú anterior
