@@ -27,8 +27,7 @@ public class AdminView {
         boolean condition = false;
 
         do {
-            String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                    "deleteMovie", "deleteSerie", "Exit" };
+            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -51,32 +50,60 @@ public class AdminView {
 
     public void selected(String selectedaction) {
         switch (selectedaction) {
+            case "Movie":
+                String[] options = { "Add Movie", "View Movies", "Update Movie",
+                        "deleteMovie", "Exit" };
+                String options2 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                        "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                menuMovie(options2);
+                break;
+            case "Serie":
+                String[] options3 = { "Add Serie", "View Series", "Update Series",
+                        "deleteSerie", "Exit" };
+                String options4 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                        "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options3, options3[0]);
+                menuSerie(options4);
+                break;
+            case "userRegisters":
+
+            
+            case "Exit":
+                break;
+        }
+    }
+
+    public void menuMovie(String selectedaction) {
+        switch (selectedaction) {
             case "Add Movie":
                 addMovie();
-                break;
-            case "Add Serie":
-                addSerie();
                 break;
             case "View Movies":
                 showMovies();
                 break;
-            case "View Series":
-                showSeries();
-                break;
             case "Update Movie":
                 updateMovie();
-                break;
-            case "Update Serie":
-                updateSerie();
                 break;
             case "deleteMovie":
                 deleteMovie();
                 break;
-            case "deleteSerie":
-                deleteSerie();
+            case "Exit":
                 break;
-            case "userRegisters":
-                deleteSerie();
+        }
+    }
+
+    public void menuSerie(String selectedaction) {
+        switch (selectedaction) {
+            case "Add Serie":
+                addMovie();
+                break;
+            case "View Serie":
+                showMovies();
+                break;
+            case "Update Serie":
+                updateMovie();
+                break;
+            case "deleteSerie":
+                deleteMovie();
                 break;
             case "Exit":
                 break;
@@ -430,7 +457,7 @@ public class AdminView {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
                     JTextField nameField = new JTextField(name, 15);
                     JTextField descriptionField = new JTextField(description, 15);
-                    JTextField durationField = new JTextField(duration,15);
+                    JTextField durationField = new JTextField(duration, 15);
                     JTextField genderField = new JTextField(gender, 15);
 
                     panel.add(new JLabel("Name of the serie"));
