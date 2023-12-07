@@ -16,7 +16,7 @@ public class Archive {
 
 //metodo que genera un archivo de los usuarios por el admin
 
-  public void archiveUsers(String fileName, ArrayList<User> users) {
+  public static void archiveUsers(String fileName, ArrayList<User> users) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
         // Encabezado
         writer.write("=======================================");
