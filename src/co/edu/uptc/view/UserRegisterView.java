@@ -9,22 +9,21 @@ import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.UserController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
-import co.edu.uptc.utilitaries.Utilitaries;
 
 public class UserRegisterView {
     private UserController userController;
     private AdminController ad;
-    private Utilitaries utilitaries;
-    private static ArrayList<Object> favorites;
+    private ArrayList<Object> favorites;
 
     public UserRegisterView(AdminController ad) {
         this.ad = ad;
         this.userController = new UserController(ad);
-        this.utilitaries = new Utilitaries();
-        UserRegisterView.favorites = new ArrayList<>();
+        this.favorites = new ArrayList<>();
     }
+    
 
     public void userRegisterView() {
+        UserRegisterView userRegisterView = new UserRegisterView(ad);
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
         while (userController.isExit()) {

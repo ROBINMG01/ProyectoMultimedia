@@ -20,10 +20,11 @@ import co.edu.uptc.model.User;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
-static AdminController adminController = new AdminController();
+    static AdminController adminController = new AdminController();
+
     public static void main(String[] args) {
-       
-       
+
+
         int x = 0;
         // crear el admin
         controler.createAdmin();
@@ -34,7 +35,7 @@ static AdminController adminController = new AdminController();
         // predeterminado id
         int idUser = 100;
         int au = 0;
-        String optionsHome[] = { "Login", "Register", "Visit" };
+        String optionsHome[] = {"Login", "Register", "Visit"};
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -54,7 +55,8 @@ static AdminController adminController = new AdminController();
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage =
+                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -109,13 +111,14 @@ static AdminController adminController = new AdminController();
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin =
+                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
 
-                        int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
-                                JOptionPane.OK_CANCEL_OPTION, 1, a);
+                        int resultado = JOptionPane.showConfirmDialog(null, panel,
+                                "Ingrese sus datos", JOptionPane.OK_CANCEL_OPTION, 1, a);
 
                         if (resultado == JOptionPane.OK_OPTION) {
                             // Obtener los valores ingresados por el usuario
@@ -129,29 +132,33 @@ static AdminController adminController = new AdminController();
 
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
-    
-                                            UserRegisterView ur = new UserRegisterView(adminController);
-                                           
+
+                                            UserRegisterView ur =
+                                                    new UserRegisterView(adminController);
+
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
-                                             AdminView av = new AdminView(adminController);
+                                            AdminView av = new AdminView(adminController);
                                             av.createAndShowGUI();
                                             System.out.println("es el admin");
                                         }
                                     } else {
                                         auu = 1;
-                                        JOptionPane.showMessageDialog(null, "contraseña incorrecta");
+                                        JOptionPane.showMessageDialog(null,
+                                                "contraseña incorrecta");
 
                                     }
                                 } else {
                                     auu = 1;
-                                    JOptionPane.showMessageDialog(null, "no hay usuario reguistrado ");
+                                    JOptionPane.showMessageDialog(null,
+                                            "no hay usuario reguistrado ");
 
                                 }
                             } else {
                                 auu = 1;
-                                JOptionPane.showMessageDialog(null, "I don't fill in the spaces correctly ");
+                                JOptionPane.showMessageDialog(null,
+                                        "I don't fill in the spaces correctly ");
                             }
 
                         } else {
@@ -215,13 +222,14 @@ static AdminController adminController = new AdminController();
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs =
+                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
 
-                        int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
-                                JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
+                        int resultado = JOptionPane.showConfirmDialog(null, panel,
+                                "Ingrese sus datos", JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
 
                         if (resultado == JOptionPane.OK_OPTION) {
                             firstName = firstNameField.getText();
@@ -237,12 +245,15 @@ static AdminController adminController = new AdminController();
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin = controler.validatePassword(confirmPassword);
+                                    int validePassworMin =
+                                            controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
-                                    if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
+                                    if (emailRevi == 0 && validePassworMin == 0
+                                            && uniqueEmail == 0) {
                                         // crear usuario
-                                        controler.user(new User(firstName, lastName, email, password, Role.user));
+                                        controler.user(new User(firstName, lastName, email,
+                                                password, Role.user));
 
                                         // añadir al la lista de usuarios
                                         controler.userRegister();
@@ -255,11 +266,13 @@ static AdminController adminController = new AdminController();
                                     } else if (emailRevi == 1) {
                                         au = 1;
                                         email = "****";
-                                        JOptionPane.showMessageDialog(null, "Invalid email format error");
+                                        JOptionPane.showMessageDialog(null,
+                                                "Invalid email format error");
                                     } else if (validePassworMin == 3) {
                                         au = 1;
 
-                                        JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
+                                        JOptionPane.showMessageDialog(null,
+                                                "la contraseña no comple con lo esperado");
 
                                     }
 
@@ -269,11 +282,13 @@ static AdminController adminController = new AdminController();
                                 }
                             } else {
                                 au = 1;
-                                JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
+                                JOptionPane.showMessageDialog(null,
+                                        "Fill in all the fields correctly");
                             }
 
-                            int option = JOptionPane.showConfirmDialog(null, "Do you want to register another user?",
-                                    "Continue?", JOptionPane.YES_NO_OPTION);
+                            int option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to register another user?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.NO_OPTION) {
                                 exits = true;
                             }
