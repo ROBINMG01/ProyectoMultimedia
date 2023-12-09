@@ -194,7 +194,7 @@ public class UserRegisterView {
         while (!backToMenu) {
             String[] options = {"View series favorites", "View movie favorites",
                     "Add series favorite", "Add movie favorite", "Remove series favorite",
-                    "Remove movie favorite", "Back"};
+                    "Remove movie favorite"};
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
