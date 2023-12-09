@@ -40,7 +40,7 @@ public class ControlerInitialMenuView extends UserRegister {
     // metodo que verifica que meta un correo correcto
     public int isEmailUnique(String emailToCheck) {
         // Verificar si el correo electrónico tiene uno de los 5 dominios más comunes
-        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com");
+        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "uptc.edu.co");
         String[] parts = emailToCheck.split("@");
 
         if (parts.length == 2) {
@@ -94,4 +94,16 @@ public class ControlerInitialMenuView extends UserRegister {
         return null; // No se encontró el usuario con el email dado
     }
 
+
+
+
+    // metodo que modifica la informacion de un usuario reguistrado
+
+    public void modifyUser(User user){
+        for (User userr : users) {
+            if(userr.equals(user)){
+
+            }
+        }
+    }
 }

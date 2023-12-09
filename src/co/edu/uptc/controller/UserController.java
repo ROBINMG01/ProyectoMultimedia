@@ -23,15 +23,15 @@ public class UserController {
     }
 
     public boolean addMovie(String name, String description, int duration,
-            ArrayList<String> actors) {
-        Movie movie = new Movie(name, description, duration, actors, description);
+            ArrayList<String> authors, ArrayList<String> actors, String gender) {
+        Movie movie = new Movie(name, description, duration, authors, actors, gender);
         listMovies.add(movie);
         return true;
     }
 
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> actors,
-            ArrayList<String> chapters) {
-        Serie serie = new Serie(name, description, duration, actors, chapters, description);
+    public boolean addSerie(String name, String description, int duration, ArrayList<String> authors,
+            ArrayList<String> chapters, ArrayList<String> actors, String gender) {
+        Serie serie = new Serie(name, description, duration, authors, chapters, gender, actors);
         listSeries.add(serie);
         return true;
     }

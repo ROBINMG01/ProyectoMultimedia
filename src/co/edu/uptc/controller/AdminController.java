@@ -12,7 +12,8 @@ public class AdminController {
     private Serie serie;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
-    private ArrayList<String> listActorsTwo;
+    private ArrayList<String> listAuthors;
+    private ArrayList<String> listActors;
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
@@ -22,7 +23,8 @@ public class AdminController {
     public AdminController() {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
-        listActorsTwo = new ArrayList<>();
+        listAuthors = new ArrayList<>();
+        listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
@@ -32,16 +34,17 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean addMovie(String name, String description, int duration, ArrayList<String> listActors,
-            String gender) {
+    public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
+            String gender, ArrayList<String> listActors) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
+        movie.setlistAuthors(listAuthors);
         movie.setListActors(listActors);
         movie.setGender(gender);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listActors, gender));
+            listMovies.add(new Movie(name, description, duration, listAuthors,listActors,gender));
             return true;
         }
         return false;
@@ -49,17 +52,18 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> listActors,
-            ArrayList<String> chapters, String gender) {
+    public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors,
+            ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
-        serie.setListActors(listActors);
+        serie.setlistAuthors(listAuthors);
         serie.setListChapters(chapters);
         serie.setGender(gender);
+        serie.setListActors(listActors);
 
         if (name.equals(serie.getName()) && duration == serie.getDuration()) {
-            listSeries.add(new Serie(name, description, duration, listActors, chapters, gender));
+            listSeries.add(new Serie(name, description, duration, listAuthors, chapters, gender, listActors));
             return true;
         }
         return false;
@@ -87,13 +91,14 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> actors, String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> listActors,String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
             listMovies.get(position).setDescription(description);
             listMovies.get(position).setDuration(duration);
-            listMovies.get(position).setListActors(actors);
+            listMovies.get(position).setlistAuthors(listAuthors);
+            listMovies.get(position).setListActors(listActors);
             listMovies.get(position).setGender(gender);
             return true;
         }
@@ -102,15 +107,16 @@ public class AdminController {
 
     // ROBIN
     public boolean updateSeries(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> listActors, ArrayList<String> chapters, String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
         if (searchSeries(name) != -1) {
             int position = searchSeries(name);
             listSeries.get(position).setName(nameUpdate);
             listSeries.get(position).setDescription(description);
             listSeries.get(position).setDuration(duration);
-            listSeries.get(position).setListActors(listActors);
+            listSeries.get(position).setlistAuthors(listAuthors);
             listSeries.get(position).setListChapters(chapters);
             listSeries.get(position).setGender(gender);
+            listSeries.get(position).setListActors(listActors);
             return true;
         }
         return false;
@@ -126,8 +132,12 @@ public class AdminController {
         return listSeries;
     }
 
-    public void addListActors(String name) {
-        listActorsTwo.add(name);
+    public void addlistAuthors(String name) {
+        listAuthors.add(name);
+    }
+
+    public void addlistActors(String name) {
+        listActors.add(name);
     }
 
     // ROBIN
@@ -135,8 +145,12 @@ public class AdminController {
         listChaptersTwo.add(chapter);
     }
 
-    public ArrayList<String> showListActorsTwo() {
-        return listActorsTwo;
+    public ArrayList<String> showlistAuthors() {
+        return listAuthors;
+    }
+
+    public ArrayList<String> showlistActors() {
+        return listActors;
     }
 
     // ROBIN
@@ -177,5 +191,25 @@ public class AdminController {
 
     public void setListSeries(ArrayList<Serie> listSeries) {
         this.listSeries = listSeries;
+    }
+
+    public boolean deleteMovie(String name){
+        for (int i = 0; i < listMovies.size(); i++) {
+            if (listMovies.get(i).getName().equals(name)) {
+                listMovies.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteSerie(String name){
+        for (int i = 0; i < listMovies.size(); i++) {
+            if (listSeries.get(i).getName().equals(name)) {
+                listSeries.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }

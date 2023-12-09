@@ -14,7 +14,6 @@ import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
-import co.edu.uptc.controller.UserController;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 
@@ -133,14 +132,13 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur =
-                                                    new UserRegisterView(adminController);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
 
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
                                             AdminView av = new AdminView(adminController);
-                                            av.createAndShowGUI();
+                                            av.menuAdmin();
                                             System.out.println("es el admin");
                                         }
                                     } else {

@@ -4,21 +4,23 @@ import java.util.ArrayList;
 
 public class Movie {
     private String name;
-    private String description;
+    private String gender;
     private int duration;
     private ArrayList<Movie> listMovies;
+    private ArrayList<String> listAuthors;
     private ArrayList<String> listActors;
-    private String gender;
+    private String description;
 
     public Movie() {
     }
 
-    public Movie(String name, String description, int duration, ArrayList<String> listActors, String gender) {
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
+            ArrayList<String> listActors, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
+        this.listAuthors = listAuthors;
         this.listActors = listActors;
-        this.gender = gender;
         this.gender = gender;
     }
 
@@ -46,12 +48,12 @@ public class Movie {
         this.duration = duration;
     }
 
-    public ArrayList<String> getListActors() {
-        return listActors;
+    public ArrayList<String> getlistAuthors() {
+        return listAuthors;
     }
 
-    public void setListActors(ArrayList<String> listActors) {
-        this.listActors = listActors;
+    public void setlistAuthors(ArrayList<String> listAuthors) {
+        this.listAuthors = listAuthors;
     }
 
     public ArrayList<Movie> getListMovies() {
@@ -70,9 +72,17 @@ public class Movie {
         this.gender = gender;
     }
 
+    public ArrayList<String> getListActors() {
+        return listActors;
+    }
+
+    public void setListActors(ArrayList<String> listActors) {
+        this.listActors = listActors;
+    }
+
     @Override
     public String toString() {
-        return "Movie [name=" + name + ".\ndescription=" + description + ".\nduration=" + duration + ", gender="
-                + gender + ", listActors=" + listActors + "]\n\n";
+        return "Name = " + name + ".\nGender = " + gender + ".\nDuration = " + duration + ".\nAuthors = " 
+        + listAuthors + "\nActors = " + listActors + "\nDescription = " + description;
     }
 }
