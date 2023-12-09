@@ -40,7 +40,8 @@ public class ControlerInitialMenuView extends UserRegister {
     // metodo que verifica que meta un correo correcto
     public int isEmailUnique(String emailToCheck) {
         // Verificar si el correo electrónico tiene uno de los 5 dominios más comunes
-        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "uptc.edu.co");
+        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
+                "uptc.edu.co");
         String[] parts = emailToCheck.split("@");
 
         if (parts.length == 2) {
@@ -94,16 +95,40 @@ public class ControlerInitialMenuView extends UserRegister {
         return null; // No se encontró el usuario con el email dado
     }
 
-
-
-
     // metodo que modifica la informacion de un usuario reguistrado
 
-    public void modifyUser(User user){
+    public void modifyUser(User user) {
         for (User userr : users) {
-            if(userr.equals(user)){
-
+            if (userr.equals(user)) {
+                userr = user;
             }
         }
+    }
+
+    // verificar que no haya un email repetido para modificar el usuario
+    public int uniqueEmailUserRegister(String emailToCheck, User userr) {
+        // verifica si no hizo cambios
+        if (userr.getEmail().equals(emailToCheck)) {
+            emailToCheck = "";
+        }
+
+        // Verificar si el correo electrónico es único en la lista
+        if (users != null) {
+            for (User user : users) {
+                if (user.getEmail().equals(emailToCheck)) {
+                    // El correo electrónico ya existe en la lista
+                    return 2;
+                }
+            }
+        } // El correo electrónico es único
+        return 0;
+    }
+
+
+
+    // retornar usuarios 
+
+    public ArrayList<User> users(){
+        return users;
     }
 }

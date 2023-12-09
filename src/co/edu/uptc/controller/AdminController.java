@@ -1,6 +1,8 @@
 package co.edu.uptc.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
@@ -44,7 +46,7 @@ public class AdminController {
         movie.setGender(gender);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors,listActors,gender));
+            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
             return true;
         }
         return false;
@@ -91,7 +93,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> listAuthors, ArrayList<String> listActors,String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -193,7 +195,7 @@ public class AdminController {
         this.listSeries = listSeries;
     }
 
-    public boolean deleteMovie(String name){
+    public boolean deleteMovie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listMovies.get(i).getName().equals(name)) {
                 listMovies.remove(i);
@@ -203,7 +205,7 @@ public class AdminController {
         return false;
     }
 
-    public boolean deleteSerie(String name){
+    public boolean deleteSerie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {
                 listSeries.remove(i);
@@ -212,4 +214,18 @@ public class AdminController {
         }
         return false;
     }
+
+    public List<String> filterMoviesByGender(ArrayList<Movie> listMovies, String gender) {
+        return listMovies.stream()
+                .filter(movie -> movie.getGender().equals(gender))
+                .map(Movie::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Serie> filterSeriesByGender(ArrayList<Serie> listSeries, String gender) {
+        return listSeries.stream()
+                .filter(serie -> serie.getGender().equalsIgnoreCase(gender))
+                .collect(Collectors.toList());
+    }
+
 }
