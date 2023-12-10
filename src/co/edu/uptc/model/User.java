@@ -5,20 +5,22 @@ import java.util.ArrayList;
 public class User {
     private String firstName;
     private String lastName;
-   
     private String email;
     private String password;
     private Role role;
-       private ArrayList<Movie> listMovies;
+    private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
+    private ArrayList<Object> favorites;
 
-    public User(String firstName, String lastName,  String email, String password, Role role) {
+    public User(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
-     
         this.email = email;
         this.password = password;
         this.role = role;
+        this.listMovies = new ArrayList<>();
+        this.listSeries = new ArrayList<>();
+        this.favorites = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -37,10 +39,8 @@ public class User {
         this.lastName = lastName;
     }
 
-  
-
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -48,16 +48,15 @@ public class User {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-
     }
 
     public Role getRole() {
-        return this.role;
+        return role;
     }
 
     public void setRole(Role role) {
@@ -65,7 +64,7 @@ public class User {
     }
 
     public ArrayList<Movie> getListMovies() {
-        return this.listMovies;
+        return listMovies;
     }
 
     public void setListMovies(ArrayList<Movie> listMovies) {
@@ -73,11 +72,18 @@ public class User {
     }
 
     public ArrayList<Serie> getListSeries() {
-        return this.listSeries;
+        return listSeries;
     }
 
     public void setListSeries(ArrayList<Serie> listSeries) {
         this.listSeries = listSeries;
     }
 
+    public ArrayList<Object> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(ArrayList<Object> favorites) {
+        this.favorites = favorites;
+    }
 }

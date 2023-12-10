@@ -11,8 +11,8 @@ public class UserController {
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private boolean exit;
-    private ArrayList<String> favoriteMovies;
-    private ArrayList<String> favoriteSeries;
+    private ArrayList<Movie> favoriteMovies;
+    private ArrayList<Serie> favoriteSeries;
 
     public UserController(AdminController ad) {
         listMovies = new ArrayList<>();
@@ -52,11 +52,12 @@ public class UserController {
         this.exit = exit;
     }
 
-    public ArrayList<String> getFavoriteMovies() {
+    public ArrayList<Movie> getFavoriteMovies() {
         return favoriteMovies;
     }
 
-    public ArrayList<String> getFavoriteSeries() {
+    public ArrayList<Serie> getFavoriteSeries() {
         return favoriteSeries;
     }
 }
+
