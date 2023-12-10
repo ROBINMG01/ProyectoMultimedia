@@ -59,7 +59,8 @@ public class ViewVisit {
 
                     // Comprobar si se seleccionó "Cancelar" en el cuadro de diálogo
                     if (selectedOption == null) {
-                        JOptionPane.showMessageDialog(null, "You have canceled the search.");
+                        JOptionPane.showMessageDialog(null, "You have canceled the search.", "Canceled",
+                                JOptionPane.CANCEL_OPTION);
                         return;
                     }
 
@@ -179,7 +180,8 @@ public class ViewVisit {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No results found for the search.");
+                JOptionPane.showMessageDialog(null, "No results found for the search.", "Null",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
 
         } while (w != 10);
