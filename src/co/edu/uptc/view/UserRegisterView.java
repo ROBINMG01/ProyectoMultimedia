@@ -30,7 +30,7 @@ public class UserRegisterView {
     private AdminController ad;
     private ArrayList<Object> favorites;
     private User user;
-    private static final String FAVORITES_FILE = "persistence/favorites.txt";
+    private static final String FAVORITES_FILE = "src/co/edu/uptc/persistence/favorites.txt";
 
     public UserRegisterView(AdminController ad, User user) {
         this.ad = ad;
@@ -86,7 +86,15 @@ public class UserRegisterView {
                     break;
             }
         }
+
+        // Guardar los favoritos antes de salir del programa
+        updateFavoritesOnExit();
     }
+
+    private void updateFavoritesOnExit() {
+        saveFavoritesToFile();
+    }
+
 
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
@@ -242,19 +250,33 @@ public class UserRegisterView {
     }
 
 
+
     private void saveFavoritesToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
             for (Object favorite : favorites) {
-                try {
-                    writer.write(favorite.toString());
+                if (favorite instanceof Serie) {
+                    Serie serie = (Serie) favorite;
+                    writer.write("Serie");
                     writer.newLine();
-                } catch (IOException e) {
-                    // Imprimir información sobre la excepción en la consola
-                    e.printStackTrace();
+                    writer.write("Name=" + serie.getName());
+                    writer.newLine();
+                    writer.write("Gender=" + serie.getGender());
+                    writer.newLine();
+                    writer.write("Duration=" + serie.getDuration());
+                    writer.newLine();
+                } else if (favorite instanceof Movie) {
+                    Movie movie = (Movie) favorite;
+                    writer.write("Movie");
+                    writer.newLine();
+                    writer.write("Name=" + movie.getName());
+                    writer.newLine();
+                    writer.write("Gender=" + movie.getGender());
+                    writer.newLine();
+                    writer.write("Duration=" + movie.getDuration());
+                    writer.newLine();
                 }
             }
         } catch (IOException e) {
-            // Imprimir información sobre la excepción en la consola
             e.printStackTrace();
         }
     }
@@ -264,43 +286,48 @@ public class UserRegisterView {
         try (BufferedReader reader = new BufferedReader(new FileReader(FAVORITES_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("Serie")) {
-                    // Es una Serie
-                    Serie serie = createSerieFromLine(line);
-                    favorites.add(serie);
-                } else if (line.contains("Movie")) {
-                    // Es una Movie
-                    Movie movie = createMovieFromLine(line);
-                    favorites.add(movie);
+                if (line.startsWith("Serie")) {
+                    Serie serie = createSerieFromLine(reader);
+                    if (serie != null) {
+                        favorites.add(serie);
+                    }
+                } else if (line.startsWith("Movie")) {
+                    Movie movie = createMovieFromLine(reader);
+                    if (movie != null) {
+                        favorites.add(movie);
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+            // Manejar la excepción de lectura de archivo
+            JOptionPane.showMessageDialog(null, "Error loading favorites from file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    private Serie createSerieFromLine(String line) {
-        String[] parts = line.split("\n");
-        String name = parts[0].split("=")[1].trim();
-        String gender = parts[1].split("=")[1].trim();
-        int duration = Integer.parseInt(parts[2].split("=")[1].trim());
-
-        return new Serie(name, null, duration, null, null, gender, null);
-    }
-
-    private Movie createMovieFromLine(String line) {
-        String[] parts = line.split("\n");
-        String name = parts[0].split("=")[1].trim();
-        String gender = parts[1].split("=")[1].trim();
-        int duration = Integer.parseInt(parts[2].split("=")[1].trim());
-
+    
+    private Movie createMovieFromLine(BufferedReader reader) throws IOException {
+        String name = reader.readLine().split("=")[1].trim();
+        String gender = reader.readLine().split("=")[1].trim();
+        int duration = Integer.parseInt(reader.readLine().split("=")[1].trim());
+    
         return new Movie(name, null, duration, null, null, gender);
     }
-
-
-    private void updateFavoritesOnExit() {
-        saveFavoritesToFile();
+    
+    private Serie createSerieFromLine(BufferedReader reader) throws IOException {
+        String[] nameParts = reader.readLine().split("=");
+        if (nameParts.length < 2) {
+            // Manejar el caso en el que la línea no tiene el formato esperado
+            return null; // o lanza una excepción, según tus necesidades
+        }
+        
+        String name = nameParts[1].trim();
+        String gender = reader.readLine().split("=")[1].trim();
+        int duration = Integer.parseInt(reader.readLine().split("=")[1].trim());
+    
+        return new Serie(name, null, duration, null, null, gender, null);
     }
+    
+    
 
     public void viewSeriesFavorites() {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
@@ -690,4 +717,5 @@ public class UserRegisterView {
             }
         } while (!exits);
     }
+
 }
