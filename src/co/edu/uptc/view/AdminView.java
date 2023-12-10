@@ -110,7 +110,7 @@ public class AdminView {
                 condition = false;
                 do {
                     String[] options3 = { "Add Serie", "View Series", "Update Series",
-                            "deleteSerie", "Exit" };
+                            "deleteSeries", "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                             "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
                     if (options4 == null) {
@@ -121,7 +121,7 @@ public class AdminView {
 
                     } else {
                         condition = false;
-                        menuMovie(options4);
+                        menuSerie(options4);
                     }
                 } while (condition == false);
                 break;
@@ -164,10 +164,10 @@ public class AdminView {
                 showSeries();
                 ;
                 break;
-            case "Update Serie":
+            case "Update Series":
                 updateSerie();
                 break;
-            case "deleteSerie":
+            case "deleteSeries":
                 deleteSerie();
                 break;
             case "Exit":
