@@ -2,7 +2,6 @@ package co.edu.uptc.view;
 
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -162,7 +161,8 @@ public class AdminView {
                 addSerie();
                 break;
             case "View Serie":
-                showSeries();;
+                showSeries();
+                ;
                 break;
             case "Update Serie":
                 updateSerie();
@@ -238,7 +238,7 @@ public class AdminView {
                     description = descriptionField.getText();
                     duration = durationField.getText();
 
-                    gender = viewVisit.viewGenderMovie(gender);
+                    gender = viewVisit.viewGender(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add movie");
@@ -381,7 +381,7 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = viewVisit.viewGenderSerie(gender);
+                    gender = viewVisit.viewGender(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");

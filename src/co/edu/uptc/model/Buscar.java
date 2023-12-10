@@ -1,15 +1,24 @@
 package co.edu.uptc.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
+
+import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.utilitaries.Utilitaries;
+import co.edu.uptc.view.ViewVisit;
 
 public class Buscar {
     private Utilitaries utilitaries;
     private boolean backToMenu = false;
+    private ViewVisit viewVisit;
+    private AdminController adminController;
 
     public Buscar() {
         utilitaries = new Utilitaries();
+        viewVisit = new ViewVisit();
+        adminController = new AdminController();
     }
 
     public void buscar() {
@@ -18,15 +27,14 @@ public class Buscar {
         ArrayList<Serie> seriesCatalog = utilitaries.loadSeries();
 
         // Opciones de búsqueda
-        String[] searchOptions = {"Search by name"};
+        String[] searchOptions = { "Search by name", "Search by gender" };
 
         // Bucle para volver a la pantalla de búsqueda
         boolean backToSearch = true;
         while (backToSearch) {
             // Muestra las opciones de búsqueda en un cuadro de diálogo
-            String selectedOption =
-                    (String) JOptionPane.showInputDialog(null, "Select a search option:",
-                            "Search", JOptionPane.PLAIN_MESSAGE, null, searchOptions, searchOptions[0]);
+            String selectedOption = (String) JOptionPane.showInputDialog(null, "Select a search option:",
+                    "Search", JOptionPane.PLAIN_MESSAGE, null, searchOptions, searchOptions[0]);
 
             // Comprobar si se seleccionó "Cancelar" en el cuadro de diálogo
             if (selectedOption == null) {
@@ -56,6 +64,27 @@ public class Buscar {
                         }
                     }
                     break;
+                case "Search by gender":
+                    String gender = "";
+
+                    gender = viewVisit.viewGender(gender);
+                    if (gender != null) {
+                        for (Movie movies : adminController.getListMovies()) {
+                            if (movies.getGender().equalsIgnoreCase(gender)) {
+                                result += movies.getName() + "\n";
+
+                            }
+
+                        }
+                        for (Serie series : adminController.getListSeries()) {
+                            if (series.getGender().equalsIgnoreCase(gender)) {
+                                // Mostrar solo el nombre de la serie
+                                result += series.getName() + "\n";
+                            }
+                        }
+                    }
+
+                    break;
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid option. Please select a valid option.");
@@ -70,7 +99,7 @@ public class Buscar {
 
                 if (selectedMovie != null) {
                     // Mostrar opciones adicionales
-                    String[] buttons = {"View Description", "Watch Trailer", "Back"};
+                    String[] buttons = { "View Description", "Watch Trailer", "Back" };
                     int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                             "Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                             buttons, buttons[0]);
@@ -80,15 +109,33 @@ public class Buscar {
                             // Ver descripción de la película o serie
                             for (Movie movie : movieCatalog) {
                                 if (movie.getName().equals(selectedMovie)) {
+                                    String name = movie.getName();
+                                    String gender = movie.getGender();
+                                    int duration = movie.getDuration();
                                     String description = movie.getDescription();
-                                    JOptionPane.showMessageDialog(null, "Movie Description:\n" + description);
+                                    List<String> listAuthors = movie.getlistAuthors();
+                                    List<String> listActors = movie.getListActors();
+                                    JOptionPane.showMessageDialog(null, "\nName: " + name
+                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
+                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
+                                            + listActors, "Movie Description: ", JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
                             }
                             for (Serie serie : seriesCatalog) {
                                 if (serie.getName().equals(selectedMovie)) {
+                                    String name = serie.getName();
+                                    String gender = serie.getGender();
+                                    int duration = serie.getDuration();
                                     String description = serie.getDescription();
-                                    JOptionPane.showMessageDialog(null, "Serie Description:\n" + description);
+                                    List<String> listAuthors = serie.getlistAuthors();
+                                    List<String> listActors = serie.getListActors();
+                                    List<String> listChapters = serie.getListChapters();
+                                    JOptionPane.showMessageDialog(null, "\nName: " + name
+                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
+                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
+                                            + listActors + "\nListChapters: " + listChapters, "Serie Description: ",
+                                            JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
                             }
@@ -113,8 +160,10 @@ public class Buscar {
             }
 
             // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-            String[] continueOptions = {"Continue searching", "Back to menu"};
-            int continueOption = JOptionPane.showOptionDialog(null, "Do you want to continue searching or go back to the menu?", "Continue", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+            String[] continueOptions = { "Continue searching", "Back to menu" };
+            int continueOption = JOptionPane.showOptionDialog(null,
+                    "Do you want to continue searching or go back to the menu?", "Continue", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
 
             if (continueOption == 1) {
                 backToMenu = true;

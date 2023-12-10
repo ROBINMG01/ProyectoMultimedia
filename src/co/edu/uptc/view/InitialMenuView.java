@@ -23,7 +23,6 @@ public class InitialMenuView {
 
     public static void main(String[] args) {
 
-
         int x = 0;
         // crear el admin
         controler.createAdmin();
@@ -34,7 +33,7 @@ public class InitialMenuView {
         // predeterminado id
         int idUser = 100;
         int au = 0;
-        String optionsHome[] = {"Login", "Register", "Visit"};
+        String optionsHome[] = { "Login", "Register", "Visit" };
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -54,8 +53,7 @@ public class InitialMenuView {
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage =
-                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -110,8 +108,7 @@ public class InitialMenuView {
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin =
-                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
@@ -220,8 +217,7 @@ public class InitialMenuView {
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs =
-                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
@@ -243,8 +239,7 @@ public class InitialMenuView {
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin =
-                                            controler.validatePassword(confirmPassword);
+                                    int validePassworMin = controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
                                     if (emailRevi == 0 && validePassworMin == 0
