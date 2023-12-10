@@ -3,6 +3,9 @@ package co.edu.uptc.view;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Image;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,29 +23,32 @@ import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
+// Constructor
 public class UserRegisterView {
     private UserController userController;
     private AdminController ad;
     private ArrayList<Object> favorites;
     private User user;
+    private static final String FAVORITES_FILE = "src/co/edu/uptc/persistence/favorites.txt";
 
     public UserRegisterView(AdminController ad, User user) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.favorites = new ArrayList<>();
         this.user = user;
+        this.favorites = user.getFavorites();
     }
 
+
+    // Entrada principal
     public void userRegisterView() {
-        UserRegisterView userRegisterView = new UserRegisterView(ad, user);
         BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
 
         while (userController.isExit()) {
-            String option = JOptionPane
-                    .showInputDialog("Proyecto Multimedia\n" + "[1]. Ver catálogo de películas\n"
-                            + "[2]. Ver catálogo de series\n" + "[3]. Buscar series y películas\n"
-                            + "[4]. Ver mis favoritos\n" + "[5]. Configuración de la cuenta\n"
-                            + "[6]. Salir\n" + "\nIngrese el número de la opción deseada:");
+            String option = JOptionPane.showInputDialog("Multimedia Project\n"
+                    + "[1]. View movie catalog\n" + "[2]. View series catalog\n"
+                    + "[3]. Search for series and movies\n" + "[4]. View my favorites\n"
+                    + "[5]. Account settings\n" + "\nEnter the number of the desired option:");
 
             if (option == null) {
                 break;
@@ -64,20 +70,47 @@ public class UserRegisterView {
                 case "5":
                     showAccountSettings(user);
                     break;
-                case "6":
+                case "Back":
                     userController.setExit(false);
-                    JOptionPane.showMessageDialog(null, "Hasta luego, ¡vuelve pronto!", "Despedida",
+                    JOptionPane.showMessageDialog(null, "Goodbye, come back soon!", "Farewell",
                             JOptionPane.INFORMATION_MESSAGE);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
-                            "Opción inválida. Por favor, seleccione una opción válida.", "Error",
+                            "Invalid option. Please select a valid option.", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     break;
             }
         }
+
+        // Guardar los favoritos antes de salir del programa
+        updateFavoritesOnExit(user);
     }
 
+    // Actualiza la lista de favoritos del ususario y guarda en "favorites.txt cuando se sale de
+    // usuario registrado"
+    private void updateFavoritesOnExit(User user) {
+        user.setFavorites(favorites);
+        clearFavoritesFile();
+    }
+
+    private void clearFavoritesFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
+            // Escribir un espacio en blanco para limpiar el contenido del archivo
+            writer.write("");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error clearing favorites file.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            // Reiniciar el programa en caso de un error
+            System.out.println("The program will restart");
+            userRegisterView();
+            // Llamada recursiva al método principal
+            // Esto se hace en caso de que el archivo n o se limpie bien, se reiniciara el programa
+        }
+    }
+
+
+    // Muetsra el catalogo de peliculas
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
 
@@ -134,6 +167,7 @@ public class UserRegisterView {
         }
     }
 
+    // Muestra el catalogo de series
     public void showSeriesCatalog() {
         ArrayList<Serie> series = ad.showListSeries();
 
@@ -192,36 +226,68 @@ public class UserRegisterView {
     public void showFavorites() {
         boolean backToMenu = false;
         while (!backToMenu) {
-            String[] options = {"View series favorites", "View movie favorites",
-                    "Add series favorite", "Add movie favorite", "Remove series favorite",
-                    "Remove movie favorite"};
-
+            String[] options = {"Movie", "Serie"};
+    
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-
+    
             if (selectedOption == null) {
-                backToMenu = true; // Si el usuario ha cancelado la operación, salir del bucle
+                backToMenu = true;
                 continue;
             }
-
+    
             switch (selectedOption) {
-                case "View series favorites":
-                    viewSeriesFavorites();
+                case "Movie":
+                    String[] movieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String selectedMovieOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
+                            "Movie Favorites Management", JOptionPane.PLAIN_MESSAGE, null, movieOptions, movieOptions[0]);
+    
+                    if (selectedMovieOption == null) {
+                        backToMenu = true;
+                        continue;
+                    }
+    
+                    switch (selectedMovieOption) {
+                        case "View favorites":
+                            viewMovieFavorites(user);
+                            break;
+                        case "Add favorite":
+                            addMovieFavorite(user);
+                            break;
+                        case "Remove favorite":
+                            removeMovieFavorite(user);
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,
+                                    "Invalid option. Please select a valid option.");
+                            break;
+                    }
                     break;
-                case "View movie favorites":
-                    viewMovieFavorites();
-                    break;
-                case "Add series favorite":
-                    addSeriesFavorite();
-                    break;
-                case "Add movie favorite":
-                    addMovieFavorite();
-                    break;
-                case "Remove series favorite":
-                    removeSeriesFavorite();
-                    break;
-                case "Remove movie favorite":
-                    removeMovieFavorite();
+                case "Serie":
+                    String[] serieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String selectedSerieOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
+                            "Series Favorites Management", JOptionPane.PLAIN_MESSAGE, null, serieOptions, serieOptions[0]);
+    
+                    if (selectedSerieOption == null) {
+                        backToMenu = true;
+                        continue;
+                    }
+    
+                    switch (selectedSerieOption) {
+                        case "View favorites":
+                            viewSeriesFavorites(user);
+                            break;
+                        case "Add favorite":
+                            addSeriesFavorite(user);
+                            break;
+                        case "Remove favorite":
+                            removeSeriesFavorite(user);
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,
+                                    "Invalid option. Please select a valid option.");
+                            break;
+                    }
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
@@ -230,37 +296,41 @@ public class UserRegisterView {
             }
         }
     }
+    
+    
 
-public void viewSeriesFavorites() {
+    // Metodos que permiten ver al ususario sus "Movies" "Series"
+    public void viewSeriesFavorites(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getFavorites()) {
             if (favorite instanceof Serie) {
                 seriesFavorites.add((Serie) favorite);
             }
         }
-    
+
         if (seriesFavorites.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No series favorites found.");
             return;
         }
-    
+
         String[] seriesNames = new String[seriesFavorites.size()];
         for (int i = 0; i < seriesFavorites.size(); i++) {
             seriesNames[i] = seriesFavorites.get(i).getName();
         }
-    
+
         String selectedSeries = (String) JOptionPane.showInputDialog(null,
-                "Select a series to view:", "View Series",
-                JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
-    
+                "Select a series to view:", "View Series", JOptionPane.PLAIN_MESSAGE, null,
+                seriesNames, seriesNames[0]);
+
         if (selectedSeries != null) {
-            // Aquí puedes agregar la lógica para ver la información de la serie seleccionada
+            // Agregar la lógica para ver la información de la serie seleccionada
             JOptionPane.showMessageDialog(null, "Viewing series: " + selectedSeries);
-    
+
             String[] buttons = {"View Description", "Watch Trailer", "Back"};
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Series Options",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
-    
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
+                    "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    buttons, buttons[0]);
+
             switch (choice) {
                 case 0:
                     // Ver descripción de la serie
@@ -271,7 +341,7 @@ public void viewSeriesFavorites() {
                             break;
                         }
                     }
-    
+
                     if (selectedSerieObj != null) {
                         String description = selectedSerieObj.getDescription();
                         JOptionPane.showMessageDialog(null, "Serie Description:\n" + description);
@@ -287,44 +357,45 @@ public void viewSeriesFavorites() {
                     // Volver al menú anterior
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
             JOptionPane.showMessageDialog(null, "You have canceled viewing the series.");
         }
     }
-    
-    public void viewMovieFavorites() {
+
+    public void viewMovieFavorites(User user) {
         ArrayList<Movie> movieFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getFavorites()) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
             }
         }
-    
+
         if (movieFavorites.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No movie favorites found.");
             return;
         }
-    
+
         String[] movieNames = new String[movieFavorites.size()];
         for (int i = 0; i < movieFavorites.size(); i++) {
             movieNames[i] = movieFavorites.get(i).getName();
         }
-    
-        String selectedMovie = (String) JOptionPane.showInputDialog(null,
-                "Select a movie to view:", "View Movie",
-                JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
-    
+
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to view:",
+                "View Movie", JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
+
         if (selectedMovie != null) {
             // Aquí puedes agregar la lógica para ver la información de la película seleccionada
             JOptionPane.showMessageDialog(null, "Viewing movie: " + selectedMovie);
-    
+
             String[] buttons = {"View Description", "Watch Trailer", "Back"};
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Movie Options",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
-    
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
+                    "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    buttons, buttons[0]);
+
             switch (choice) {
                 case 0:
                     // Ver descripción de la película
@@ -335,7 +406,7 @@ public void viewSeriesFavorites() {
                             break;
                         }
                     }
-    
+
                     if (selectedMovieObj != null) {
                         String description = selectedMovieObj.getDescription();
                         JOptionPane.showMessageDialog(null, "Movie Description:\n" + description);
@@ -351,17 +422,17 @@ public void viewSeriesFavorites() {
                     // Volver al menú anterior
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
             JOptionPane.showMessageDialog(null, "You have canceled viewing the movie.");
         }
     }
-    
 
-
-    public void addSeriesFavorite() {
+    // Métodos permiten al usuario añadir series y películas a su lista de favoritos
+    public void addSeriesFavorite(User user) {
         ArrayList<Serie> seriesCatalog = ad.showListSeries();
         ArrayList<String> seriesNames = new ArrayList<>();
         for (Serie serie : seriesCatalog) {
@@ -391,7 +462,7 @@ public void viewSeriesFavorites() {
         }
     }
 
-    public void addMovieFavorite() {
+    public void addMovieFavorite(User user) {
         ArrayList<Movie> movieCatalog = ad.showListMovies();
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movieCatalog) {
@@ -419,28 +490,30 @@ public void viewSeriesFavorites() {
             JOptionPane.showMessageDialog(null, "You have canceled adding the movie to favorites.");
         }
     }
-public void removeSeriesFavorite() {
+
+    // Métodos permiten al usuario quitar series y películas de su lista de favoritos.
+    public void removeSeriesFavorite(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
         for (Object favorite : favorites) {
             if (favorite instanceof Serie) {
                 seriesFavorites.add((Serie) favorite);
             }
         }
-    
+
         if (seriesFavorites.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No series favorites found.");
             return;
         }
-    
+
         String[] seriesNames = new String[seriesFavorites.size()];
         for (int i = 0; i < seriesFavorites.size(); i++) {
             seriesNames[i] = seriesFavorites.get(i).getName();
         }
-    
+
         String selectedSeries = (String) JOptionPane.showInputDialog(null,
                 "Select a series to remove from favorites:", "Remove Series Favorite",
                 JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
-    
+
         if (selectedSeries != null) {
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Serie) {
@@ -448,34 +521,36 @@ public void removeSeriesFavorite() {
                 }
                 return false;
             });
-            JOptionPane.showMessageDialog(null, "The series has been removed from favorites successfully.");
+            JOptionPane.showMessageDialog(null,
+                    "The series has been removed from favorites successfully.");
         } else {
-            JOptionPane.showMessageDialog(null, "You have canceled removing the series from favorites.");
+            JOptionPane.showMessageDialog(null,
+                    "You have canceled removing the series from favorites.");
         }
     }
-    
-    public void removeMovieFavorite() {
+
+    public void removeMovieFavorite(User user) {
         ArrayList<Movie> movieFavorites = new ArrayList<>();
         for (Object favorite : favorites) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
             }
         }
-    
+
         if (movieFavorites.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No movie favorites found.");
             return;
         }
-    
+
         String[] movieNames = new String[movieFavorites.size()];
         for (int i = 0; i < movieFavorites.size(); i++) {
             movieNames[i] = movieFavorites.get(i).getName();
         }
-    
+
         String selectedMovie = (String) JOptionPane.showInputDialog(null,
                 "Select a movie to remove from favorites:", "Remove Movie Favorite",
                 JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
-    
+
         if (selectedMovie != null) {
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Movie) {
@@ -483,15 +558,15 @@ public void removeSeriesFavorite() {
                 }
                 return false;
             });
-            JOptionPane.showMessageDialog(null, "The movie has been removed from favorites successfully.");
+            JOptionPane.showMessageDialog(null,
+                    "The movie has been removed from favorites successfully.");
         } else {
-            JOptionPane.showMessageDialog(null, "You have canceled removing the movie from favorites.");
+            JOptionPane.showMessageDialog(null,
+                    "You have canceled removing the movie from favorites.");
         }
     }
-    
 
-
-    public void showAccountSettings() {}
+    // Metodo que gestiona la configuracion de la cuenta del usuario
     public void showAccountSettings(User user) {
         ControlerInitialMenuView controler = new ControlerInitialMenuView();
         int au = 0;
@@ -585,7 +660,8 @@ public void removeSeriesFavorite() {
                         int uniqueEmail = controler.uniqueEmailUserRegister(email, user);
                         if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
                             // crear usuario
-                            controler.user(new User(firstName, lastName, email, password, Role.user));
+                            controler.user(
+                                    new User(firstName, lastName, email, password, Role.user));
 
                             // modificar al la lista de usuarios
                             user.setLastName(lastName);
@@ -608,7 +684,8 @@ public void removeSeriesFavorite() {
                         } else if (validePassworMin == 3) {
                             au = 1;
 
-                            JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
+                            JOptionPane.showMessageDialog(null,
+                                    "la contraseña no comple con lo esperado");
 
                         }
 
@@ -621,8 +698,9 @@ public void removeSeriesFavorite() {
                     JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
                 }
 
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to modify something else?",
-                        "Continue?", JOptionPane.YES_NO_OPTION);
+                int option =
+                        JOptionPane.showConfirmDialog(null, "Do you want to modify something else?",
+                                "Continue?", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.NO_OPTION) {
                     exits = true;
                 }
@@ -632,4 +710,5 @@ public void removeSeriesFavorite() {
             }
         } while (!exits);
     }
+
 }

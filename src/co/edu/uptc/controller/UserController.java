@@ -60,3 +60,4 @@ public class UserController {
         return favoriteSeries;
     }
 }
+
