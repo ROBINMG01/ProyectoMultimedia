@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import co.edu.uptc.utilitaries.Utilitaries;
 
-public class BuscarSerieImpl {
+public class Buscar {
     private Utilitaries utilitaries;
     private boolean backToMenu = false;
 
-    public BuscarSerieImpl() {
+    public Buscar() {
         utilitaries = new Utilitaries();
     }
 

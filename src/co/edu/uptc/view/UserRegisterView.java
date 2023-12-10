@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
-import co.edu.uptc.model.BuscarSerieImpl;
+import co.edu.uptc.model.Buscar;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
@@ -42,7 +42,7 @@ public class UserRegisterView {
 
     // Entrada principal
     public void userRegisterView() {
-        BuscarSerieImpl buscarSerieImpl = new BuscarSerieImpl();
+        Buscar buscarSerieImpl = new Buscar();
 
         while (userController.isExit()) {
             String option = JOptionPane.showInputDialog("Multimedia Project\n"
