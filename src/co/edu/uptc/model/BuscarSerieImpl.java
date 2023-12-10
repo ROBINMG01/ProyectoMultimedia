@@ -1,9 +1,7 @@
-package co.edu.uptc.controller;
+package co.edu.uptc.model;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import co.edu.uptc.model.Movie;
-import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
 
 public class BuscarSerieImpl {
@@ -97,7 +95,7 @@ public class BuscarSerieImpl {
                             break;
                         case 1:
                             // Ver el tráiler de la película o serie
-                            // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer con la URL
+                            // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer
                             JOptionPane.showMessageDialog(null, "Opening trailer...");
                             break;
                         case 2:
