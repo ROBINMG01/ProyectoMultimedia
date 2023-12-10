@@ -1,8 +1,0 @@
-Serie
-Name=Strange Things
-Gender=Ficcion
-Duration=45
-Movie
-Name=El origen
-Gender=Ficción
-Duration=120

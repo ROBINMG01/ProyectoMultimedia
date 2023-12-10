@@ -37,9 +37,10 @@ public class UserRegisterView {
         this.userController = new UserController(ad);
         this.favorites = new ArrayList<>();
         this.user = user;
+        this.favorites = user.getFavorites();
 
         // Cargar la lista de favoritos al iniciar
-        loadFavoritesFromFile();
+        // loadFavoritesFromFile();
     }
 
 
@@ -88,13 +89,26 @@ public class UserRegisterView {
         }
 
         // Guardar los favoritos antes de salir del programa
-        updateFavoritesOnExit();
+        updateFavoritesOnExit(user);
     }
 
-    private void updateFavoritesOnExit() {
-        saveFavoritesToFile();
+    private void updateFavoritesOnExit(User user) {
+        user.setFavorites(favorites);
+        saveFavoritesToFile(user);
+        clearFavoritesFile();
     }
 
+    private void clearFavoritesFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
+            // Escribir un espacio en blanco para limpiar el contenido del archivo
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejar la excepción de escritura de archivo
+            JOptionPane.showMessageDialog(null, "Error clearing favorites file.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
 
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
@@ -212,7 +226,7 @@ public class UserRegisterView {
         while (!backToMenu) {
             String[] options = {"View series favorites", "View movie favorites",
                     "Add series favorite", "Add movie favorite", "Remove series favorite",
-                    "Remove movie favorite", "Back"};
+                    "Remove movie favorite"};
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
@@ -224,22 +238,22 @@ public class UserRegisterView {
 
             switch (selectedOption) {
                 case "View series favorites":
-                    viewSeriesFavorites();
+                    viewSeriesFavorites(user);
                     break;
                 case "View movie favorites":
-                    viewMovieFavorites();
+                    viewMovieFavorites(user);
                     break;
                 case "Add series favorite":
-                    addSeriesFavorite();
+                    addSeriesFavorite(user);
                     break;
                 case "Add movie favorite":
-                    addMovieFavorite();
+                    addMovieFavorite(user);
                     break;
                 case "Remove series favorite":
-                    removeSeriesFavorite();
+                    removeSeriesFavorite(user);
                     break;
                 case "Remove movie favorite":
-                    removeMovieFavorite();
+                    removeMovieFavorite(user);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,
@@ -251,7 +265,8 @@ public class UserRegisterView {
 
 
 
-    private void saveFavoritesToFile() {
+    private void saveFavoritesToFile(User user) {
+        String userFavoritesFile = "src/co/edu/uptc/persistence/" + user.getEmail() + "_favorites.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
             for (Object favorite : favorites) {
                 if (favorite instanceof Serie) {
@@ -283,18 +298,22 @@ public class UserRegisterView {
 
 
     private void loadFavoritesFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FAVORITES_FILE))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Serie")) {
-                    Serie serie = createSerieFromLine(reader);
-                    if (serie != null) {
-                        favorites.add(serie);
-                    }
-                } else if (line.startsWith("Movie")) {
-                    Movie movie = createMovieFromLine(reader);
-                    if (movie != null) {
-                        favorites.add(movie);
+        String userFavoritesFile = "src/co/edu/uptc/persistence/" + user.getEmail() + "_favorites.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(userFavoritesFile))) {
+            // Verificar si el archivo está vacío
+            if (reader.readLine() != null) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith("Serie")) {
+                        Serie serie = createSerieFromLine(reader);
+                        if (serie != null) {
+                            favorites.add(serie);
+                        }
+                    } else if (line.startsWith("Movie")) {
+                        Movie movie = createMovieFromLine(reader);
+                        if (movie != null) {
+                            favorites.add(movie);
+                        }
                     }
                 }
             }
@@ -304,6 +323,7 @@ public class UserRegisterView {
             JOptionPane.showMessageDialog(null, "Error loading favorites from file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
     
     private Movie createMovieFromLine(BufferedReader reader) throws IOException {
         String name = reader.readLine().split("=")[1].trim();
@@ -329,9 +349,9 @@ public class UserRegisterView {
     
     
 
-    public void viewSeriesFavorites() {
+    public void viewSeriesFavorites(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getFavorites()) {
             if (favorite instanceof Serie) {
                 seriesFavorites.add((Serie) favorite);
             }
@@ -395,9 +415,9 @@ public class UserRegisterView {
         }
     }
 
-    public void viewMovieFavorites() {
+    public void viewMovieFavorites(User user) {
         ArrayList<Movie> movieFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getFavorites()) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
             }
@@ -460,7 +480,7 @@ public class UserRegisterView {
         }
     }
 
-    public void addSeriesFavorite() {
+    public void addSeriesFavorite(User user) {
         ArrayList<Serie> seriesCatalog = ad.showListSeries();
         ArrayList<String> seriesNames = new ArrayList<>();
         for (Serie serie : seriesCatalog) {
@@ -490,7 +510,7 @@ public class UserRegisterView {
         }
     }
 
-    public void addMovieFavorite() {
+    public void addMovieFavorite(User user) {
         ArrayList<Movie> movieCatalog = ad.showListMovies();
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movieCatalog) {
@@ -519,7 +539,7 @@ public class UserRegisterView {
         }
     }
 
-    public void removeSeriesFavorite() {
+    public void removeSeriesFavorite(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
         for (Object favorite : favorites) {
             if (favorite instanceof Serie) {
@@ -556,7 +576,7 @@ public class UserRegisterView {
         }
     }
 
-    public void removeMovieFavorite() {
+    public void removeMovieFavorite(User user) {
         ArrayList<Movie> movieFavorites = new ArrayList<>();
         for (Object favorite : favorites) {
             if (favorite instanceof Movie) {
