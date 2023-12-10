@@ -15,9 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import co.edu.uptc.controller.AdminController;
-import co.edu.uptc.controller.BuscarSerieImpl;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
+import co.edu.uptc.model.BuscarSerieImpl;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
