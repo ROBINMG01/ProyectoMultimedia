@@ -122,12 +122,16 @@ public class UserRegisterView {
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
 
+                // Colocar imagen
+        ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+        JLabel movieLabel = new JLabel(seriesIcon);
+
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movies) {
             movieNames.add(movie.getName());
         }
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie:", "Movie Catalog",
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
                 JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
@@ -214,7 +218,7 @@ public class UserRegisterView {
         ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
         JLabel seriesLabel = new JLabel(seriesIcon);
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series:", "Series Catalog",
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Catalog",
                 JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
