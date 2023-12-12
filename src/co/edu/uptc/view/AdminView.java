@@ -126,7 +126,7 @@ public class AdminView {
                 } while (condition == false);
                 break;
             case "userRegisters":
-                Archive userManager = new Archive();
+                Archive userManager = new Archive(controlerInitialMenuView);
                 userManager.archiveUsers(
                         "src\\co\\edu\\uptc\\archive\\Users.txt",
                         controlerInitialMenuView.users());

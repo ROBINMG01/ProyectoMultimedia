@@ -86,4 +86,27 @@ public class User {
     public void setFavorites(ArrayList<Object> favorites) {
         this.favorites = favorites;
     }
+
+
+
+
+    public void addmovie(Movie movie){
+        listMovies.add(movie);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", role='" + getRole() + "'" +
+            ", listMovies='" + getListMovies() + "'" +
+            ", listSeries='" + getListSeries() + "'" +
+            ", favorites='" + getFavorites() + "'" +
+            "}";
+    }
+
+
 }

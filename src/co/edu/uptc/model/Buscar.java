@@ -18,10 +18,10 @@ public class Buscar {
     private ViewVisit viewVisit;
     private AdminController adminController;
 
-    public Buscar() {
+    public Buscar(AdminController ad) {
         utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
-        adminController = new AdminController();
+        this.adminController =ad ;
     }
 
     public void buscar() {
@@ -53,13 +53,13 @@ public class Buscar {
                             .showInputDialog("Enter the name of the item you want to search:");
                     if (searchedItem != null) {
                         searchedItem = searchedItem.toLowerCase();
-                        for (Movie movie : movieCatalog) {
+                        for (Movie movie : adminController.getListMovies()) {
                             if (movie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la película
                                 result += movie.getName() + "\n";
                             }
                         }
-                        for (Serie serie : seriesCatalog) {
+                        for (Serie serie : adminController.getListSeries()) {
                             if (serie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la serie
                                 result += serie.getName() + "\n";

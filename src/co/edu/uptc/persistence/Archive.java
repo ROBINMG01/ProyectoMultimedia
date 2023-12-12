@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Movie;
@@ -62,7 +62,7 @@ public class Archive {
                 if (movies != null) {
                     StringBuilder moviesTitles = new StringBuilder();
                     for (Movie movie : movies) {
-                        moviesTitles.append(movie.getName()).append(", ");
+                        moviesTitles.append(movie.getName()).append("\n,");
                     }
                     if (moviesTitles.length() > 0) {
                         moviesTitles.delete(moviesTitles.length() - 2, moviesTitles.length());

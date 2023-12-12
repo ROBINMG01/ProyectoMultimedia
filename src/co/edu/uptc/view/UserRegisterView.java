@@ -3,15 +3,15 @@ package co.edu.uptc.view;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+
 import javax.swing.JTextField;
 
 import co.edu.uptc.controller.AdminController;
@@ -29,7 +29,6 @@ public class UserRegisterView {
     private AdminController ad;
     private ArrayList<Object> favorites;
     private User user;
-    private static final String FAVORITES_FILE = "src/co/edu/uptc/persistence/favorites.txt";
 
     public UserRegisterView(AdminController ad, User user) {
         this.ad = ad;
@@ -39,15 +38,12 @@ public class UserRegisterView {
         this.favorites = user.getFavorites();
     }
 
-
     // Entrada principal
     public void userRegisterView() {
-        Buscar buscarSerieImpl = new Buscar();
+        Buscar buscarSerieImpl = new Buscar(ad);
 
         while (userController.isExit()) {
-            
 
-            
             String option = JOptionPane.showInputDialog("Multimedia Project\n"
                     + "[1]. View movie catalog\n" + "[2]. View series catalog\n"
                     + "[3]. Search for series and movies\n" + "[4]. View my favorites\n"
@@ -90,28 +86,12 @@ public class UserRegisterView {
         updateFavoritesOnExit(user);
     }
 
-    // Actualiza la lista de favoritos del ususario y guarda en "favorites.txt cuando se sale de
+    // Actualiza la lista de favoritos del ususario y guarda en "favorites.txt
+    // cuando se sale de
     // usuario registrado"
     private void updateFavoritesOnExit(User user) {
         user.setFavorites(favorites);
-        clearFavoritesFile();
     }
-
-    private void clearFavoritesFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
-            // Escribir un espacio en blanco para limpiar el contenido del archivo
-            writer.write("");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error clearing favorites file.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            // Reiniciar el programa en caso de un error
-            System.out.println("The program will restart");
-            userRegisterView();
-            // Llamada recursiva al método principal
-            // Esto se hace en caso de que el archivo n o se limpie bien, se reiniciara el programa
-        }
-    }
-
 
     // Muetsra el catalogo de peliculas
     public void showMovieCatalog() {
@@ -122,19 +102,17 @@ public class UserRegisterView {
             movieNames.add(movie.getName());
         }
 
-
         // Colocar imagen
         ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
         JLabel movieLabel = new JLabel(movieIcon);
 
-        String selectedMovie =
-                (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
-                        JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
+                JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
 
-            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -160,7 +138,13 @@ public class UserRegisterView {
 
                 case 1:
                     // Ver el tráiler de la película
-                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                    userController.ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null,
+                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -188,14 +172,13 @@ public class UserRegisterView {
         ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
         JLabel seriesLabel = new JLabel(seriesIcon);
 
-        String selectedSeries =
-                (String) JOptionPane.showInputDialog(null, seriesLabel , "Series Catalog",
-                        JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Catalog",
+                JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
 
-            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -219,8 +202,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                    // Ver el tráiler de la serie
-                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                    // Ver el tráiler de la película
+                    userController.ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null,
+                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -238,7 +226,7 @@ public class UserRegisterView {
     public void showFavorites() {
         boolean backToMenu = false;
         while (!backToMenu) {
-            String[] options = {"Movie", "Serie"};
+            String[] options = { "Movie", "Serie" };
 
             String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
                     "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
@@ -251,11 +239,11 @@ public class UserRegisterView {
             switch (selectedOption) {
                 case "Movie":
 
-                    //Colocar imagen
+                    // Colocar imagen
                     ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
                     JLabel movieLabel = new JLabel(movieIcon);
 
-                    String[] movieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String[] movieOptions = { "View favorites", "Add favorite", "Remove favorite" };
                     String selectedMovieOption = (String) JOptionPane.showInputDialog(null,
                             movieLabel, "Movie Favorites",
                             JOptionPane.PLAIN_MESSAGE, null, movieOptions, movieOptions[0]);
@@ -283,11 +271,11 @@ public class UserRegisterView {
                     break;
                 case "Serie":
 
-                    //Colocar imagen
+                    // Colocar imagen
                     ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
                     JLabel seriesLabel = new JLabel(seriesIcon);
 
-                    String[] serieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String[] serieOptions = { "View favorites", "Add favorite", "Remove favorite" };
                     String selectedSerieOption = (String) JOptionPane.showInputDialog(null,
                             seriesLabel, "Series Favorites Management",
                             JOptionPane.PLAIN_MESSAGE, null, serieOptions, serieOptions[0]);
@@ -321,8 +309,6 @@ public class UserRegisterView {
         }
     }
 
-
-
     // Metodos que permiten ver al ususario sus "Movies" "Series"
     public void viewSeriesFavorites(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
@@ -350,7 +336,7 @@ public class UserRegisterView {
             // Agregar la lógica para ver la información de la serie seleccionada
             JOptionPane.showMessageDialog(null, "Viewing series: " + selectedSeries);
 
-            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -374,8 +360,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                    // Ver el tráiler de la serie
-                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                       // Ver el tráiler de la película
+                    userController.ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+            String[] continueOptions = { "menu" };
+            JOptionPane.showOptionDialog(null,
+                    "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -412,10 +403,11 @@ public class UserRegisterView {
                 "View Movie", JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
-            // Aquí puedes agregar la lógica para ver la información de la película seleccionada
+            // Aquí puedes agregar la lógica para ver la información de la película
+            // seleccionada
             JOptionPane.showMessageDialog(null, "Viewing movie: " + selectedMovie);
 
-            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            String[] buttons = { "View Description", "Watch Trailer", "Back" };
             int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
                     "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     buttons, buttons[0]);
@@ -439,8 +431,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                    // Ver el tráiler de la película
-                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                        // Ver el tráiler de la película
+                    userController.ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+            String[] continueOptions = { "menu" };
+            JOptionPane.showOptionDialog(null,
+                    "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -502,6 +499,7 @@ public class UserRegisterView {
                 if (movie.getName().equals(selectedMovie)) {
                     if (!favorites.contains(movie)) {
                         favorites.add(movie);
+                        user.addmovie(movie);
                         JOptionPane.showMessageDialog(null,
                                 "The movie has been added to favorites successfully.");
                     } else {
@@ -515,7 +513,8 @@ public class UserRegisterView {
         }
     }
 
-    // Métodos permiten al usuario quitar series y películas de su lista de favoritos.
+    // Métodos permiten al usuario quitar series y películas de su lista de
+    // favoritos.
     public void removeSeriesFavorite(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
         for (Object favorite : favorites) {
@@ -703,9 +702,8 @@ public class UserRegisterView {
                     JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
                 }
 
-                int option =
-                        JOptionPane.showConfirmDialog(null, "Do you want to modify something else?",
-                                "Continue?", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to modify something else?",
+                        "Continue?", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.NO_OPTION) {
                     exits = true;
                 }

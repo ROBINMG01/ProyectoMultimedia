@@ -4,6 +4,13 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 
@@ -59,5 +66,47 @@ public class UserController {
     public ArrayList<Serie> getFavoriteSeries() {
         return favoriteSeries;
     }
+
+
+
+
+
+public void ReproduccionFrame() {
+        // Ver el tráiler de la película
+                    SwingUtilities.invokeLater(() -> {
+                        JOptionPane pane = new JOptionPane();
+                        JProgressBar progressBar = new JProgressBar(0, 100);
+                        progressBar.setIndeterminate(false);
+                        progressBar.setStringPainted(true);
+                        pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+
+                        JDialog dialog = pane.createDialog("Reproduciendo");
+                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+                        Timer timer = new Timer(1000, e -> {
+                            int value = progressBar.getValue();
+                            if (value < 100) {
+                                progressBar.setValue(value + 10);
+                            }
+                        });
+                        timer.setRepeats(true);
+                        timer.start();
+
+                        Timer closeTimer = new Timer(10000, e -> {
+                            dialog.dispose();
+                            timer.stop(); // Stop the timer when closing the dialog
+                        });
+                        closeTimer.setRepeats(false);
+                        closeTimer.start();
+
+                        dialog.setVisible(true);
+                    });
+    }
+
+
+
+
+
+
 }
 

@@ -2,13 +2,10 @@ package co.edu.uptc.view;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -24,45 +21,36 @@ import co.edu.uptc.persistence.Archive;
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
-
-
-
-
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
-           // crear el admin
+        // crear el admin
         controler.createAdmin();
-       
+
         // carga info de usuarios por archivos
-       
-       System.out.println("dassssssssssss");
+
+        System.out.println("dassssssssssss");
         for (User u : controler.users()) {
-    System.out.println(u.toString());
-    
+            System.out.println(u.toString());
+
         }
 
         // Archivo guardar info
 
-     Archive archive= new Archive(controler);
-   // ARCHIVO QUE GUARDA 
-archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),"src\\co\\edu\\uptc\\archive\\Keep.txt");
-    controler.llenaInfo();
+        Archive archive = new Archive(controler);
+        // ARCHIVO QUE GUARDA
+        archive.saveUserInfoToFile(archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
+                "src\\co\\edu\\uptc\\archive\\Keep.txt");
+        controler.llenaInfo();
 
 
-
-
-
-        int x = 0;
-    
         // login
         // valida login
         // menu
 
         // predeterminado id
-        int idUser = 100;
         int au = 0;
-        String optionsHome[] = {"Login", "Register", "Visit"};
+        String optionsHome[] = { "Login", "Register", "Visit" };
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -82,8 +70,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage =
-                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -128,8 +115,9 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                    
-                        ImageIcon iconLogin = new ImageIcon("ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\image\\login.png");
+
+                        ImageIcon iconLogin = new ImageIcon(
+                                "src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -139,8 +127,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin =
-                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
@@ -161,15 +148,11 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-
-                                            UserRegisterView ur =
-                                                    new UserRegisterView(adminController, userr);
-
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av =
-                                                    new AdminView(adminController, controler);
+                                            AdminView av = new AdminView(adminController, controler);
                                             av.menuAdmin();
                                         }
                                     } else {
@@ -241,8 +224,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconChef =
-                                new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
@@ -252,8 +234,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs =
-                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
@@ -275,8 +256,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin =
-                                            controler.validatePassword(confirmPassword);
+                                    int validePassworMin = controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
                                     if (emailRevi == 0 && validePassworMin == 0
@@ -329,9 +309,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                     } while (!exits);
                 }
 
-// ARCHIVO QUE GUARDA 
-archive.saveUserInfoToFile( controler.users(),"src\\co\\edu\\uptc\\archive\\Keep.txt");
-
+                    // ARCHIVO QUE GUARDA
+                    archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     break;
                 case "Visit": {
