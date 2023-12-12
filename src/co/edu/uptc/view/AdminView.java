@@ -1,16 +1,15 @@
 package co.edu.uptc.view;
 
 import java.awt.GridLayout;
-import java.io.File;
+import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
-
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
@@ -20,23 +19,39 @@ public class AdminView {
     private AdminController ac;
     private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
+    int newWidth = 0;
+    int newHeight = 0;
 
     public AdminView(AdminController ac, ControlerInitialMenuView controlerInitialMenuView) {
         this.ac = ac;
-        this.controlerInitialMenuView=controlerInitialMenuView;
+        this.controlerInitialMenuView = controlerInitialMenuView;
     }
 
     public void menuAdmin() {
         boolean condition = false;
 
+        ImageIcon iconSelection = new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image selection = iconSelection.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iSelection = selection.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iSelection);
+
         do {
-            String[] options = { "Add Movie", "Add Serie", "View Movies", "View Series", "Update Movie", "Update Serie",
-                    "deleteMovie", "deleteSerie", "userRegisters", "Exit" };
+            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
             String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                    "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
 
             if (selectedaction == null) {
                 condition = true;
@@ -53,36 +68,107 @@ public class AdminView {
     }
 
     public void selected(String selectedaction) {
+        boolean condition = false;
+        ImageIcon iconMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\Movie.jpeg");
+        ImageIcon iconSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\Serie.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image movie = iconMovie.getImage();
+        Image serie = iconSerie.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = movie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iSerie = serie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon b = new ImageIcon(iSerie);
+        switch (selectedaction) {
+            case "Movie":
+                do {
+                    String[] options = { "Add Movie", "View Movies", "Update Movie",
+                            "deleteMovie", "Exit" };
+                    String options2 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                            "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
+                    if (options2 == null) {
+                        condition = true;
+                        break;
+                    } else if (options2.equals("Exit")) {
+                        condition = true;
+
+                    } else {
+                        condition = false;
+                        menuMovie(options2);
+                    }
+                } while (condition == false);
+                break;
+            case "Serie":
+                condition = false;
+                do {
+                    String[] options3 = { "Add Serie", "View Series", "Update Series",
+                            "deleteSeries", "Exit" };
+                    String options4 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                            "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
+                    if (options4 == null) {
+                        condition = true;
+                        break;
+                    } else if (options4.equals("Exit")) {
+                        condition = true;
+
+                    } else {
+                        condition = false;
+                        menuSerie(options4);
+                    }
+                } while (condition == false);
+                break;
+            case "userRegisters":
+                Archive userManager = new Archive();
+                userManager.archiveUsers(
+                        "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence\\Users.txt",
+                        controlerInitialMenuView.users());
+                break;
+            case "Exit":
+                break;
+        }
+    }
+
+    public void menuMovie(String selectedaction) {
         switch (selectedaction) {
             case "Add Movie":
                 addMovie();
                 break;
-            case "Add Serie":
-                addSerie();
-                break;
             case "View Movies":
                 showMovies();
-                break;
-            case "View Series":
-                showSeries();
                 break;
             case "Update Movie":
                 updateMovie();
                 break;
-            case "Update Serie":
-                updateSerie();
-                break;
             case "deleteMovie":
                 deleteMovie();
                 break;
-            case "deleteSerie":
-                deleteSerie();
+            case "Exit":
                 break;
-            case "userRegisters":
-              Archive userManager = new Archive();
-         
-        userManager.archiveUsers( "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence\\Users.txt", controlerInitialMenuView.users());
-       
+        }
+    }
+
+    public void menuSerie(String selectedaction) {
+        switch (selectedaction) {
+            case "Add Serie":
+                addSerie();
+                break;
+            case "View Serie":
+                showSeries();
+                ;
+                break;
+            case "Update Series":
+                updateSerie();
+                break;
+            case "deleteSeries":
+                deleteSerie();
                 break;
             case "Exit":
                 break;
@@ -103,6 +189,25 @@ public class AdminView {
         int option = 0;
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
+
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterMovie.getImage();
+        Image rAuthor = iconAuthor.getImage();
+        Image rActor = iconActor.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
 
         do {
             if (ver == 1) {
@@ -126,14 +231,14 @@ public class AdminView {
                 panel.add(new JLabel("Duration:"));
                 panel.add(durationField);
 
-                int result = JOptionPane.showConfirmDialog(null, panel, "Add Movie", JOptionPane.OK_CANCEL_OPTION);
+                int results = JOptionPane.showConfirmDialog(null, panel, "Add Movie", 0, 0, a);
 
-                if (result == JOptionPane.OK_OPTION) {
+                if (results == JOptionPane.OK_OPTION) {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
 
-                    gender = viewVisit.viewGenderMovie(gender);
+                    gender = viewVisit.viewGender(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add movie");
@@ -145,6 +250,10 @@ public class AdminView {
                     } else {
                         try {
                             dutation2 = Integer.parseInt(duration);
+
+                            newHeight = 40;
+                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                            ImageIcon b = new ImageIcon(iAuthor);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
                                 JTextField authorField = new JTextField(author);
@@ -152,10 +261,13 @@ public class AdminView {
                                 panell.add(authorField);
 
                                 option = JOptionPane.showConfirmDialog(null, panell,
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                        "Continue?", 0, 0, b);
+
                                 exit = addAuthors(authorField);
                             } while (!exit);
                             if (!arrayAuthors().isEmpty()) {
+                                Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                ImageIcon c = new ImageIcon(iActor);
                                 do {
                                     JPanel panell = new JPanel(new GridLayout(1, 2));
                                     JTextField actorField = new JTextField(actor);
@@ -163,7 +275,7 @@ public class AdminView {
                                     panell.add(actorField);
 
                                     option = JOptionPane.showConfirmDialog(null, panell,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                            "Continue?", 0, 0, c);
                                     exit = addActors(actorField);
                                 } while (!exit);
                             }
@@ -219,6 +331,27 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistActors().clear();
 
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterSerie.getImage();
+        Image rAuthor = iconAuthor.getImage();
+        Image rActor = iconActor.getImage();
+        Image rChapter = iconChapter.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+
         do {
             if (ver == 1) {
                 name = "";
@@ -242,13 +375,13 @@ public class AdminView {
                 panel.add(new JLabel("Duration"));
                 panel.add(durationField);
 
-                int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", JOptionPane.OK_CANCEL_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", 0, 0, a);
 
                 if (result == JOptionPane.OK_OPTION) {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
-                    gender = viewVisit.viewGenderSerie(gender);
+                    gender = viewVisit.viewGender(gender);
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
@@ -257,6 +390,10 @@ public class AdminView {
                     } else {
                         try {
                             duration2 = Integer.parseInt(duration);
+
+                            newHeight = 40;
+                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                            ImageIcon b = new ImageIcon(iAuthor);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
                                 JTextField authorField = new JTextField(author);
@@ -264,10 +401,12 @@ public class AdminView {
                                 panell.add(authorField);
 
                                 option = JOptionPane.showConfirmDialog(null, panell,
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                        "Continue?", 0, 0, b);
                                 exit = addAuthors(authorField);
                             } while (!exit);
                             if (!arrayAuthors().isEmpty()) {
+                                Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                ImageIcon c = new ImageIcon(iActor);
                                 do {
                                     exit = false;
                                     JPanel panel2 = new JPanel(new GridLayout(1, 2));
@@ -276,7 +415,7 @@ public class AdminView {
                                     panel2.add(actorField);
 
                                     option = JOptionPane.showConfirmDialog(null, panel2,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                            "Continue?", 0, 0, c);
                                     exit = addActors(actorField);
                                 } while (!exit);
                             } else {
@@ -286,6 +425,8 @@ public class AdminView {
                                 ver = 0;
                             }
                             if (!arrayActors().isEmpty()) {
+                                Image iChapter = rChapter.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                ImageIcon d = new ImageIcon(iChapter);
                                 do {
                                     exit = false;
                                     JPanel panel2 = new JPanel(new GridLayout(1, 2));
@@ -294,7 +435,7 @@ public class AdminView {
                                     panel2.add(chapterField);
 
                                     option = JOptionPane.showConfirmDialog(null, panel2,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                            "Continue?", 0, 0, d);
                                     exit = addChapter(chapterField);
                                 } while (!exit);
                             } else if (!arrayActors().isEmpty()) {
@@ -345,14 +486,33 @@ public class AdminView {
         String showNamesMovies[];
         boolean exit = false;
 
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterMovie.getImage();
+        Image rView = iconView.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iView = rView.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon b = new ImageIcon(iView);
+
         do {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Movie", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+                    "Movie", JOptionPane.QUESTION_MESSAGE, a, showNamesMovies, showNamesMovies[0]);
 
             if (selectedaction != null) {
                 JOptionPane.showMessageDialog(null, ac.showListMovies().get(ac.searchMovie(
-                        selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE);
+                        selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE, b);
                 option = JOptionPane.showConfirmDialog(null,
                         "Do you want to view another Movie?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
@@ -372,14 +532,33 @@ public class AdminView {
         String showNamesSeries[];
         boolean exit = false;
 
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterMovie.getImage();
+        Image rView = iconView.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iView = rView.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon b = new ImageIcon(iView);
+
         do {
             showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+                    "Series", JOptionPane.QUESTION_MESSAGE, a, showNamesSeries, showNamesSeries[0]);
 
             if (selectedaction != null) {
                 JOptionPane.showMessageDialog(null, ac.showListSeries().get(ac.searchSeries(
-                        selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE);
+                        selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE, b);
                 option = JOptionPane.showConfirmDialog(null,
                         "Do you want to view another Serie?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
@@ -410,10 +589,33 @@ public class AdminView {
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
 
+        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rUpdate = iconUpdate.getImage();
+        Image rMovie = iconRegisterMovie.getImage();
+        Image rAuthor = iconAuthor.getImage();
+        Image rActor = iconActor.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon u = new ImageIcon(iUpdate);
+        ImageIcon a = new ImageIcon(iMovie);
+
         do {
             showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Movies", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+                    "Movies", JOptionPane.QUESTION_MESSAGE, u, showNamesMovies, showNamesMovies[0]);
             position = ac.searchMovie(selectedaction);
             if (selectedaction != null) {
                 name = ac.showListMovies().get(position).getName();
@@ -431,7 +633,7 @@ public class AdminView {
                     JPanel panel = new JPanel(new GridLayout(4, 2));
                     JTextField nameField = new JTextField(name, 15);
                     JTextField descriptionField = new JTextField(description, 15);
-                    JTextField durationField = new JTextField(duration,15);
+                    JTextField durationField = new JTextField(duration, 15);
                     JTextField genderField = new JTextField(gender, 15);
 
                     panel.add(new JLabel("Name of the serie"));
@@ -443,8 +645,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie",
-                            JOptionPane.OK_CANCEL_OPTION);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
@@ -459,6 +660,9 @@ public class AdminView {
                         } else {
                             try {
                                 duration2 = Integer.parseInt(duration);
+                                newHeight = 40;
+                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                ImageIcon b = new ImageIcon(iAuthor);
                                 do {
                                     JPanel panell = new JPanel(new GridLayout(1, 2));
                                     JTextField authorField = new JTextField(actor);
@@ -466,13 +670,16 @@ public class AdminView {
                                     panell.add(authorField);
 
                                     option = JOptionPane.showConfirmDialog(null, panell,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                            "Continue?", 0, 0, b);
                                     exit = addAuthors(authorField);
                                     if (option != JOptionPane.OK_OPTION) {
                                         exit2 = true;
                                     }
                                 } while (!exit);
                                 if (exit2 != true) {
+                                    newHeight = 100;
+                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                    ImageIcon c = new ImageIcon(iActor);
                                     do {
                                         exit = false;
                                         JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -481,7 +688,7 @@ public class AdminView {
                                         panell.add(actorField);
 
                                         option = JOptionPane.showConfirmDialog(null, panell,
-                                                "Continue?", JOptionPane.YES_NO_OPTION);
+                                                "Continue?", 0, 0, c);
                                         exit = addActors(actorField);
                                         if (option == JOptionPane.OK_OPTION) {
                                             ac.updateMovie(selectedaction, name, description, duration2, arrayAuthors(),
@@ -540,10 +747,35 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistAuthors().clear();
 
+        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rUpdate = iconUpdate.getImage();
+        Image rMovie = iconRegisterMovie.getImage();
+        Image rAuthor = iconAuthor.getImage();
+        Image rActor = iconActor.getImage();
+        Image rChapter = iconChapter.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon u = new ImageIcon(iUpdate);
+        ImageIcon a = new ImageIcon(iMovie);
+
         do {
             showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Series", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+                    "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
             position = ac.searchSeries(selectedaction);
             if (selectedaction != null) {
                 name = ac.showListSeries().get(position).getName();
@@ -575,8 +807,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Serie",
-                            JOptionPane.OK_CANCEL_OPTION);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Serie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
@@ -591,6 +822,10 @@ public class AdminView {
                         } else {
                             try {
                                 duration2 = Integer.parseInt(duration);
+                                newHeight = 40;
+                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                ImageIcon b = new ImageIcon(iAuthor);
+
                                 do {
                                     JPanel panell = new JPanel(new GridLayout(1, 2));
                                     JTextField authorField = new JTextField(actor);
@@ -598,7 +833,7 @@ public class AdminView {
                                     panell.add(authorField);
 
                                     option = JOptionPane.showConfirmDialog(null, panell,
-                                            "Continue?", JOptionPane.YES_NO_OPTION);
+                                            "Continue?", 0, 0, b);
                                     exit = addActors(authorField);
                                     if (option != JOptionPane.OK_OPTION) {
                                         exit2 = true;
@@ -606,6 +841,8 @@ public class AdminView {
                                 } while (!exit);
                                 if (exit2 != true) {
                                     exit2 = false;
+                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                    ImageIcon c = new ImageIcon(iActor);
                                     do {
                                         JPanel panell = new JPanel(new GridLayout(1, 2));
                                         JTextField actorField = new JTextField(actor);
@@ -613,7 +850,7 @@ public class AdminView {
                                         panell.add(actorField);
 
                                         option = JOptionPane.showConfirmDialog(null, panell,
-                                                "Continue?", JOptionPane.YES_NO_OPTION);
+                                                "Continue?", 0, 0, c);
                                         exit = addActors(actorField);
                                         if (option != JOptionPane.OK_OPTION) {
                                             exit2 = true;
@@ -621,6 +858,10 @@ public class AdminView {
                                     } while (!exit);
                                 }
                                 if (exit2 != true) {
+                                    Image iChapter = rChapter.getScaledInstance(newWidth, newHeight,
+                                            Image.SCALE_SMOOTH);
+                                    ImageIcon d = new ImageIcon(iChapter);
+
                                     do {
                                         exit = false;
                                         JPanel panel2 = new JPanel(new GridLayout(1, 2));
@@ -629,7 +870,7 @@ public class AdminView {
                                         panel2.add(chapterField);
 
                                         option = JOptionPane.showConfirmDialog(null, panel2,
-                                                "Continue?", JOptionPane.YES_NO_OPTION);
+                                                "Continue?", 0, 0, d);
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
                                             ac.updateSeries(selectedaction, name, description, duration2,
@@ -849,11 +1090,9 @@ public class AdminView {
         } while (exit2 == false);
     }
 
-
-
     // metodo de archivo
 
-    public void archiveUsers(){
-        
+    public void archiveUsers() {
+
     }
 }
