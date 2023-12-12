@@ -4,9 +4,3 @@
 
 FirstName            LastName             Email                Password             Role       ListMovies                     ListSeries                    
 --------------------------------------------------------------------------------------------------------------------
-1,                   1,                   1,                   x,                   user      N/A                           N/A                           
-
-ADMN,                Admin,               Admin@gmail.com,     xyz,                 admin     N/A                           N/A                           
-
-Juan David,          Barrera Perez,       juan@gmail.com,      Cxyzabw@,            user      N/A                           N/A                           
-

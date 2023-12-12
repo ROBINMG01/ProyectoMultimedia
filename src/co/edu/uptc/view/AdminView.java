@@ -128,7 +128,7 @@ public class AdminView {
             case "userRegisters":
                 Archive userManager = new Archive();
                 userManager.archiveUsers(
-                        "ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\persistence\\Users.txt",
+                        "src\\co\\edu\\uptc\\archive\\Users.txt",
                         controlerInitialMenuView.users());
                 break;
             case "Exit":

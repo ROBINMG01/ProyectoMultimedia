@@ -161,21 +161,15 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-<<<<<<< HEAD
-                                            UserRegisterView ur = new UserRegisterView(adminController, userr, controler);
-=======
+
                                             UserRegisterView ur =
                                                     new UserRegisterView(adminController, userr);
->>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
+
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-<<<<<<< HEAD
-                                            AdminView av = new AdminView(adminController, controler);
-=======
                                             AdminView av =
                                                     new AdminView(adminController, controler);
->>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
                                             av.menuAdmin();
                                         }
                                     } else {
@@ -247,12 +241,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-<<<<<<< HEAD
-                        ImageIcon iconChef = new ImageIcon("ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\image\\register.png");
-=======
                         ImageIcon iconChef =
                                 new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
->>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
