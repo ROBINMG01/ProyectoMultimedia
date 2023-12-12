@@ -169,11 +169,6 @@ public class AdminView {
                 break;
             case "deleteSeries":
                 deleteSerie();
-            case "userRegisters":
-              Archive userManager = new Archive(controlerInitialMenuView);
-         
-        userManager.archiveUsers( "src\\co\\edu\\uptc\\archive\\Users.txt", controlerInitialMenuView.users());
-       
                 break;
             case "Exit":
                 break;

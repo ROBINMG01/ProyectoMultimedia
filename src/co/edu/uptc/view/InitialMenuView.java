@@ -62,7 +62,7 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
         // predeterminado id
         int idUser = 100;
         int au = 0;
-        String optionsHome[] = { "Login", "Register", "Visit" };
+        String optionsHome[] = {"Login", "Register", "Visit"};
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -82,7 +82,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage =
+                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -138,7 +139,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin =
+                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
@@ -159,14 +161,22 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
+<<<<<<< HEAD
                                             UserRegisterView ur = new UserRegisterView(adminController, userr, controler);
+=======
+                                            UserRegisterView ur =
+                                                    new UserRegisterView(adminController, userr);
+>>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
 
                                             ur.userRegisterView();
-                                            System.out.println("es un usuario");
                                         } else if (userr.getRole() == Role.admin) {
+<<<<<<< HEAD
                                             AdminView av = new AdminView(adminController, controler);
+=======
+                                            AdminView av =
+                                                    new AdminView(adminController, controler);
+>>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
                                             av.menuAdmin();
-                                            System.out.println("es el admin");
                                         }
                                     } else {
                                         auu = 1;
@@ -237,7 +247,12 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
+<<<<<<< HEAD
                         ImageIcon iconChef = new ImageIcon("ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\image\\register.png");
+=======
+                        ImageIcon iconChef =
+                                new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+>>>>>>> a07eb201e502c25e314bb75f8ee7d2b588de9b23
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
@@ -247,7 +262,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs =
+                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
@@ -269,7 +285,8 @@ archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\up
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin = controler.validatePassword(confirmPassword);
+                                    int validePassworMin =
+                                            controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
                                     if (emailRevi == 0 && validePassworMin == 0
