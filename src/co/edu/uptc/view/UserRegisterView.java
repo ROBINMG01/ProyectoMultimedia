@@ -34,7 +34,6 @@ public class UserRegisterView {
     private AdminController ad;
     private ArrayList<Object> favorites;
     private User user;
-    private static final String FAVORITES_FILE = "src/co/edu/uptc/persistence/favorites.txt";
 
     public UserRegisterView(AdminController ad, User user) {
         this.ad = ad;
@@ -99,23 +98,7 @@ public class UserRegisterView {
     // usuario registrado"
     private void updateFavoritesOnExit(User user) {
         user.setFavorites(favorites);
-        clearFavoritesFile();
-    }
-
-    private void clearFavoritesFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE))) {
-            // Escribir un espacio en blanco para limpiar el contenido del archivo
-            writer.write("");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error clearing favorites file.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            // Reiniciar el programa en caso de un error
-            System.out.println("The program will restart");
-            userRegisterView();
-            // Llamada recursiva al método principal
-            // Esto se hace en caso de que el archivo n o se limpie bien, se reiniciara el
-            // programa
-        }
+        // clearFavoritesFile();
     }
 
     // Muetsra el catalogo de peliculas
