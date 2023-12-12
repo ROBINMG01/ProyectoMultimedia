@@ -88,18 +88,9 @@ public class UserRegisterView {
                     break;
             }
         }
-
-        // Guardar los favoritos antes de salir del programa
-        updateFavoritesOnExit(user);
     }
 
-    // Actualiza la lista de favoritos del ususario y guarda en "favorites.txt
-    // cuando se sale de
-    // usuario registrado"
-    private void updateFavoritesOnExit(User user) {
-        user.setFavorites(favorites);
-        // clearFavoritesFile();
-    }
+    
 
     // Muetsra el catalogo de peliculas
     public void showMovieCatalog() {
