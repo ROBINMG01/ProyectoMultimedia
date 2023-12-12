@@ -14,6 +14,8 @@ public class Movie {
     public Movie() {
     }
 
+     
+
     public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
             ArrayList<String> listActors, String gender) {
         this.name = name;

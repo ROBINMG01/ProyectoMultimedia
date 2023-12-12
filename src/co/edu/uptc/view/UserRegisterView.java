@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +19,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.JViewport;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
@@ -27,6 +29,8 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
+import co.edu.uptc.persistence.Archive;
+import co.edu.uptc.utilitaries.Utilitaries;
 
 // Constructor
 public class UserRegisterView {
@@ -35,13 +39,15 @@ public class UserRegisterView {
     private ArrayList<Object> favorites;
     private User user;
     private static final String FAVORITES_FILE = "src/co/edu/uptc/persistence/favorites.txt";
+    private ControlerInitialMenuView controlerInitialMenuView;
 
-    public UserRegisterView(AdminController ad, User user) {
+    public UserRegisterView(AdminController ad, User user,ControlerInitialMenuView controlerInitialMenuView) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.favorites = new ArrayList<>();
         this.user = user;
         this.favorites = user.getFavorites();
+        this.controlerInitialMenuView=controlerInitialMenuView;
     }
 
     // Entrada principal
@@ -76,6 +82,9 @@ public class UserRegisterView {
                     break;
                 case "5":
                     showAccountSettings(user);
+                    Archive archive= new Archive();
+                                        // ARCHIVO QUE GUARDA 
+archive.saveUserInfoToFile( controlerInitialMenuView.users(),"src\\co\\edu\\uptc\\archive\\Keep.txt");
                     break;
                 case "Back":
                     userController.setExit(false);
@@ -187,6 +196,8 @@ public class UserRegisterView {
 
                         dialog.setVisible(true);
                     });
+                    JOptionPane.showMessageDialog(null, "Opening trailer...");
+                    
                     break;
                 case 2:
                     // Volver al menú anterior

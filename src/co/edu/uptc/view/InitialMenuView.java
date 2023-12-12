@@ -2,10 +2,13 @@ package co.edu.uptc.view;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,16 +19,42 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
+import co.edu.uptc.persistence.Archive;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
+
+
+
+
+
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
+           // crear el admin
+        controler.createAdmin();
+       
+        // carga info de usuarios por archivos
+       
+       System.out.println("dassssssssssss");
+        for (User u : controler.users()) {
+    System.out.println(u.toString());
+    
+        }
+
+        // Archivo guardar info
+
+     Archive archive= new Archive(controler);
+   // ARCHIVO QUE GUARDA 
+archive.saveUserInfoToFile( archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),"src\\co\\edu\\uptc\\archive\\Keep.txt");
+    controler.llenaInfo();
+
+
+
+
 
         int x = 0;
-        // crear el admin
-        controler.createAdmin();
+    
         // login
         // valida login
         // menu
@@ -98,7 +127,8 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconLogin = new ImageIcon("");
+                    
+                        ImageIcon iconLogin = new ImageIcon("ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -129,7 +159,7 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr, controler);
 
                                             ur.userRegisterView();
                                             System.out.println("es un usuario");
@@ -207,7 +237,7 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+                        ImageIcon iconChef = new ImageIcon("ProjectMultimedia\\ProyectoMultimedia\\src\\co\\edu\\uptc\\image\\register.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
@@ -291,6 +321,10 @@ public class InitialMenuView {
                         }
                     } while (!exits);
                 }
+
+// ARCHIVO QUE GUARDA 
+archive.saveUserInfoToFile( controler.users(),"src\\co\\edu\\uptc\\archive\\Keep.txt");
+
 
                     break;
                 case "Visit": {
