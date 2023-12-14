@@ -499,7 +499,7 @@ public class UserRegisterView {
                 if (movie.getName().equals(selectedMovie)) {
                     if (!favorites.contains(movie)) {
                         favorites.add(movie);
-                        user.addmovie(movie);
+                        user.addMovie(movie);
                         JOptionPane.showMessageDialog(null,
                                 "The movie has been added to favorites successfully.");
                     } else {
@@ -557,6 +557,7 @@ public class UserRegisterView {
         for (Object favorite : favorites) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
+                
             }
         }
 
@@ -577,7 +578,9 @@ public class UserRegisterView {
         if (selectedMovie != null) {
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Movie) {
+                     user.deleteMovie(selectedMovie,user);
                     return ((Movie) favorite).getName().equals(selectedMovie);
+                
                 }
                 return false;
             });

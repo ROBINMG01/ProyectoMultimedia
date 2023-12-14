@@ -87,26 +87,37 @@ public class User {
         this.favorites = favorites;
     }
 
-
-
-
-    public void addmovie(Movie movie){
+    public void addMovie(Movie movie) {
         listMovies.add(movie);
+    }
+
+    public void addSerie(Serie serie) {
+        listSeries.add(serie);
+    }
+
+    public void deleteMovie(String namemovie, User user) {
+     
+       
+       
+        for (Movie movie : user.getListMovies()) {
+            if (movie.getName().equals(namemovie)) {
+                listMovies.remove(movie);
+            }
+        }
     }
 
     @Override
     public String toString() {
         return "{" +
-            " firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", role='" + getRole() + "'" +
-            ", listMovies='" + getListMovies() + "'" +
-            ", listSeries='" + getListSeries() + "'" +
-            ", favorites='" + getFavorites() + "'" +
-            "}";
+                " firstName='" + getFirstName() + "'" +
+                ", lastName='" + getLastName() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", password='" + getPassword() + "'" +
+                ", role='" + getRole() + "'" +
+                ", listMovies='" + getListMovies() + "'" +
+                ", listSeries='" + getListSeries() + "'" +
+                ", favorites='" + getFavorites() + "'" +
+                "}";
     }
-
 
 }
