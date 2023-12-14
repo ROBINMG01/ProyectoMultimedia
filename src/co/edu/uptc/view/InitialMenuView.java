@@ -27,9 +27,9 @@ public class InitialMenuView {
         // crear el admin
         controler.createAdmin();
 
-        // carga info de usuarios por archivos
+        // ssscarga info de usuarios por archivos
 
-        System.out.println("dassssssssssss");
+
         for (User u : controler.users()) {
             System.out.println(u.toString());
 
@@ -89,6 +89,8 @@ public class InitialMenuView {
             switch (seleccion) {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
+                    // archivo que guarda lo de series de cada usuario 
+                      archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
                     boolean exits = false;
                     int auu = 0;
 
@@ -313,7 +315,7 @@ public class InitialMenuView {
 
                     // ARCHIVO QUE GUARDA
                     archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
-                    archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
+                  
 
                     break;
                 case "Visit": {
