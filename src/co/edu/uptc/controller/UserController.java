@@ -68,9 +68,6 @@ public class UserController {
     }
 
 
-
-
-
 public void ReproduccionFrame() {
         // Ver el tráiler de la película
                     SwingUtilities.invokeLater(() -> {
