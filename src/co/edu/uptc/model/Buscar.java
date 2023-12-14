@@ -145,7 +145,6 @@ public class Buscar {
                             break;
                         case 1:
                             // Ver el tráiler de la película o serie
-                            // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer
                             SwingUtilities.invokeLater(() -> {
                                 JOptionPane pane = new JOptionPane();
                                 JProgressBar progressBar = new JProgressBar(0, 100);
