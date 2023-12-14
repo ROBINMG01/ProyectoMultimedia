@@ -38,24 +38,25 @@ public class Archive {
             writer.write("=======================================");
             writer.newLine();
             writer.newLine(); // Línea en blanco
-    
+
             // Encabezados de columna
-            writer.write(String.format("%-20s %-20s %-20s %-20s %-10s",
-                    "FirstName", "LastName", "Email", "Password", "Role"));
+            writer.write(String.format("%-20s %-20s %-20s %-20s %-10s", "FirstName", "LastName",
+                    "Email", "Password", "Role"));
             writer.newLine();
             writer.write(
                     "--------------------------------------------------------------------------------------------------------------------");
             writer.newLine();
-    
+
             // Itera sobre los usuarios y escribe sus detalles
             for (User user : users) {
                 // encriptadooooo password
-                String passwordEncritada = controlerInitialMenuView.encriptar(user.getPassword(), 123);
-    
+                String passwordEncritada =
+                        controlerInitialMenuView.encriptar(user.getPassword(), 123);
+
                 writer.write(String.format("%-20s %-20s %-20s %-20s %-10s",
                         user.getFirstName() + ",", user.getLastName() + ",", user.getEmail() + ",",
                         passwordEncritada + ",", user.getRole()));
-    
+
                 // Agrega los nombres de las películas en una columna si la lista no es nula
                 ArrayList<Movie> movies = user.getListMovies();
                 if (movies != null && !movies.isEmpty()) {
@@ -66,7 +67,7 @@ public class Archive {
                         writer.write(String.format("  %-30s", movie.getName()));
                     }
                 }
-    
+
                 // Agrega los nombres de las series en una columna si la lista no es nula
                 ArrayList<Serie> series = user.getListSeries();
                 if (series != null && !series.isEmpty()) {
@@ -76,8 +77,8 @@ public class Archive {
                         writer.newLine();
                         writer.write(String.format("  %-30s", serie.getName()));
                     }
-                } 
-    
+                }
+
                 writer.newLine();
                 // Agrega más información según tus necesidades
                 writer.newLine(); // Línea en blanco entre usuarios
@@ -92,10 +93,10 @@ public class Archive {
     public void saveUserInfoToFile(ArrayList<User> users, String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (User user : users) {
-                writer.println(user.getFirstName() + "," + user.getLastName() + "," + user.getEmail() + ","
-                        + user.getPassword() + "," + user.getRole());
+                writer.println(user.getFirstName() + "," + user.getLastName() + ","
+                        + user.getEmail() + "," + user.getPassword() + "," + user.getRole());
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,91 +130,70 @@ public class Archive {
         return userList;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-// Método para guardar información de series en un archivo de texto
-public void saveSeriesInfoToFile(ArrayList<User> userList, String filename) {
-    try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-        for (User user : userList) {
-            for (Serie serie : user.getListSeries()) {
-                writer.println(user.getFirstName() + "," + serie.getName() + "," + serie.getGender() + ","
-                        + serie.getDescription() + "," + serie.getDuration() + ","
-                        + serie.getListActors() + "," + serie.getListChapters() + "," + serie.getlistAuthors());
+    // Método para guardar información de series en un archivo de texto
+    public void saveSeriesInfoToFile(ArrayList<User> userList, String filename) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+            for (User user : userList) {
+                for (Serie serie : user.getListSeries()) {
+                    writer.println(user.getFirstName() + "," + serie.getName() + ","
+                            + serie.getGender() + "," + serie.getDescription() + ","
+                            + serie.getDuration() + "," + serie.getListActors() + ","
+                            + serie.getListChapters() + "," + serie.getlistAuthors());
+                }
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
-// Método para leer información de series desde un archivo de texto
-public ArrayList<User> readSeriesInfoFromFile(String filename) {
-    ArrayList<User> userList = new ArrayList<>();
+    // Método para leer información de series desde un archivo de texto
+    public ArrayList<User> readSeriesInfoFromFile(String filename) {
+        ArrayList<User> userList = new ArrayList<>();
 
-    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length == 8) {
-                String userName = parts[0];
-                String seriesName = parts[1];
-                String gender = parts[2];
-                String description = parts[3];
-                int duration = Integer.parseInt(parts[4]);
-                ArrayList<String> listActors = new ArrayList<>(Arrays.asList(parts[5].split(",")));
-                ArrayList<String> listChapters = new ArrayList<>(Arrays.asList(parts[6].split(",")));
-                ArrayList<String> listAuthors = new ArrayList<>(Arrays.asList(parts[7].split(",")));
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 8) {
+                    String userName = parts[0];
+                    String seriesName = parts[1];
+                    String gender = parts[2];
+                    String description = parts[3];
+                    int duration = Integer.parseInt(parts[4]);
+                    ArrayList<String> listActors =
+                            new ArrayList<>(Arrays.asList(parts[5].split(",")));
+                    ArrayList<String> listChapters =
+                            new ArrayList<>(Arrays.asList(parts[6].split(",")));
+                    ArrayList<String> listAuthors =
+                            new ArrayList<>(Arrays.asList(parts[7].split(",")));
 
-                // Buscar el usuario en la lista o crear uno nuevo si no existe
-                User user = null;
-                for (User existingUser : userList) {
-                    if (existingUser.getFirstName().equals(userName)) {
-                        user = existingUser;
-                        break;
+                    // Buscar el usuario en la lista o crear uno nuevo si no existe
+                    User user = null;
+                    for (User existingUser : userList) {
+                        if (existingUser.getFirstName().equals(userName)) {
+                            user = existingUser;
+                            break;
+                        }
                     }
-                }
 
-                if (user == null) {
-                    user = new User(userName, "", "", "", Role.user);
-                    userList.add(user);
-                }
+                    if (user == null) {
+                        user = new User(userName, "", "", "", Role.user);
+                        userList.add(user);
+                    }
 
-                // Agregar la serie al usuario
-                Serie serie = new Serie(seriesName, description, duration, listAuthors, listChapters, gender,
-                        listActors);
-                user.getListSeries().add(serie);
+                    // Agregar la serie al usuario
+                    Serie serie = new Serie(seriesName, description, duration, listAuthors,
+                            listChapters, gender, listActors);
+                    user.getListSeries().add(serie);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
+
+        return userList;
     }
-
-    return userList;
-}
-
-
-
-
-
-
 
 
 
