@@ -4,17 +4,20 @@
 
 FirstName            LastName             Email                Password             Role       ListMovies                     ListSeries                    
 --------------------------------------------------------------------------------------------------------------------
-1,                   1,                   1,                   x,                   user      El Padrino                                                  
+1,                   1,                   1,                   x,                   user      
+Movies:
+  Avengers: Endgame             
+  Sueños de Libertad            N/A                           
 
-2,                   2,                   2,                   y,                   user      Avengers: Endgame                                           
+2,                   2,                   2,                   y,                   user      N/A                           N/A                           
 
-ADMN,                Admin,               Admin@gmail.com,     xyz,                 admin                                                                 
+ADMN,                Admin,               Admin@gmail.com,     xyz,                 admin     N/A                           N/A                           
 
-Juan David,          Barrera Perez,       juan@gmail.com,      Cxyzabw@,            user                                                                  
+Juan David,          Barrera Perez,       juan@gmail.com,      Cxyzabw@,            user      N/A                           N/A                           
 
-Samuel,              Gonzales,            samuel@gmail.com,    Cxyzabw@,            user                                                                  
+Samuel,              Gonzales,            samuel@gmail.com,    Cxyzabw@,            user      N/A                           N/A                           
 
-q,                   q,                   q@gmail.com,         xyzabCw@,            user                                                                  
+q,                   q,                   q@gmail.com,         xyzabCw@,            user      N/A                           N/A                           
 
-Camilo,              Rodriguez,           camilo@gmail.com,    x,                   user                                                                  
+Camilo,              Rodriguez,           camilo@gmail.com,    x,                   user      N/A                           N/A                           
 
