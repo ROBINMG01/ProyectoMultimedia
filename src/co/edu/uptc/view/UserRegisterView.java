@@ -2,6 +2,7 @@ package co.edu.uptc.view;
 
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Image;
 
 import javax.swing.BoxLayout;
