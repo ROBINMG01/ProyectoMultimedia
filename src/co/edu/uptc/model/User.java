@@ -94,6 +94,7 @@ public class User {
     public void addSerie(Serie serie) {
         listSeries.add(serie);
     }
+// metodo que elimona una pelicula 
 
     public void deleteMovie(String namemovie, User user) {
      
@@ -108,6 +109,21 @@ public class User {
         user.setListMovies(m);
     }
 
+
+//metodo que elimina una serie 
+
+    public void deleteSerie(String namemovie, User user) {
+     
+       ArrayList<Serie> m=user.getListSeries();
+    Serie mm= new Serie();
+        for (Serie movie : m) {
+            if (movie.getName().equals(namemovie)) {
+                mm=movie;
+            }
+        }
+        m.remove(mm);
+        user.setListSeries(m);
+    }
     @Override
     public String toString() {
         return "{" +

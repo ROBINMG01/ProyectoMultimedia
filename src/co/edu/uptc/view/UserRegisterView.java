@@ -40,6 +40,7 @@ public class UserRegisterView {
 
     // Entrada principal
     public void userRegisterView() {
+        
         Buscar buscarSerieImpl = new Buscar(ad);
 
         while (userController.isExit()) {
@@ -469,6 +470,7 @@ public class UserRegisterView {
                 if (serie.getName().equals(selectedSeries)) {
                     if (!favorites.contains(serie)) {
                         favorites.add(serie);
+                        user.addSerie(serie);
                         JOptionPane.showMessageDialog(null,
                                 "The series has been added to favorites successfully.");
                     } else {
@@ -538,6 +540,7 @@ public class UserRegisterView {
                 JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
 
         if (selectedSeries != null) {
+            user.deleteSerie(selectedSeries, user);
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Serie) {
                     return ((Serie) favorite).getName().equals(selectedSeries);
