@@ -4,13 +4,6 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
-
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
 
