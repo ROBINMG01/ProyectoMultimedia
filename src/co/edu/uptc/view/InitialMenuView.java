@@ -29,16 +29,16 @@ public class InitialMenuView {
 
         // carga info de usuarios por archivos
 
-      
-
         // Archivo guardar info
 
         Archive archive = new Archive(controler);
         // ARCHIVO QUE GUARDA del usuario
-        archive.saveUserInfoToFile(archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
+        archive.saveUserInfoToFile(
+                archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
                 "src\\co\\edu\\uptc\\archive\\Keep.txt");
         // guarda info de la serie
-        archive.saveSeriesInfoToFile(archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
+        archive.saveSeriesInfoToFile(
+                archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
                 "src/co/edu/uptc/archive/SerieUser.txt");
         controler.llenaInfo();
 
@@ -48,7 +48,7 @@ public class InitialMenuView {
 
         // predeterminado id
         int au = 0;
-        String optionsHome[] = { "Login", "Register", "Visit" };
+        String optionsHome[] = {"Login", "Register", "Visit"};
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -68,7 +68,8 @@ public class InitialMenuView {
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage =
+                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -86,9 +87,11 @@ public class InitialMenuView {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
                     // archivo que guarda lo de series de cada usuario
-                    archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
+                    archive.saveSeriesInfoToFile(controler.users(),
+                            "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
                     // archivo que guarda lo de usuarios
-                    archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
+                    archive.saveUserInfoToFile(controler.users(),
+                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     boolean exits = false;
                     int auu = 0;
@@ -119,8 +122,7 @@ public class InitialMenuView {
 
                         // icono de la imagen
 
-                        ImageIcon iconLogin = new ImageIcon(
-                                "src\\co\\edu\\uptc\\image\\login.png");
+                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -130,7 +132,8 @@ public class InitialMenuView {
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin =
+                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
@@ -151,17 +154,18 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur =
+                                                    new UserRegisterView(adminController, userr);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView(adminController, controler);
+                                            AdminView av =
+                                                    new AdminView(adminController, controler);
                                             av.menuAdmin();
                                         }
                                     } else {
                                         auu = 1;
-                                        JOptionPane.showMessageDialog(null,
-                                                "Incorrect password");
+                                        JOptionPane.showMessageDialog(null, "Incorrect password");
 
                                     }
                                 } else {
@@ -227,7 +231,8 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+                        ImageIcon iconChef =
+                                new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
@@ -237,7 +242,8 @@ public class InitialMenuView {
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs =
+                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
@@ -259,7 +265,8 @@ public class InitialMenuView {
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin = controler.validatePassword(confirmPassword);
+                                    int validePassworMin =
+                                            controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
                                     if (emailRevi == 0 && validePassworMin == 0
@@ -313,7 +320,8 @@ public class InitialMenuView {
                 }
 
                     // ARCHIVO QUE GUARDA
-                    archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
+                    archive.saveUserInfoToFile(controler.users(),
+                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     break;
                 case "Visit": {
