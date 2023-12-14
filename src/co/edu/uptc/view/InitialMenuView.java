@@ -29,11 +29,7 @@ public class InitialMenuView {
 
         // carga info de usuarios por archivos
 
-        System.out.println("dassssssssssss");
-        for (User u : controler.users()) {
-            System.out.println(u.toString());
-
-        }
+      
 
         // Archivo guardar info
 
@@ -77,7 +73,7 @@ public class InitialMenuView {
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
-            String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            String seleccion = (String) JOptionPane.showInputDialog(null, "Select an option: ",
                     "Opciones de Inicio", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionsHome,
                     optionsHome[0]);
             // para que influya en todos
@@ -165,13 +161,13 @@ public class InitialMenuView {
                                     } else {
                                         auu = 1;
                                         JOptionPane.showMessageDialog(null,
-                                                "contraseña incorrecta");
+                                                "Incorrect password");
 
                                     }
                                 } else {
                                     auu = 1;
                                     JOptionPane.showMessageDialog(null,
-                                            "no hay usuario reguistrado ");
+                                            "there is no registered user");
 
                                 }
                             } else {
@@ -289,7 +285,7 @@ public class InitialMenuView {
                                         au = 1;
 
                                         JOptionPane.showMessageDialog(null,
-                                                "la contraseña no comple con lo esperado");
+                                                "the password does not match what was expected");
 
                                     }
 
@@ -326,7 +322,7 @@ public class InitialMenuView {
                     break;
                 }
                 case "exit": {
-                    JOptionPane.showMessageDialog(null, "salida con éxito");
+                    JOptionPane.showMessageDialog(null, "successful exit");
                     exit = -1;
                     break;
                 }

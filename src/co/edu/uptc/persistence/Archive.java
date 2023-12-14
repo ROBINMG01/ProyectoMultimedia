@@ -95,7 +95,7 @@ public class Archive {
                 writer.println(user.getFirstName() + "," + user.getLastName() + "," + user.getEmail() + ","
                         + user.getPassword() + "," + user.getRole());
             }
-            System.out.println("Información guardada en el archivo " + filename);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,7 +158,7 @@ public void saveSeriesInfoToFile(ArrayList<User> userList, String filename) {
                         + serie.getListActors() + "," + serie.getListChapters() + "," + serie.getlistAuthors());
             }
         }
-        System.out.println("Información de series guardada en el archivo " + filename);
+        
     } catch (IOException e) {
         e.printStackTrace();
     }

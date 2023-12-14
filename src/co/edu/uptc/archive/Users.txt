@@ -6,7 +6,7 @@ FirstName            LastName             Email                Password         
 --------------------------------------------------------------------------------------------------------------------
 ADMN,                Admin,               A,                   xyz,                 admin     
 
-1,                   1,                   1,                   x,                   user      
+Juan,                1,                   1,                   x,                   user      
 
 2,                   2,                   2,                   y,                   user      
 
@@ -17,4 +17,6 @@ Samuel,              Gonzales,            samuel@gmail.com,    Cxyzabw@,        
 q,                   q,                   q@gmail.com,         xyzabCw@,            user      
 
 Camilo,              Rodriguez,           camilo@gmail.com,    x,                   user      
+
+1,                   1,                   1@gmail.com,         Tgwkxlx#,            user      
 
