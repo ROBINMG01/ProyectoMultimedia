@@ -1,4 +1,4 @@
-ADMN,Admin,Admin@gmail.com,123,admin
+ADMN,Admin,A,123,admin
 1,1,1,1,user
 2,2,2,2,user
 Juan David,Barrera Perez,juan@gmail.com,J12345d@,user
