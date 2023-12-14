@@ -2,7 +2,6 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 
 import co.edu.uptc.model.Role;
@@ -134,10 +133,6 @@ public class ControlerInitialMenuView extends UserRegister {
     public ArrayList<User> users(){
         return users;
     }
-
-
-
-
 
     public String encriptar(String texto, int clave) {
         StringBuilder textoEncriptado = new StringBuilder();
