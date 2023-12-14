@@ -38,11 +38,13 @@ public class InitialMenuView {
         // Archivo guardar info
 
         Archive archive = new Archive(controler);
-        // ARCHIVO QUE GUARDA
+        // ARCHIVO QUE GUARDA del usuario
         archive.saveUserInfoToFile(archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
                 "src\\co\\edu\\uptc\\archive\\Keep.txt");
+//guarda info de la serie 
+        archive.saveSeriesInfoToFile(archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
+                "src/co/edu/uptc/archive/SerieUser.txt");
         controler.llenaInfo();
-
 
         // login
         // valida login
@@ -311,6 +313,7 @@ public class InitialMenuView {
 
                     // ARCHIVO QUE GUARDA
                     archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
+                    archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
 
                     break;
                 case "Visit": {
