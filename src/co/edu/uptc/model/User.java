@@ -97,13 +97,15 @@ public class User {
 
     public void deleteMovie(String namemovie, User user) {
      
-       
-       
-        for (Movie movie : user.getListMovies()) {
+       ArrayList<Movie> m=user.getListMovies();
+    Movie mm= new Movie();
+        for (Movie movie : m) {
             if (movie.getName().equals(namemovie)) {
-                listMovies.remove(movie);
+                mm=movie;
             }
         }
+        m.remove(mm);
+        user.setListMovies(m);
     }
 
     @Override

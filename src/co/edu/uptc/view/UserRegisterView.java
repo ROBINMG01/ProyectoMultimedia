@@ -576,12 +576,13 @@ public class UserRegisterView {
                 JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
+                user.deleteMovie(selectedMovie,user);
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Movie) {
-                     user.deleteMovie(selectedMovie,user);
                     return ((Movie) favorite).getName().equals(selectedMovie);
                 
                 }
+            
                 return false;
             });
             JOptionPane.showMessageDialog(null,
