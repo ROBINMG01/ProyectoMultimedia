@@ -224,7 +224,7 @@ public class AdminView {
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
 
-                panel.add(new JLabel("Name of the movie:"));
+                panel.add(new JLabel("Name:"));
                 panel.add(nameField);
                 panel.add(new JLabel("Description:"));
                 panel.add(descriptionField);
@@ -368,7 +368,7 @@ public class AdminView {
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
 
-                panel.add(new JLabel("Name of the serie"));
+                panel.add(new JLabel("Name"));
                 panel.add(nameField);
                 panel.add(new JLabel("Description"));
                 panel.add(descriptionField);
