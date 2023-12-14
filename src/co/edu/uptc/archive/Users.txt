@@ -1,0 +1,24 @@
+=======================================
+           Lista de Usuarios
+=======================================
+
+FirstName            LastName             Email                Password             Role      
+--------------------------------------------------------------------------------------------------------------------
+ADMN,                Admin,               A,                   xyz,                 admin     
+
+Juan,                1,                   1,                   x,                   user      
+
+2,                   2,                   2,                   y,                   user      
+
+Juan David,          Barrera Perez,       juan@gmail.com,      Cxyzabw@,            user      
+
+Samuel,              Gonzales,            samuel@gmail.com,    Cxyzabw@,            user      
+
+q,                   q,                   q@gmail.com,         xyzabCw@,            user      
+
+Camilo,              Rodriguez,           camilo@gmail.com,    x,                   user      
+
+1,                   1,                   1@gmail.com,         Tgwkxlx#,            user      
+
+Felipe,              rrrr,                felipe@gmail.com,    Kyxyzab@,            user      
+
