@@ -4,8 +4,9 @@
 
 FirstName            LastName             Email                Password             Role       ListMovies                     ListSeries                    
 --------------------------------------------------------------------------------------------------------------------
-1,                   1,                   1,                   x,                   user      Avengers: Endgame
-,El origen                                
+1,                   1,                   1,                   x,                   user      El Padrino                                                  
+
+2,                   2,                   2,                   y,                   user      Avengers: Endgame                                           
 
 ADMN,                Admin,               Admin@gmail.com,     xyz,                 admin                                                                 
 
@@ -14,8 +15,6 @@ Juan David,          Barrera Perez,       juan@gmail.com,      Cxyzabw@,        
 Samuel,              Gonzales,            samuel@gmail.com,    Cxyzabw@,            user                                                                  
 
 q,                   q,                   q@gmail.com,         xyzabCw@,            user                                                                  
-
-W,                   W,                   W@gmail.com,         xyzabCw@,            user                                                                  
 
 Camilo,              Rodriguez,           camilo@gmail.com,    x,                   user                                                                  
 

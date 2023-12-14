@@ -1,7 +1,7 @@
 1,1,1,1,user
+2,2,2,2,user
 ADMN,Admin,Admin@gmail.com,123,admin
 Juan David,Barrera Perez,juan@gmail.com,J12345d@,user
 Samuel,Gonzales,samuel@gmail.com,J12345d@,user
 q,q,q@gmail.com,12345Jd@,user
-W,W,W@gmail.com,12345Jd@,user
 Camilo,Rodriguez,camilo@gmail.com,1,user
