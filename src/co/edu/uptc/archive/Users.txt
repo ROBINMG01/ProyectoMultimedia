@@ -4,7 +4,7 @@
 
 FirstName            LastName             Email                Password             Role      
 --------------------------------------------------------------------------------------------------------------------
-ADMN,                Admin,               Admin@gmail.com,     xyz,                 admin     
+ADMN,                Admin,               A,                   xyz,                 admin     
 
 1,                   1,                   1,                   x,                   user      
 

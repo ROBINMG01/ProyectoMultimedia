@@ -6,13 +6,15 @@ import java.awt.Image;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
@@ -40,7 +42,7 @@ public class UserRegisterView {
 
     // Entrada principal
     public void userRegisterView() {
-        
+
         Buscar buscarSerieImpl = new Buscar(ad);
 
         while (userController.isExit()) {
@@ -138,13 +140,23 @@ public class UserRegisterView {
                     break;
 
                 case 1:
+
                     // Ver el tráiler de la película
-                    userController.ReproduccionFrame();
-                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-                    String[] continueOptions = { "menu" };
-                    JOptionPane.showOptionDialog(null,
-                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+                    ReproduccionFrame();
+
+                    // Mostrar cuadro de diálogo con opciones después de ver el tráiler
+                    Object[] trailerOptions = { "Back", "Back to Menu" };
+                    int trailerChoice = JOptionPane.showOptionDialog(null,
+                            "What would you like to do?", "Trailer Options", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, trailerOptions, trailerOptions[0]);
+
+                    if (trailerChoice == 0) {
+                        // Volver a mostrar el cuadro de diálogo de selección de series
+                        showMovieCatalog();
+                    } else if (trailerChoice == 1) {
+                        // Volver al menú principal
+                        return;
+                    }
 
                     break;
                 case 2:
@@ -203,13 +215,22 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                    // Ver el tráiler de la película
-                    userController.ReproduccionFrame();
-                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-                    String[] continueOptions = { "menu" };
-                    JOptionPane.showOptionDialog(null,
-                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+                    // Ver el tráiler de la serie
+                    ReproduccionFrame();
+
+                    // Mostrar cuadro de diálogo con opciones después de ver el tráiler
+                    Object[] trailerOptions = { "Back", "Back to Menu" };
+                    int trailerChoice = JOptionPane.showOptionDialog(null,
+                            "What would you like to do?", "Trailer Options", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, trailerOptions, trailerOptions[0]);
+
+                    if (trailerChoice == 0) {
+                        // Volver a mostrar el cuadro de diálogo de selección de series
+                        showSeriesCatalog();
+                    } else if (trailerChoice == 1) {
+                        // Volver al menú principal
+                        return;
+                    }
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -361,13 +382,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                       // Ver el tráiler de la película
-                    userController.ReproduccionFrame();
+                    // Ver el tráiler de la película
+                    ReproduccionFrame();
                     // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-            String[] continueOptions = { "menu" };
-            JOptionPane.showOptionDialog(null,
-                    "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null,
+                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -432,13 +453,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                        // Ver el tráiler de la película
-                    userController.ReproduccionFrame();
+                    // Ver el tráiler de la película
+                    ReproduccionFrame();
                     // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-            String[] continueOptions = { "menu" };
-            JOptionPane.showOptionDialog(null,
-                    "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null,
+                            "back to menu", "Continue", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -560,7 +581,7 @@ public class UserRegisterView {
         for (Object favorite : favorites) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
-                
+
             }
         }
 
@@ -579,13 +600,13 @@ public class UserRegisterView {
                 JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
-                user.deleteMovie(selectedMovie,user);
+            user.deleteMovie(selectedMovie, user);
             favorites.removeIf(favorite -> {
                 if (favorite instanceof Movie) {
                     return ((Movie) favorite).getName().equals(selectedMovie);
-                
+
                 }
-            
+
                 return false;
             });
             JOptionPane.showMessageDialog(null,
@@ -670,17 +691,34 @@ public class UserRegisterView {
                         && !confirmPassword.isEmpty()) {
                     if (password.equals(confirmPassword)) {
                         // valida que el email cumpla con lo minimi
-                        int emailRevi = controler.isEmailUnique(email);
-                        // valida que la contraseña cumpla con lo minimo
-                        int validePassworMin = controler.validatePassword(confirmPassword);
+                        int emailRevi;
+                        if (email.equals(user.getEmail())) {
+                            emailRevi = 0;
+                        } else {
+                            emailRevi = controler.isEmailUnique(email);
+                        }
+
+                        int validePassworMin;
+                        // valida que si modifico la contraseña
+                        if (confirmPassword.equals(user.getPassword())) {
+                            validePassworMin = 0;
+                        } else {
+                            // valida que la contraseña cumpla con lo minimo
+                            validePassworMin = controler.validatePassword(confirmPassword);
+                        }
+
                         // vreificar de que el cooreo no se repita
-                        int uniqueEmail = controler.uniqueEmail(email);
+                        int uniqueEmail = controler.uniqueEmailUserRegister(email, user);
                         if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
                             // crear usuario
-                            controler.user(
-                                    new User(firstName, lastName, email, password, Role.user));
+                            controler.user(new User(firstName, lastName, email, password, Role.user));
 
                             // modificar al la lista de usuarios
+                            user.setLastName(lastName);
+                            user.setFirstName(firstName);
+                            user.setEmail(email);
+                            user.setPassword(confirmPassword);
+
                             controler.modifyUser(user);
                             au = 0;
                             JOptionPane.showMessageDialog(null, "modified user");
@@ -695,8 +733,7 @@ public class UserRegisterView {
                         } else if (validePassworMin == 3) {
                             au = 1;
 
-                            JOptionPane.showMessageDialog(null,
-                                    "la contraseña no comple con lo esperado");
+                            JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
 
                         }
 
@@ -719,6 +756,38 @@ public class UserRegisterView {
                 exits = true;
             }
         } while (!exits);
+    }
+
+    public void ReproduccionFrame() {
+        // Ver el tráiler de la película
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane pane = new JOptionPane();
+            JProgressBar progressBar = new JProgressBar(0, 100);
+            progressBar.setIndeterminate(false);
+            progressBar.setStringPainted(true);
+            pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+
+            JDialog dialog = pane.createDialog("Reproduciendo");
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+            Timer timer = new Timer(1000, e -> {
+                int value = progressBar.getValue();
+                if (value < 100) {
+                    progressBar.setValue(value + 10);
+                }
+            });
+            timer.setRepeats(true);
+            timer.start();
+
+            Timer closeTimer = new Timer(10000, e -> {
+                dialog.dispose();
+                timer.stop(); // Stop the timer when closing the dialog
+            });
+            closeTimer.setRepeats(false);
+            closeTimer.start();
+
+            dialog.setVisible(true);
+        });
     }
 
 }
