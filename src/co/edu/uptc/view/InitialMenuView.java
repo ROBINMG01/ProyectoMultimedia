@@ -41,7 +41,7 @@ public class InitialMenuView {
         // ARCHIVO QUE GUARDA del usuario
         archive.saveUserInfoToFile(archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
                 "src\\co\\edu\\uptc\\archive\\Keep.txt");
-//guarda info de la serie 
+        // guarda info de la serie
         archive.saveSeriesInfoToFile(archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
                 "src/co/edu/uptc/archive/SerieUser.txt");
         controler.llenaInfo();
@@ -89,8 +89,11 @@ public class InitialMenuView {
             switch (seleccion) {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
-                    // archivo que guarda lo de series de cada usuario 
-                      archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
+                    // archivo que guarda lo de series de cada usuario
+                    archive.saveSeriesInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
+                    // archivo que guarda lo de usuarios
+                    archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
+
                     boolean exits = false;
                     int auu = 0;
 
@@ -315,7 +318,6 @@ public class InitialMenuView {
 
                     // ARCHIVO QUE GUARDA
                     archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
-                  
 
                     break;
                 case "Visit": {
