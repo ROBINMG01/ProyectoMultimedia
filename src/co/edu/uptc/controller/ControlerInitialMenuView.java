@@ -51,11 +51,11 @@ public class ControlerInitialMenuView extends UserRegister {
             String domain = parts[1].toLowerCase();
 
             if (!commonDomains.contains(domain)) {
-                System.out.println("El correo electrónico debe tener uno de los dominios comunes: " + commonDomains);
+                
                 return 1;
             }
         } else {
-            System.out.println("Formato de correo electrónico no válido.");
+           
             return 1;
         }
 
