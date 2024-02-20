@@ -7,3 +7,4 @@ q,q,q@gmail.com,12345Jd@,user
 Camilo,Rodriguez,camilo@gmail.com,1,user
 1,1,1@gmail.com,Andres1#,user
 Felipe,rrrr,felipe@gmail.com,Rf12345@,user
+Juan,Barrera,juann@gmail.com,J12345d@,user

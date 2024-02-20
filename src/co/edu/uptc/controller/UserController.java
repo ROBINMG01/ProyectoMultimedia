@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
+import co.edu.uptc.util.JsonFileManager;
 
 public class UserController {
+    private static JsonFileManager jsonFileManager;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private boolean exit;
@@ -60,10 +62,4 @@ public class UserController {
 
 
 
-
-
-
-
-
 }
-

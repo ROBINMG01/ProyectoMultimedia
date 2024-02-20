@@ -30,8 +30,7 @@ public class AdminView {
     public void menuAdmin() {
         boolean condition = false;
 
-        ImageIcon iconSelection =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
+        ImageIcon iconSelection = new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image selection = iconSelection.getImage();
@@ -47,7 +46,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iSelection);
 
         do {
-            String[] options = {"Movie", "Serie", "userRegisters", "Exit"};
+            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -92,8 +91,7 @@ public class AdminView {
         switch (selectedaction) {
             case "Movie":
                 do {
-                    String[] options =
-                            {"Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit"};
+                    String[] options = { "Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit" };
                     String options2 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
@@ -112,8 +110,7 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 =
-                            {"Add Serie", "View Series", "Update Series", "deleteSeries", "Exit"};
+                    String[] options3 = { "Add Serie", "View Series", "Update Series", "deleteSeries", "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
@@ -164,7 +161,8 @@ public class AdminView {
                 addSerie();
                 break;
             case "View Serie":
-                showSeries();;
+                showSeries();
+                ;
                 break;
             case "Update Series":
                 updateSerie();
@@ -192,8 +190,7 @@ public class AdminView {
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
 
@@ -287,7 +284,7 @@ public class AdminView {
                             }
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
-                                        arrayActors());
+                                        arrayActors(), "src\\co\\edu\\uptc\\archive\\Movie.json");
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -339,8 +336,7 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconRegisterSerie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
         ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
@@ -500,8 +496,7 @@ public class AdminView {
         String showNamesMovies[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
@@ -547,8 +542,7 @@ public class AdminView {
         String showNamesSeries[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
@@ -606,8 +600,7 @@ public class AdminView {
         ac.showlistActors().clear();
 
         ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
 
@@ -662,8 +655,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result =
-                            JOptionPane.showConfirmDialog(null, panel, "New dates Movie", 0, 0, a);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
@@ -772,8 +764,7 @@ public class AdminView {
         ac.showlistAuthors().clear();
 
         ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
         ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
@@ -832,8 +823,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result =
-                            JOptionPane.showConfirmDialog(null, panel, "New dates Serie", 0, 0, a);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Serie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
