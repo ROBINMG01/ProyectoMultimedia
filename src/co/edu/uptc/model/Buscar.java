@@ -2,10 +2,11 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.SwingUtilities;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import co.edu.uptc.controller.AdminController;
@@ -18,10 +19,10 @@ public class Buscar {
     private ViewVisit viewVisit;
     private AdminController adminController;
 
-    public Buscar() {
+    public Buscar(AdminController ad) {
         utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
-        adminController = new AdminController();
+        this.adminController = ad;
     }
 
     public void buscar() {
@@ -53,13 +54,13 @@ public class Buscar {
                             .showInputDialog("Enter the name of the item you want to search:");
                     if (searchedItem != null) {
                         searchedItem = searchedItem.toLowerCase();
-                        for (Movie movie : movieCatalog) {
+                        for (Movie movie : adminController.getListMovies()) {
                             if (movie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la película
                                 result += movie.getName() + "\n";
                             }
                         }
-                        for (Serie serie : seriesCatalog) {
+                        for (Serie serie : adminController.getListSeries()) {
                             if (serie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la serie
                                 result += serie.getName() + "\n";
@@ -145,17 +146,16 @@ public class Buscar {
                             break;
                         case 1:
                             // Ver el tráiler de la película o serie
-                            // OJOOOOOOOOO!!!!! Aca va la logica de poder ver el trailer
                             SwingUtilities.invokeLater(() -> {
                                 JOptionPane pane = new JOptionPane();
                                 JProgressBar progressBar = new JProgressBar(0, 100);
                                 progressBar.setIndeterminate(false);
                                 progressBar.setStringPainted(true);
-                                pane.setMessage(new Object[]{"Reproduciendo", progressBar});
-                    
+                                pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+
                                 JDialog dialog = pane.createDialog("Reproduciendo");
                                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                    
+
                                 Timer timer = new Timer(1000, e -> {
                                     int value = progressBar.getValue();
                                     if (value < 100) {
@@ -164,14 +164,14 @@ public class Buscar {
                                 });
                                 timer.setRepeats(true);
                                 timer.start();
-                    
+
                                 Timer closeTimer = new Timer(10000, e -> {
                                     dialog.dispose();
-                                    timer.stop(); // Stop the timer when closing the dialog
+                                    timer.stop(); // para el tiempo cuando el dialogo se cierra
                                 });
                                 closeTimer.setRepeats(false);
                                 closeTimer.start();
-                    
+
                                 dialog.setVisible(true);
                             });
                             break;

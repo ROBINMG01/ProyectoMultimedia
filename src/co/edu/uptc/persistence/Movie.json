@@ -1,0 +1,302 @@
+[
+  {
+    "name": "Avengers: Endgame",
+    "gender": "Ficcion",
+    "duration": 195,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Los vengadores defenderan la realidad"
+  },
+  {
+    "name": "El caballero de la noche",
+    "gender": "Accion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "una nueva entrega de nuestro superhéroe enmascarado"
+  },
+  {
+    "name": "El origen",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+  },
+  {
+    "name": "Tiempos Violentos",
+    "gender": "Drama",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Tiempos Violentos narra tres historias intercaladas"
+  },
+  {
+    "name": "Fight Club",
+    "gender": "Accion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca"
+  },
+  {
+    "name": "Sueños de Libertad",
+    "gender": "Aventura",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Andrew Dufresne es acusado del asesinato de su mujer"
+  },
+  {
+    "name": "El Padrino",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "América, años 40"
+  },
+  {
+    "name": "Interstellar",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne"
+  },
+  {
+    "name": "Matrix",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante"
+  },
+  {
+    "name": "Avengers: Endgame",
+    "gender": "Ficcion",
+    "duration": 195,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Los vengadores defenderan la realidad"
+  },
+  {
+    "name": "El caballero de la noche",
+    "gender": "Accion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "una nueva entrega de nuestro superhéroe enmascarado"
+  },
+  {
+    "name": "El origen",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+  },
+  {
+    "name": "Tiempos Violentos",
+    "gender": "Drama",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Tiempos Violentos narra tres historias intercaladas"
+  },
+  {
+    "name": "Fight Club",
+    "gender": "Accion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca"
+  },
+  {
+    "name": "Sueños de Libertad",
+    "gender": "Aventura",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Andrew Dufresne es acusado del asesinato de su mujer"
+  },
+  {
+    "name": "El Padrino",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "América, años 40"
+  },
+  {
+    "name": "Interstellar",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne"
+  },
+  {
+    "name": "Matrix",
+    "gender": "Ficcion",
+    "duration": 120,
+    "listAuthors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "listActors": [
+      "Robert",
+      "Hemworth",
+      "Carolina"
+    ],
+    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante"
+  },
+  {
+    "name": "Carlos",
+    "gender": "Aventura",
+    "duration": 123,
+    "listAuthors": [
+      "so"
+    ],
+    "listActors": [
+      "juan"
+    ],
+    "description": "si"
+  }
+]

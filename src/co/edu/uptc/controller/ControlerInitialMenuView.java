@@ -7,10 +7,21 @@ import java.util.List;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 import co.edu.uptc.model.UserRegister;
+import co.edu.uptc.util.FileManagement;
 
 public class ControlerInitialMenuView extends UserRegister {
     private ArrayList<User> users;
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
     private User user;
+    private static FileManagement fileManagement;
 
     // se crea el administrador
     public void createAdmin() {
@@ -21,7 +32,7 @@ public class ControlerInitialMenuView extends UserRegister {
     // inicializar el array de usuarios
     public ControlerInitialMenuView() {
         // usuario predefinidoooooooooooooooooooooooo
-
+        fileManagement = new FileManagement();
         this.users = new ArrayList<User>();
         User uPre = new User("1", "1", "1", "1", Role.user);
         users.add(uPre);
@@ -35,6 +46,8 @@ public class ControlerInitialMenuView extends UserRegister {
 
     public void userRegister() {
         users.add(user);
+        // Guardar los usuarios en el archivos
+        saveUsers(users, "Users");
     }
 
     // metodo que verifica que meta un correo correcto
@@ -48,11 +61,11 @@ public class ControlerInitialMenuView extends UserRegister {
             String domain = parts[1].toLowerCase();
 
             if (!commonDomains.contains(domain)) {
-                System.out.println("El correo electrónico debe tener uno de los dominios comunes: " + commonDomains);
+
                 return 1;
             }
         } else {
-            System.out.println("Formato de correo electrónico no válido.");
+
             return 1;
         }
 
@@ -124,11 +137,49 @@ public class ControlerInitialMenuView extends UserRegister {
         return 0;
     }
 
+    // retornar usuarios
 
-
-    // retornar usuarios 
-
-    public ArrayList<User> users(){
+    public ArrayList<User> users() {
         return users;
     }
+
+    public String encriptar(String texto, int clave) {
+        StringBuilder textoEncriptado = new StringBuilder();
+
+        for (int i = 0; i < texto.length(); i++) {
+            char caracter = texto.charAt(i);
+
+            if (Character.isLetter(caracter) || Character.isDigit(caracter)) {
+                // Verifica si el caracter es una letra o un número
+                char base = Character.isUpperCase(caracter) ? 'A' : 'a';
+
+                // Aplica la fórmula del cifrado César y agrega el caracter encriptado al
+                // StringBuilder
+                textoEncriptado.append((char) (((caracter - base + clave) % 26 + 26) % 26 + base));
+            } else {
+                // Mantén los caracteres no alfabéticos ni numéricos sin cambios
+                textoEncriptado.append(caracter);
+            }
+        }
+
+        return textoEncriptado.toString();
+    }
+
+    public String desencriptar(String textoEncriptado, int clave) {
+        // Método para desencriptar un texto encriptado con el cifrado César
+        return encriptar(textoEncriptado, -clave);
+        // Invoca el método de encriptación con la clave negativa para realizar el
+        // descifrado
+    }
+
+    // metodo que llena la info con arcgivo
+
+    public void saveUsers(List<User> listUsers, String file) {
+        fileManagement.writeJsonToFile(file, listUsers);
+    }
+
+    public List<User> loadUsers(String file) {
+        return fileManagement.loadUsersFromJson(file);
+    }
+
 }
