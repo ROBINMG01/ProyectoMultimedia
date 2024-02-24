@@ -1,13 +1,21 @@
 [
   {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
     "firstName": "ADMN",
     "lastName": "Admin",
     "email": "A",
     "password": "123",
     "role": "admin",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Juan",
@@ -15,9 +23,8 @@
     "email": "1",
     "password": "1",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "2",
@@ -25,9 +32,8 @@
     "email": "2",
     "password": "2",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Juan David",
@@ -35,9 +41,8 @@
     "email": "juan@gmail.com",
     "password": "J12345d@",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Samuel",
@@ -45,9 +50,8 @@
     "email": "samuel@gmail.com",
     "password": "J12345d@",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "q",
@@ -55,9 +59,8 @@
     "email": "q@gmail.com",
     "password": "12345Jd@",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Camilo",
@@ -65,9 +68,8 @@
     "email": "camilo@gmail.com",
     "password": "1",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "1",
@@ -75,9 +77,8 @@
     "email": "1@gmail.com",
     "password": "Andres1#",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Felipe",
@@ -85,9 +86,8 @@
     "email": "felipe@gmail.com",
     "password": "Rf12345@",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Juan",
@@ -95,9 +95,8 @@
     "email": "juann@gmail.com",
     "password": "J12345d@",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   },
   {
     "firstName": "Andres",
@@ -105,8 +104,33 @@
     "email": "Andres@gmail.com",
     "password": "Ca123456789#",
     "role": "user",
-    "listMovies": [],
-    "listSeries": [],
-    "favorites": []
+    "listMoviesFavorites": [
+      {
+        "name": "El origen",
+        "gender": "Ficcion",
+        "duration": 120,
+        "listAuthors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "listActors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+      }
+    ],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
   }
 ]

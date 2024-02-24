@@ -8,9 +8,8 @@ public class User {
     private String email;
     private String password;
     private Role role;
-    private ArrayList<Movie> listMovies;
-    private ArrayList<Serie> listSeries;
-    private ArrayList<Object> favorites;
+    private ArrayList<Movie> listMoviesFavorites;
+    private ArrayList<Serie> listSeriesFavorites;
 
     public User(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
@@ -18,9 +17,13 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.listMovies = new ArrayList<>();
-        this.listSeries = new ArrayList<>();
-        this.favorites = new ArrayList<>();
+        this.listMoviesFavorites = new ArrayList<>();
+        this.listSeriesFavorites = new ArrayList<>();
+    }
+
+    public User() {
+        this.listMoviesFavorites = new ArrayList<>();
+        this.listSeriesFavorites = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -63,67 +66,68 @@ public class User {
         this.role = role;
     }
 
-    public ArrayList<Movie> getListMovies() {
-        return listMovies;
+    public ArrayList<Movie> getListMoviesFavorites() {
+        return listMoviesFavorites;
     }
 
-    public void setListMovies(ArrayList<Movie> listMovies) {
-        this.listMovies = listMovies;
+    public void setListMoviesFavorites(ArrayList<Movie> listMoviesFavorites) {
+        this.listMoviesFavorites = listMoviesFavorites;
     }
 
-    public ArrayList<Serie> getListSeries() {
-        return listSeries;
+    public ArrayList<Serie> getListSeriesFavorites() {
+        return listSeriesFavorites;
     }
 
-    public void setListSeries(ArrayList<Serie> listSeries) {
-        this.listSeries = listSeries;
+    public void setListSeriesFavorites(ArrayList<Serie> listSeriesFavorites) {
+        this.listSeriesFavorites = listSeriesFavorites;
     }
 
-    public ArrayList<Object> getFavorites() {
-        return favorites;
+    public boolean assignMovieToFavorite(User user, Movie movie) {
+        if (!user.getListMoviesFavorites().contains(movie)) {
+            user.getListMoviesFavorites().add(movie);
+            return true;
+        }
+        return false;
     }
 
-    public void setFavorites(ArrayList<Object> favorites) {
-        this.favorites = favorites;
+    public boolean assignSerieToFavorite(User user, Serie serie) {
+        if (!user.getListSeriesFavorites().contains(serie)) {
+            user.getListSeriesFavorites().add(serie);
+            return true;
+        }
+        return false;
     }
 
-    public void addMovie(Movie movie) {
-        listMovies.add(movie);
-    }
-
-    public void addSerie(Serie serie) {
-        listSeries.add(serie);
-    }
-// metodo que elimona una pelicula 
+    // metodo que elimona una pelicula
 
     public void deleteMovie(String namemovie, User user) {
-     
-       ArrayList<Movie> m=user.getListMovies();
-    Movie mm= new Movie();
+
+        ArrayList<Movie> m = user.getListMoviesFavorites();
+        Movie mm = new Movie();
         for (Movie movie : m) {
             if (movie.getName().equals(namemovie)) {
-                mm=movie;
+                mm = movie;
             }
         }
         m.remove(mm);
-        user.setListMovies(m);
+        user.setListMoviesFavorites(m);
     }
 
-
-//metodo que elimina una serie 
+    // metodo que elimina una serie
 
     public void deleteSerie(String namemovie, User user) {
-     
-       ArrayList<Serie> m=user.getListSeries();
-    Serie mm= new Serie();
+
+        ArrayList<Serie> m = user.getListSeriesFavorites();
+        Serie mm = new Serie();
         for (Serie movie : m) {
             if (movie.getName().equals(namemovie)) {
-                mm=movie;
+                mm = movie;
             }
         }
         m.remove(mm);
-        user.setListSeries(m);
+        user.setListSeriesFavorites(m);
     }
+
     @Override
     public String toString() {
         return "{" +
@@ -132,9 +136,8 @@ public class User {
                 ", email='" + getEmail() + "'" +
                 ", password='" + getPassword() + "'" +
                 ", role='" + getRole() + "'" +
-                ", listMovies='" + getListMovies() + "'" +
-                ", listSeries='" + getListSeries() + "'" +
-                ", favorites='" + getFavorites() + "'" +
+                ", listMovies='" + getListMoviesFavorites() + "'" +
+                ", listSeries='" + getListSeriesFavorites() + "'" +
                 "}";
     }
 

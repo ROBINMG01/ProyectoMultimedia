@@ -16,14 +16,13 @@ import co.edu.uptc.controller.ControlerInitialMenuView;
 
 public class AdminView {
     private AdminController ac;
-    private ControlerInitialMenuView controlerInitialMenuView;
+
     ViewVisit viewVisit = new ViewVisit();
     int newWidth = 0;
     int newHeight = 0;
 
     public AdminView(AdminController ac, ControlerInitialMenuView controlerInitialMenuView) {
         this.ac = ac;
-        this.controlerInitialMenuView = controlerInitialMenuView;
     }
 
     public void menuAdmin() {

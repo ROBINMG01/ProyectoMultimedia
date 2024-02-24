@@ -11,7 +11,7 @@ public class UserController {
     private boolean exit;
     private ArrayList<Movie> favoriteMovies;
     private ArrayList<Serie> favoriteSeries;
-    private static AdminController adminController = new AdminController();
+
 
     public UserController(AdminController ad) {
         listMovies = new ArrayList<>();
@@ -25,7 +25,7 @@ public class UserController {
             ArrayList<String> authors, ArrayList<String> actors, String gender) {
         Movie movie = new Movie(name, description, duration, authors, actors, gender);
         listMovies.add(movie);
-        
+
         return true;
     }
 

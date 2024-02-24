@@ -80,10 +80,8 @@ public class InitialMenuView {
             switch (seleccion) {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
-
                     boolean exits = false;
                     int auu = 0;
-
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -141,7 +139,8 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr,
+                                                    controler);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
