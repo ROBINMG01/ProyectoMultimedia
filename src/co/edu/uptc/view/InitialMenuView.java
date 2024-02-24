@@ -16,7 +16,6 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
-import co.edu.uptc.persistence.Archive;
 
 public class InitialMenuView {
 
@@ -25,20 +24,16 @@ public class InitialMenuView {
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
+        try {
+            adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
+            controler.getUsers().addAll(controler.loadUsers("Users"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         // crear el admin
 
         // Archivo guardar info
-
-        Archive archive = new Archive(controler);
-        // ARCHIVO QUE GUARDA del usuario
-        archive.saveUserInfoToFile(
-                archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
-                "src\\co\\edu\\uptc\\archive\\Keep.txt");
-        // guarda info de la serie
-        archive.saveSeriesInfoToFile(
-                archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
-                "src/co/edu/uptc/archive/SerieUser.txt");
-        controler.llenaInfo();
 
         // login
         // valida login
@@ -84,16 +79,8 @@ public class InitialMenuView {
             switch (seleccion) {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
-                    // archivo que guarda lo de series de cada usuario
-                    archive.saveSeriesInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
-                    // archivo que guarda lo de usuarios
-                    archive.saveUserInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
-
                     boolean exits = false;
                     int auu = 0;
-
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -152,13 +139,12 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur =
-                                                    new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr,
+                                                    controler);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av =
-                                                    new AdminView(adminController, controler);
+                                            AdminView av = new AdminView(adminController, controler);
                                             av.menuAdmin();
                                         }
                                     } else {
@@ -316,10 +302,6 @@ public class InitialMenuView {
                         }
                     } while (!exits);
                 }
-
-                    // ARCHIVO QUE GUARDA
-                    archive.saveUserInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     break;
                 case "Visit": {
