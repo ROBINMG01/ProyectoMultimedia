@@ -13,7 +13,6 @@ import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
-import co.edu.uptc.persistence.Archive;
 
 public class AdminView {
     private AdminController ac;
@@ -127,9 +126,6 @@ public class AdminView {
                 } while (condition == false);
                 break;
             case "userRegisters":
-                Archive userManager = new Archive(controlerInitialMenuView);
-                userManager.archiveUsers("src\\co\\edu\\uptc\\archive\\Users.txt",
-                        controlerInitialMenuView.users());
                 break;
             case "Exit":
                 break;

@@ -5,11 +5,11 @@ import java.util.List;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
-import co.edu.uptc.util.JsonFileManager;
+import co.edu.uptc.util.FileManagement;
 import co.edu.uptc.utilitaries.Utilitaries;
 
 public class AdminController {
-    private JsonFileManager jsonFileManager;
+    private FileManagement FileManager;
     private Movie movie;
     private Serie serie;
     private ArrayList<Movie> listMovies;
@@ -23,7 +23,7 @@ public class AdminController {
 
     // ROBIN
     public AdminController() {
-        jsonFileManager = new JsonFileManager();
+        FileManager = new FileManagement();
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
         listAuthors = new ArrayList<>();
@@ -48,7 +48,7 @@ public class AdminController {
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
             listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
-            savePerson(listMovies, file);
+            saveMovie(listMovies, file);
             return true;
         }
         return false;
@@ -217,12 +217,12 @@ public class AdminController {
         return false;
     }
 
-    public void savePerson(List<Movie> listMovies, String file) {
-        jsonFileManager.savePersonsToJson(listMovies, file);
+    public void saveMovie(List<Movie> listMovies, String file) {
+        FileManager.writeJsonToFile(file, listMovies);
     }
 
-    public List<Movie> loadPerson(String file) {
-        return jsonFileManager.loadPersonsFromJson(file);
+    public List<Movie> loadMovie(String file) {
+        return FileManager.loadMoviesFromJson(file);
     }
 
 }

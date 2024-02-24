@@ -16,7 +16,6 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
-import co.edu.uptc.persistence.Archive;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
@@ -24,27 +23,19 @@ public class InitialMenuView {
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
-        adminController.getListMovies().addAll(adminController.loadPerson("src\\co\\edu\\uptc\\archive\\Movie.json"));
-        for (int i = 0; i < adminController.getListMovies().size(); i++) {
-            System.out.println(adminController.getListMovies().get(i).getName());
+        try {
+            adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
+            controler.getUsers().addAll(controler.loadUsers("Users"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+
         // crear el admin
         controler.createAdmin();
 
         // carga info de usuarios por archivos
 
         // Archivo guardar info
-
-        Archive archive = new Archive(controler);
-        // ARCHIVO QUE GUARDA del usuario
-        archive.saveUserInfoToFile(
-                archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
-                "src\\co\\edu\\uptc\\archive\\Keep.txt");
-        // guarda info de la serie
-        archive.saveSeriesInfoToFile(
-                archive.readSeriesInfoFromFile("src/co/edu/uptc/archive/SerieUser.txt"),
-                "src/co/edu/uptc/archive/SerieUser.txt");
-        controler.llenaInfo();
 
         // login
         // valida login
@@ -89,12 +80,6 @@ public class InitialMenuView {
             switch (seleccion) {
                 // INGRESA A LA APLICACION DEPENDEN DEL ROL
                 case "Login": {
-                    // archivo que guarda lo de series de cada usuario
-                    archive.saveSeriesInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\SerieUser.txt");
-                    // archivo que guarda lo de usuarios
-                    archive.saveUserInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     boolean exits = false;
                     int auu = 0;
@@ -315,10 +300,6 @@ public class InitialMenuView {
                         }
                     } while (!exits);
                 }
-
-                    // ARCHIVO QUE GUARDA
-                    archive.saveUserInfoToFile(controler.users(),
-                            "src\\co\\edu\\uptc\\archive\\Keep.txt");
 
                     break;
                 case "Visit": {

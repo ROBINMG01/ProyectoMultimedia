@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
-import co.edu.uptc.util.JsonFileManager;
 
 public class UserController {
-    private static JsonFileManager jsonFileManager;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private boolean exit;
     private ArrayList<Movie> favoriteMovies;
     private ArrayList<Serie> favoriteSeries;
+    private static AdminController adminController = new AdminController();
 
     public UserController(AdminController ad) {
         listMovies = new ArrayList<>();
@@ -26,6 +25,7 @@ public class UserController {
             ArrayList<String> authors, ArrayList<String> actors, String gender) {
         Movie movie = new Movie(name, description, duration, authors, actors, gender);
         listMovies.add(movie);
+        
         return true;
     }
 
@@ -59,7 +59,5 @@ public class UserController {
     public ArrayList<Serie> getFavoriteSeries() {
         return favoriteSeries;
     }
-
-
 
 }

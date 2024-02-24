@@ -1,0 +1,112 @@
+[
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "A",
+    "password": "123",
+    "role": "admin",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Juan",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "2",
+    "lastName": "2",
+    "email": "2",
+    "password": "2",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Juan David",
+    "lastName": "Barrera Perez",
+    "email": "juan@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Samuel",
+    "lastName": "Gonzales",
+    "email": "samuel@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "q",
+    "lastName": "q",
+    "email": "q@gmail.com",
+    "password": "12345Jd@",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Camilo",
+    "lastName": "Rodriguez",
+    "email": "camilo@gmail.com",
+    "password": "1",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1@gmail.com",
+    "password": "Andres1#",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Felipe",
+    "lastName": "rrrr",
+    "email": "felipe@gmail.com",
+    "password": "Rf12345@",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Juan",
+    "lastName": "Barrera",
+    "email": "juann@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  },
+  {
+    "firstName": "Andres",
+    "lastName": "Morales",
+    "email": "Andres@gmail.com",
+    "password": "Ca123456789#",
+    "role": "user",
+    "listMovies": [],
+    "listSeries": [],
+    "favorites": []
+  }
+]
