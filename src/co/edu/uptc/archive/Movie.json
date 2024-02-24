@@ -1,0 +1,76 @@
+[{
+  "listMovies": [
+    {
+      "nombre": "Avengers: Endgame",
+      "descripcion": "Los vengadores defenderan la realidad",
+      "duracion": 195,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Ficcion"
+    },
+    {
+      "nombre": "El caballero de la noche",
+      "descripcion": "una nueva entrega de nuestro superhéroe enmascarado",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Accion"
+    },
+    {
+      "nombre": "El origen",
+      "descripcion": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Ficcion"
+    },
+    {
+      "nombre": "Tiempos Violentos",
+      "descripcion": "Tiempos Violentos narra tres historias intercaladas",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Drama"
+    },
+    {
+      "nombre": "Fight Club",
+      "descripcion": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Accion"
+    },
+    {
+      "nombre": "Sueños de Libertad",
+      "descripcion": "Andrew Dufresne es acusado del asesinato de su mujer",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Aventura"
+    },
+    {
+      "nombre": "El Padrino",
+      "descripcion": "América, años 40",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Ficcion"
+    },
+    {
+      "nombre": "Interstellar",
+      "descripcion": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Ficcion"
+    },
+    {
+      "nombre": "Matrix",
+      "descripcion": " La película es cinética, atmosférica, visualmente impresionante y alucinante",
+      "duracion": 120,
+      "actores": ["Robert", "Hemworth", "Carolina"],
+      "directores": ["Robert", "Hemworth", "Carolina"],
+      "genero": "Ficcion"
+    }
+  ]
+}]

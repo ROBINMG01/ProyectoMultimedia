@@ -19,7 +19,7 @@ import javax.swing.Timer;
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
-import co.edu.uptc.model.Buscar;
+import co.edu.uptc.controller.BuscarController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
@@ -43,7 +43,7 @@ public class UserRegisterView {
     // Entrada principal
     public void userRegisterView() {
 
-        Buscar buscarSerieImpl = new Buscar(ad);
+        BuscarController buscarSerieImpl = new BuscarController(ad);
 
         while (userController.isExit()) {
 
@@ -94,7 +94,7 @@ public class UserRegisterView {
         user.setFavorites(favorites);
     }
 
-    // Muetsra el catalogo de peliculas
+    // Muestra el catalogo de peliculas
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
 
