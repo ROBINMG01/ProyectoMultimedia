@@ -14,26 +14,24 @@ import co.edu.uptc.utilitaries.Utilitaries;
 import co.edu.uptc.view.ViewVisit;
 
 public class BuscarController {
-    private Utilitaries utilitaries; // Utilidades para cargar películas y series
-    private boolean backToMenu = false; // Controla si el usuario desea volver al menú
-    private ViewVisit viewVisit; // Vista para interactuar con el usuario
-    private AdminController adminController; // Controlador para interactuar con la administración
+    private Utilitaries utilitaries;
+    private boolean backToMenu = false;
+    private ViewVisit viewVisit;
+    private AdminController adminController;
 
-    // Constructor
     public BuscarController(AdminController ad) {
         utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
         this.adminController =ad ;
     }
 
-    // Método para buscar películas y series
     public void buscar() {
-        // Carga el catálogo de películas y series
+        // Catálogo de películas y series con año de lanzamiento y género.
         ArrayList<Movie> movieCatalog = utilitaries.loadMovies();
         ArrayList<Serie> seriesCatalog = utilitaries.loadSeries();
 
         // Opciones de búsqueda
-        String[] searchOptions = { "[°]Search by name", "[°]Search by gender" };
+        String[] searchOptions = { "Search by name", "Search by gender" };
 
         // Bucle para volver a la pantalla de búsqueda
         boolean backToSearch = true;
@@ -52,19 +50,16 @@ public class BuscarController {
             String result = "";
             switch (selectedOption) {
                 case "Search by name":
-                    // Buscar por nombre
                     String searchedItem = JOptionPane
                             .showInputDialog("Enter the name of the item you want to search:");
                     if (searchedItem != null) {
                         searchedItem = searchedItem.toLowerCase();
-                        // Buscar en la lista de películas
                         for (Movie movie : adminController.getListMovies()) {
                             if (movie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la película
                                 result += movie.getName() + "\n";
                             }
                         }
-                        // Buscar en la lista de series
                         for (Serie serie : adminController.getListSeries()) {
                             if (serie.getName().toLowerCase().contains(searchedItem)) {
                                 // Mostrar solo el nombre de la serie
@@ -74,12 +69,10 @@ public class BuscarController {
                     }
                     break;
                 case "Search by gender":
-                    // Buscar por género
                     String gender = "";
 
                     gender = viewVisit.viewGender(gender);
                     if (gender != null) {
-                        // Buscar en la lista de películas
                         for (Movie movies : adminController.getListMovies()) {
                             if (movies.getGender().equalsIgnoreCase(gender)) {
                                 result += movies.getName() + "\n";
@@ -87,7 +80,6 @@ public class BuscarController {
                             }
 
                         }
-                        // Buscar en la lista de series
                         for (Serie series : adminController.getListSeries()) {
                             if (series.getGender().equalsIgnoreCase(gender)) {
                                 // Mostrar solo el nombre de la serie
@@ -144,9 +136,9 @@ public class BuscarController {
                                     List<String> listActors = serie.getListActors();
                                     List<String> listChapters = serie.getListChapters();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
-                                                    + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
-                                                    + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
-                                                    + listActors + "\nListChapters: " + listChapters, "Serie Description: ",
+                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
+                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
+                                            + listActors + "\nListChapters: " + listChapters, "Serie Description: ",
                                             JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
@@ -160,10 +152,10 @@ public class BuscarController {
                                 progressBar.setIndeterminate(false);
                                 progressBar.setStringPainted(true);
                                 pane.setMessage(new Object[]{"Reproduciendo", progressBar});
-
+                    
                                 JDialog dialog = pane.createDialog("Reproduciendo");
                                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
+                    
                                 Timer timer = new Timer(1000, e -> {
                                     int value = progressBar.getValue();
                                     if (value < 100) {
@@ -172,14 +164,14 @@ public class BuscarController {
                                 });
                                 timer.setRepeats(true);
                                 timer.start();
-
+                    
                                 Timer closeTimer = new Timer(10000, e -> {
                                     dialog.dispose();
                                     timer.stop(); // Stop the timer when closing the dialog
                                 });
                                 closeTimer.setRepeats(false);
                                 closeTimer.start();
-
+                    
                                 dialog.setVisible(true);
                             });
                             break;
@@ -210,7 +202,6 @@ public class BuscarController {
         }
     }
 
-    // Método para verificar si el usuario desea volver al menú
     public boolean isBackToMenu() {
         return backToMenu;
     }
