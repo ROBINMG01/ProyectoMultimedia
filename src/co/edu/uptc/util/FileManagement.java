@@ -18,7 +18,7 @@ import co.edu.uptc.model.User;
 
 public class FileManagement {
     private File file;
-    public static final String filePath = "src/co/edu/uptc/archive/";
+    public static final String filePath = "src\\co\\edu\\uptc\\persistence\\";
     public static final String fileExtension = ".json";
 
     public boolean writeJsonToFile(String fileName, Object obj) {

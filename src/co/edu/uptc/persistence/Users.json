@@ -9,6 +9,15 @@
     "listSeriesFavorites": []
   },
   {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
     "firstName": "ADMN",
     "lastName": "Admin",
     "email": "A",
@@ -122,6 +131,15 @@
         "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
       }
     ],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
     "listSeriesFavorites": []
   },
   {
