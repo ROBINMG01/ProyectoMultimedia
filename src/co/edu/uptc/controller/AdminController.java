@@ -3,6 +3,7 @@ package co.edu.uptc.controller;
 import java.util.ArrayList;
 
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
 
@@ -35,7 +36,7 @@ public class AdminController {
 
     // ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender, ArrayList<String> listActors) {
+                            String gender, ArrayList<String> listActors) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);

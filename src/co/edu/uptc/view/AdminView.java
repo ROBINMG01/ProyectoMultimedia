@@ -13,6 +13,8 @@ import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
+import co.edu.uptc.model.Chapters;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.persistence.Archive;
 
 public class AdminView {
@@ -191,6 +193,14 @@ public class AdminView {
         int option = 0;
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
+        ArrayList<Season> listSeason = new ArrayList<>();
+        ArrayList<Chapters> listChapters = new ArrayList<>();
+
+        ///Clase Temporada
+        String nameSeason = "";
+        String descriptionSeason = "";
+        String nameChapter = "";
+        int durationChapter = 0;
 
         ImageIcon iconRegisterMovie =
                 new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
@@ -285,6 +295,12 @@ public class AdminView {
                                     exit = addActors(actorField);
                                 } while (!exit);
                             }
+                            nameSeason = "Temporada 1";
+                            descriptionSeason = "biennn";
+                            nameChapter = "Capitulo 1";
+                            durationChapter = 12;
+
+                            int dura
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
                                         arrayActors());
