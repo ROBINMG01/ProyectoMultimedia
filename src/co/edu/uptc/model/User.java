@@ -1,6 +1,10 @@
 package co.edu.uptc.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
     private String firstName;
@@ -11,6 +15,10 @@ public class User {
     private ArrayList<Movie> listMoviesFavorites;
     private ArrayList<Serie> listSeriesFavorites;
 
+    private Date dateDeSubscription;
+    private Date finDateDeSubscription;
+    private String actieSusciption;
+
     public User(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,7 +27,13 @@ public class User {
         this.role = role;
         this.listMoviesFavorites = new ArrayList<>();
         this.listSeriesFavorites = new ArrayList<>();
+        this.actieSusciption = "desactive";
+        this.dateDeSubscription = new Date();
+        this.finDateDeSubscription = new Date(0);
+
+
     }
+
 
     public User() {
         this.listMoviesFavorites = new ArrayList<>();
@@ -82,6 +96,30 @@ public class User {
         this.listSeriesFavorites = listSeriesFavorites;
     }
 
+    public Date getDateDeSubscription() {
+        return dateDeSubscription;
+    }
+
+    public void setDateDeSubscription(Date dateDeSubscription) {
+        this.dateDeSubscription = dateDeSubscription;
+    }
+
+    public String getActieSusciption() {
+        return actieSusciption;
+    }
+
+    public void setActieSusciption(String actieSusciption) {
+        this.actieSusciption = actieSusciption;
+    }
+
+    public Date getFinDateDeSubscription() {
+        return finDateDeSubscription;
+    }
+
+    public void setFinDateDeSubscription(Date finDateDeSubscription) {
+        this.finDateDeSubscription = finDateDeSubscription;
+    }
+
     public boolean assignMovieToFavorite(User user, Movie movie) {
         if (!user.getListMoviesFavorites().contains(movie)) {
             user.getListMoviesFavorites().add(movie);
@@ -130,15 +168,17 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" +
-                " firstName='" + getFirstName() + "'" +
-                ", lastName='" + getLastName() + "'" +
-                ", email='" + getEmail() + "'" +
-                ", password='" + getPassword() + "'" +
-                ", role='" + getRole() + "'" +
-                ", listMovies='" + getListMoviesFavorites() + "'" +
-                ", listSeries='" + getListSeriesFavorites() + "'" +
-                "}";
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", listMoviesFavorites=" + listMoviesFavorites +
+                ", listSeriesFavorites=" + listSeriesFavorites +
+                ", dateDeSubscription=" + dateDeSubscription +
+                ", finDateDeSubscription=" + finDateDeSubscription +
+                ", actieSusciption='" + actieSusciption + '\'' +
+                '}';
     }
-
 }
