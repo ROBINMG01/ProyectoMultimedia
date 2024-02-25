@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 import co.edu.uptc.model.UserRegister;
 import co.edu.uptc.util.FileManagement;
@@ -24,7 +23,6 @@ public class ControlerInitialMenuView extends UserRegister {
     private static FileManagement fileManagement;
 
     // se crea el administrador
-
 
     // inicializar el array de usuarios
     public ControlerInitialMenuView() {
