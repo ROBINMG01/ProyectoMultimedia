@@ -54,6 +54,33 @@
     "listSeriesFavorites": []
   },
   {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
     "firstName": "ADMN",
     "lastName": "Admin",
     "email": "A",
@@ -255,6 +282,60 @@
     "lastName": "J",
     "email": "j@gmail.com",
     "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "q",
+    "lastName": "q",
+    "email": "qqqq@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "BARRERA",
+    "email": "juand@gmail.com",
+    "password": "j12345D@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": []
+  },
+  {
+    "firstName": "felipe",
+    "lastName": "sdfsdfs",
+    "email": "Jas@gmail.com",
+    "password": "j12345D@",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": []
