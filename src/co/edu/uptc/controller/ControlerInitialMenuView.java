@@ -1,8 +1,6 @@
 package co.edu.uptc.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
@@ -184,4 +182,35 @@ public class ControlerInitialMenuView extends UserRegister {
         return fileManagement.loadUsersFromJson(file);
     }
 
-}
+
+//metodo que pone fecha limite de subscripcion
+
+    public Date dateFinSuscripcion(User user) {
+        // Obtener la fecha de suscripción del usuario
+        Date fechaInicio = user.getDateDeSubscription();
+
+        // Crear un objeto Calendar e inicializarlo con la fecha de inicio
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaInicio);
+
+        // Agregar 30 días a la fecha de inicio
+        calendar.add(Calendar.DAY_OF_MONTH, 30);
+
+        // Obtener la fecha resultante
+        Date fechaFin = calendar.getTime();
+
+        return fechaFin;
+    }
+
+
+// metdodo que guarda info de usuarios
+
+    public void saveInfoUser(){
+        // Guardar los usuarios en el archivos
+        saveUsers(users, "Users");
+    }
+    }
+
+
+
+
