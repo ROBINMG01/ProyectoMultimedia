@@ -110,7 +110,7 @@ public class Buscar {
                     switch (choice) {
                         case 0:
                             // Ver descripción de la película o serie
-                            for (Movie movie : movieCatalog) {
+                            /*for (Movie movie : movieCatalog) {
                                 if (movie.getName().equals(selectedMovie)) {
                                     String name = movie.getName();
                                     String gender = movie.getGender();
@@ -133,7 +133,7 @@ public class Buscar {
                                     String description = serie.getDescription();
                                     List<String> listAuthors = serie.getlistAuthors();
                                     List<String> listActors = serie.getListActors();
-                                    List<String> listChapters = serie.getListChapters();
+                                    //List<String> listChapters = serie.getListChapters();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
                                             + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
                                             + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
@@ -141,7 +141,7 @@ public class Buscar {
                                             JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
-                            }
+                            }*/
                             break;
                         case 1:
                             // Ver el tráiler de la película o serie

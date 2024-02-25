@@ -5,14 +5,17 @@ import java.util.ArrayList;
 public class Season {
 
     private String name;
-    private ArrayList<Chapters> listChapters;
+    private ArrayList<Chapter> listChapters;
     private String description;
 
 
-    public Season(String name, ArrayList<Chapters> listChapters, String description) {
+    public Season() {
+    }
+
+    public Season(String name, String description, ArrayList<Chapter> listChapters) {
         this.name = name;
-        this.listChapters = listChapters;
         this.description = description;
+        this.listChapters = listChapters;
     }
 
     public String getName() {
@@ -23,11 +26,11 @@ public class Season {
         this.name = name;
     }
 
-    public ArrayList<Chapters> getListChapters() {
+    public ArrayList<Chapter> getListChapters() {
         return listChapters;
     }
 
-    public void setListChapters(ArrayList<Chapters> listChapters) {
+    public void setListChapters(ArrayList<Chapter> listChapters) {
         this.listChapters = listChapters;
     }
 
@@ -41,10 +44,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "Season{" +
-                "name='" + name + '\'' +
-                ", listChapters=" + listChapters +
-                ", description='" + description + '\'' +
-                '}';
+        return "Season [name=" + name + ", listChapters=" + listChapters + ", description=" + description + "]";
     }
 }

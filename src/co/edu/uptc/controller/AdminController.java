@@ -2,6 +2,7 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
@@ -18,7 +19,11 @@ public class AdminController {
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
+    private ArrayList<Season> listSeasons;
+    private ArrayList<Chapter> listChapters;
     private Utilitaries utilitaries;
+    private Season season;
+    private Chapter chapter;
 
     // ROBIN
     public AdminController() {
@@ -27,16 +32,20 @@ public class AdminController {
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
+        listSeasons = new ArrayList<>();
+        listChapters = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
         listSeries = utilitaries.loadSeries();
         movie = new Movie();
         serie = new Serie();
+        season = new Season();
+        chapter = new Chapter();
     }
 
     // ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-                            String gender, ArrayList<String> listActors) {
+            String gender, ArrayList<String> listActors) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
@@ -53,20 +62,105 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
+    /*
+     * public boolean addSerie(String name, String description, int duration,
+     * ArrayList<String> listAuthors,
+     * ArrayList<String> chapters, String gender, ArrayList<String> listActors,
+     * String nameSeason,
+     * String descriptionSeason, int index) {
+     * serie.setName(name);
+     * serie.setDescription(description);
+     * serie.setDuration(duration);
+     * serie.setlistAuthors(listAuthors);
+     * serie.setGender(gender);
+     * serie.setListActors(listActors);
+     * 
+     * if (name.equals(serie.getName()) && duration == serie.getDuration()
+     * && addSeason(nameSeason, descriptionSeason, index)
+     * && addChapter(name, duration)) {
+     * listSeries.add(new Serie(name, description, duration, listAuthors,
+     * listActors, gender, listSeason));
+     * return true;
+     * }
+     * return false;
+     * }
+     */
+
+    /*public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
+            ArrayList<String> listActors, ArrayList<Season> listSeason, int index) {
+
+        Serie serie = new Serie();
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
         serie.setlistAuthors(listAuthors);
-        serie.setListChapters(chapters);
         serie.setGender(gender);
         serie.setListActors(listActors);
 
-        if (name.equals(serie.getName()) && duration == serie.getDuration()) {
-            listSeries.add(new Serie(name, description, duration, listAuthors, chapters, gender, listActors));
-            return true;
+        for (Season season : listSeason) {
+            ArrayList<Chapter> chapters = new ArrayList<>();
+            for (Chapter chapter : season.getListChapters()) {
+                chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
+            }
+            serie.addSeason(new Season(season.getName(), season.getDescription(), chapters));
         }
+
+        listSeries.add(serie);
+        return true;
+    }*/
+
+    public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
+            ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter, int durationChapter) {
+
+        Serie serie = new Serie();
+        Season season = new Season();
+        ArrayList<Chapter> chapters = new ArrayList<>();
+        //ArrayList<Season> seasons = new ArrayList<>();
+        serie.setName(name);
+        serie.setDescription(description);
+        serie.setDuration(duration);
+        serie.setlistAuthors(listAuthors);
+        serie.setGender(gender);
+        serie.setListActors(listActors);
+        
+        chapters.add(new Chapter(nameChapter, durationChapter));
+        season.setName(nameSeason);
+        season.setDescription(descriptionSeason);
+        season.setListChapters(chapters);
+
+        /*for (Season season : listSeason) {
+            ArrayList<Chapter> chapters = new ArrayList<>();
+            for (Chapter chapter : season.getListChapters()) {
+                chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
+            }
+            serie.addSeason(new Season(season.getName(), season.getDescription(), chapters));
+        }*/
+        serie.addSeason(season);
+
+        listSeries.add(serie);
+        return true;
+    }
+
+    public boolean addSeason(int index, int index2, String nameSeason, String descriptionSeason, String nameChapter, int durationChapter ){
+
+        ArrayList<Season> listSeason = listSeries.get(index).getListSeason();
+        ArrayList<Chapter> listChapter = new ArrayList<>();
+        listSeason.add(new Season(nameSeason, descriptionSeason, listChapter));
+        listSeries.get(index).setListSeason(listSeason);
+        listChapter.add(new Chapter(nameChapter, durationChapter));
+        listSeries.get(index).getListSeason().get(index2).setListChapters(listChapter);
+
+        return true;
+    }
+
+    public boolean addChapter(String nameChapter, int duration) {
+
+        chapter.setName(nameChapter);
+        chapter.setDuration(duration);
+        if (nameChapter.equals(chapter.getName()) && duration == chapter.getDuration()) {
+            listChapters.add(new Chapter(nameChapter, duration));
+        }
+
         return false;
     }
 
@@ -115,7 +209,7 @@ public class AdminController {
             listSeries.get(position).setDescription(description);
             listSeries.get(position).setDuration(duration);
             listSeries.get(position).setlistAuthors(listAuthors);
-            listSeries.get(position).setListChapters(chapters);
+            // listSeries.get(position).setListChapters(chapters);
             listSeries.get(position).setGender(gender);
             listSeries.get(position).setListActors(listActors);
             return true;

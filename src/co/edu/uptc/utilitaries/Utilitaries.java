@@ -52,7 +52,7 @@ public class Utilitaries {
         }
 
         public ArrayList<Serie> loadSeries() {
-                listSeries.add(new Serie("Loki", "Loki es llevado ante la misteriosa organización llamada AVT", 120,
+                /*listSeries.add(new Serie("Loki", "Loki es llevado ante la misteriosa organización llamada AVT", 120,
                                 new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
                                 new ArrayList<>(Arrays.asList("Felipe", "Daniel", "William")),
                                 "Accion", new ArrayList<>(Arrays.asList("Tiempo", "Busqueda", "Contralejo"))));
@@ -67,7 +67,7 @@ public class Utilitaries {
                 listSeries.add(new Serie("Lucifer", "El diablo se va de vacaciones", 45,
                                 new ArrayList<>(Arrays.asList("Jhon", "Ana", "Juan")),
                                 new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3, Capitulo4")),
-                                "Drama", new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos"))));
+                                "Drama", new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos"))));*/
                 return listSeries;
         }
 }

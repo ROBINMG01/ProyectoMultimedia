@@ -13,7 +13,7 @@ import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
-import co.edu.uptc.model.Chapters;
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.persistence.Archive;
 
@@ -32,8 +32,7 @@ public class AdminView {
     public void menuAdmin() {
         boolean condition = false;
 
-        ImageIcon iconSelection =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
+        ImageIcon iconSelection = new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image selection = iconSelection.getImage();
@@ -49,7 +48,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iSelection);
 
         do {
-            String[] options = {"Movie", "Serie", "userRegisters", "Exit"};
+            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -94,8 +93,7 @@ public class AdminView {
         switch (selectedaction) {
             case "Movie":
                 do {
-                    String[] options =
-                            {"Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit"};
+                    String[] options = { "Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit" };
                     String options2 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
@@ -114,8 +112,8 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 =
-                            {"Add Serie", "View Series", "Update Series", "deleteSeries", "Exit"};
+                    String[] options3 = { "Add Serie", "Add Season", "View Series", "Update Series", "deleteSeries",
+                            "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
@@ -165,8 +163,11 @@ public class AdminView {
             case "Add Serie":
                 addSerie();
                 break;
-            case "View Serie":
-                showSeries();;
+            case "Add Season":
+                addSeason();
+                break;
+            case "View Series":
+                showSeries();
                 break;
             case "Update Series":
                 updateSerie();
@@ -194,16 +195,15 @@ public class AdminView {
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
         ArrayList<Season> listSeason = new ArrayList<>();
-        ArrayList<Chapters> listChapters = new ArrayList<>();
+        ArrayList<Chapter> listChapters = new ArrayList<>();
 
-        ///Clase Temporada
+        /// Clase Temporada
         String nameSeason = "";
         String descriptionSeason = "";
         String nameChapter = "";
         int durationChapter = 0;
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
 
@@ -300,7 +300,6 @@ public class AdminView {
                             nameChapter = "Capitulo 1";
                             durationChapter = 12;
 
-                            int dura
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
                                         arrayActors());
@@ -340,9 +339,14 @@ public class AdminView {
     public void addSerie() {
 
         String name = "";
+        String nameSeason = "";
         String description = "";
+        String descriptionSeason = "";
+        String nameChapter = "";
+        String durationChapter = "";
         String duration = "";
         int duration2 = 0;
+        int duration3 = 0;
         String author = "";
         String actor = "";
         String chapter = "";
@@ -355,8 +359,14 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconRegisterSerie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        /*
+         * String name, String description, int duration, ArrayList<String> listAuthors,
+         * String gender,
+         * ArrayList<String> listActors, String nameSeason, String descriptionSeason,
+         * String nameChapter, int durationChapter
+         */
+
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
         ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
@@ -383,15 +393,23 @@ public class AdminView {
                 description = "";
                 duration = "";
                 gender = "";
+                nameSeason = "";
+                descriptionSeason = "";
+                nameChapter = "";
+                durationChapter = "";
                 ac.showlistAuthors().clear();
                 ac.showListChaptersTwo().clear();
                 ac.showlistActors().clear();
             }
             do {
-                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JPanel panel = new JPanel(new GridLayout(7, 2));
                 JTextField nameField = new JTextField(name);
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
+                JTextField nameSField = new JTextField(nameSeason);
+                JTextField descriptionSField = new JTextField(descriptionSeason);
+                JTextField nameCField = new JTextField(nameChapter);
+                JTextField durationCField = new JTextField(durationChapter);
 
                 panel.add(new JLabel("Name"));
                 panel.add(nameField);
@@ -399,6 +417,14 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration"));
                 panel.add(durationField);
+                panel.add(new JLabel("Name Season"));
+                panel.add(nameSField);
+                panel.add(new JLabel("Description Season"));
+                panel.add(descriptionSField);
+                panel.add(new JLabel("Name Chapter"));
+                panel.add(nameCField);
+                panel.add(new JLabel("Duration Chapter"));
+                panel.add(durationCField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", 0, 0, a);
 
@@ -406,29 +432,34 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
+                    nameSeason = nameSField.getText();
+                    descriptionSeason = descriptionSField.getText();
+                    nameChapter = nameCField.getText();
                     gender = viewVisit.viewGender(gender);
+                    durationChapter = durationCField.getText();
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
-                            || gender.isEmpty()) {
+                            || gender.isEmpty() || nameChapter.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
                         exit = verification();
                         ver = 0;
                     } else {
                         try {
                             duration2 = Integer.parseInt(duration);
+                            duration3 = Integer.parseInt(durationChapter);
 
                             newHeight = 40;
                             Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
                                     Image.SCALE_SMOOTH);
                             ImageIcon b = new ImageIcon(iAuthor);
                             do {
-                                JPanel panell = new JPanel(new GridLayout(1, 2));
+                                JPanel panell = new JPanel(new GridLayout(2, 2));
                                 JTextField authorField = new JTextField(author);
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
 
                                 option = JOptionPane.showConfirmDialog(null, panell, "Continue?", 0,
-                                        0, b);
+                                        0, b);       
                                 exit = addAuthors(authorField);
                             } while (!exit);
                             if (!arrayAuthors().isEmpty()) {
@@ -473,9 +504,16 @@ public class AdminView {
                                 exit = verification();
                                 ver = 0;
                             }
+
+                            /*
+                             * String name, String description, int duration, ArrayList<String> listAuthors,
+                             * String gender,
+                             * ArrayList<String> listActors, String nameSeason, String descriptionSeason,
+                             * String nameChapter, int durationChapter
+                             */
                             if (!arrayChapters().isEmpty()) {
-                                ac.addSerie(name, description, duration2, arrayAuthors(),
-                                        arrayChapters(), gender, arrayActors());
+                                ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
+                                        nameSeason, descriptionSeason, nameChapter, duration3);
                                 JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                 exit = true;
                             } else if (!arrayChapters().isEmpty()) {
@@ -485,7 +523,8 @@ public class AdminView {
                                 ver = 0;
                             }
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "No input a number in duration");
+                            JOptionPane.showMessageDialog(null,
+                                    "No input a number in duration season or duration chapter");
                             exit = false;
                         }
                         if (duration2 != 0) {
@@ -510,14 +549,165 @@ public class AdminView {
         } while (!exit2);
     }
 
+    public void addSeason() {
+        String name = "";
+        String description = "";
+        int ver = 0;
+        boolean exit = false;
+        boolean exit2 = false;
+        int option = 0;
+        int duration2 = 0;
+        String selectedaction = "";
+        String showNamesSeries[];
+        int position = 0;
+
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterSerie.getImage();
+        Image rUpdate = iconUpdate.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon u = new ImageIcon(iUpdate);
+
+        do {
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
+            position = ac.searchSeries(selectedaction);
+            if (selectedaction != null) {
+                name = ac.showListSeries().get(position).getName();
+                description = ac.showListSeries().get(position).getDescription();
+                if (ver == 1) {
+                    name = "";
+                    description = "";
+                }
+                do {
+                    JPanel panel = new JPanel(new GridLayout(2, 2));
+                    JTextField nameField = new JTextField(name, 15);
+                    JTextField descriptionField = new JTextField(description, 15);
+
+                    panel.add(new JLabel("Name of the serie"));
+                    panel.add(nameField);
+                    panel.add(new JLabel("Description"));
+                    panel.add(descriptionField);
+
+                    int result = JOptionPane.showConfirmDialog(null, panel, "Dates Season", 0, 0, a);
+
+                    if (result == JOptionPane.OK_OPTION) {
+                        name = nameField.getText();
+                        description = descriptionField.getText();
+
+                        if (name.isEmpty() || description.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Failed to add season");
+                            exit = verification();
+                            ver = 0;
+                        } else {
+                            ac.addSeason(name, description, position);
+                            JOptionPane.showMessageDialog(null, "Season added succesfully");
+                            exit = true;
+                            exit2 = true;
+                        }
+                        /*
+                         * if (duration2 != 0) {
+                         * option = JOptionPane.showConfirmDialog(null,
+                         * "Do you want to add another season?", "Continue?",
+                         * JOptionPane.YES_NO_OPTION);
+                         * if (option == JOptionPane.OK_OPTION) {
+                         * ver = 1;
+                         * exit = true;
+                         * exit2 = false;
+                         * } else {
+                         * exit = true;
+                         * exit2 = true;
+                         * }
+                         * }
+                         */
+                    } else {
+                        exit = true;
+                    }
+                } while (!exit);
+            } else {
+                exit = true;
+                exit2 = true;
+            }
+        } while (!exit2);
+
+        /*
+         * do {
+         * if (ver == 1) {
+         * name = "";
+         * description = "";
+         * }
+         * do {
+         * JPanel panel = new JPanel(new GridLayout(2, 2));
+         * JTextField nameField = new JTextField(name);
+         * JTextField descriptionField = new JTextField(description);
+         * 
+         * panel.add(new JLabel("Name"));
+         * panel.add(nameField);
+         * panel.add(new JLabel("Description"));
+         * panel.add(descriptionField);
+         * 
+         * int result = JOptionPane.showConfirmDialog(null, panel, "Add Season", 0, 0,
+         * a);
+         * 
+         * if (result == JOptionPane.OK_OPTION) {
+         * name = nameField.getText();
+         * description = descriptionField.getText();
+         * 
+         * if (name.isEmpty() || description.isEmpty()) {
+         * JOptionPane.showMessageDialog(null, "Failed to add season");
+         * exit = verification();
+         * ver = 0;
+         * }
+         * if (ac.addSeason(name, description, position)) {
+         * JOptionPane.showMessageDialog(null, "Season added sucessfully");
+         * exit = true;
+         * } else {
+         * JOptionPane.showMessageDialog(null,
+         * "The series was not added because there are no chapters.");
+         * exit = verification();
+         * ver = 0;
+         * }
+         * if (duration2 != 0) {
+         * option = JOptionPane.showConfirmDialog(null,
+         * "Do you want to add another serie?", "Continue?",
+         * JOptionPane.YES_NO_OPTION);
+         * if (option == JOptionPane.OK_OPTION) {
+         * ver = 1;
+         * exit = true;
+         * exit2 = false;
+         * } else {
+         * exit = true;
+         * exit2 = true;
+         * }
+         * }
+         * }
+         * exit = true;
+         * exit2 = true;
+         * } while (!exit);
+         * } while (!exit2);
+         */
+    }
+
     public void showMovies() {
         String selectedaction = "";
         int option = 0;
         String showNamesMovies[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
@@ -563,8 +753,7 @@ public class AdminView {
         String showNamesSeries[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
@@ -622,8 +811,7 @@ public class AdminView {
         ac.showlistActors().clear();
 
         ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
 
@@ -678,8 +866,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result =
-                            JOptionPane.showConfirmDialog(null, panel, "New dates Movie", 0, 0, a);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Movie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();
@@ -788,8 +975,7 @@ public class AdminView {
         ac.showlistAuthors().clear();
 
         ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie =
-                new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
         ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
@@ -848,8 +1034,7 @@ public class AdminView {
                     panel.add(new JLabel("Gender"));
                     panel.add(genderField);
 
-                    int result =
-                            JOptionPane.showConfirmDialog(null, panel, "New dates Serie", 0, 0, a);
+                    int result = JOptionPane.showConfirmDialog(null, panel, "New dates Serie", 0, 0, a);
 
                     if (result == JOptionPane.OK_OPTION) {
                         name = nameField.getText();

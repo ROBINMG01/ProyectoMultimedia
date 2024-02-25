@@ -137,7 +137,7 @@ public class ViewVisit {
                     switch (choice) {
                         case 0:
                             // Ver descripción de la película o serie
-                            for (Movie movie : adminController.getListMovies()) {
+                            /*for (Movie movie : adminController.getListMovies()) {
                                 if (movie.getName().equals(selectedMovie)) {
                                     String name = movie.getName();
                                     String gender = movie.getGender();
@@ -168,7 +168,7 @@ public class ViewVisit {
                                             JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
-                            }
+                            }*/
                             break;
                         case 1:
                             backToMenu = true;

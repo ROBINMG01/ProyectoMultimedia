@@ -1,11 +1,14 @@
 package co.edu.uptc.model;
 
-public class Chapters {
+public class Chapter {
 
     private String name;
     private int duration;
 
-    public Chapters(String name, int duration) {
+    public Chapter() {
+    }
+
+    public Chapter(String name, int duration) {
         this.name = name;
         this.duration = duration;
     }

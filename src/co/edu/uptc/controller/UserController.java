@@ -27,12 +27,12 @@ public class UserController {
         return true;
     }
 
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> authors,
+    /*public boolean addSerie(String name, String description, int duration, ArrayList<String> authors,
             ArrayList<String> chapters, ArrayList<String> actors, String gender) {
         Serie serie = new Serie(name, description, duration, authors, chapters, gender, actors);
         listSeries.add(serie);
         return true;
-    }
+    }*/
 
     public ArrayList<Movie> showListMovies() {
         return listMovies;

@@ -131,7 +131,7 @@ public class Archive {
     }
 
     // Método para guardar información de series en un archivo de texto
-    public void saveSeriesInfoToFile(ArrayList<User> userList, String filename) {
+    /*public void saveSeriesInfoToFile(ArrayList<User> userList, String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (User user : userList) {
                 for (Serie serie : user.getListSeries()) {
@@ -145,7 +145,7 @@ public class Archive {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     // Método para leer información de series desde un archivo de texto
     public ArrayList<User> readSeriesInfoFromFile(String filename) {
@@ -183,9 +183,9 @@ public class Archive {
                     }
 
                     // Agregar la serie al usuario
-                    Serie serie = new Serie(seriesName, description, duration, listAuthors,
+                    /*Serie serie = new Serie(seriesName, description, duration, listAuthors,
                             listChapters, gender, listActors);
-                    user.getListSeries().add(serie);
+                    user.getListSeries().add(serie);*/
                 }
             }
         } catch (IOException e) {
