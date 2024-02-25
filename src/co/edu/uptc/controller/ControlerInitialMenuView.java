@@ -46,26 +46,28 @@ public class ControlerInitialMenuView extends UserRegister {
 
     // metodo que verifica que meta un correo correcto
     public int isEmailUnique(String emailToCheck) {
-        // Verificar si el correo electrónico tiene uno de los 5 dominios más comunes
-        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
-                "uptc.edu.co");
+        // Verificar si el correo electrónico tiene uno de los dominios específicos
+        List<String> commonDomains = Arrays.asList("gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com");
+
         String[] parts = emailToCheck.split("@");
 
-        if (parts.length == 2) {
-            String domain = parts[1].toLowerCase();
+        // Verificar si hay un nombre antes del @
+        if (parts.length != 2 || parts[0].isEmpty()) {
+            // El correo electrónico no tiene un nombre antes del @ o no tiene el formato correcto
+            return 1;
+        }
 
-            if (!commonDomains.contains(domain)) {
+        String domain = parts[1].toLowerCase();
 
-                return 1;
-            }
-        } else {
-
+        if (!commonDomains.contains(domain)) {
+            // El correo electrónico no tiene uno de los dominios específicos
             return 1;
         }
 
         // El correo electrónico es único
         return 0;
     }
+
 
     // verificar que no haya un email repetido
     public int uniqueEmail(String emailToCheck) {
