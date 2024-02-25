@@ -157,7 +157,6 @@ public class AdminView {
                 break;
             case "View Serie":
                 showSeries();
-                ;
                 break;
             case "Update Series":
                 updateSerie();

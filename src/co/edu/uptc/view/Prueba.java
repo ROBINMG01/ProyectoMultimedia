@@ -61,7 +61,7 @@ public class Prueba {
         listCapitulos2.add(new Chapter("capitulo3", 200));
         listCapitulos2.add(new Chapter("capitulo4", 210));
 
-        listSeason.add(new Season("Tempo2", "Descripcion tempo2", listCapitulos2));
+        //listSeason.add(new Season("Tempo2", "Descripcion tempo2", listCapitulos2));
         ac.addSerie(name, descripcion, duracion, listAutores2, genero, listActores2, listSeason2,1);
 
         for (Serie list : ac.showListSeries()) {
