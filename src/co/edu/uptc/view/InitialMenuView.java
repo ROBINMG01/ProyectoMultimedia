@@ -19,19 +19,29 @@ import co.edu.uptc.model.User;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
+
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
+        try {
+            adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
+            controler.getUsers().addAll(controler.loadUsers("Users"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
-        int x = 0;
         // crear el admin
         controler.createAdmin();
+
+        // carga info de usuarios por archivos
+
+        // Archivo guardar info
+
         // login
         // valida login
         // menu
 
         // predeterminado id
-        int idUser = 100;
         int au = 0;
         String optionsHome[] = {"Login", "Register", "Visit"};
 
@@ -59,7 +69,7 @@ public class InitialMenuView {
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
-            String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            String seleccion = (String) JOptionPane.showInputDialog(null, "Select an option: ",
                     "Opciones de Inicio", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionsHome,
                     optionsHome[0]);
             // para que influya en todos
@@ -73,7 +83,6 @@ public class InitialMenuView {
                 case "Login": {
                     boolean exits = false;
                     int auu = 0;
-
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -99,7 +108,8 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconLogin = new ImageIcon("");
+
+                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -131,25 +141,23 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur =
-                                                    new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr,
+                                                    controler);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av =
-                                                    new AdminView(adminController, controler);
+                                            AdminView av = new AdminView(adminController, controler);
                                             av.menuAdmin();
                                         }
                                     } else {
                                         auu = 1;
-                                        JOptionPane.showMessageDialog(null,
-                                                "contraseña incorrecta");
+                                        JOptionPane.showMessageDialog(null, "Incorrect password");
 
                                     }
                                 } else {
                                     auu = 1;
                                     JOptionPane.showMessageDialog(null,
-                                            "no hay usuario reguistrado ");
+                                            "there is no registered user");
 
                                 }
                             } else {
@@ -230,10 +238,12 @@ public class InitialMenuView {
                                 "Ingrese sus datos", JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
 
                         if (resultado == JOptionPane.OK_OPTION) {
-                            firstName = firstNameField.getText();
-                            lastName = lastNameField.getText();
 
-                            email = emailField.getText();
+                            // trim elimin aespacios vacios
+                            firstName = firstNameField.getText().trim();
+                            lastName = lastNameField.getText().trim();
+
+                            email = emailField.getText().trim();
                             String password = new String(passwordField.getPassword());
                             String confirmPassword = new String(confirmPasswordField.getPassword());
 
@@ -270,7 +280,7 @@ public class InitialMenuView {
                                         au = 1;
 
                                         JOptionPane.showMessageDialog(null,
-                                                "la contraseña no comple con lo esperado");
+                                                "the password does not match what was expected");
 
                                     }
 
@@ -304,7 +314,7 @@ public class InitialMenuView {
                     break;
                 }
                 case "exit": {
-                    JOptionPane.showMessageDialog(null, "salida con éxito");
+                    JOptionPane.showMessageDialog(null, "successful exit");
                     exit = -1;
                     break;
                 }

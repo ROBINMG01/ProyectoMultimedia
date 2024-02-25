@@ -1,5 +1,3 @@
-
-
 package co.edu.uptc.controller;
 
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ public class UserController {
     private ArrayList<Movie> favoriteMovies;
     private ArrayList<Serie> favoriteSeries;
 
+
     public UserController(AdminController ad) {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
@@ -26,6 +25,7 @@ public class UserController {
             ArrayList<String> authors, ArrayList<String> actors, String gender) {
         Movie movie = new Movie(name, description, duration, authors, actors, gender);
         listMovies.add(movie);
+
         return true;
     }
 
@@ -59,5 +59,6 @@ public class UserController {
     public ArrayList<Serie> getFavoriteSeries() {
         return favoriteSeries;
     }
+
 }
 

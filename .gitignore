@@ -4,6 +4,11 @@
 .mtj.tmp/
 *.class
 *.jar
+bin/co/edu/uptc/view/AdminView.class
+bin/co/edu/uptc/view/InitialMenuView.class
+bin/co/edu/uptc/view/InitialMenuView.class
+InitialMenuView.class
+AdminView.class
 *.war
 *.ear
 *.nar

@@ -2,9 +2,6 @@ package co.edu.uptc.view;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -32,25 +29,23 @@ import co.edu.uptc.model.User;
 public class UserRegisterView {
     private UserController userController;
     private AdminController ad;
-    private ArrayList<Object> favorites;
     private User user;
+    private ControlerInitialMenuView controlerInitialMenuView;
 
-    public UserRegisterView(AdminController ad, User user) {
+    public UserRegisterView(AdminController ad, User user, ControlerInitialMenuView controlerInitialMenuView) {
         this.ad = ad;
         this.userController = new UserController(ad);
-        this.favorites = new ArrayList<>();
+        this.controlerInitialMenuView = controlerInitialMenuView;
         this.user = user;
-        this.favorites = user.getFavorites();
     }
 
     // Entrada principal
     public void userRegisterView() {
-        Buscar buscarSerieImpl = new Buscar();
+
+        Buscar buscarSerieImpl = new Buscar(ad);
 
         while (userController.isExit()) {
-            
 
-            
             String option = JOptionPane.showInputDialog("Multimedia Project\n"
                     + "[1]. View movie catalog\n" + "[2]. View series catalog\n"
                     + "[3]. Search for series and movies\n" + "[4]. View my favorites\n"
@@ -93,26 +88,23 @@ public class UserRegisterView {
         updateFavoritesOnExit(user);
     }
 
-    // Actualiza la lista de favoritos del ususario y guarda en "favorites.txt
-    // cuando se sale de
-    // usuario registrado"
+    // Actualiza la lista de favoritos del ususario
     private void updateFavoritesOnExit(User user) {
-        user.setFavorites(favorites);
-        // clearFavoritesFile();
+        user.setListMoviesFavorites(null);
     }
 
     // Muetsra el catalogo de peliculas
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
 
-                // Colocar imagen
-        ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
-        JLabel movieLabel = new JLabel(seriesIcon);
-
         ArrayList<String> movieNames = new ArrayList<>();
         for (Movie movie : movies) {
             movieNames.add(movie.getName());
         }
+
+        // Colocar imagen
+        ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+        JLabel movieLabel = new JLabel(movieIcon);
 
         String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
                 JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
@@ -139,45 +131,36 @@ public class UserRegisterView {
                     if (selectedMovieObj != null) {
                         String description = selectedMovieObj.getDescription();
                         JOptionPane.showMessageDialog(null, "Movie Description:\n" + description);
+                        showMovieCatalog();
                     } else {
                         JOptionPane.showMessageDialog(null, "Movie not found.");
                     }
                     break;
 
                 case 1:
+
                     // Ver el tráiler de la película
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane pane = new JOptionPane();
-                        JProgressBar progressBar = new JProgressBar(0, 100);
-                        progressBar.setIndeterminate(false);
-                        progressBar.setStringPainted(true);
-                        pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+                    ReproduccionFrame();
 
-                        JDialog dialog = pane.createDialog("Reproduciendo");
-                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    // Mostrar cuadro de diálogo con opciones después de ver el tráiler
+                    Object[] trailerOptions = { "Back", "Back to Menu" };
+                    int trailerChoice = JOptionPane.showOptionDialog(null,
+                            "What would you like to do?", "Trailer Options",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            trailerOptions, trailerOptions[0]);
 
-                        Timer timer = new Timer(1000, e -> {
-                            int value = progressBar.getValue();
-                            if (value < 100) {
-                                progressBar.setValue(value + 10);
-                            }
-                        });
-                        timer.setRepeats(true);
-                        timer.start();
+                    if (trailerChoice == 0) {
+                        // Volver a mostrar el cuadro de diálogo de selección de series
+                        showMovieCatalog();
+                    } else if (trailerChoice == 1) {
+                        // Volver al menú principal
+                        return;
+                    }
 
-                        Timer closeTimer = new Timer(10000, e -> {
-                            dialog.dispose();
-                            timer.stop(); // Stop the timer when closing the dialog
-                        });
-                        closeTimer.setRepeats(false);
-                        closeTimer.start();
-
-                        dialog.setVisible(true);
-                    });
                     break;
                 case 2:
                     // Volver al menú anterior
-                    return;
+                    showMovieCatalog();
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid option. Please select a valid option.");
@@ -226,44 +209,34 @@ public class UserRegisterView {
                     if (selectedSerieObj != null) {
                         String description = selectedSerieObj.getDescription();
                         JOptionPane.showMessageDialog(null, "Serie Description:\n" + description);
+                        showSeriesCatalog();
                     } else {
                         JOptionPane.showMessageDialog(null, "Serie not found.");
                     }
                     break;
                 case 1:
                     // Ver el tráiler de la serie
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane pane = new JOptionPane();
-                        JProgressBar progressBar = new JProgressBar(0, 100);
-                        progressBar.setIndeterminate(false);
-                        progressBar.setStringPainted(true);
-                        pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+                    ReproduccionFrame();
 
-                        JDialog dialog = pane.createDialog("Reproduciendo");
-                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    // Mostrar cuadro de diálogo con opciones después de ver el tráiler
+                    Object[] trailerOptions = { "Back", "Back to Menu" };
+                    int trailerChoice = JOptionPane.showOptionDialog(null,
+                            "What would you like to do?", "Trailer Options",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            trailerOptions, trailerOptions[0]);
 
-                        Timer timer = new Timer(1000, e -> {
-                            int value = progressBar.getValue();
-                            if (value < 100) {
-                                progressBar.setValue(value + 10);
-                            }
-                        });
-                        timer.setRepeats(true);
-                        timer.start();
-
-                        Timer closeTimer = new Timer(10000, e -> {
-                            dialog.dispose();
-                            timer.stop(); // Stop the timer when closing the dialog
-                        });
-                        closeTimer.setRepeats(false);
-                        closeTimer.start();
-
-                        dialog.setVisible(true);
-                    });
+                    if (trailerChoice == 0) {
+                        // Volver a mostrar el cuadro de diálogo de selección de series
+                        showSeriesCatalog();
+                    } else if (trailerChoice == 1) {
+                        // Volver al menú principal
+                        return;
+                    }
                     break;
                 case 2:
                     // Volver al menú anterior
-                    return;
+                    showSeriesCatalog();
+
                 default:
                     JOptionPane.showMessageDialog(null,
                             "Invalid option. Please select a valid option.");
@@ -289,10 +262,16 @@ public class UserRegisterView {
 
             switch (selectedOption) {
                 case "Movie":
+
+                    // Colocar imagen
+                    ImageIcon movieIcon = new ImageIcon(
+                            "src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+                    JLabel movieLabel = new JLabel(movieIcon);
+
                     String[] movieOptions = { "View favorites", "Add favorite", "Remove favorite" };
-                    String selectedMovieOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
-                            "Movie Favorites Management", JOptionPane.PLAIN_MESSAGE, null, movieOptions,
-                            movieOptions[0]);
+                    String selectedMovieOption = (String) JOptionPane.showInputDialog(null,
+                            movieLabel, "Movie Favorites", JOptionPane.PLAIN_MESSAGE, null,
+                            movieOptions, movieOptions[0]);
 
                     if (selectedMovieOption == null) {
                         backToMenu = true;
@@ -316,10 +295,15 @@ public class UserRegisterView {
                     }
                     break;
                 case "Serie":
+
+                    // Colocar imagen
+                    ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
+                    JLabel seriesLabel = new JLabel(seriesIcon);
+
                     String[] serieOptions = { "View favorites", "Add favorite", "Remove favorite" };
-                    String selectedSerieOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
-                            "Series Favorites Management", JOptionPane.PLAIN_MESSAGE, null, serieOptions,
-                            serieOptions[0]);
+                    String selectedSerieOption = (String) JOptionPane.showInputDialog(null,
+                            seriesLabel, "Series Favorites Management", JOptionPane.PLAIN_MESSAGE,
+                            null, serieOptions, serieOptions[0]);
 
                     if (selectedSerieOption == null) {
                         backToMenu = true;
@@ -352,21 +336,15 @@ public class UserRegisterView {
 
     // Metodos que permiten ver al ususario sus "Movies" "Series"
     public void viewSeriesFavorites(User user) {
-        ArrayList<Serie> seriesFavorites = new ArrayList<>();
-        for (Object favorite : user.getFavorites()) {
-            if (favorite instanceof Serie) {
-                seriesFavorites.add((Serie) favorite);
-            }
-        }
 
-        if (seriesFavorites.isEmpty()) {
+        if (user.getListSeriesFavorites().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No series favorites found.");
             return;
         }
 
-        String[] seriesNames = new String[seriesFavorites.size()];
-        for (int i = 0; i < seriesFavorites.size(); i++) {
-            seriesNames[i] = seriesFavorites.get(i).getName();
+        String[] seriesNames = new String[user.getListSeriesFavorites().size()];
+        for (int i = 0; i < user.getListSeriesFavorites().size(); i++) {
+            seriesNames[i] = user.getListSeriesFavorites().get(i).getName();
         }
 
         String selectedSeries = (String) JOptionPane.showInputDialog(null,
@@ -386,7 +364,7 @@ public class UserRegisterView {
                 case 0:
                     // Ver descripción de la serie
                     Serie selectedSerieObj = null;
-                    for (Serie serie : seriesFavorites) {
+                    for (Serie serie : user.getListSeriesFavorites()) {
                         if (serie.getName().equals(selectedSeries)) {
                             selectedSerieObj = serie;
                             break;
@@ -401,35 +379,13 @@ public class UserRegisterView {
                     }
                     break;
                 case 1:
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane pane = new JOptionPane();
-                        JProgressBar progressBar = new JProgressBar(0, 100);
-                        progressBar.setIndeterminate(false);
-                        progressBar.setStringPainted(true);
-                        pane.setMessage(new Object[] { "Reproduciendo", progressBar });
-
-                        JDialog dialog = pane.createDialog("Reproduciendo");
-                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
-                        Timer timer = new Timer(1000, e -> {
-                            int value = progressBar.getValue();
-                            if (value < 100) {
-                                progressBar.setValue(value + 10);
-                            }
-                        });
-                        timer.setRepeats(true);
-                        timer.start();
-
-                        Timer closeTimer = new Timer(10000, e -> {
-                            dialog.dispose();
-                            timer.stop(); // Stop the timer when closing the dialog
-                        });
-                        closeTimer.setRepeats(false);
-                        closeTimer.start();
-
-                        dialog.setVisible(true);
-                    });
-
+                    // Ver el tráiler de la película
+                    ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null, "back to menu", "Continue",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -445,21 +401,15 @@ public class UserRegisterView {
     }
 
     public void viewMovieFavorites(User user) {
-        ArrayList<Movie> movieFavorites = new ArrayList<>();
-        for (Object favorite : user.getFavorites()) {
-            if (favorite instanceof Movie) {
-                movieFavorites.add((Movie) favorite);
-            }
-        }
 
-        if (movieFavorites.isEmpty()) {
+        if (user.getListMoviesFavorites().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No movie favorites found.");
             return;
         }
 
-        String[] movieNames = new String[movieFavorites.size()];
-        for (int i = 0; i < movieFavorites.size(); i++) {
-            movieNames[i] = movieFavorites.get(i).getName();
+        String[] movieNames = new String[user.getListMoviesFavorites().size()];
+        for (int i = 0; i < user.getListMoviesFavorites().size(); i++) {
+            movieNames[i] = user.getListMoviesFavorites().get(i).getName();
         }
 
         String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to view:",
@@ -479,7 +429,7 @@ public class UserRegisterView {
                 case 0:
                     // Ver descripción de la película
                     Movie selectedMovieObj = null;
-                    for (Movie movie : movieFavorites) {
+                    for (Movie movie : user.getListMoviesFavorites()) {
                         if (movie.getName().equals(selectedMovie)) {
                             selectedMovieObj = movie;
                             break;
@@ -495,34 +445,12 @@ public class UserRegisterView {
                     break;
                 case 1:
                     // Ver el tráiler de la película
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane pane = new JOptionPane();
-                        JProgressBar progressBar = new JProgressBar(0, 100);
-                        progressBar.setIndeterminate(false);
-                        progressBar.setStringPainted(true);
-                        pane.setMessage(new Object[] { "Reproduciendo", progressBar });
-
-                        JDialog dialog = pane.createDialog("Reproduciendo");
-                        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
-                        Timer timer = new Timer(1000, e -> {
-                            int value = progressBar.getValue();
-                            if (value < 100) {
-                                progressBar.setValue(value + 10);
-                            }
-                        });
-                        timer.setRepeats(true);
-                        timer.start();
-
-                        Timer closeTimer = new Timer(10000, e -> {
-                            dialog.dispose();
-                            timer.stop(); // Stop the timer when closing the dialog
-                        });
-                        closeTimer.setRepeats(false);
-                        closeTimer.start();
-
-                        dialog.setVisible(true);
-                    });
+                    ReproduccionFrame();
+                    // Preguntar si desea realizar otra búsqueda o volver al menú anterior
+                    String[] continueOptions = { "menu" };
+                    JOptionPane.showOptionDialog(null, "back to menu", "Continue",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
@@ -552,8 +480,10 @@ public class UserRegisterView {
         if (selectedSeries != null) {
             for (Serie serie : seriesCatalog) {
                 if (serie.getName().equals(selectedSeries)) {
-                    if (!favorites.contains(serie)) {
-                        favorites.add(serie);
+                    if (!user.getListSeriesFavorites().contains(serie)) {
+                        user.getListSeriesFavorites().add(serie);
+                        user.assignSerieToFavorite(user, serie);
+                        controlerInitialMenuView.saveUsers(controlerInitialMenuView.getUsers(), "Users");
                         JOptionPane.showMessageDialog(null,
                                 "The series has been added to favorites successfully.");
                     } else {
@@ -582,8 +512,10 @@ public class UserRegisterView {
         if (selectedMovie != null) {
             for (Movie movie : movieCatalog) {
                 if (movie.getName().equals(selectedMovie)) {
-                    if (!favorites.contains(movie)) {
-                        favorites.add(movie);
+                    if (!user.getListMoviesFavorites().contains(movie)) {
+                        user.getListMoviesFavorites().add(movie);
+                        user.assignMovieToFavorite(user, movie);
+                        controlerInitialMenuView.saveUsers(controlerInitialMenuView.getUsers(), "Users");
                         JOptionPane.showMessageDialog(null,
                                 "The movie has been added to favorites successfully.");
                     } else {
@@ -601,7 +533,7 @@ public class UserRegisterView {
     // favoritos.
     public void removeSeriesFavorite(User user) {
         ArrayList<Serie> seriesFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getListSeriesFavorites()) {
             if (favorite instanceof Serie) {
                 seriesFavorites.add((Serie) favorite);
             }
@@ -622,7 +554,8 @@ public class UserRegisterView {
                 JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
 
         if (selectedSeries != null) {
-            favorites.removeIf(favorite -> {
+            user.deleteSerie(selectedSeries, user);
+            user.getListSeriesFavorites().removeIf(favorite -> {
                 if (favorite instanceof Serie) {
                     return ((Serie) favorite).getName().equals(selectedSeries);
                 }
@@ -638,9 +571,10 @@ public class UserRegisterView {
 
     public void removeMovieFavorite(User user) {
         ArrayList<Movie> movieFavorites = new ArrayList<>();
-        for (Object favorite : favorites) {
+        for (Object favorite : user.getListMoviesFavorites()) {
             if (favorite instanceof Movie) {
                 movieFavorites.add((Movie) favorite);
+
             }
         }
 
@@ -659,10 +593,13 @@ public class UserRegisterView {
                 JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
-            favorites.removeIf(favorite -> {
+            user.deleteMovie(selectedMovie, user);
+            user.getListMoviesFavorites().removeIf(favorite -> {
                 if (favorite instanceof Movie) {
                     return ((Movie) favorite).getName().equals(selectedMovie);
+
                 }
+
                 return false;
             });
             JOptionPane.showMessageDialog(null,
@@ -814,6 +751,38 @@ public class UserRegisterView {
                 exits = true;
             }
         } while (!exits);
+    }
+
+    public void ReproduccionFrame() {
+        // Ver el tráiler de la película
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane pane = new JOptionPane();
+            JProgressBar progressBar = new JProgressBar(0, 100);
+            progressBar.setIndeterminate(false);
+            progressBar.setStringPainted(true);
+            pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+
+            JDialog dialog = pane.createDialog("Reproduciendo");
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+            Timer timer = new Timer(1000, e -> {
+                int value = progressBar.getValue();
+                if (value < 100) {
+                    progressBar.setValue(value + 10);
+                }
+            });
+            timer.setRepeats(true);
+            timer.start();
+
+            Timer closeTimer = new Timer(10000, e -> {
+                dialog.dispose();
+                timer.stop();
+            });
+            closeTimer.setRepeats(false);
+            closeTimer.start();
+
+            dialog.setVisible(true);
+        });
     }
 
 }
