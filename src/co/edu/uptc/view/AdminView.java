@@ -13,18 +13,16 @@ import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
-import co.edu.uptc.persistence.Archive;
 
 public class AdminView {
     private AdminController ac;
-    private ControlerInitialMenuView controlerInitialMenuView;
+
     ViewVisit viewVisit = new ViewVisit();
     int newWidth = 0;
     int newHeight = 0;
 
     public AdminView(AdminController ac, ControlerInitialMenuView controlerInitialMenuView) {
         this.ac = ac;
-        this.controlerInitialMenuView = controlerInitialMenuView;
     }
 
     public void menuAdmin() {
@@ -50,8 +48,9 @@ public class AdminView {
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
-            String selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                    "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
+            String selectedaction = (String) JOptionPane.showInputDialog(null,
+                    "Seleccione una opción:", "Opciones de Administrador",
+                    JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
 
             if (selectedaction == null) {
                 condition = true;
@@ -90,10 +89,10 @@ public class AdminView {
         switch (selectedaction) {
             case "Movie":
                 do {
-                    String[] options = { "Add Movie", "View Movies", "Update Movie",
-                            "deleteMovie", "Exit" };
-                    String options2 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                            "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
+                    String[] options = { "Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit" };
+                    String options2 = (String) JOptionPane.showInputDialog(null,
+                            "Seleccione una opción:", "Opciones de Administrador",
+                            JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
                     if (options2 == null) {
                         condition = true;
                         break;
@@ -109,10 +108,10 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 = { "Add Serie", "View Series", "Update Series",
-                            "deleteSeries", "Exit" };
-                    String options4 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                            "Opciones de Administrador", JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
+                    String[] options3 = { "Add Serie", "View Series", "Update Series", "deleteSeries", "Exit" };
+                    String options4 = (String) JOptionPane.showInputDialog(null,
+                            "Seleccione una opción:", "Opciones de Administrador",
+                            JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
                     if (options4 == null) {
                         condition = true;
                         break;
@@ -126,10 +125,6 @@ public class AdminView {
                 } while (condition == false);
                 break;
             case "userRegisters":
-                Archive userManager = new Archive(controlerInitialMenuView);
-                userManager.archiveUsers(
-                        "src\\co\\edu\\uptc\\archive\\Users.txt",
-                        controlerInitialMenuView.users());
                 break;
             case "Exit":
                 break;
@@ -224,7 +219,7 @@ public class AdminView {
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
 
-                panel.add(new JLabel("Name of the movie:"));
+                panel.add(new JLabel("Name:"));
                 panel.add(nameField);
                 panel.add(new JLabel("Description:"));
                 panel.add(descriptionField);
@@ -240,7 +235,8 @@ public class AdminView {
 
                     gender = viewVisit.viewGender(gender);
 
-                    if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                    if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
+                            || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add movie");
                         exit = verification();
                         if (exit == true) {
@@ -252,7 +248,8 @@ public class AdminView {
                             dutation2 = Integer.parseInt(duration);
 
                             newHeight = 40;
-                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
+                                    Image.SCALE_SMOOTH);
                             ImageIcon b = new ImageIcon(iAuthor);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -260,13 +257,14 @@ public class AdminView {
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
 
-                                option = JOptionPane.showConfirmDialog(null, panell,
-                                        "Continue?", 0, 0, b);
+                                option = JOptionPane.showConfirmDialog(null, panell, "Continue?", 0,
+                                        0, b);
 
                                 exit = addAuthors(authorField);
                             } while (!exit);
                             if (!arrayAuthors().isEmpty()) {
-                                Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                Image iActor = rActor.getScaledInstance(newWidth, newHeight,
+                                        Image.SCALE_SMOOTH);
                                 ImageIcon c = new ImageIcon(iActor);
                                 do {
                                     JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -280,7 +278,8 @@ public class AdminView {
                                 } while (!exit);
                             }
                             if (!arrayActors().isEmpty()) {
-                                ac.addMovie(name, description, dutation2, arrayAuthors(), gender, arrayActors());
+                                ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
+                                        arrayActors(), "src\\co\\edu\\uptc\\archive\\Movie.json");
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -293,8 +292,9 @@ public class AdminView {
                             exit = false;
                         }
                         if (dutation2 != 0 && exit != false) {
-                            option = JOptionPane.showConfirmDialog(null, "Do you want to add another movie?",
-                                    "Continue?", JOptionPane.YES_NO_OPTION);
+                            option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to add another movie?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.OK_OPTION) {
                                 ver = 1;
                                 exit = true;
@@ -368,7 +368,7 @@ public class AdminView {
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
 
-                panel.add(new JLabel("Name of the serie"));
+                panel.add(new JLabel("Name"));
                 panel.add(nameField);
                 panel.add(new JLabel("Description"));
                 panel.add(descriptionField);
@@ -383,7 +383,8 @@ public class AdminView {
                     duration = durationField.getText();
                     gender = viewVisit.viewGender(gender);
 
-                    if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                    if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
+                            || gender.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
                         exit = verification();
                         ver = 0;
@@ -392,7 +393,8 @@ public class AdminView {
                             duration2 = Integer.parseInt(duration);
 
                             newHeight = 40;
-                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                            Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
+                                    Image.SCALE_SMOOTH);
                             ImageIcon b = new ImageIcon(iAuthor);
                             do {
                                 JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -400,12 +402,13 @@ public class AdminView {
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
 
-                                option = JOptionPane.showConfirmDialog(null, panell,
-                                        "Continue?", 0, 0, b);
+                                option = JOptionPane.showConfirmDialog(null, panell, "Continue?", 0,
+                                        0, b);
                                 exit = addAuthors(authorField);
                             } while (!exit);
                             if (!arrayAuthors().isEmpty()) {
-                                Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                Image iActor = rActor.getScaledInstance(newWidth, newHeight,
+                                        Image.SCALE_SMOOTH);
                                 ImageIcon c = new ImageIcon(iActor);
                                 do {
                                     exit = false;
@@ -425,7 +428,8 @@ public class AdminView {
                                 ver = 0;
                             }
                             if (!arrayActors().isEmpty()) {
-                                Image iChapter = rChapter.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                Image iChapter = rChapter.getScaledInstance(newWidth, newHeight,
+                                        Image.SCALE_SMOOTH);
                                 ImageIcon d = new ImageIcon(iChapter);
                                 do {
                                     exit = false;
@@ -445,8 +449,8 @@ public class AdminView {
                                 ver = 0;
                             }
                             if (!arrayChapters().isEmpty()) {
-                                ac.addSerie(name, description, duration2, arrayAuthors(), arrayChapters(), gender,
-                                        arrayActors());
+                                ac.addSerie(name, description, duration2, arrayAuthors(),
+                                        arrayChapters(), gender, arrayActors());
                                 JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                 exit = true;
                             } else if (!arrayChapters().isEmpty()) {
@@ -460,8 +464,9 @@ public class AdminView {
                             exit = false;
                         }
                         if (duration2 != 0) {
-                            option = JOptionPane.showConfirmDialog(null, "Do you want to add another serie?",
-                                    "Continue?", JOptionPane.YES_NO_OPTION);
+                            option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to add another serie?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.OK_OPTION) {
                                 ver = 1;
                                 exit = true;
@@ -511,10 +516,10 @@ public class AdminView {
                     "Movie", JOptionPane.QUESTION_MESSAGE, a, showNamesMovies, showNamesMovies[0]);
 
             if (selectedaction != null) {
-                JOptionPane.showMessageDialog(null, ac.showListMovies().get(ac.searchMovie(
-                        selectedaction)).toString(), "Movie", JOptionPane.QUESTION_MESSAGE, b);
-                option = JOptionPane.showConfirmDialog(null,
-                        "Do you want to view another Movie?",
+                JOptionPane.showMessageDialog(null,
+                        ac.showListMovies().get(ac.searchMovie(selectedaction)).toString(), "Movie",
+                        JOptionPane.QUESTION_MESSAGE, b);
+                option = JOptionPane.showConfirmDialog(null, "Do you want to view another Movie?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
 
                 if (option != JOptionPane.OK_OPTION) {
@@ -557,10 +562,10 @@ public class AdminView {
                     "Series", JOptionPane.QUESTION_MESSAGE, a, showNamesSeries, showNamesSeries[0]);
 
             if (selectedaction != null) {
-                JOptionPane.showMessageDialog(null, ac.showListSeries().get(ac.searchSeries(
-                        selectedaction)).toString(), "Serie", JOptionPane.QUESTION_MESSAGE, b);
-                option = JOptionPane.showConfirmDialog(null,
-                        "Do you want to view another Serie?",
+                JOptionPane.showMessageDialog(null,
+                        ac.showListSeries().get(ac.searchSeries(selectedaction)).toString(),
+                        "Serie", JOptionPane.QUESTION_MESSAGE, b);
+                option = JOptionPane.showConfirmDialog(null, "Do you want to view another Serie?",
                         "Continue?", JOptionPane.YES_NO_OPTION);
 
                 if (option != JOptionPane.OK_OPTION) {
@@ -653,7 +658,8 @@ public class AdminView {
                         duration = durationField.getText();
                         gender = genderField.getText();
 
-                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
+                                || gender.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Failed to update serie");
                             exit = verification();
                             ver = 0;
@@ -661,7 +667,8 @@ public class AdminView {
                             try {
                                 duration2 = Integer.parseInt(duration);
                                 newHeight = 40;
-                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
+                                        Image.SCALE_SMOOTH);
                                 ImageIcon b = new ImageIcon(iAuthor);
                                 do {
                                     JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -678,7 +685,8 @@ public class AdminView {
                                 } while (!exit);
                                 if (exit2 != true) {
                                     newHeight = 100;
-                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight,
+                                            Image.SCALE_SMOOTH);
                                     ImageIcon c = new ImageIcon(iActor);
                                     do {
                                         exit = false;
@@ -691,9 +699,11 @@ public class AdminView {
                                                 "Continue?", 0, 0, c);
                                         exit = addActors(actorField);
                                         if (option == JOptionPane.OK_OPTION) {
-                                            ac.updateMovie(selectedaction, name, description, duration2, arrayAuthors(),
-                                                    arrayActors(), gender);
-                                            JOptionPane.showMessageDialog(null, "Movie update sucessfully");
+                                            ac.updateMovie(selectedaction, name, description,
+                                                    duration2, arrayAuthors(), arrayActors(),
+                                                    gender);
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Movie update sucessfully");
                                         }
                                     } while (!exit);
                                 }
@@ -703,8 +713,9 @@ public class AdminView {
                                 exit = false;
                             }
                             if (duration2 != 0) {
-                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another Movie?",
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                option = JOptionPane.showConfirmDialog(null,
+                                        "Do you want to update another Movie?", "Continue?",
+                                        JOptionPane.YES_NO_OPTION);
                                 if (option == JOptionPane.OK_OPTION) {
                                     ver = 1;
                                     exit = true;
@@ -815,7 +826,8 @@ public class AdminView {
                         duration = durationField.getText();
                         gender = genderField.getText();
 
-                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty() || gender.isEmpty()) {
+                        if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
+                                || gender.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Failed to update serie");
                             exit = verification();
                             ver = 0;
@@ -823,7 +835,8 @@ public class AdminView {
                             try {
                                 duration2 = Integer.parseInt(duration);
                                 newHeight = 40;
-                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
+                                        Image.SCALE_SMOOTH);
                                 ImageIcon b = new ImageIcon(iAuthor);
 
                                 do {
@@ -841,7 +854,8 @@ public class AdminView {
                                 } while (!exit);
                                 if (exit2 != true) {
                                     exit2 = false;
-                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                                    Image iActor = rActor.getScaledInstance(newWidth, newHeight,
+                                            Image.SCALE_SMOOTH);
                                     ImageIcon c = new ImageIcon(iActor);
                                     do {
                                         JPanel panell = new JPanel(new GridLayout(1, 2));
@@ -873,10 +887,11 @@ public class AdminView {
                                                 "Continue?", 0, 0, d);
                                         exit = addChapter(chapterField);
                                         if (option == JOptionPane.OK_OPTION) {
-                                            ac.updateSeries(selectedaction, name, description, duration2,
-                                                    arrayAuthors(),
-                                                    arrayChapters(), gender, arrayActors());
-                                            JOptionPane.showMessageDialog(null, "Serie update sucessfully");
+                                            ac.updateSeries(selectedaction, name, description,
+                                                    duration2, arrayAuthors(), arrayChapters(),
+                                                    gender, arrayActors());
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Serie update sucessfully");
                                         }
                                     } while (!exit);
                                 }
@@ -886,8 +901,9 @@ public class AdminView {
                                 exit = false;
                             }
                             if (duration2 != 0) {
-                                option = JOptionPane.showConfirmDialog(null, "Do you want to update another serie?",
-                                        "Continue?", JOptionPane.YES_NO_OPTION);
+                                option = JOptionPane.showConfirmDialog(null,
+                                        "Do you want to update another serie?", "Continue?",
+                                        JOptionPane.YES_NO_OPTION);
                                 if (option == JOptionPane.OK_OPTION) {
                                     ver = 1;
                                     exit = true;
@@ -911,8 +927,8 @@ public class AdminView {
 
     public boolean verification() {
         int option = 0;
-        option = JOptionPane.showConfirmDialog(null, "Do you want try agan?",
-                "Continue?", JOptionPane.YES_NO_OPTION);
+        option = JOptionPane.showConfirmDialog(null, "Do you want try agan?", "Continue?",
+                JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             return false;
         } else {
@@ -1032,16 +1048,18 @@ public class AdminView {
         do {
             if (!ac.namesMovies().isEmpty()) {
                 showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
-                selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                        "Movie", JOptionPane.QUESTION_MESSAGE, null, showNamesMovies, showNamesMovies[0]);
+                selectedaction = (String) JOptionPane.showInputDialog(null,
+                        "Seleccione una opción:", "Movie", JOptionPane.QUESTION_MESSAGE, null,
+                        showNamesMovies, showNamesMovies[0]);
                 if (selectedaction != null) {
                     if (ac.deleteMovie(selectedaction) == true) {
                         JOptionPane.showMessageDialog(null, "Movie delete succesfully");
                     } else {
                         JOptionPane.showMessageDialog(null, "Movie wasn't delete");
                     }
-                    option = JOptionPane.showConfirmDialog(null, "Do you want to delete another Movie?",
-                            "Continue?", JOptionPane.YES_NO_OPTION);
+                    option = JOptionPane.showConfirmDialog(null,
+                            "Do you want to delete another Movie?", "Continue?",
+                            JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.OK_OPTION) {
                         exit2 = false;
                     } else {
@@ -1065,16 +1083,18 @@ public class AdminView {
         do {
             if (!ac.namesSeries().isEmpty()) {
                 showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
-                selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
-                        "Serie", JOptionPane.QUESTION_MESSAGE, null, showNamesSeries, showNamesSeries[0]);
+                selectedaction = (String) JOptionPane.showInputDialog(null,
+                        "Seleccione una opción:", "Serie", JOptionPane.QUESTION_MESSAGE, null,
+                        showNamesSeries, showNamesSeries[0]);
                 if (selectedaction != null) {
                     if (ac.deleteSerie(selectedaction) == true) {
                         JOptionPane.showMessageDialog(null, "Serie delete succesfully");
                     } else {
                         JOptionPane.showMessageDialog(null, "Serie wasn't delete");
                     }
-                    option = JOptionPane.showConfirmDialog(null, "Do you want to delete another Serie?",
-                            "Continue?", JOptionPane.YES_NO_OPTION);
+                    option = JOptionPane.showConfirmDialog(null,
+                            "Do you want to delete another Serie?", "Continue?",
+                            JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.OK_OPTION) {
                         exit2 = false;
                     } else {

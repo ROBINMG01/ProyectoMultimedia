@@ -16,7 +16,6 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
-import co.edu.uptc.persistence.Archive;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
@@ -24,25 +23,19 @@ public class InitialMenuView {
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
+        try {
+            adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
+            controler.getUsers().addAll(controler.loadUsers("Users"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         // crear el admin
         controler.createAdmin();
 
         // carga info de usuarios por archivos
 
-        System.out.println("dassssssssssss");
-        for (User u : controler.users()) {
-            System.out.println(u.toString());
-
-        }
-
         // Archivo guardar info
-
-        Archive archive = new Archive(controler);
-        // ARCHIVO QUE GUARDA
-        archive.saveUserInfoToFile(archive.readUserInfoFromFile("src\\\\co\\\\edu\\\\uptc\\\\archive\\\\Keep.txt"),
-                "src\\co\\edu\\uptc\\archive\\Keep.txt");
-        controler.llenaInfo();
-
 
         // login
         // valida login
@@ -50,7 +43,7 @@ public class InitialMenuView {
 
         // predeterminado id
         int au = 0;
-        String optionsHome[] = { "Login", "Register", "Visit" };
+        String optionsHome[] = {"Login", "Register", "Visit"};
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -70,12 +63,13 @@ public class InitialMenuView {
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage =
+                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
-            String seleccion = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+            String seleccion = (String) JOptionPane.showInputDialog(null, "Select an option: ",
                     "Opciones de Inicio", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionsHome,
                     optionsHome[0]);
             // para que influya en todos
@@ -89,7 +83,6 @@ public class InitialMenuView {
                 case "Login": {
                     boolean exits = false;
                     int auu = 0;
-
                     String email = "";
                     do {
                         if (auu == 0) {
@@ -116,8 +109,7 @@ public class InitialMenuView {
 
                         // icono de la imagen
 
-                        ImageIcon iconLogin = new ImageIcon(
-                                "src\\co\\edu\\uptc\\image\\login.png");
+                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -127,7 +119,8 @@ public class InitialMenuView {
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin =
+                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
@@ -148,7 +141,8 @@ public class InitialMenuView {
                                         if (userr.getRole() == Role.user) {
                                             /////// aca va la vista del usuaario reguistrado
 
-                                            UserRegisterView ur = new UserRegisterView(adminController, userr);
+                                            UserRegisterView ur = new UserRegisterView(adminController, userr,
+                                                    controler);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
@@ -157,14 +151,13 @@ public class InitialMenuView {
                                         }
                                     } else {
                                         auu = 1;
-                                        JOptionPane.showMessageDialog(null,
-                                                "contraseña incorrecta");
+                                        JOptionPane.showMessageDialog(null, "Incorrect password");
 
                                     }
                                 } else {
                                     auu = 1;
                                     JOptionPane.showMessageDialog(null,
-                                            "no hay usuario reguistrado ");
+                                            "there is no registered user");
 
                                 }
                             } else {
@@ -224,7 +217,8 @@ public class InitialMenuView {
                         panel.setBackground(Color.orange);
 
                         // icono de la imagen
-                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+                        ImageIcon iconChef =
+                                new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image chefImg = iconChef.getImage();
@@ -234,7 +228,8 @@ public class InitialMenuView {
                         newHeight = 150;
 
                         // Redimensionar la imagen
-                        Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image chefImgs =
+                                chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon imgchef = new ImageIcon(chefImgs);
@@ -243,10 +238,12 @@ public class InitialMenuView {
                                 "Ingrese sus datos", JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
 
                         if (resultado == JOptionPane.OK_OPTION) {
-                            firstName = firstNameField.getText();
-                            lastName = lastNameField.getText();
 
-                            email = emailField.getText();
+                            // trim elimin aespacios vacios
+                            firstName = firstNameField.getText().trim();
+                            lastName = lastNameField.getText().trim();
+
+                            email = emailField.getText().trim();
                             String password = new String(passwordField.getPassword());
                             String confirmPassword = new String(confirmPasswordField.getPassword());
 
@@ -256,7 +253,8 @@ public class InitialMenuView {
                                     // valida que el email cumpla con lo minimi
                                     int emailRevi = controler.isEmailUnique(email);
                                     // valida que la contraseña cumpla con lo minimo
-                                    int validePassworMin = controler.validatePassword(confirmPassword);
+                                    int validePassworMin =
+                                            controler.validatePassword(confirmPassword);
                                     // vreificar de que el cooreo no se repita
                                     int uniqueEmail = controler.uniqueEmail(email);
                                     if (emailRevi == 0 && validePassworMin == 0
@@ -282,7 +280,7 @@ public class InitialMenuView {
                                         au = 1;
 
                                         JOptionPane.showMessageDialog(null,
-                                                "la contraseña no comple con lo esperado");
+                                                "the password does not match what was expected");
 
                                     }
 
@@ -309,9 +307,6 @@ public class InitialMenuView {
                     } while (!exits);
                 }
 
-                    // ARCHIVO QUE GUARDA
-                    archive.saveUserInfoToFile(controler.users(), "src\\co\\edu\\uptc\\archive\\Keep.txt");
-
                     break;
                 case "Visit": {
                     ViewVisit viewVisit = new ViewVisit(adminController);
@@ -319,7 +314,7 @@ public class InitialMenuView {
                     break;
                 }
                 case "exit": {
-                    JOptionPane.showMessageDialog(null, "salida con éxito");
+                    JOptionPane.showMessageDialog(null, "successful exit");
                     exit = -1;
                     break;
                 }
