@@ -1,20 +1,16 @@
 package co.edu.uptc.view;
 
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
+import javax.swing.*;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
@@ -31,12 +27,16 @@ public class UserRegisterView {
     private AdminController ad;
     private User user;
     private ControlerInitialMenuView controlerInitialMenuView;
+    private AdminView adminView;
+    private Date dateApp;
 
-    public UserRegisterView(AdminController ad, User user, ControlerInitialMenuView controlerInitialMenuView) {
+    public UserRegisterView(AdminController ad, User user, ControlerInitialMenuView controlerInitialMenuView, AdminView adminView) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.controlerInitialMenuView = controlerInitialMenuView;
         this.user = user;
+        this.dateApp = new Date();
+        this.adminView = adminView;
     }
 
     // Entrada principal
@@ -45,41 +45,84 @@ public class UserRegisterView {
         Buscar buscarSerieImpl = new Buscar(ad);
 
         while (userController.isExit()) {
-
-            String option = JOptionPane.showInputDialog("Multimedia Project\n"
-                    + "[1]. View movie catalog\n" + "[2]. View series catalog\n"
-                    + "[3]. Search for series and movies\n" + "[4]. View my favorites\n"
-                    + "[5]. Account settings\n" + "\nEnter the number of the desired option:");
+// se llama la fecha que el admin coloca
+            this.dateApp = adminView.dateApp();
+            //dar formato a la fecha
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate = dateFormat.format(this.dateApp);
+            String option = JOptionPane.showInputDialog(formattedDate + "\nMultimedia Project\n" + "[1]. View movie catalog\n" + "[2]. View series catalog\n" + "[3]. Search for series and movies\n" + "[4]. View my favorites\n" + "[5]. Account settings\n" + "[6]. Active  suscription\n" + "\nEnter the number of the desired option:");
 
             if (option == null) {
                 break;
             }
-
+// verifica que siga vigente la suscripcion
+            boolean veryfication = verifySubscription(user, this.dateApp);
+            if (veryfication) {
+                user.setActieSusciption("desactive");
+            }
             switch (option) {
                 case "1":
-                    showMovieCatalog();
+
+                    if (user.getActieSusciption().equals("active")) {
+                        showMovieCatalog();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "active suscription", "actie", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     break;
                 case "2":
-                    showSeriesCatalog();
+
+                    if (user.getActieSusciption().equals("active")) {
+                        showSeriesCatalog();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "active suscription", "actie", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     break;
                 case "3":
-                    buscarSerieImpl.buscar();
+
+                    if (user.getActieSusciption().equals("active")) {
+                        buscarSerieImpl.buscar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "active suscription", "actie", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     break;
                 case "4":
-                    showFavorites();
+
+
+                    if (user.getActieSusciption().equals("active")) {
+                        showFavorites();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "active suscription", "actie", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     break;
                 case "5":
-                    showAccountSettings(user);
+
+
+                    if (user.getActieSusciption().equals("active")) {
+                        showAccountSettings(user);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "active suscription", "actie", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break;
+
+
+                case "6":
+                    // Cerrar todas las otras ventanas activas
+                    for (Window window : Window.getWindows()) {
+                        if (window instanceof JFrame || window instanceof JDialog) {
+                            window.dispose();
+
+                        }
+                    }
+                    // Mostrar la configuración de la cuenta
+                    suscriptionActive(user);
+
                     break;
                 case "Back":
                     userController.setExit(false);
-                    JOptionPane.showMessageDialog(null, "Goodbye, come back soon!", "Farewell",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Goodbye, come back soon!", "Farewell", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.", "Error",
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
             }
         }
@@ -106,16 +149,13 @@ public class UserRegisterView {
         ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
         JLabel movieLabel = new JLabel(movieIcon);
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
-                JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog", JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             JOptionPane.showMessageDialog(null, "You have selected the movie: " + selectedMovie);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
-                    "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                    buttons, buttons[0]);
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
 
             switch (choice) {
                 case 0:
@@ -143,11 +183,8 @@ public class UserRegisterView {
                     ReproduccionFrame();
 
                     // Mostrar cuadro de diálogo con opciones después de ver el tráiler
-                    Object[] trailerOptions = { "Back", "Back to Menu" };
-                    int trailerChoice = JOptionPane.showOptionDialog(null,
-                            "What would you like to do?", "Trailer Options",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                            trailerOptions, trailerOptions[0]);
+                    Object[] trailerOptions = {"Back", "Back to Menu"};
+                    int trailerChoice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Trailer Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, trailerOptions, trailerOptions[0]);
 
                     if (trailerChoice == 0) {
                         // Volver a mostrar el cuadro de diálogo de selección de series
@@ -162,8 +199,7 @@ public class UserRegisterView {
                     // Volver al menú anterior
                     showMovieCatalog();
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
@@ -184,16 +220,13 @@ public class UserRegisterView {
         ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
         JLabel seriesLabel = new JLabel(seriesIcon);
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Catalog",
-                JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Catalog", JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             JOptionPane.showMessageDialog(null, "You have selected the series: " + selectedSeries);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
-                    "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                    buttons, buttons[0]);
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
 
             switch (choice) {
                 case 0:
@@ -219,11 +252,8 @@ public class UserRegisterView {
                     ReproduccionFrame();
 
                     // Mostrar cuadro de diálogo con opciones después de ver el tráiler
-                    Object[] trailerOptions = { "Back", "Back to Menu" };
-                    int trailerChoice = JOptionPane.showOptionDialog(null,
-                            "What would you like to do?", "Trailer Options",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                            trailerOptions, trailerOptions[0]);
+                    Object[] trailerOptions = {"Back", "Back to Menu"};
+                    int trailerChoice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Trailer Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, trailerOptions, trailerOptions[0]);
 
                     if (trailerChoice == 0) {
                         // Volver a mostrar el cuadro de diálogo de selección de series
@@ -238,8 +268,7 @@ public class UserRegisterView {
                     showSeriesCatalog();
 
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
@@ -250,10 +279,9 @@ public class UserRegisterView {
     public void showFavorites() {
         boolean backToMenu = false;
         while (!backToMenu) {
-            String[] options = { "Movie", "Serie" };
+            String[] options = {"Movie", "Serie"};
 
-            String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
-                    "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+            String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:", "Favorites Management", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
             if (selectedOption == null) {
                 backToMenu = true;
@@ -264,14 +292,11 @@ public class UserRegisterView {
                 case "Movie":
 
                     // Colocar imagen
-                    ImageIcon movieIcon = new ImageIcon(
-                            "src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+                    ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
                     JLabel movieLabel = new JLabel(movieIcon);
 
-                    String[] movieOptions = { "View favorites", "Add favorite", "Remove favorite" };
-                    String selectedMovieOption = (String) JOptionPane.showInputDialog(null,
-                            movieLabel, "Movie Favorites", JOptionPane.PLAIN_MESSAGE, null,
-                            movieOptions, movieOptions[0]);
+                    String[] movieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String selectedMovieOption = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Favorites", JOptionPane.PLAIN_MESSAGE, null, movieOptions, movieOptions[0]);
 
                     if (selectedMovieOption == null) {
                         backToMenu = true;
@@ -289,8 +314,7 @@ public class UserRegisterView {
                             removeMovieFavorite(user);
                             break;
                         default:
-                            JOptionPane.showMessageDialog(null,
-                                    "Invalid option. Please select a valid option.");
+                            JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                             break;
                     }
                     break;
@@ -300,10 +324,8 @@ public class UserRegisterView {
                     ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
                     JLabel seriesLabel = new JLabel(seriesIcon);
 
-                    String[] serieOptions = { "View favorites", "Add favorite", "Remove favorite" };
-                    String selectedSerieOption = (String) JOptionPane.showInputDialog(null,
-                            seriesLabel, "Series Favorites Management", JOptionPane.PLAIN_MESSAGE,
-                            null, serieOptions, serieOptions[0]);
+                    String[] serieOptions = {"View favorites", "Add favorite", "Remove favorite"};
+                    String selectedSerieOption = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Favorites Management", JOptionPane.PLAIN_MESSAGE, null, serieOptions, serieOptions[0]);
 
                     if (selectedSerieOption == null) {
                         backToMenu = true;
@@ -321,14 +343,12 @@ public class UserRegisterView {
                             removeSeriesFavorite(user);
                             break;
                         default:
-                            JOptionPane.showMessageDialog(null,
-                                    "Invalid option. Please select a valid option.");
+                            JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                             break;
                     }
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                     break;
             }
         }
@@ -347,18 +367,14 @@ public class UserRegisterView {
             seriesNames[i] = user.getListSeriesFavorites().get(i).getName();
         }
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null,
-                "Select a series to view:", "View Series", JOptionPane.PLAIN_MESSAGE, null,
-                seriesNames, seriesNames[0]);
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series to view:", "View Series", JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
 
         if (selectedSeries != null) {
             // Agregar la lógica para ver la información de la serie seleccionada
             JOptionPane.showMessageDialog(null, "Viewing series: " + selectedSeries);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
-                    "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                    buttons, buttons[0]);
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Series Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
 
             switch (choice) {
                 case 0:
@@ -382,17 +398,14 @@ public class UserRegisterView {
                     // Ver el tráiler de la película
                     ReproduccionFrame();
                     // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-                    String[] continueOptions = { "menu" };
-                    JOptionPane.showOptionDialog(null, "back to menu", "Continue",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                            continueOptions, continueOptions[0]);
+                    String[] continueOptions = {"menu"};
+                    JOptionPane.showOptionDialog(null, "back to menu", "Continue", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
@@ -412,18 +425,15 @@ public class UserRegisterView {
             movieNames[i] = user.getListMoviesFavorites().get(i).getName();
         }
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to view:",
-                "View Movie", JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to view:", "View Movie", JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
             // Aquí puedes agregar la lógica para ver la información de la película
             // seleccionada
             JOptionPane.showMessageDialog(null, "Viewing movie: " + selectedMovie);
 
-            String[] buttons = { "View Description", "Watch Trailer", "Back" };
-            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
-                    "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                    buttons, buttons[0]);
+            String[] buttons = {"View Description", "Watch Trailer", "Back"};
+            int choice = JOptionPane.showOptionDialog(null, "What would you like to do?", "Movie Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
 
             switch (choice) {
                 case 0:
@@ -447,17 +457,14 @@ public class UserRegisterView {
                     // Ver el tráiler de la película
                     ReproduccionFrame();
                     // Preguntar si desea realizar otra búsqueda o volver al menú anterior
-                    String[] continueOptions = { "menu" };
-                    JOptionPane.showOptionDialog(null, "back to menu", "Continue",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                            continueOptions, continueOptions[0]);
+                    String[] continueOptions = {"menu"};
+                    JOptionPane.showOptionDialog(null, "back to menu", "Continue", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, continueOptions, continueOptions[0]);
                     break;
                 case 2:
                     // Volver al menú anterior
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
+                    JOptionPane.showMessageDialog(null, "Invalid option. Please select a valid option.");
                     break;
             }
         } else {
@@ -473,9 +480,7 @@ public class UserRegisterView {
             seriesNames.add(serie.getName());
         }
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null,
-                "Select a series to add to favorites:", "Add Series Favorite",
-                JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series to add to favorites:", "Add Series Favorite", JOptionPane.PLAIN_MESSAGE, null, seriesNames.toArray(), seriesNames.get(0));
 
         if (selectedSeries != null) {
             for (Serie serie : seriesCatalog) {
@@ -484,8 +489,7 @@ public class UserRegisterView {
                         user.getListSeriesFavorites().add(serie);
                         user.assignSerieToFavorite(user, serie);
                         controlerInitialMenuView.saveUsers(controlerInitialMenuView.getUsers(), "Users");
-                        JOptionPane.showMessageDialog(null,
-                                "The series has been added to favorites successfully.");
+                        JOptionPane.showMessageDialog(null, "The series has been added to favorites successfully.");
                     } else {
                         JOptionPane.showMessageDialog(null, "The series is already in favorites.");
                     }
@@ -493,8 +497,7 @@ public class UserRegisterView {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null,
-                    "You have canceled adding the series to favorites.");
+            JOptionPane.showMessageDialog(null, "You have canceled adding the series to favorites.");
         }
     }
 
@@ -505,9 +508,7 @@ public class UserRegisterView {
             movieNames.add(movie.getName());
         }
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null,
-                "Select a movie to add to favorites:", "Add Movie Favorite",
-                JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to add to favorites:", "Add Movie Favorite", JOptionPane.PLAIN_MESSAGE, null, movieNames.toArray(), movieNames.get(0));
 
         if (selectedMovie != null) {
             for (Movie movie : movieCatalog) {
@@ -516,8 +517,7 @@ public class UserRegisterView {
                         user.getListMoviesFavorites().add(movie);
                         user.assignMovieToFavorite(user, movie);
                         controlerInitialMenuView.saveUsers(controlerInitialMenuView.getUsers(), "Users");
-                        JOptionPane.showMessageDialog(null,
-                                "The movie has been added to favorites successfully.");
+                        JOptionPane.showMessageDialog(null, "The movie has been added to favorites successfully.");
                     } else {
                         JOptionPane.showMessageDialog(null, "The movie is already in favorites.");
                     }
@@ -549,9 +549,7 @@ public class UserRegisterView {
             seriesNames[i] = seriesFavorites.get(i).getName();
         }
 
-        String selectedSeries = (String) JOptionPane.showInputDialog(null,
-                "Select a series to remove from favorites:", "Remove Series Favorite",
-                JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
+        String selectedSeries = (String) JOptionPane.showInputDialog(null, "Select a series to remove from favorites:", "Remove Series Favorite", JOptionPane.PLAIN_MESSAGE, null, seriesNames, seriesNames[0]);
 
         if (selectedSeries != null) {
             user.deleteSerie(selectedSeries, user);
@@ -561,11 +559,9 @@ public class UserRegisterView {
                 }
                 return false;
             });
-            JOptionPane.showMessageDialog(null,
-                    "The series has been removed from favorites successfully.");
+            JOptionPane.showMessageDialog(null, "The series has been removed from favorites successfully.");
         } else {
-            JOptionPane.showMessageDialog(null,
-                    "You have canceled removing the series from favorites.");
+            JOptionPane.showMessageDialog(null, "You have canceled removing the series from favorites.");
         }
     }
 
@@ -588,9 +584,7 @@ public class UserRegisterView {
             movieNames[i] = movieFavorites.get(i).getName();
         }
 
-        String selectedMovie = (String) JOptionPane.showInputDialog(null,
-                "Select a movie to remove from favorites:", "Remove Movie Favorite",
-                JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
+        String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie to remove from favorites:", "Remove Movie Favorite", JOptionPane.PLAIN_MESSAGE, null, movieNames, movieNames[0]);
 
         if (selectedMovie != null) {
             user.deleteMovie(selectedMovie, user);
@@ -602,11 +596,9 @@ public class UserRegisterView {
 
                 return false;
             });
-            JOptionPane.showMessageDialog(null,
-                    "The movie has been removed from favorites successfully.");
+            JOptionPane.showMessageDialog(null, "The movie has been removed from favorites successfully.");
         } else {
-            JOptionPane.showMessageDialog(null,
-                    "You have canceled removing the movie from favorites.");
+            JOptionPane.showMessageDialog(null, "You have canceled removing the movie from favorites.");
         }
     }
 
@@ -669,8 +661,7 @@ public class UserRegisterView {
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon imgchef = new ImageIcon(chefImgs);
 
-            int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos",
-                    JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
+            int resultado = JOptionPane.showConfirmDialog(null, panel, "Ingrese sus datos", JOptionPane.OK_CANCEL_OPTION, 1, imgchef);
 
             if (resultado == JOptionPane.OK_OPTION) {
                 firstName = firstNameField.getText();
@@ -680,8 +671,7 @@ public class UserRegisterView {
                 String password = new String(passwordField.getPassword());
                 String confirmPassword = new String(confirmPasswordField.getPassword());
 
-                if (!firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty()
-                        && !confirmPassword.isEmpty()) {
+                if (!firstName.isEmpty() && !lastName.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty()) {
                     if (password.equals(confirmPassword)) {
                         // valida que el email cumpla con lo minimi
                         int emailRevi;
@@ -704,8 +694,7 @@ public class UserRegisterView {
                         int uniqueEmail = controler.uniqueEmailUserRegister(email, user);
                         if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
                             // crear usuario
-                            controler.user(
-                                    new User(firstName, lastName, email, password, Role.user));
+                            controler.user(new User(firstName, lastName, email, password, Role.user));
 
                             // modificar al la lista de usuarios
                             user.setLastName(lastName);
@@ -727,8 +716,7 @@ public class UserRegisterView {
                         } else if (validePassworMin == 3) {
                             au = 1;
 
-                            JOptionPane.showMessageDialog(null,
-                                    "la contraseña no comple con lo esperado");
+                            JOptionPane.showMessageDialog(null, "la contraseña no comple con lo esperado");
 
                         }
 
@@ -741,8 +729,7 @@ public class UserRegisterView {
                     JOptionPane.showMessageDialog(null, "Fill in all the fields correctly");
                 }
 
-                int option = JOptionPane.showConfirmDialog(null, "Do you want to modify something else?",
-                        "Continue?", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Do you want to modify something else?", "Continue?", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.NO_OPTION) {
                     exits = true;
                 }
@@ -760,7 +747,7 @@ public class UserRegisterView {
             JProgressBar progressBar = new JProgressBar(0, 100);
             progressBar.setIndeterminate(false);
             progressBar.setStringPainted(true);
-            pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+            pane.setMessage(new Object[]{"Reproduciendo", progressBar});
 
             JDialog dialog = pane.createDialog("Reproduciendo");
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -785,4 +772,128 @@ public class UserRegisterView {
         });
     }
 
+
+    public void suscriptionActive(User user) {
+        user.setDateDeSubscription(new Date());
+        int attempts = 0;
+        boolean exit = false;
+        String email = user.getEmail();
+        if (user.getActieSusciption().equals("desactive")) {
+            do {
+                if (attempts == 0) {
+                    email = user.getEmail();
+                }
+
+                // Crear panel principal y panel de entrada
+                JPanel panel = new JPanel(new BorderLayout());
+                JPanel inputPanel = new JPanel(new GridLayout(4, 2, 5, 5)); // Add horizontal and vertical spacing
+
+                // Crear campos de entrada
+                JTextField emailField = new JTextField(email, 20);
+                JPasswordField passwordField = new JPasswordField(20);
+                JTextField cardNumberField = new JTextField(20);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = dateFormat.format(controlerInitialMenuView.dateFinSuscripcion(user));
+                JTextField expiryDateField = new JTextField(formattedDate, 20);
+                JPasswordField cvvField = new JPasswordField(20);
+
+                // Deshabilitar la edición para los campos de correo electrónico y fecha de vencimiento
+                emailField.setEditable(false);
+                expiryDateField.setEditable(false);
+
+                // Añadir bordes al panel de entrada
+                inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add margin around the panel
+
+                // Añadir bordes y espacio a los campos de entrada
+                addTextFieldWithBorder(inputPanel, "Email:", emailField);
+                addTextFieldWithBorder(inputPanel, "Password:", passwordField);
+                addTextFieldWithBorder(inputPanel, "Card Number:", cardNumberField);
+                addTextFieldWithBorder(inputPanel, "Expiry Date (MM/YY):", expiryDateField);
+                addTextFieldWithBorder(inputPanel, "CVV:", cvvField);
+
+
+                panel.add(inputPanel, BorderLayout.CENTER);
+                // Panel para la imagen de pago
+                ImageIcon paymentImage = new ImageIcon("src/co/edu/uptc/image/pago.gif");
+                JLabel imageLabel = new JLabel(paymentImage);
+                panel.add(imageLabel, BorderLayout.WEST);
+
+                // Añadir etiqueta para el monto total a pagar
+                JLabel totalLabel = new JLabel("Total a pagar: $20,000");
+                panel.add(totalLabel, BorderLayout.SOUTH);
+
+                // Diálogo modal para ingresar datos
+                int result = JOptionPane.showConfirmDialog(null, panel, "Proceso de Pago en Línea", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                if (result == JOptionPane.OK_OPTION) {
+
+                    email = emailField.getText();
+                    String password = new String(passwordField.getPassword());
+                    String cardNumber = cardNumberField.getText();
+                    String expiryDate = expiryDateField.getText();
+                    String cvv = new String(cvvField.getPassword());
+
+                    if (!email.isEmpty() && !password.isEmpty() && !cardNumber.isEmpty() && !expiryDate.isEmpty() && !cvv.isEmpty()) {
+                        User foundUser = controlerInitialMenuView.findUserByEmail(email);
+                        if (foundUser != null) {
+                            if (foundUser.getPassword().equals(password)) {
+                                if (foundUser.getRole() == Role.user) {
+                                    // Verificar información de la tarjeta de crédito/débito
+                                    // Proceso de activación de suscripción
+                                    // foundUser.setSubscriptionActive(true);
+                                    // controlerInitialMenuView.updateUser(foundUser);
+                                    JOptionPane.showMessageDialog(null, "Payment Successful! Your subscription has been activated.");
+                                    exit = true;
+                                    // poner la fecha fin de la suscripcion al usuario
+                                    user.setFinDateDeSubscription(controlerInitialMenuView.dateFinSuscripcion(user));
+
+                                    // enviar la activacion
+                                    user.setActieSusciption("active");
+                                    //guardar en archivos users
+                                    controlerInitialMenuView.saveInfoUser();
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Incorrect Password", "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Incorrect Password", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "User not registered", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    exit = true;
+                }
+                attempts++;
+            } while (!exit);
+        } else {
+            JOptionPane.showMessageDialog(null, "ya tinenes suscripcion activa.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
+
+    // Método para añadir un campo de texto con borde y espacio
+    private void addTextFieldWithBorder(JPanel panel, String label, JTextField textField) {
+        JPanel fieldPanel = new JPanel(new BorderLayout());
+        fieldPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Añadimos un margen alrededor del campo
+        fieldPanel.add(new JLabel(label), BorderLayout.NORTH);
+        fieldPanel.add(textField, BorderLayout.CENTER);
+        panel.add(fieldPanel);
+    }
+
+
+    // metodo que verifica si la fecha esta todavia acrivada la suscripcion
+
+    public boolean verifySubscription(User user, Date dateApp) {
+
+        Date dateUser = user.getFinDateDeSubscription();
+        return dateUser.before(dateApp);
+
+
+    }
 }
+

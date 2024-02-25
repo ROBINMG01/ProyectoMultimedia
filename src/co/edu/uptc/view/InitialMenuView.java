@@ -23,6 +23,7 @@ public class InitialMenuView {
     static AdminController adminController = new AdminController();
 
     public static void main(String[] args) {
+        AdminView av = new AdminView(adminController, controler);
         try {
             adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
             controler.getUsers().addAll(controler.loadUsers("Users"));
@@ -142,11 +143,11 @@ public class InitialMenuView {
                                             /////// aca va la vista del usuaario reguistrado
 
                                             UserRegisterView ur = new UserRegisterView(adminController, userr,
-                                                    controler);
+                                                    controler,av);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
-                                            AdminView av = new AdminView(adminController, controler);
+
                                             av.menuAdmin();
                                         }
                                     } else {
