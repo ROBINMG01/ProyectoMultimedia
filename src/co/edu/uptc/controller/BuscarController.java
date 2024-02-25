@@ -2,7 +2,6 @@ package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
@@ -152,9 +151,9 @@ public class BuscarController {
                                 JProgressBar progressBar = new JProgressBar(0, 100);
                                 progressBar.setIndeterminate(false);
                                 progressBar.setStringPainted(true);
-                                pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+                                pane.setMessage(new Object[] { "Playing", progressBar });
 
-                                JDialog dialog = pane.createDialog("Reproduciendo");
+                                JDialog dialog = pane.createDialog("Playing");
                                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
                                 Timer timer = new Timer(1000, e -> {
