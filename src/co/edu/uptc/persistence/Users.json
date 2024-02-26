@@ -1,5 +1,4 @@
 [
-  
   {
     "firstName": "1",
     "lastName": "1",
@@ -94,5 +93,17 @@
       }
     ],
     "listSeriesFavorites": []
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 7:23:46 PM",
+    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
+    "actieSusciption": "desactive"
   }
 ]
