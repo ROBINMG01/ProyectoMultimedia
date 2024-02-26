@@ -8,3 +8,5 @@ Camilo,Rodriguez,camilo@gmail.com,1,user
 1,1,1@gmail.com,Andres1#,user
 Felipe,rrrr,felipe@gmail.com,Rf12345@,user
 1,1,@gmail.com,Ca12345#,user
+FELIPE,GRANADOS,G@gmail.com,J12345d@,user
+FELIPE,MOLINA,g@gmail.com,J12345d@,user

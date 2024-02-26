@@ -19,6 +19,7 @@ public class AdminController {
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
+    private ArrayList<String> namesSesons;
     private ArrayList<Season> listSeasons;
     private ArrayList<Chapter> listChapters;
     private Utilitaries utilitaries;
@@ -184,6 +185,19 @@ public class AdminController {
         return -1;
     }
 
+    public int searchSeason(String name){
+        for (int i = 0; i < listSeries.size(); i++) {
+            if (listSeries.get(i).getName().equals(name)) {
+                for (int j = 0; j < listSeries.get(i).getListSeason().size(); j++) {
+                    if (listSeries.get(i).getListSeason().get(i).getName().equals(name)) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
             ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
@@ -265,11 +279,18 @@ public class AdminController {
     // ROBIN
     public ArrayList<String> namesSeries() {
         namesSeries = new ArrayList<>();
-        System.out.println(listSeries.size());
         for (int i = 0; i < listSeries.size(); i++) {
             namesSeries.add(listSeries.get(i).getName());
         }
         return namesSeries;
+    }
+
+    public ArrayList<String> namesSesons(int position) {
+        namesSesons = new ArrayList<>();
+        for (int i = 0; i < listSeries.get(position).getListSeason().size(); i++) {
+            namesSesons.add(listSeries.get(position).getListSeason().get(i).getName());
+        }
+        return namesSesons;
     }
 
     public ArrayList<Movie> getListMovies() {

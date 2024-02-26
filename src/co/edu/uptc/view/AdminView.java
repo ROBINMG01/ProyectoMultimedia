@@ -550,22 +550,38 @@ public class AdminView {
     }
 
     public void addSeason() {
-        String name = "";
-        String description = "";
+        String nameSeason = "";
+        String descriptionSeason = "";
+        String nameChapter = "";
+        String durationChapter = "";
+        int duration2 = 0;
         int ver = 0;
         boolean exit = false;
         boolean exit2 = false;
         int option = 0;
-        int duration2 = 0;
         String selectedaction = "";
         String showNamesSeries[];
+        String selectedaction2 = "";
+        String showNamesSeasons2[];
         int position = 0;
+        int position2 = 0;
+
+        /*
+         * String nameSeason, String descriptionSeason,
+         * String nameChapter, int durationChapter
+         */
 
         ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
         ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterSerie.getImage();
+        Image rAuthor = iconAuthor.getImage();
+        Image rActor = iconActor.getImage();
+        Image rChapter = iconChapter.getImage();
         Image rUpdate = iconUpdate.getImage();
 
         // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
@@ -573,8 +589,8 @@ public class AdminView {
         newHeight = 100;
 
         // Redimensionar la imagen
-        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
         Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
         ImageIcon a = new ImageIcon(iMovie);
@@ -585,120 +601,82 @@ public class AdminView {
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
             position = ac.searchSeries(selectedaction);
-            if (selectedaction != null) {
-                name = ac.showListSeries().get(position).getName();
-                description = ac.showListSeries().get(position).getDescription();
-                if (ver == 1) {
-                    name = "";
-                    description = "";
-                }
-                do {
-                    JPanel panel = new JPanel(new GridLayout(2, 2));
-                    JTextField nameField = new JTextField(name, 15);
-                    JTextField descriptionField = new JTextField(description, 15);
 
-                    panel.add(new JLabel("Name of the serie"));
-                    panel.add(nameField);
-                    panel.add(new JLabel("Description"));
-                    panel.add(descriptionField);
-
-                    int result = JOptionPane.showConfirmDialog(null, panel, "Dates Season", 0, 0, a);
-
-                    if (result == JOptionPane.OK_OPTION) {
-                        name = nameField.getText();
-                        description = descriptionField.getText();
-
-                        if (name.isEmpty() || description.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Failed to add season");
-                            exit = verification();
-                            ver = 0;
-                        } else {
-                            ac.addSeason(name, description, position);
-                            JOptionPane.showMessageDialog(null, "Season added succesfully");
-                            exit = true;
-                            exit2 = true;
-                        }
-                        /*
-                         * if (duration2 != 0) {
-                         * option = JOptionPane.showConfirmDialog(null,
-                         * "Do you want to add another season?", "Continue?",
-                         * JOptionPane.YES_NO_OPTION);
-                         * if (option == JOptionPane.OK_OPTION) {
-                         * ver = 1;
-                         * exit = true;
-                         * exit2 = false;
-                         * } else {
-                         * exit = true;
-                         * exit2 = true;
-                         * }
-                         * }
-                         */
-                    } else {
-                        exit = true;
-                    }
-                } while (!exit);
-            } else {
-                exit = true;
-                exit2 = true;
+            showNamesSeasons2 = ac.namesSesons(position).toArray(new String[tamañoArray(0)]);
+            selectedaction2 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Season", JOptionPane.QUESTION_MESSAGE, u, showNamesSeasons2, showNamesSeasons2[0]);
+            position2 = ac.searchSeason(selectedaction2);
+            if (ver == 1) {
+                nameSeason = "";
+                descriptionSeason = "";
+                nameChapter = "";
+                durationChapter = "";
             }
+            do {
+                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JTextField nameSField = new JTextField(nameSeason);
+                JTextField descriptionSField = new JTextField(descriptionSeason);
+                JTextField nameCField = new JTextField(nameChapter);
+                JTextField durationCField = new JTextField(durationChapter);
+
+                panel.add(new JLabel("Name Season"));
+                panel.add(nameSField);
+                panel.add(new JLabel("Description Season"));
+                panel.add(descriptionSField);
+                panel.add(new JLabel("Name Chapter"));
+                panel.add(nameCField);
+                panel.add(new JLabel("Duration Chapter"));
+                panel.add(durationCField);
+
+                int result = JOptionPane.showConfirmDialog(null, panel, "Add Season", 0, 0, a);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    nameSeason = nameSField.getText();
+                    descriptionSeason = descriptionSField.getText();
+                    nameChapter = nameCField.getText();
+                    durationChapter = durationCField.getText();
+
+                    if (nameChapter.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Failed to add Season");
+                        exit = verification();
+                        ver = 0;
+                    } else {
+                        try {
+                            duration2 = Integer.parseInt(durationChapter);
+                            /*
+                             * String nameSeason, String descriptionSeason,
+                             * String nameChapter, int durationChapter
+                             */
+                                ac.addSeason(position, position2, nameSeason, descriptionSeason, nameChapter, duration2);
+                                JOptionPane.showMessageDialog(null, "Serie added sucessfully");
+                                exit = true;
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null,
+                                    "No input a number in duration season or duration chapter");
+                            exit = false;
+                        }
+                        if (duration2 != 0) {
+                            option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to add another serie?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                ver = 1;
+                                exit = true;
+                                exit2 = false;
+                            } else {
+                                exit = true;
+                                exit2 = true;
+                            }
+                        }
+                    }
+                } else {
+                    exit = true;
+                    exit2 = true;
+                }
+            } while (!exit);
         } while (!exit2);
 
-        /*
-         * do {
-         * if (ver == 1) {
-         * name = "";
-         * description = "";
-         * }
-         * do {
-         * JPanel panel = new JPanel(new GridLayout(2, 2));
-         * JTextField nameField = new JTextField(name);
-         * JTextField descriptionField = new JTextField(description);
-         * 
-         * panel.add(new JLabel("Name"));
-         * panel.add(nameField);
-         * panel.add(new JLabel("Description"));
-         * panel.add(descriptionField);
-         * 
-         * int result = JOptionPane.showConfirmDialog(null, panel, "Add Season", 0, 0,
-         * a);
-         * 
-         * if (result == JOptionPane.OK_OPTION) {
-         * name = nameField.getText();
-         * description = descriptionField.getText();
-         * 
-         * if (name.isEmpty() || description.isEmpty()) {
-         * JOptionPane.showMessageDialog(null, "Failed to add season");
-         * exit = verification();
-         * ver = 0;
-         * }
-         * if (ac.addSeason(name, description, position)) {
-         * JOptionPane.showMessageDialog(null, "Season added sucessfully");
-         * exit = true;
-         * } else {
-         * JOptionPane.showMessageDialog(null,
-         * "The series was not added because there are no chapters.");
-         * exit = verification();
-         * ver = 0;
-         * }
-         * if (duration2 != 0) {
-         * option = JOptionPane.showConfirmDialog(null,
-         * "Do you want to add another serie?", "Continue?",
-         * JOptionPane.YES_NO_OPTION);
-         * if (option == JOptionPane.OK_OPTION) {
-         * ver = 1;
-         * exit = true;
-         * exit2 = false;
-         * } else {
-         * exit = true;
-         * exit2 = true;
-         * }
-         * }
-         * }
-         * exit = true;
-         * exit2 = true;
-         * } while (!exit);
-         * } while (!exit2);
-         */
+        
     }
 
     public void showMovies() {
@@ -1227,8 +1205,10 @@ public class AdminView {
     public int tamañoArray(int num) {
         if (num == 1) {
             return ac.namesMovies().size();
+        }else if (num == 2) {
+            return ac.namesSeries().size();
         }
-        return ac.namesSeries().size();
+        return ac.namesSesons(num).size();
     }
 
     public ArrayList<String> arrayAuthors() {
