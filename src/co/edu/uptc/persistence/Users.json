@@ -1,4 +1,5 @@
 [
+  
   {
     "firstName": "1",
     "lastName": "1",
@@ -6,7 +7,10 @@
     "password": "1",
     "role": "user",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 10:31:10 AM",
+    "finDateDeSubscription": "Mar 26, 2024, 10:31:10 AM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "1",
@@ -15,156 +19,51 @@
     "password": "1",
     "role": "user",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 10:28:47 AM",
+    "finDateDeSubscription": "Feb 25, 2024, 10:28:35 AM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "ADMN",
     "lastName": "Admin",
-    "email": "A",
+    "email": "Admin@gmail.com",
     "password": "123",
     "role": "admin",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 10:28:35 AM",
+    "finDateDeSubscription": "Feb 25, 2024, 10:28:35 AM",
+    "actieSusciption": "desactive"
   },
   {
-    "firstName": "Juan",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 10:30:58 AM",
+    "finDateDeSubscription": "Feb 25, 2024, 10:30:58 AM",
+    "actieSusciption": "desactive"
   },
   {
-    "firstName": "2",
-    "lastName": "2",
-    "email": "2",
-    "password": "2",
-    "role": "user",
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
+    "role": "admin",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "Juan David",
-    "lastName": "Barrera Perez",
-    "email": "juan@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "Samuel",
-    "lastName": "Gonzales",
-    "email": "samuel@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "q",
-    "lastName": "q",
-    "email": "q@gmail.com",
-    "password": "12345Jd@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "Camilo",
-    "lastName": "Rodriguez",
-    "email": "camilo@gmail.com",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1@gmail.com",
-    "password": "Andres1#",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "Felipe",
-    "lastName": "rrrr",
-    "email": "felipe@gmail.com",
-    "password": "Rf12345@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
+    "finDateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "Juan",
     "lastName": "Barrera",
-    "email": "juann@gmail.com",
+    "email": "Juan@gmail.com",
     "password": "J12345d@",
     "role": "user",
     "listMoviesFavorites": [],
@@ -194,150 +93,6 @@
         "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
       }
     ],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "      ",
-    "lastName": "asdasd",
-    "email": "            @gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "       ",
-    "lastName": "aa",
-    "email": "aaaa@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "felipe",
-    "lastName": "pinicho",
-    "email": "f@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "J",
-    "lastName": "J",
-    "email": "j@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "q",
-    "lastName": "q",
-    "email": "qqqq@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "JUAN",
-    "lastName": "BARRERA",
-    "email": "juand@gmail.com",
-    "password": "j12345D@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "felipe",
-    "lastName": "sdfsdfs",
-    "email": "Jas@gmail.com",
-    "password": "j12345D@",
-    "role": "user",
-    "listMoviesFavorites": [],
     "listSeriesFavorites": []
   }
 ]
