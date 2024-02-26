@@ -94,7 +94,7 @@ public class ControlerInitialMenuView extends UserRegister {
 
     // login buscar que el usuario por email
     public User findUserByEmail(String targetEmail) {
-        for (User user : users  ) {
+        for (User user : users) {
             if (user.getEmail().equals(targetEmail)) {
                 return user; // Se ha encontrado el usuario
             }

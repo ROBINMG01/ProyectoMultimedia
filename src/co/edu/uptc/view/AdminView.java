@@ -53,7 +53,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iSelection);
 
         do {
-            String[] options = {"Movie", "Serie", "userRegisters", "Set the date of the day","Exit"};
+            String[] options = { "Movie", "Serie", "userRegisters", "Set the date of the day", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -98,7 +98,7 @@ public class AdminView {
         switch (selectedaction) {
             case "Movie":
                 do {
-                    String[] options = {"Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit"};
+                    String[] options = { "Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit" };
                     String options2 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
@@ -117,7 +117,7 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 = {"Add Serie", "View Series", "Update Series", "deleteSeries", "Exit"};
+                    String[] options3 = { "Add Serie", "View Series", "Update Series", "deleteSeries", "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
@@ -148,7 +148,7 @@ public class AdminView {
                     this.dateApp = dateFormat.parse(dateString);
 
                     // Mostrar la fecha en la consola
-                    System.out.println("Fecha introducida: " +  this.dateApp);
+                    System.out.println("Fecha introducida: " + this.dateApp);
                 } catch (ParseException e) {
                     // Manejar errores de formato de fecha
                     System.err.println("Formato de fecha incorrecto: " + e.getMessage());

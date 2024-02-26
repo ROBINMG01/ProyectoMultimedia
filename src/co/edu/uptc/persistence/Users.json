@@ -1,13 +1,14 @@
 [
-  {     "firstName": "1",
+  {
+    "firstName": "1",
     "lastName": "1",
     "email": "1",
     "password": "1",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:31:10 AM",
-    "finDateDeSubscription": "Mar 26, 2024, 10:31:10 AM",
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
     "actieSusciption": "desactive"
   },
   {
@@ -18,8 +19,20 @@
     "role": "admin",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "A",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
     "actieSusciption": "desactive"
   },
   {
@@ -29,7 +42,10 @@
     "password": "J12345d@",
     "role": "user",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "Andres",
@@ -55,7 +71,10 @@
         "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
       }
     ],
-    "listSeriesFavorites": []
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "1",
@@ -65,8 +84,8 @@
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 8:15:29 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 8:15:29 PM",
-    "actieSusciption": "active"
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
   }
 ]

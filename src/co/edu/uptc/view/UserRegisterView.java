@@ -60,7 +60,7 @@ public class UserRegisterView {
             // se llama la fecha que el admin coloca
             this.dateApp = adminView.dateApp();
             // dar formato a la fecha
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
             String formattedDate = dateFormat.format(this.dateApp);
             String option = JOptionPane.showInputDialog(formattedDate + "\nMultimedia Project\n"
                     + "[1]. View movie catalog\n" + "[2]. View series catalog\n" + "[3]. Search for series and movies\n"
@@ -834,7 +834,7 @@ public class UserRegisterView {
                 JTextField emailField = new JTextField(email, 20);
                 JPasswordField passwordField = new JPasswordField(20);
                 JTextField cardNumberField = new JTextField(20);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
                 String formattedDate = dateFormat.format(controlerInitialMenuView.dateFinSuscripcion(user));
                 JTextField expiryDateField = new JTextField(formattedDate, 20);
                 JPasswordField cvvField = new JPasswordField(20);
