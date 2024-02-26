@@ -140,7 +140,7 @@ public class InitialMenuView {
                                             /////// aca va la vista del usuaario reguistrado
 
                                             UserRegisterView ur = new UserRegisterView(adminController, userr,
-                                                    controler,av);
+                                                    controler, av);
 
                                             ur.userRegisterView();
                                         } else if (userr.getRole() == Role.admin) {
@@ -171,7 +171,7 @@ public class InitialMenuView {
                     } while (!exits);
                 }
 
-                break;
+                    break;
 
                 case "Register": {
                     boolean exits = false;
@@ -216,8 +216,8 @@ public class InitialMenuView {
 
                         ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
                         Image chefImg = iconChef.getImage();
-                         newWidth = 150;
-                         newHeight = 150;
+                        newWidth = 150;
+                        newHeight = 150;
                         Image chefImgs = chefImg.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
                         ImageIcon imgchef = new ImageIcon(chefImgs);
 
@@ -271,7 +271,6 @@ public class InitialMenuView {
                     } while (!exits);
                     break;
                 }
-
 
                 case "Visit": {
                     ViewVisit viewVisit = new ViewVisit(adminController);

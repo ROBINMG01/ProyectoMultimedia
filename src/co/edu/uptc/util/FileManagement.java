@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import co.edu.uptc.model.Movie;
@@ -21,16 +20,16 @@ public class FileManagement {
     private File file;
     public static final String filePath = "src\\co\\edu\\uptc\\persistence\\";
     public static final String fileExtension = ".json";
-
-    // Compliant format for ISO 8601 (replace with your preferred format)
-    private static final String dateFormatString = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    // Formato de fecha para la deserialización (ejemplo para ISO 8601)
 
     public boolean writeJsonToFile(String fileName, Object obj) {
         try {
             // Crea un Gson para la serialización a JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
             // Crea un FileWriter sobreescribiendo el archivo existente
-            FileWriter writer = new FileWriter(filePath + fileName + fileExtension);
+            FileWriter writer = new FileWriter(filePath + fileName + ".json");
+
             // Escribir el objeto JSON al archivo
             gson.toJson(obj, writer);
             writer.close();
@@ -59,15 +58,14 @@ public class FileManagement {
         file = new File(filePath + fileName + fileExtension);
         List<User> userAux = new ArrayList<>();
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<List<User>>() {
+            Type listType = new TypeToken<List<Movie>>() {
             }.getType();
-            // Utiliza el formato de fecha personalizado al deserializar
-            Gson gson = new GsonBuilder().setDateFormat(dateFormatString).create();
-            userAux = gson.fromJson(reader, listType);
-        } catch (IOException | JsonSyntaxException e) {
+            userAux = new Gson().fromJson(reader, listType);
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
         return userAux;
     }
+
 }

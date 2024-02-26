@@ -1,8 +1,5 @@
 package co.edu.uptc.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,9 +28,7 @@ public class User {
         this.dateDeSubscription = new Date();
         this.finDateDeSubscription = new Date(0);
 
-
     }
-
 
     public User() {
         this.listMoviesFavorites = new ArrayList<>();
