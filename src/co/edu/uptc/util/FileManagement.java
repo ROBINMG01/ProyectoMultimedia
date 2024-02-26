@@ -58,7 +58,7 @@ public class FileManagement {
         file = new File(filePath + fileName + fileExtension);
         List<User> userAux = new ArrayList<>();
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<List<Movie>>() {
+            Type listType = new TypeToken<List<User>>() {
             }.getType();
             userAux = new Gson().fromJson(reader, listType);
         } catch (IOException e) {
