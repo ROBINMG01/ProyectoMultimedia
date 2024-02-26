@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import co.edu.uptc.model.Movie;
@@ -20,6 +21,9 @@ public class FileManagement {
     private File file;
     public static final String filePath = "src\\co\\edu\\uptc\\persistence\\";
     public static final String fileExtension = ".json";
+
+    // Compliant format for ISO 8601 (replace with your preferred format)
+    private static final String dateFormatString = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
     public boolean writeJsonToFile(String fileName, Object obj) {
         try {
@@ -57,8 +61,10 @@ public class FileManagement {
         try (Reader reader = new FileReader(file)) {
             Type listType = new TypeToken<List<User>>() {
             }.getType();
-            userAux = new Gson().fromJson(reader, listType);
-        } catch (IOException e) {
+            // Utiliza el formato de fecha personalizado al deserializar
+            Gson gson = new GsonBuilder().setDateFormat(dateFormatString).create();
+            userAux = gson.fromJson(reader, listType);
+        } catch (IOException | JsonSyntaxException e) {
             System.out.println(e.getMessage());
         }
 
