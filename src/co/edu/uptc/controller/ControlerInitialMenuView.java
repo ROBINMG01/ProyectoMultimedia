@@ -2,7 +2,6 @@ package co.edu.uptc.controller;
 
 import java.util.*;
 
-import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 import co.edu.uptc.model.UserRegister;
 import co.edu.uptc.util.FileManagement;
@@ -22,18 +21,13 @@ public class ControlerInitialMenuView extends UserRegister {
     private static FileManagement fileManagement;
 
     // se crea el administrador
-    public void createAdmin() {
-        User admin = new User("ADMN", "Admin", "Admin@gmail.com", "123", Role.admin);
-        users.add(admin);
-    }
 
     // inicializar el array de usuarios
     public ControlerInitialMenuView() {
         // usuario predefinidoooooooooooooooooooooooo
         fileManagement = new FileManagement();
         this.users = new ArrayList<User>();
-        User uPre = new User("1", "1", "1", "1", Role.user);
-        users.add(uPre);
+
     }
 
     // AGREGA USUARIO A LA LISTA

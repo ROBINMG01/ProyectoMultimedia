@@ -1,99 +1,5 @@
 [
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 2:28:44 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 2:27:33 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:56:16 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 1:56:16 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:38:16 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 1:38:16 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:33:58 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:18:33 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 1:18:33 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:04:50 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:04:50 AM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:49:23 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 10:49:23 AM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 10:37:27 AM",
-    "actieSusciption": "desactive"
-  },
+  
   {
     "firstName": "1",
     "lastName": "1",
@@ -161,183 +67,32 @@
     "password": "J12345d@",
     "role": "user",
     "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:05:17 AM",
-    "finDateDeSubscription": "Mar 26, 2024, 10:49:43 AM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:49:23 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 10:49:23 AM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:04:50 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:04:50 AM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "camilo",
-    "lastName": "x",
-    "email": "Cami@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:06:19 AM",
-    "finDateDeSubscription": "Mar 26, 2024, 11:06:19 AM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:17:33 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 1:17:33 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:33:58 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "juan",
-    "lastName": "n",
-    "email": "nn@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:34:19 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:34:54 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 1:38:04 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
     "listSeriesFavorites": []
   },
   {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "q",
-    "lastName": "q",
-    "email": "qqqq@gmail.com",
-    "password": "J12345d@",
+    "firstName": "Andres",
+    "lastName": "Morales",
+    "email": "Andres@gmail.com",
+    "password": "Ca123456789#",
     "role": "user",
-    "listMoviesFavorites": [],
+    "listMoviesFavorites": [
+      {
+        "name": "El origen",
+        "gender": "Ficcion",
+        "duration": 120,
+        "listAuthors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "listActors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+      }
+    ],
     "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "JUAN",
-    "lastName": "BARRERA",
-    "email": "juand@gmail.com",
-    "password": "j12345D@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": []
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 2:26:20 PM",
-    "finDateDeSubscription": "Dec 31, 1969, 7:00:00 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "felipe",
-    "lastName": "pipi",
-    "email": "pipo@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 2:29:36 PM",
-    "finDateDeSubscription": "Mar 26, 2024, 2:29:36 PM",
-    "actieSusciption": "active"
   }
 ]

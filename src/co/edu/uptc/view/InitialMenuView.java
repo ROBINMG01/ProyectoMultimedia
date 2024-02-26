@@ -32,7 +32,6 @@ public class InitialMenuView {
         }
 
         // crear el admin
-        controler.createAdmin();
 
         // carga info de usuarios por archivos
 
@@ -44,7 +43,7 @@ public class InitialMenuView {
 
         // predeterminado id
         int au = 0;
-        String optionsHome[] = {"Login", "Register", "Visit"};
+        String optionsHome[] = { "Login", "Register", "Visit" };
 
         // Repetir el menu de inicio
         int exit = 0;
@@ -64,8 +63,7 @@ public class InitialMenuView {
             int newHeight = 250;
 
             // Redimensionar la imagen
-            Image resizedImage =
-                    originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             // Crear un nuevo ImageIcon a partir de la imagen redimensionada
             ImageIcon resizedIcon = new ImageIcon(resizedImage);
@@ -120,8 +118,7 @@ public class InitialMenuView {
                         newHeight = 100;
 
                         // Redimensionar la imagen
-                        Image dlogin =
-                                login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                        Image dlogin = login.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
                         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
                         ImageIcon a = new ImageIcon(dlogin);
