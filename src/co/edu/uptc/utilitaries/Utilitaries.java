@@ -20,17 +20,17 @@ public class Utilitaries {
 
                 listMovies.add(new Movie("Avengers: Endgame", "Los vengadores defenderan la realidad", 195,
                                 new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
-                                new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), "Ficcion"));
+                                new ArrayList<>(Arrays.asList("Sebastian", "Roberto", "Esperanza")), "Ficcion"));
                 listMovies.add(new Movie("El caballero de la noche",
                                 "una nueva entrega de nuestro superhéroe enmascarado", 120,
-                                new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
-                                new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), "Accion"));
+                                new ArrayList<>(Arrays.asList("Julian", "Emmanuel", "Carolina")),
+                                new ArrayList<>(Arrays.asList("Brus Waney", "Alfred", "Sandra")), "Accion"));
                 listMovies.add(new Movie("El origen", "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse", 120,
-                                new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
+                                new ArrayList<>(Arrays.asList("Camila", "Andres", "Felipe")),
                                 new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), "Ficcion"));
                 listMovies.add(new Movie("Tiempos Violentos", "Tiempos Violentos narra tres historias intercaladas",
-                                120, new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
-                                new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), "Drama"));
+                                120, new ArrayList<>(Arrays.asList("Camilo", "Kevin", "Wilmar")),
+                                new ArrayList<>(Arrays.asList("Sebastian", "Ana", "Maria")), "Drama"));
                 listMovies.add(new Movie("Fight Club", "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
                                 120, new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")),
                                 new ArrayList<>(Arrays.asList("Robert", "Hemworth", "Carolina")), "Accion"));
@@ -59,6 +59,14 @@ public class Utilitaries {
                 listSeries.add(new Serie("Strange Things", "Es una serie de televisión dramática de misterio", 45,
                                 new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos")),
                                 new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3")),
+                                "Drama", new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos"))));
+                listSeries.add(new Serie("Merlina", "Una chica es llevada a una escuala anormal", 45,
+                                new ArrayList<>(Arrays.asList("Martha|||||||||||||||||||||||||||||||||||||||||||||||||||||||", "Mark", "Felipe")),
+                                new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3")),
+                                "Drama", new ArrayList<>(Arrays.asList("Clara", "carolina", "Sebastian"))));
+                listSeries.add(new Serie("Lucifer", "El diablo se va de vacaciones", 45,
+                                new ArrayList<>(Arrays.asList("Jhon", "Ana", "Juan")),
+                                new ArrayList<>(Arrays.asList("Capitulo1, Capitulo2, Capitulo3, Capitulo4")),
                                 "Drama", new ArrayList<>(Arrays.asList("Marthe", "Bill", "Carlos"))));
                 return listSeries;
         }
