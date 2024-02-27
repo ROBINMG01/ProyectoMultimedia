@@ -99,6 +99,6 @@ public class Serie {
     @Override
     public String toString() {
         return "Serie [name=" + name + ", gender=" + gender + ", duration=" + duration + ",\n listAuthors=" + listAuthors
-                + ",\n listActors=" + listActors + ",\n description=" + description + ", listSeason=" + listSeason + "]";
+                + ",\n listActors=" + listActors + ",\n description=" + description + ",\n listSeason=" + listSeason + "]";
     }
 }
