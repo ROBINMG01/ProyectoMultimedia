@@ -26,7 +26,7 @@ import javax.swing.Timer;
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
-import co.edu.uptc.model.Buscar;
+import co.edu.uptc.controller.BuscarController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
@@ -54,7 +54,7 @@ public class UserRegisterView {
     // Entrada principal
     public void userRegisterView() {
 
-        Buscar buscarSerieImpl = new Buscar(ad);
+        BuscarController buscarSerieImpl = new BuscarController(ad);
 
         while (userController.isExit()) {
             // se llama la fecha que el admin coloca
@@ -155,7 +155,7 @@ public class UserRegisterView {
         user.setListMoviesFavorites(null);
     }
 
-    // Muetsra el catalogo de peliculas
+    // Muestra el catalogo de peliculas
     public void showMovieCatalog() {
         ArrayList<Movie> movies = ad.showListMovies();
 
@@ -790,9 +790,9 @@ public class UserRegisterView {
             JProgressBar progressBar = new JProgressBar(0, 100);
             progressBar.setIndeterminate(false);
             progressBar.setStringPainted(true);
-            pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+            pane.setMessage(new Object[] { "Playing", progressBar });
 
-            JDialog dialog = pane.createDialog("Reproduciendo");
+            JDialog dialog = pane.createDialog("Playing");
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
             Timer timer = new Timer(1000, e -> {

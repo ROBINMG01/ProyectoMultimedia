@@ -18,6 +18,7 @@ import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
 
 public class InitialMenuView {
+
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     static AdminController adminController = new AdminController();
@@ -48,7 +49,7 @@ public class InitialMenuView {
         // Repetir el menu de inicio
         int exit = 0;
         do {
-            // Cambiar el texto del botón de Cancelar por "Salir de la apliciòn "
+            // Cambiar el texto del botón de Cancelar por "Salir de la aplicion"
             UIManager.put("OptionPane.cancelButtonText", "Exit the application");
             UIManager.put("OptionPane.okButtonText", "select");
 

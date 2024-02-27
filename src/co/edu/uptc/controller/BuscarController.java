@@ -1,25 +1,25 @@
-package co.edu.uptc.model;
+package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
 import co.edu.uptc.view.ViewVisit;
 
-public class Buscar {
+public class BuscarController {
     private Utilitaries utilitaries;
     private boolean backToMenu = false;
     private ViewVisit viewVisit;
     private AdminController adminController;
 
-    public Buscar(AdminController ad) {
+    public BuscarController(AdminController ad) {
         utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
         this.adminController = ad;
@@ -151,9 +151,9 @@ public class Buscar {
                                 JProgressBar progressBar = new JProgressBar(0, 100);
                                 progressBar.setIndeterminate(false);
                                 progressBar.setStringPainted(true);
-                                pane.setMessage(new Object[] { "Reproduciendo", progressBar });
+                                pane.setMessage(new Object[] { "Playing", progressBar });
 
-                                JDialog dialog = pane.createDialog("Reproduciendo");
+                                JDialog dialog = pane.createDialog("Playing");
                                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
                                 Timer timer = new Timer(1000, e -> {

@@ -17,11 +17,11 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.User;
 
 public class FileManagement {
-    private File file;
-    public static final String filePath = "src\\co\\edu\\uptc\\persistence\\";
-    public static final String fileExtension = ".json";
-    // Formato de fecha para la deserialización (ejemplo para ISO 8601)
+    private File file; // Variable de instancia para el archivo
+    public static final String filePath = "src\\co\\edu\\uptc\\persistence\\"; // Ruta del archivo
+    public static final String fileExtension = ".json"; // Extensión del archivo
 
+    // Método para escribir un objeto en un archivo JSON
     public boolean writeJsonToFile(String fileName, Object obj) {
         try {
             // Crea un Gson para la serialización a JSON
@@ -40,32 +40,32 @@ public class FileManagement {
         }
     }
 
+    // Método para cargar una lista de películas desde un archivo JSON
     public List<Movie> loadMoviesFromJson(String fileName) {
-        file = new File(filePath + fileName + fileExtension);
-        List<Movie> movieAux = new ArrayList<>();
+        file = new File(filePath + fileName + fileExtension); // Crea un nuevo archivo
+        List<Movie> movieAux = new ArrayList<>(); // Lista para almacenar las películas
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<List<Movie>>() {
-            }.getType();
-            movieAux = new Gson().fromJson(reader, listType);
+            Type listType = new TypeToken<List<Movie>>() {}.getType(); // Obtiene el tipo de la lista
+            movieAux = new Gson().fromJson(reader, listType); // Convierte el JSON a una lista de películas
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return movieAux;
+        return movieAux; // Devuelve la lista de películas
     }
 
+    // Método para cargar una lista de usuarios desde un archivo JSON
     public List<User> loadUsersFromJson(String fileName) {
-        file = new File(filePath + fileName + fileExtension);
-        List<User> userAux = new ArrayList<>();
+        file = new File(filePath + fileName + fileExtension); // Crea un nuevo archivo
+        List<User> userAux = new ArrayList<>(); // Lista para almacenar los usuarios
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<List<User>>() {
-            }.getType();
-            userAux = new Gson().fromJson(reader, listType);
+            Type listType = new TypeToken<List<User>>() {}.getType(); // Obtiene el tipo de la lista
+            userAux = new Gson().fromJson(reader, listType); // Convierte el JSON a una lista de usuarios
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return userAux;
+        return userAux; // Devuelve la lista de usuarios
     }
 
 }

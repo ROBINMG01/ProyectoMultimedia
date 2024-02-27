@@ -166,8 +166,7 @@ public class ControlerInitialMenuView extends UserRegister {
         // descifrado
     }
 
-    // metodo que llena la info con arcgivo
-
+    // metodo que llena la info con archivo
     public void saveUsers(List<User> listUsers, String file) {
         fileManagement.writeJsonToFile(file, listUsers);
     }
