@@ -31,9 +31,9 @@ public class Chapter {
 
     @Override
     public String toString() {
-        return "Chapters{" +
+        return "Chapter[" +
                 "\nname='" + name + '\'' +
                 ", duration=" + duration +
-                "}\n";
+                "]\n";
     }
 }

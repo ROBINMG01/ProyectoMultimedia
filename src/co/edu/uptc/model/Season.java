@@ -18,6 +18,10 @@ public class Season {
         this.listChapters = listChapters;
     }
 
+    public void addChapter(Chapter chapter) {
+        this.listChapters.add(chapter);
+    }
+
     public String getName() {
         return name;
     }
@@ -44,6 +48,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "\nSeason [name=" + name  + ", description=" + description + ", listChapters=" + listChapters +"]";
+        return "\nSeason [name=" + name  + ", description=" + description + ",\nlistChapters=" + listChapters +"]";
     }
 }

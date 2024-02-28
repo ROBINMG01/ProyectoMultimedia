@@ -11,21 +11,19 @@ public class Serie {
     private ArrayList<String> listActors;
     private String description;
     private ArrayList<Season> listSeason;
-    private ArrayList<String> listChapters;
 
     public Serie() {
-        this.listSeason  =  new ArrayList<>();
-        this.listChapters = new ArrayList<>();
     }
 
     public Serie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> listActors, String gender) {
+            ArrayList<String> listActors, String gender, ArrayList<Season> listSeasons) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.gender = gender;
         this.listAuthors = listAuthors;
         this.listActors = listActors;
+        this.listSeason = listSeasons;
     }
 
     public void addSeason(Season season) {
@@ -96,17 +94,9 @@ public class Serie {
         this.listSeason = listSeason;
     }
 
-    public ArrayList<String> getListChapters() {
-        return listChapters;
-    }
-    
-    public void setListChapters(ArrayList<String> listChapters) {
-        this.listChapters = listChapters;
-    }
-
     @Override
     public String toString() {
-        return "Serie [name=" + name + ", gender=" + gender + ", duration=" + duration + ",\n listAuthors=" + listAuthors
-                + ",\n listActors=" + listActors + ",\n description=" + description + ",\n listSeason=" + listSeason + "]";
+        return "Serie [name=" + name + ", gender=" + gender + ", duration=" + duration + ",\nlistAuthors=" + listAuthors
+                + ",\nlistActors=" + listActors + ",\ndescription=" + description + ",\nlistSeason=" + listSeason + "]";
     }
 }

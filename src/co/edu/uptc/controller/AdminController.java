@@ -91,81 +91,131 @@ public class AdminController {
      * }
      */
 
-    /*public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
-            ArrayList<String> listActors, ArrayList<Season> listSeason, int index) {
-
-        Serie serie = new Serie();
-        serie.setName(name);
-        serie.setDescription(description);
-        serie.setDuration(duration);
-        serie.setlistAuthors(listAuthors);
-        serie.setGender(gender);
-        serie.setListActors(listActors);
-
-        for (Season season : listSeason) {
-            ArrayList<Chapter> chapters = new ArrayList<>();
-            for (Chapter chapter : season.getListChapters()) {
-                chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
-            }
-            serie.addSeason(new Season(season.getName(), season.getDescription(), chapters));
-        }
-
-        listSeries.add(serie);
-        return true;
-    }*/
+    /*
+     * public boolean addSerie(String name, String description, int duration,
+     * ArrayList<String> listAuthors, String gender,
+     * ArrayList<String> listActors, ArrayList<Season> listSeason, int index) {
+     * 
+     * Serie serie = new Serie();
+     * serie.setName(name);
+     * serie.setDescription(description);
+     * serie.setDuration(duration);
+     * serie.setlistAuthors(listAuthors);
+     * serie.setGender(gender);
+     * serie.setListActors(listActors);
+     * 
+     * for (Season season : listSeason) {
+     * ArrayList<Chapter> chapters = new ArrayList<>();
+     * for (Chapter chapter : season.getListChapters()) {
+     * chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
+     * }
+     * serie.addSeason(new Season(season.getName(), season.getDescription(),
+     * chapters));
+     * }
+     * 
+     * listSeries.add(serie);
+     * return true;
+     * }
+     */
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
-            ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter, int durationChapter) {
+            ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
+            int durationChapter) {
 
-        Serie serie = new Serie();
-        Season season = new Season();
         ArrayList<Chapter> chapters = new ArrayList<>();
-        //ArrayList<Season> seasons = new ArrayList<>();
+        ArrayList<Season> listSeason = new ArrayList<>();
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
         serie.setlistAuthors(listAuthors);
         serie.setGender(gender);
         serie.setListActors(listActors);
-        
+
+        chapter.setName(nameChapter);
+        chapter.setDuration(durationChapter);
+
         chapters.add(new Chapter(nameChapter, durationChapter));
         season.setName(nameSeason);
         season.setDescription(descriptionSeason);
         season.setListChapters(chapters);
+        listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
 
-        /*for (Season season : listSeason) {
-            ArrayList<Chapter> chapters = new ArrayList<>();
-            for (Chapter chapter : season.getListChapters()) {
-                chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
-            }
-            serie.addSeason(new Season(season.getName(), season.getDescription(), chapters));
-        }*/
-        serie.addSeason(season);
-
-        listSeries.add(serie);
+        listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
         return true;
     }
 
-    public boolean addSeason(int index, int index2, String nameSeason, String descriptionSeason, String nameChapter, int durationChapter ){
+    public boolean addSeason(int index, int index2, String nameSeason, String descriptionSeason, String nameChapter,
+            int durationChapter) {
 
-        ArrayList<Season> listSeason = listSeries.get(index).getListSeason();
+        Serie serie = listSeries.get(index);
+        ArrayList<Season> listSeason = serie.getListSeason();
         ArrayList<Chapter> listChapter = new ArrayList<>();
-        listSeason.add(new Season(nameSeason, descriptionSeason, listChapter));
-        listSeries.get(index).setListSeason(listSeason);
-        listChapter.add(new Chapter(nameChapter, durationChapter));
-        listSeries.get(index).getListSeason().get(index2).setListChapters(listChapter);
 
-        return true;
+        
+        for (Season season : listSeason) {
+            if (season.getName().equals(nameSeason)) {
+                return false; // La temporada ya existe
+            }
+        }
+        
+        
+        listChapter.add(new Chapter(nameChapter, durationChapter));
+        
+        season.setName(nameChapter);
+        season.setDescription(descriptionSeason);
+        season.setListChapters(listChapter);
+        
+        if (season.getName().equals(nameSeason) && season.getDescription().equals(descriptionSeason)) {
+            // Si la temporada no existe, crear una nueva temporada
+            Season newSeason = new Season(nameSeason, descriptionSeason, listChapter);
+            listSeason.add(newSeason);
+    
+            // Actualizar la lista de temporadas en la serie
+            serie.setListSeason(listSeason);
+    
+            // Actualizar la serie en la lista de series
+            listSeries.set(index, serie);
+            return true;
+        }
+        return false;
     }
 
-    public boolean addChapter(String nameChapter, int duration) {
+    public boolean addChapter(int index, int index2, String nameChapter, int durationChapter) {
 
-        chapter.setName(nameChapter);
-        chapter.setDuration(duration);
-        if (nameChapter.equals(chapter.getName()) && duration == chapter.getDuration()) {
-            listChapters.add(new Chapter(nameChapter, duration));
+        Serie serie = listSeries.get(index);
+        ArrayList<Season> listSeason = serie.getListSeason();
+        Season season = listSeason.get(index2);
+        ArrayList<Chapter> listChapter = season.getListChapters();
+
+        for (Chapter chapter : listChapter) {
+            if (chapter.getName().equals(nameChapter)) {
+                return false; // El capítulo ya existe
+            }
         }
 
+        chapter.setName(nameChapter);
+        chapter.setDuration(durationChapter);
+
+        if (chapter.getName().equals(nameChapter) && chapter.getDuration()==durationChapter) {
+            
+            // Si el capítulo no existe, crear un nuevo capítulo
+            Chapter newChapter = new Chapter(nameChapter, durationChapter);
+            listChapter.add(newChapter);
+    
+            // Actualizar la lista de capítulos en la temporada
+            season.setListChapters(listChapter);
+    
+            // Actualizar la temporada en la lista de temporadas
+            listSeason.set(index2, season);
+    
+            // Actualizar la serie en la lista de series
+            serie.setListSeason(listSeason);
+    
+            // Actualizar la serie en la lista de series
+            listSeries.set(index, serie);
+    
+            return true;
+        }
         return false;
     }
 
@@ -189,12 +239,12 @@ public class AdminController {
         return -1;
     }
 
-    public int searchSeason(String name){
+    public int searchSeason(String nameSerie, String name) {
         for (int i = 0; i < listSeries.size(); i++) {
-            if (listSeries.get(i).getName().equals(name)) {
+            if (listSeries.get(i).getName().equals(nameSerie)) {
                 for (int j = 0; j < listSeries.get(i).getListSeason().size(); j++) {
-                    if (listSeries.get(i).getListSeason().get(i).getName().equals(name)) {
-                        return i;
+                    if (listSeries.get(i).getListSeason().get(j).getName().equals(name)) {
+                        return j;
                     }
                 }
             }
