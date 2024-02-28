@@ -27,6 +27,7 @@ public class InitialMenuView {
         try {
             adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
             controler.getUsers().addAll(controler.loadUsers("Users"));
+            adminController.getListSeries().addAll(adminController.loadSerie("Series"));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

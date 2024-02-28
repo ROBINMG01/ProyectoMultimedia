@@ -8,7 +8,6 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.util.FileManagement;
-import co.edu.uptc.utilitaries.Utilitaries;
 
 public class AdminController {
 
@@ -23,7 +22,6 @@ public class AdminController {
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
     private ArrayList<String> namesSesons;
-    private Utilitaries utilitaries;
     private Season season;
     private Chapter chapter;
 
@@ -35,9 +33,8 @@ public class AdminController {
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
-        utilitaries = new Utilitaries();
-        listMovies = utilitaries.loadMovies();
-        listSeries = utilitaries.loadSeries();
+        listMovies = new ArrayList<>();
+        listSeries = new ArrayList<>();
         movie = new Movie();
         serie = new Serie();
         season = new Season();
@@ -46,7 +43,7 @@ public class AdminController {
 
     // ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender, ArrayList<String> listActors) {
+            String gender, ArrayList<String> listActors, String file) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
@@ -56,6 +53,7 @@ public class AdminController {
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
             listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
+            saveMovie(listMovies, file);
             return true;
         }
         return false;
@@ -64,7 +62,7 @@ public class AdminController {
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
             ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
-            int durationChapter) {
+            int durationChapter, String file) {
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         ArrayList<Season> listSeason = new ArrayList<>();
@@ -82,10 +80,14 @@ public class AdminController {
         season.setName(nameSeason);
         season.setDescription(descriptionSeason);
         season.setListChapters(chapters);
-        listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
 
-        listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
-        return true;
+        if (serie.getName().equals(name) && serie.getDescription().equals(description)) {
+            listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
+            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
+            saveSerie(listSeries, file);
+            return true;
+        }
+        return false;
     }
 
     public boolean addSeason(int index, int index2, String nameSeason, String descriptionSeason, String nameChapter,

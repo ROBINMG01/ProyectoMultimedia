@@ -306,7 +306,7 @@ public class AdminView {
 
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
-                                        arrayActors());
+                                        arrayActors(), "Movie");
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -479,7 +479,7 @@ public class AdminView {
                             }
                             if (!arrayActors().isEmpty()) {
                                 if (ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
-                                nameSeason, descriptionSeason, nameChapter, duration3)) {
+                                nameSeason, descriptionSeason, nameChapter, duration3, "Series")) {
                                     JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                     exit = true;
                                 }else{
