@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
 public class FileManagement {
@@ -52,6 +53,20 @@ public class FileManagement {
         }
 
         return movieAux;
+    }
+
+    public List<Serie> loadSeriesFromJson(String fileName) {
+        file = new File(filePath + fileName + fileExtension);
+        List<Serie> serieAux = new ArrayList<>();
+        try (Reader reader = new FileReader(file)) {
+            Type listType = new TypeToken<List<Movie>>() {
+            }.getType();
+            serieAux = new Gson().fromJson(reader, listType);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return serieAux;
     }
 
     public List<User> loadUsersFromJson(String fileName) {

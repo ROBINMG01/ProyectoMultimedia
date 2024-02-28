@@ -23,8 +23,6 @@ public class AdminController {
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
     private ArrayList<String> namesSesons;
-    private ArrayList<Season> listSeasons;
-    private ArrayList<Chapter> listChapters;
     private Utilitaries utilitaries;
     private Season season;
     private Chapter chapter;
@@ -37,8 +35,6 @@ public class AdminController {
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
-        listSeasons = new ArrayList<>();
-        listChapters = new ArrayList<>();
         utilitaries = new Utilitaries();
         listMovies = utilitaries.loadMovies();
         listSeries = utilitaries.loadSeries();
@@ -65,58 +61,6 @@ public class AdminController {
         return false;
 
     }
-
-    // ROBIN
-    /*
-     * public boolean addSerie(String name, String description, int duration,
-     * ArrayList<String> listAuthors,
-     * ArrayList<String> chapters, String gender, ArrayList<String> listActors,
-     * String nameSeason,
-     * String descriptionSeason, int index) {
-     * serie.setName(name);
-     * serie.setDescription(description);
-     * serie.setDuration(duration);
-     * serie.setlistAuthors(listAuthors);
-     * serie.setGender(gender);
-     * serie.setListActors(listActors);
-     * 
-     * if (name.equals(serie.getName()) && duration == serie.getDuration()
-     * && addSeason(nameSeason, descriptionSeason, index)
-     * && addChapter(name, duration)) {
-     * listSeries.add(new Serie(name, description, duration, listAuthors,
-     * listActors, gender, listSeason));
-     * return true;
-     * }
-     * return false;
-     * }
-     */
-
-    /*
-     * public boolean addSerie(String name, String description, int duration,
-     * ArrayList<String> listAuthors, String gender,
-     * ArrayList<String> listActors, ArrayList<Season> listSeason, int index) {
-     * 
-     * Serie serie = new Serie();
-     * serie.setName(name);
-     * serie.setDescription(description);
-     * serie.setDuration(duration);
-     * serie.setlistAuthors(listAuthors);
-     * serie.setGender(gender);
-     * serie.setListActors(listActors);
-     * 
-     * for (Season season : listSeason) {
-     * ArrayList<Chapter> chapters = new ArrayList<>();
-     * for (Chapter chapter : season.getListChapters()) {
-     * chapters.add(new Chapter(chapter.getName(), chapter.getDuration()));
-     * }
-     * serie.addSeason(new Season(season.getName(), season.getDescription(),
-     * chapters));
-     * }
-     * 
-     * listSeries.add(serie);
-     * return true;
-     * }
-     */
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
             ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
@@ -390,4 +334,13 @@ public class AdminController {
     public List<Movie> loadMovie(String file) {
         return FileManager.loadMoviesFromJson(file);
     }
+
+    public void saveSerie(List<Serie> listSeries, String file) {
+        FileManager.writeJsonToFile(file, listSeries);
+    }
+
+    public List<Serie> loadSerie(String file) {
+        return FileManager.loadSeriesFromJson(file);
+    }
+
 }
