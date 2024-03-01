@@ -319,6 +319,7 @@ public class AdminController {
         return false;
     }
 
+    
     public boolean deleteSerie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {
@@ -326,6 +327,7 @@ public class AdminController {
                 return true;
             }
         }
+        System.out.println("----------------");
         return false;
     }
 
