@@ -1,0 +1,50 @@
+[
+  {
+    "name": "LOKI",
+    "gender": "Ficcion",
+    "duration": 460,
+    "listAuthors": [
+      "Robert"
+    ],
+    "listActors": [
+      "Edison"
+    ],
+    "description": "LOKI llega a la AVT",
+    "listSeason": [
+      {
+        "name": "Primera Temporada",
+        "listChapters": [
+          {
+            "name": "Capitulo 1",
+            "duration": 45
+          }
+        ],
+        "description": "Mitad de serie"
+      }
+    ]
+  },
+  {
+    "name": "Misterio en la Montaña",
+    "gender": "Terror",
+    "duration": 460,
+    "listAuthors": [
+      "Steven Johnson"
+    ],
+    "listActors": [
+      "Ethan Greene"
+    ],
+    "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
+    "listSeason": [
+      {
+        "name": "El misterio del lago congelado",
+        "listChapters": [
+          {
+            "name": "El descubrimiento",
+            "duration": 45
+          }
+        ],
+        "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
+      }
+    ]
+  }
+]

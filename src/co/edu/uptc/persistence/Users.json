@@ -7,9 +7,9 @@
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 1, 2024, 9:09:32 AM",
-    "finDateDeSubscription": "Mar 31, 2024, 9:09:32 AM",
-    "actieSusciption": "active"
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
   },
   {
     "firstName": "ADMN",
@@ -19,8 +19,73 @@
     "role": "admin",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 10:28:35 AM",
-    "finDateDeSubscription": "Feb 25, 2024, 10:28:35 AM",
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "A",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Juan",
+    "lastName": "Barrera",
+    "email": "Juan@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Andres",
+    "lastName": "Morales",
+    "email": "Andres@gmail.com",
+    "password": "Ca123456789#",
+    "role": "user",
+    "listMoviesFavorites": [
+      {
+        "name": "El origen",
+        "gender": "Ficcion",
+        "duration": 120,
+        "listAuthors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "listActors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+      }
+    ],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
     "actieSusciption": "desactive"
   }
 ]

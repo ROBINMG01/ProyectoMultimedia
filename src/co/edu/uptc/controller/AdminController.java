@@ -3,15 +3,17 @@ package co.edu.uptc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.util.FileManagement;
-import co.edu.uptc.utilitaries.Utilitaries;
 
 public class AdminController {
-    private FileManagement FileManager;
+
     private Movie movie;
     private Serie serie;
+    private FileManagement FileManager;
     private ArrayList<Movie> listMovies;
     private ArrayList<Serie> listSeries;
     private ArrayList<String> listAuthors;
@@ -19,7 +21,9 @@ public class AdminController {
     private ArrayList<String> listChaptersTwo;
     private ArrayList<String> namesMovies;
     private ArrayList<String> namesSeries;
-    private Utilitaries utilitaries;
+    private ArrayList<String> namesSesons;
+    private Season season;
+    private Chapter chapter;
 
     // ROBIN
     public AdminController() {
@@ -29,11 +33,12 @@ public class AdminController {
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
-        utilitaries = new Utilitaries();
-        listMovies = utilitaries.loadMovies();
-        listSeries = utilitaries.loadSeries();
+        listMovies = new ArrayList<>();
+        listSeries = new ArrayList<>();
         movie = new Movie();
         serie = new Serie();
+        season = new Season();
+        chapter = new Chapter();
     }
 
     // ROBIN
@@ -55,19 +60,106 @@ public class AdminController {
 
     }
 
-    // ROBIN
-    public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> chapters, String gender, ArrayList<String> listActors) {
+    public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
+            ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
+            int durationChapter, String file) {
+
+        ArrayList<Chapter> chapters = new ArrayList<>();
+        ArrayList<Season> listSeason = new ArrayList<>();
         serie.setName(name);
         serie.setDescription(description);
         serie.setDuration(duration);
         serie.setlistAuthors(listAuthors);
-        serie.setListChapters(chapters);
         serie.setGender(gender);
         serie.setListActors(listActors);
 
-        if (name.equals(serie.getName()) && duration == serie.getDuration()) {
-            listSeries.add(new Serie(name, description, duration, listAuthors, chapters, gender, listActors));
+        chapter.setName(nameChapter);
+        chapter.setDuration(durationChapter);
+
+        chapters.add(new Chapter(nameChapter, durationChapter));
+        season.setName(nameSeason);
+        season.setDescription(descriptionSeason);
+        season.setListChapters(chapters);
+
+        if (serie.getName().equals(name) && serie.getDescription().equals(description)) {
+            listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
+            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
+            saveSerie(listSeries, file);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addSeason(int index, int index2, String nameSeason, String descriptionSeason, String nameChapter,
+            int durationChapter) {
+
+        Serie serie = listSeries.get(index);
+        ArrayList<Season> listSeason = serie.getListSeason();
+        ArrayList<Chapter> listChapter = new ArrayList<>();
+
+        
+        for (Season season : listSeason) {
+            if (season.getName().equals(nameSeason)) {
+                return false; // La temporada ya existe
+            }
+        }
+        
+        
+        listChapter.add(new Chapter(nameChapter, durationChapter));
+        
+        season.setName(nameChapter);
+        season.setDescription(descriptionSeason);
+        season.setListChapters(listChapter);
+        
+        if (season.getName().equals(nameSeason) && season.getDescription().equals(descriptionSeason)) {
+            // Si la temporada no existe, crear una nueva temporada
+            Season newSeason = new Season(nameSeason, descriptionSeason, listChapter);
+            listSeason.add(newSeason);
+    
+            // Actualizar la lista de temporadas en la serie
+            serie.setListSeason(listSeason);
+    
+            // Actualizar la serie en la lista de series
+            listSeries.set(index, serie);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addChapter(int index, int index2, String nameChapter, int durationChapter) {
+
+        Serie serie = listSeries.get(index);
+        ArrayList<Season> listSeason = serie.getListSeason();
+        Season season = listSeason.get(index2);
+        ArrayList<Chapter> listChapter = season.getListChapters();
+
+        for (Chapter chapter : listChapter) {
+            if (chapter.getName().equals(nameChapter)) {
+                return false; // El capítulo ya existe
+            }
+        }
+
+        chapter.setName(nameChapter);
+        chapter.setDuration(durationChapter);
+
+        if (chapter.getName().equals(nameChapter) && chapter.getDuration()==durationChapter) {
+            
+            // Si el capítulo no existe, crear un nuevo capítulo
+            Chapter newChapter = new Chapter(nameChapter, durationChapter);
+            listChapter.add(newChapter);
+    
+            // Actualizar la lista de capítulos en la temporada
+            season.setListChapters(listChapter);
+    
+            // Actualizar la temporada en la lista de temporadas
+            listSeason.set(index2, season);
+    
+            // Actualizar la serie en la lista de series
+            serie.setListSeason(listSeason);
+    
+            // Actualizar la serie en la lista de series
+            listSeries.set(index, serie);
+    
             return true;
         }
         return false;
@@ -88,6 +180,19 @@ public class AdminController {
         for (int i = 0; i < listSeries.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {
                 return i;
+            }
+        }
+        return -1;
+    }
+
+    public int searchSeason(String nameSerie, String name) {
+        for (int i = 0; i < listSeries.size(); i++) {
+            if (listSeries.get(i).getName().equals(nameSerie)) {
+                for (int j = 0; j < listSeries.get(i).getListSeason().size(); j++) {
+                    if (listSeries.get(i).getListSeason().get(j).getName().equals(name)) {
+                        return j;
+                    }
+                }
             }
         }
         return -1;
@@ -118,7 +223,7 @@ public class AdminController {
             listSeries.get(position).setDescription(description);
             listSeries.get(position).setDuration(duration);
             listSeries.get(position).setlistAuthors(listAuthors);
-            listSeries.get(position).setListChapters(chapters);
+            // listSeries.get(position).setListChapters(chapters);
             listSeries.get(position).setGender(gender);
             listSeries.get(position).setListActors(listActors);
             return true;
@@ -174,11 +279,18 @@ public class AdminController {
     // ROBIN
     public ArrayList<String> namesSeries() {
         namesSeries = new ArrayList<>();
-        System.out.println(listSeries.size());
         for (int i = 0; i < listSeries.size(); i++) {
             namesSeries.add(listSeries.get(i).getName());
         }
         return namesSeries;
+    }
+
+    public ArrayList<String> namesSesons(int position) {
+        namesSesons = new ArrayList<>();
+        for (int i = 0; i < listSeries.get(position).getListSeason().size(); i++) {
+            namesSesons.add(listSeries.get(position).getListSeason().get(i).getName());
+        }
+        return namesSesons;
     }
 
     public ArrayList<Movie> getListMovies() {
@@ -223,6 +335,14 @@ public class AdminController {
 
     public List<Movie> loadMovie(String file) {
         return FileManager.loadMoviesFromJson(file);
+    }
+
+    public void saveSerie(List<Serie> listSeries, String file) {
+        FileManager.writeJsonToFile(file, listSeries);
+    }
+
+    public List<Serie> loadSerie(String file) {
+        return FileManager.loadSeriesFromJson(file);
     }
 
 }

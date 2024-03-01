@@ -20,6 +20,7 @@ import co.edu.uptc.controller.ControlerInitialMenuView;
 public class AdminView {
     private AdminController ac;
     private Date dateApp;
+    private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
     int newWidth = 0;
     int newHeight = 0;
@@ -53,7 +54,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iSelection);
 
         do {
-            String[] options = {"Movie", "Serie", "userRegisters", "Set the date of the day","Exit"};
+            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -79,26 +80,22 @@ public class AdminView {
         boolean condition = false;
         ImageIcon iconMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\Movie.jpeg");
         ImageIcon iconSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\Serie.jpeg");
-
         // Obtener la imagen del ImageIcon original
         Image movie = iconMovie.getImage();
         Image serie = iconSerie.getImage();
-
         // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
         newWidth = 100;
         newHeight = 100;
-
         // Redimensionar la imagen
         Image iMovie = movie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
         Image iSerie = serie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
         // Crear un nuevo ImageIcon a partir de la imagen redimensionada
         ImageIcon a = new ImageIcon(iMovie);
         ImageIcon b = new ImageIcon(iSerie);
         switch (selectedaction) {
             case "Movie":
                 do {
-                    String[] options = {"Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit"};
+                    String[] options = { "Add Movie", "View Movies", "Update Movie", "deleteMovie", "Exit" };
                     String options2 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, a, options, options[0]);
@@ -107,7 +104,6 @@ public class AdminView {
                         break;
                     } else if (options2.equals("Exit")) {
                         condition = true;
-
                     } else {
                         condition = false;
                         menuMovie(options2);
@@ -117,7 +113,7 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 = {"Add Serie", "View Series", "Update Series", "deleteSeries", "Exit"};
+                    String[] options3 = { "Add Serie", "Add Season", "Add Chapter", "View Series", "Update Series", "deleteSeries", "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
@@ -126,7 +122,6 @@ public class AdminView {
                         break;
                     } else if (options4.equals("Exit")) {
                         condition = true;
-
                     } else {
                         condition = false;
                         menuSerie(options4);
@@ -135,20 +130,18 @@ public class AdminView {
                 break;
             case "userRegisters":
                 break;
-
             case "Set the date of the day":
                 // Pedir la fecha al usuario utilizando JOptionPane
                 String dateString = JOptionPane.showInputDialog(null, "Introduce una fecha (dd/mm/yy):");
-
                 // Crear un objeto SimpleDateFormat para parsear la fecha
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
-
                 try {
                     // Parsear la cadena de fecha a un objeto Date
                     this.dateApp = dateFormat.parse(dateString);
 
                     // Mostrar la fecha en la consola
-                    System.out.println("Fecha introducida: " +  this.dateApp);
+                    System.out.println("Fecha introducida: " + this.dateApp);
+                    System.out.println("Fecha introducida: " + this.dateApp);
                 } catch (ParseException e) {
                     // Manejar errores de formato de fecha
                     System.err.println("Formato de fecha incorrecto: " + e.getMessage());
@@ -183,7 +176,13 @@ public class AdminView {
             case "Add Serie":
                 addSerie();
                 break;
-            case "View Serie":
+            case "Add Season":
+                addSeason();
+                break;
+            case "Add Chapter":
+                addChapter();
+                break;
+            case "View Series":
                 showSeries();
                 break;
             case "Update Series":
@@ -304,9 +303,10 @@ public class AdminView {
                                     exit = addActors(actorField);
                                 } while (!exit);
                             }
+
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
-                                        arrayActors(), "src\\co\\edu\\uptc\\archive\\Movie.json");
+                                        arrayActors(), "Movie");
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -343,12 +343,16 @@ public class AdminView {
     public void addSerie() {
 
         String name = "";
+        String nameSeason = "";
         String description = "";
+        String descriptionSeason = "";
+        String nameChapter = "";
+        String durationChapter = "";
         String duration = "";
         int duration2 = 0;
+        int duration3 = 0;
         String author = "";
         String actor = "";
-        String chapter = "";
         String gender = "";
         int ver = 0;
         boolean exit = false;
@@ -361,13 +365,11 @@ public class AdminView {
         ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
         ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
         ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
-        ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterSerie.getImage();
         Image rAuthor = iconAuthor.getImage();
         Image rActor = iconActor.getImage();
-        Image rChapter = iconChapter.getImage();
 
         // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
         newWidth = 100;
@@ -385,15 +387,23 @@ public class AdminView {
                 description = "";
                 duration = "";
                 gender = "";
+                nameSeason = "";
+                descriptionSeason = "";
+                nameChapter = "";
+                durationChapter = "";
                 ac.showlistAuthors().clear();
                 ac.showListChaptersTwo().clear();
                 ac.showlistActors().clear();
             }
             do {
-                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JPanel panel = new JPanel(new GridLayout(7, 2));
                 JTextField nameField = new JTextField(name);
                 JTextField descriptionField = new JTextField(description);
                 JTextField durationField = new JTextField(duration);
+                JTextField nameSField = new JTextField(nameSeason);
+                JTextField descriptionSField = new JTextField(descriptionSeason);
+                JTextField nameCField = new JTextField(nameChapter);
+                JTextField durationCField = new JTextField(durationChapter);
 
                 panel.add(new JLabel("Name"));
                 panel.add(nameField);
@@ -401,6 +411,14 @@ public class AdminView {
                 panel.add(descriptionField);
                 panel.add(new JLabel("Duration"));
                 panel.add(durationField);
+                panel.add(new JLabel("Name Season"));
+                panel.add(nameSField);
+                panel.add(new JLabel("Description Season"));
+                panel.add(descriptionSField);
+                panel.add(new JLabel("Name Chapter"));
+                panel.add(nameCField);
+                panel.add(new JLabel("Duration Chapter"));
+                panel.add(durationCField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "Add Serie", 0, 0, a);
 
@@ -408,23 +426,28 @@ public class AdminView {
                     name = nameField.getText();
                     description = descriptionField.getText();
                     duration = durationField.getText();
+                    nameSeason = nameSField.getText();
+                    descriptionSeason = descriptionSField.getText();
+                    nameChapter = nameCField.getText();
                     gender = viewVisit.viewGender(gender);
+                    durationChapter = durationCField.getText();
 
                     if (name.isEmpty() || description.isEmpty() || duration.isEmpty()
-                            || gender.isEmpty()) {
+                            || gender.isEmpty() || nameChapter.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Failed to add serie");
                         exit = verification();
                         ver = 0;
                     } else {
                         try {
                             duration2 = Integer.parseInt(duration);
+                            duration3 = Integer.parseInt(durationChapter);
 
                             newHeight = 40;
                             Image iAuthor = rAuthor.getScaledInstance(newWidth, newHeight,
                                     Image.SCALE_SMOOTH);
                             ImageIcon b = new ImageIcon(iAuthor);
                             do {
-                                JPanel panell = new JPanel(new GridLayout(1, 2));
+                                JPanel panell = new JPanel(new GridLayout(2, 2));
                                 JTextField authorField = new JTextField(author);
                                 panell.add(new JLabel("Author:"));
                                 panell.add(authorField);
@@ -455,44 +478,246 @@ public class AdminView {
                                 ver = 0;
                             }
                             if (!arrayActors().isEmpty()) {
-                                Image iChapter = rChapter.getScaledInstance(newWidth, newHeight,
-                                        Image.SCALE_SMOOTH);
-                                ImageIcon d = new ImageIcon(iChapter);
-                                do {
+                                if (ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
+                                nameSeason, descriptionSeason, nameChapter, duration3, "Series")) {
+                                    JOptionPane.showMessageDialog(null, "Serie added sucessfully");
+                                    exit = true;
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Serie was not added");
                                     exit = false;
-                                    JPanel panel2 = new JPanel(new GridLayout(1, 2));
-                                    JTextField chapterField = new JTextField(chapter);
-                                    panel2.add(new JLabel("Chapter:"));
-                                    panel2.add(chapterField);
-
-                                    option = JOptionPane.showConfirmDialog(null, panel2,
-                                            "Continue?", 0, 0, d);
-                                    exit = addChapter(chapterField);
-                                } while (!exit);
-                            } else if (!arrayActors().isEmpty()) {
+                                }
+                            } else if (!arrayChapters().isEmpty()) {
                                 JOptionPane.showMessageDialog(null,
                                         "The series was not added because there are no actors");
                                 exit = verification();
                                 ver = 0;
                             }
-                            if (!arrayChapters().isEmpty()) {
-                                ac.addSerie(name, description, duration2, arrayAuthors(),
-                                        arrayChapters(), gender, arrayActors());
-                                JOptionPane.showMessageDialog(null, "Serie added sucessfully");
-                                exit = true;
-                            } else if (!arrayChapters().isEmpty()) {
-                                JOptionPane.showMessageDialog(null,
-                                        "The series was not added because there are no chapters.");
-                                exit = verification();
-                                ver = 0;
-                            }
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "No input a number in duration");
+                            JOptionPane.showMessageDialog(null,
+                                    "No input a number in duration season or duration chapter");
                             exit = false;
                         }
-                        if (duration2 != 0) {
+                        if (duration2 != 0 && exit == true) {
                             option = JOptionPane.showConfirmDialog(null,
                                     "Do you want to add another serie?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                ver = 1;
+                                exit = true;
+                                exit2 = false;
+                            } else {
+                                exit = true;
+                                exit2 = true;
+                            }
+                        }
+                    }
+                } else {
+                    exit = true;
+                    exit2 = true;
+                }
+            } while (!exit);
+        } while (!exit2);
+    }
+
+    public void addSeason() {
+        String nameSeason = "";
+        String descriptionSeason = "";
+        String nameChapter = "";
+        String durationChapter = "";
+        int duration2 = 0;
+        int ver = 0;
+        boolean exit = false;
+        boolean exit2 = false;
+        int option = 0;
+        String selectedaction = "";
+        String showNamesSeries[];
+        int position = 0;
+        int position2 = 0;
+
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterSerie.getImage();
+        Image rUpdate = iconUpdate.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon u = new ImageIcon(iUpdate);
+
+        do {
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2000)]);
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
+            position = ac.searchSeries(selectedaction);
+
+            if (ver == 1) {
+                nameSeason = "";
+                descriptionSeason = "";
+                nameChapter = "";
+                durationChapter = "";
+            }
+            do {
+                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JTextField nameSField = new JTextField(nameSeason);
+                JTextField descriptionSField = new JTextField(descriptionSeason);
+                JTextField nameCField = new JTextField(nameChapter);
+                JTextField durationCField = new JTextField(durationChapter);
+
+                panel.add(new JLabel("Name Season"));
+                panel.add(nameSField);
+                panel.add(new JLabel("Description Season"));
+                panel.add(descriptionSField);
+                panel.add(new JLabel("Name Chapter"));
+                panel.add(nameCField);
+                panel.add(new JLabel("Duration Chapter"));
+                panel.add(durationCField);
+
+                int result = JOptionPane.showConfirmDialog(null, panel, "Add Season", 0, 0, a);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    nameSeason = nameSField.getText();
+                    descriptionSeason = descriptionSField.getText();
+                    nameChapter = nameCField.getText();
+                    durationChapter = durationCField.getText();
+
+                    if (nameChapter.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Failed to add Season");
+                        exit = verification();
+                        ver = 0;
+                    } else {
+                        try {
+                            duration2 = Integer.parseInt(durationChapter);
+                            if (ac.addSeason(position, position2, nameSeason, descriptionSeason, nameChapter, duration2)) {
+                                JOptionPane.showMessageDialog(null, "Season added sucessfully");
+                                exit = true;
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Season wasn't added");
+                                exit = false;
+                            }
+                            
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null,
+                                    "No input a number in duration season or duration chapter");
+                            exit = false;
+                        }
+                        if (duration2 != 0 && exit == true) {
+                            option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to add another season?", "Continue?",
+                                    JOptionPane.YES_NO_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                ver = 1;
+                                exit = true;
+                                exit2 = false;
+                            } else {
+                                exit = true;
+                                exit2 = true;
+                            }
+                        }
+                    }
+                } else {
+                    exit = true;
+                    exit2 = true;
+                }
+            } while (!exit);
+        } while (!exit2);
+    }
+
+    public void addChapter() {
+        String nameChapter = "";
+        String durationChapter = "";
+        int duration2 = 0;
+        int ver = 0;
+        boolean exit = false;
+        boolean exit2 = false;
+        int option = 0;
+        String selectedaction = "";
+        String showNamesSeries[];
+        String selectedaction2 = "";
+        String showNamesSeasons2[];
+        int position = 0;
+        int position2 = 0;
+
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+
+        // Obtener la imagen del ImageIcon original
+        Image rMovie = iconRegisterSerie.getImage();
+        Image rUpdate = iconUpdate.getImage();
+
+        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
+        newWidth = 100;
+        newHeight = 100;
+
+        // Redimensionar la imagen
+        Image iUpdate = rUpdate.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image iMovie = rMovie.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
+        ImageIcon a = new ImageIcon(iMovie);
+        ImageIcon u = new ImageIcon(iUpdate);
+
+        do {
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2000)]);
+            selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
+            position = ac.searchSeries(selectedaction);
+
+            showNamesSeasons2 = ac.namesSesons(position).toArray(new String[tamañoArray(position)]);
+            selectedaction2 = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
+                    "Season", JOptionPane.QUESTION_MESSAGE, u, showNamesSeasons2, showNamesSeasons2[0]);
+            position2 = ac.searchSeason(selectedaction, selectedaction2);
+
+            if (ver == 1) {
+                nameChapter = "";
+                durationChapter = "";
+            }
+            do {
+                JPanel panel = new JPanel(new GridLayout(4, 2));
+                JTextField nameCField = new JTextField(nameChapter);
+                JTextField durationCField = new JTextField(durationChapter);
+
+                panel.add(new JLabel("Name Chapter"));
+                panel.add(nameCField);
+                panel.add(new JLabel("Duration Chapter"));
+                panel.add(durationCField);
+
+                int result = JOptionPane.showConfirmDialog(null, panel, "Add Chapter", 0, 0, a);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    nameChapter = nameCField.getText();
+                    durationChapter = durationCField.getText();
+
+                    if (nameChapter.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Failed to add chater\n name chapter is empty");
+                        exit = verification();
+                        ver = 0;
+                    } else {
+                        try {
+                            duration2 = Integer.parseInt(durationChapter);
+                            if (ac.addChapter(position, position2, nameChapter, duration2)) {
+                                JOptionPane.showMessageDialog(null, "Chapter added sucessfully");
+                                exit = true;   
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Chapter was not added");
+                                exit = false;
+                            }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null,
+                                    "No input a number in duration chapter");
+                            exit = false;
+                        }
+                        if (duration2 != 0 && exit == true ) {
+                            option = JOptionPane.showConfirmDialog(null,
+                                    "Do you want to add another chapter?", "Continue?",
                                     JOptionPane.YES_NO_OPTION);
                             if (option == JOptionPane.OK_OPTION) {
                                 ver = 1;
@@ -538,7 +763,7 @@ public class AdminView {
         ImageIcon b = new ImageIcon(iView);
 
         do {
-            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
+            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1000)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movie", JOptionPane.QUESTION_MESSAGE, a, showNamesMovies, showNamesMovies[0]);
 
@@ -584,7 +809,7 @@ public class AdminView {
         ImageIcon b = new ImageIcon(iView);
 
         do {
-            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2000)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Series", JOptionPane.QUESTION_MESSAGE, a, showNamesSeries, showNamesSeries[0]);
 
@@ -645,7 +870,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iMovie);
 
         do {
-            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1)]);
+            showNamesMovies = ac.namesMovies().toArray(new String[tamañoArray(1000)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Movies", JOptionPane.QUESTION_MESSAGE, u, showNamesMovies, showNamesMovies[0]);
             position = ac.searchMovie(selectedaction);
@@ -811,7 +1036,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iMovie);
 
         do {
-            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2)]);
+            showNamesSeries = ac.namesSeries().toArray(new String[tamañoArray(2000)]);
             selectedaction = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
                     "Series", JOptionPane.QUESTION_MESSAGE, u, showNamesSeries, showNamesSeries[0]);
             position = ac.searchSeries(selectedaction);
@@ -1036,10 +1261,12 @@ public class AdminView {
     }
 
     public int tamañoArray(int num) {
-        if (num == 1) {
+        if (num == 1000) {
             return ac.namesMovies().size();
+        } else if (num == 2000) {
+            return ac.namesSeries().size();
         }
-        return ac.namesSeries().size();
+        return ac.namesSesons(num).size();
     }
 
     public ArrayList<String> arrayAuthors() {

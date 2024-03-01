@@ -1,8 +1,5 @@
 package co.edu.uptc.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,11 +26,9 @@ public class User {
         this.listSeriesFavorites = new ArrayList<>();
         this.actieSusciption = "desactive";
         this.dateDeSubscription = new Date();
-        this.finDateDeSubscription = new Date(0);
-
+        this.finDateDeSubscription = new Date();
 
     }
-
 
     public User() {
         this.listMoviesFavorites = new ArrayList<>();
@@ -140,30 +135,28 @@ public class User {
 
     public void deleteMovie(String namemovie, User user) {
 
-        ArrayList<Movie> m = user.getListMoviesFavorites();
         Movie mm = new Movie();
-        for (Movie movie : m) {
+        for (Movie movie : listMoviesFavorites) {
             if (movie.getName().equals(namemovie)) {
                 mm = movie;
             }
         }
-        m.remove(mm);
-        user.setListMoviesFavorites(m);
+        listMoviesFavorites.remove(mm);
+        user.setListMoviesFavorites(listMoviesFavorites);
     }
 
     // metodo que elimina una serie
 
-    public void deleteSerie(String namemovie, User user) {
+    public void deleteSerie(String nameSerie, User user) {
 
-        ArrayList<Serie> m = user.getListSeriesFavorites();
         Serie mm = new Serie();
-        for (Serie movie : m) {
-            if (movie.getName().equals(namemovie)) {
+        for (Serie movie : listSeriesFavorites) {
+            if (movie.getName().equals(nameSerie)) {
                 mm = movie;
             }
         }
-        m.remove(mm);
-        user.setListSeriesFavorites(m);
+        listSeriesFavorites.remove(mm);
+        user.setListSeriesFavorites(listSeriesFavorites);
     }
 
     @Override
