@@ -54,7 +54,7 @@ public class AdminView {
         ImageIcon a = new ImageIcon(iSelection);
 
         do {
-            String[] options = { "Movie", "Serie", "userRegisters", "Exit" };
+            String[] options = {"Movie", "Serie", "userRegisters", "Set the date of the day","Exit"};
             condition = false;
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "Ok");
@@ -130,18 +130,19 @@ public class AdminView {
                 break;
             case "userRegisters":
                 break;
-            case "Set the date of the day":
+                case "Set the date of the day":
                 // Pedir la fecha al usuario utilizando JOptionPane
                 String dateString = JOptionPane.showInputDialog(null, "Introduce una fecha (dd/mm/yy):");
+
                 // Crear un objeto SimpleDateFormat para parsear la fecha
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+
                 try {
                     // Parsear la cadena de fecha a un objeto Date
                     this.dateApp = dateFormat.parse(dateString);
 
                     // Mostrar la fecha en la consola
-                    System.out.println("Fecha introducida: " + this.dateApp);
-                    System.out.println("Fecha introducida: " + this.dateApp);
+                    System.out.println("Fecha introducida: " +  this.dateApp);
                 } catch (ParseException e) {
                     // Manejar errores de formato de fecha
                     System.err.println("Formato de fecha incorrecto: " + e.getMessage());

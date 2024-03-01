@@ -19,7 +19,7 @@ import co.edu.uptc.model.User;
 
 public class FileManagement {
     private File file;
-    public static final String filePath = "src\\co\\edu\\uptc\\persistence\\";
+    public static final String filePath = "src\\main\\java\\co\\edu\\uptc\\persistence\\";
     public static final String fileExtension = ".json";
     // Formato de fecha para la deserialización (ejemplo para ISO 8601)
 
