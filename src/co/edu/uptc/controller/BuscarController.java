@@ -1,4 +1,4 @@
-package co.edu.uptc.model;
+package co.edu.uptc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,18 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
 import co.edu.uptc.view.ViewVisit;
 
-public class Buscar {
+public class BuscarController {
     private Utilitaries utilitaries;
     private boolean backToMenu = false;
     private ViewVisit viewVisit;
     private AdminController adminController;
 
-    public Buscar(AdminController ad) {
+    public BuscarController(AdminController ad) {
         utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
         this.adminController = ad;
@@ -134,7 +135,7 @@ public class Buscar {
                                     String description = serie.getDescription();
                                     List<String> listAuthors = serie.getlistAuthors();
                                     List<String> listActors = serie.getListActors();
-                                    List<String> listChapters = serie.getListChapters();
+                                    List<String> listChapters = serie.getListActors();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
                                             + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
                                             + description + "\nListaAuthors: " + listAuthors + "\nListActors: "

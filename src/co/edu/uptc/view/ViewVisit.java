@@ -160,7 +160,7 @@ public class ViewVisit {
                                     String description = serie.getDescription();
                                     List<String> listAuthors = serie.getlistAuthors();
                                     List<String> listActors = serie.getListActors();
-                                    List<String> listChapters = serie.getListChapters();
+                                    List<String> listChapters = serie.getListActors();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
                                             + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
                                             + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
