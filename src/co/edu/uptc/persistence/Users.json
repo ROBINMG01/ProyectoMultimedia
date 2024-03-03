@@ -7,9 +7,9 @@
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "actieSusciption": "desactive"
+    "dateDeSubscription": "Feb 29, 2024, 10:12:53 AM",
+    "finDateDeSubscription": "Mar 30, 2024, 10:12:53 AM",
+    "actieSusciption": "active"
   },
   {
     "firstName": "ADMN",
@@ -29,18 +29,6 @@
     "email": "A",
     "password": "123",
     "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "actieSusciption": "desactive"
-  },
-  {
-    "firstName": "Juan",
-    "lastName": "Barrera",
-    "email": "Juan@gmail.com",
-    "password": "J12345d@",
-    "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
     "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
@@ -86,6 +74,18 @@
     "listSeriesFavorites": [],
     "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
     "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "robin",
+    "lastName": "molina",
+    "email": "robin@gmail.com",
+    "password": "R12345f@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
+    "finDateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
     "actieSusciption": "desactive"
   }
 ]

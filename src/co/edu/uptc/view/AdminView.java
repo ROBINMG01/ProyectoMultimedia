@@ -20,7 +20,6 @@ import co.edu.uptc.controller.ControlerInitialMenuView;
 public class AdminView {
     private AdminController ac;
     private Date dateApp;
-    private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
     int newWidth = 0;
     int newHeight = 0;
