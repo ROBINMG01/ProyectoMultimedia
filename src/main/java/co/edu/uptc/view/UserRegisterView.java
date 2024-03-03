@@ -165,7 +165,7 @@ public class UserRegisterView {
         }
 
         // Colocar imagen
-        ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+        ImageIcon movieIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
         JLabel movieLabel = new JLabel(movieIcon);
 
         String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
@@ -240,7 +240,7 @@ public class UserRegisterView {
         }
 
         // Colocar imagen
-        ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
+        ImageIcon seriesIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\descarga.jpeg");
         JLabel seriesLabel = new JLabel(seriesIcon);
 
         String selectedSeries = (String) JOptionPane.showInputDialog(null, seriesLabel, "Series Catalog",
@@ -320,7 +320,7 @@ public class UserRegisterView {
                 case "Movie":
 
                     // Colocar imagen
-                    ImageIcon movieIcon = new ImageIcon("src/co/edu/uptc/image/13432033-película-tema-de-diseño.jpg");
+                    ImageIcon movieIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
                     JLabel movieLabel = new JLabel(movieIcon);
 
                     String[] movieOptions = { "View favorites", "Add favorite", "Remove favorite" };
@@ -350,7 +350,7 @@ public class UserRegisterView {
                 case "Serie":
 
                     // Colocar imagen
-                    ImageIcon seriesIcon = new ImageIcon("src/co/edu/uptc/image/descarga.jpeg");
+                    ImageIcon seriesIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\descarga.jpeg");
                     JLabel seriesLabel = new JLabel(seriesIcon);
 
                     String[] serieOptions = { "View favorites", "Add favorite", "Remove favorite" };
@@ -856,7 +856,7 @@ public class UserRegisterView {
 
                 panel.add(inputPanel, BorderLayout.CENTER);
                 // Panel para la imagen de pago
-                ImageIcon paymentImage = new ImageIcon("src/co/edu/uptc/image/pago.gif");
+                ImageIcon paymentImage = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\pago.gif");
                 JLabel imageLabel = new JLabel(paymentImage);
                 panel.add(imageLabel, BorderLayout.WEST);
 

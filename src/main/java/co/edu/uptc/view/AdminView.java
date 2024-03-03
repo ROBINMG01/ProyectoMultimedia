@@ -20,7 +20,6 @@ import co.edu.uptc.controller.ControlerInitialMenuView;
 public class AdminView {
     private AdminController ac;
     private Date dateApp;
-    private ControlerInitialMenuView controlerInitialMenuView;
     ViewVisit viewVisit = new ViewVisit();
     int newWidth = 0;
     int newHeight = 0;
@@ -38,7 +37,7 @@ public class AdminView {
     public void menuAdmin() {
         boolean condition = false;
 
-        ImageIcon iconSelection = new ImageIcon("src\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
+        ImageIcon iconSelection = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image selection = iconSelection.getImage();
@@ -78,8 +77,8 @@ public class AdminView {
 
     public void selected(String selectedaction) {
         boolean condition = false;
-        ImageIcon iconMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\Movie.jpeg");
-        ImageIcon iconSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\Serie.jpeg");
+        ImageIcon iconMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Movie.jpeg");
+        ImageIcon iconSerie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Serie.jpeg");
         // Obtener la imagen del ImageIcon original
         Image movie = iconMovie.getImage();
         Image serie = iconSerie.getImage();
@@ -211,9 +210,9 @@ public class AdminView {
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
-        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Actor.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterMovie.getImage();
@@ -362,9 +361,9 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
-        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Actor.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterSerie.getImage();
@@ -534,8 +533,8 @@ public class AdminView {
         int position = 0;
         int position2 = 0;
 
-        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Update.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterSerie.getImage();
@@ -646,8 +645,8 @@ public class AdminView {
         int position = 0;
         int position2 = 0;
 
-        ImageIcon iconRegisterSerie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterSerie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Update.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterSerie.getImage();
@@ -743,8 +742,8 @@ public class AdminView {
         String showNamesMovies[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconView = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterMovie.getImage();
@@ -789,8 +788,8 @@ public class AdminView {
         String showNamesSeries[];
         boolean exit = false;
 
-        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconView = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconView = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\register.png");
 
         // Obtener la imagen del ImageIcon original
         Image rMovie = iconRegisterMovie.getImage();
@@ -846,10 +845,10 @@ public class AdminView {
         ac.showlistAuthors().clear();
         ac.showlistActors().clear();
 
-        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
-        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Actor.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rUpdate = iconUpdate.getImage();
@@ -1010,11 +1009,11 @@ public class AdminView {
         ac.showListChaptersTwo().clear();
         ac.showlistAuthors().clear();
 
-        ImageIcon iconUpdate = new ImageIcon("src\\co\\edu\\uptc\\image\\Update.jpeg");
-        ImageIcon iconRegisterMovie = new ImageIcon("src\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
-        ImageIcon iconAuthor = new ImageIcon("src\\co\\edu\\uptc\\image\\Author.jpeg");
-        ImageIcon iconActor = new ImageIcon("src\\co\\edu\\uptc\\image\\Actor.jpeg");
-        ImageIcon iconChapter = new ImageIcon("src\\co\\edu\\uptc\\image\\Chapters.jpeg");
+        ImageIcon iconUpdate = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Update.jpeg");
+        ImageIcon iconRegisterMovie = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\RegisterMovie.jpeg");
+        ImageIcon iconAuthor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Author.jpeg");
+        ImageIcon iconActor = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Actor.jpeg");
+        ImageIcon iconChapter = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Chapters.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image rUpdate = iconUpdate.getImage();
