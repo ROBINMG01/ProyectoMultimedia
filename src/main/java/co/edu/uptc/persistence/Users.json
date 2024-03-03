@@ -1,25 +1,26 @@
 [
   {
-    "firstName": "1",
-    "lastName": "1",
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
     "email": "1",
     "password": "1",
     "role": "user",
+    "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 29, 2024, 10:44:15 AM",
-    "finDateDeSubscription": "Mar 30, 2024, 10:44:15 AM",
-    "actieSusciption": "active"
+    "dateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
+    "finDateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
+    "actieSusciption": "desactive"
   },
   {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
+    "email": "A",
+    "password": "A",
     "role": "admin",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "dateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
+    "finDateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
     "actieSusciption": "desactive"
   }
 ]
