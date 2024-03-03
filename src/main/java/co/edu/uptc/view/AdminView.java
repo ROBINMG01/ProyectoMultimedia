@@ -1365,6 +1365,10 @@ public class AdminView {
         } while (exit2 == false);
     }
 
+    public void updateChapter(){
+        //logica para actualizar los capitulos
+    }
+
     // metodo de archivo
 
     public void archiveUsers() {
