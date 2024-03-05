@@ -15,12 +15,14 @@ import javax.swing.UIManager;
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.User;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     static AdminController adminController = new AdminController();
+    static Season season = new Season();
 
     public static void main(String[] args) {
         AdminView av = new AdminView(adminController, controler);
@@ -275,7 +277,7 @@ public class InitialMenuView {
                 }
 
                 case "Visit": {
-                    ViewVisit viewVisit = new ViewVisit(adminController);
+                    ViewVisit viewVisit = new ViewVisit(adminController,season);
                     viewVisit.visitView();
                     break;
                 }

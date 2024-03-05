@@ -1,258 +1,115 @@
 package co.edu.uptc.viewFx;
 
-import co.edu.uptc.controller.AdminController;
-import co.edu.uptc.model.Chapter;
-import co.edu.uptc.model.Movie;
-import co.edu.uptc.model.Season;
-import co.edu.uptc.model.Serie;
-
-import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
-public class ViewVisit {
-    private Season season;
-    private boolean backToMenu = false;
+import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+
+public class ViewVisit extends Application {
+
     private AdminController adminController;
+    private ComboBox<String> viewOptionsComboBox;
+    private TextArea resultsTextArea;
 
-    public ViewVisit(AdminController ad) {
-        this.adminController = ad;
+    public ViewVisit(AdminController adminController) {
+        this.adminController = adminController;
     }
 
-    public ViewVisit() {
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public void visitView() {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Inicializar elementos de la interfaz de usuario
+        viewOptionsComboBox = new ComboBox<>(FXCollections.observableArrayList(
+                "Ver películas", "Ver series", "Buscar"));
+        resultsTextArea = new TextArea();
+        resultsTextArea.setEditable(false);
 
-        int w = 0;
-        String[] viewOptions = { "View movies", "View series", "Search" };
-        do {
+        // Botón para activar la búsqueda o las opciones de visualización
+        Button actionButton = new Button("Ver/Buscar");
+        actionButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String selectedOption = viewOptionsComboBox.getValue();
+                if (selectedOption.equals("Ver películas")) {
+                    // Obtener la lista de películas
+                    List<Movie> movies = adminController.getListMovies();
 
-            // Muestra las opciones de búsqueda en un cuadro de diálogo
-            String selectedOption = (String) JOptionPane.showInputDialog(null, "Select an option:",
-                    "View", JOptionPane.PLAIN_MESSAGE, null, viewOptions, viewOptions[0]);
-
-            // Comprobar si se seleccionó "Cancelar" en el cuadro de diálogo
-            if (selectedOption == null) {
-                return;
-            }
-
-            // Realiza la búsqueda en base a la opción seleccionada
-            String result = "";
-            switch (selectedOption) {
-                case "View movies":
-
-                    for (Movie movies : adminController.getListMovies()) {
-                        result += movies.getName() + "\n";
-                    }
-                    break;
-                case "View series":
-                    for (Serie series : adminController.getListSeries()) {
-                        result += series.getName() + "\n";
-                    }
-
-                    break;
-                case "Search":
-                    String[] searchOptions = { "Search by name", "Search by gender" };
-                    selectedOption = (String) JOptionPane.showInputDialog(null, "Select a search option:",
-                            "Search", JOptionPane.PLAIN_MESSAGE, null, searchOptions, searchOptions[0]);
-
-                    // Comprobar si se seleccionó "Cancelar" en el cuadro de diálogo
-                    if (selectedOption == null) {
-                        JOptionPane.showMessageDialog(null, "You have canceled the search.", "Canceled",
-                                JOptionPane.CANCEL_OPTION);
-                        return;
-                    }
-
-                    // Realiza la búsqueda en base a la opción seleccionada
-                    result = "";
-                    switch (selectedOption) {
-                        case "Search by name":
-                            String searchedItem = JOptionPane
-                                    .showInputDialog("Enter the name of the item you want to search:");
-                            if (searchedItem != null) {
-                                searchedItem = searchedItem.toLowerCase();
-                                for (Movie movie : adminController.getListMovies()) {
-                                    if (movie.getName().toLowerCase().contains(searchedItem)) {
-                                        // Mostrar solo el nombre de la película
-                                        result += movie.getName() + "\n";
+                    // Mostrar la lista de películas en un ListView
+                    ListView<Movie> moviesListView = new ListView<>(FXCollections.observableArrayList(movies));
+                    moviesListView.setCellFactory(new Callback<ListView<Movie>, ListCell<Movie>>() {
+                        @Override
+                        public ListCell<Movie> call(ListView<Movie> listView) {
+                            return new ListCell<Movie>() {
+                                @Override
+                                protected void updateItem(Movie movie, boolean empty) {
+                                    super.updateItem(movie, empty);
+                                    if (movie != null) {
+                                        setText(movie.getName());
                                     }
                                 }
-                                for (Serie serie : adminController.getListSeries()) {
-                                    if (serie.getName().toLowerCase().contains(searchedItem)) {
-                                        // Mostrar solo el nombre de la serie
-                                        result += serie.getName() + "\n";
+                            };
+                        }
+                    });
+
+                    resultsTextArea.getChildrenUnmodifiable().clear();
+                    resultsTextArea.getChildrenUnmodifiable().add(moviesListView);
+                } else if (selectedOption.equals("Ver series")) {
+                    // Obtener la lista de series
+                    List<Serie> series = adminController.getListSeries();
+
+                    // Mostrar la lista de series en un ListView
+                    ListView<Serie> seriesListView = new ListView<>(FXCollections.observableArrayList(series));
+                    seriesListView.setCellFactory(new Callback<ListView<Serie>, ListCell<Serie>>() {
+                        @Override
+                        public ListCell<Serie> call(ListView<Serie> listView) {
+                            return new ListCell<Serie>() {
+                                @Override
+                                protected void updateItem(Serie serie, boolean empty) {
+                                    super.updateItem(serie, empty);
+                                    if (serie != null) {
+                                        setText(serie.getName());
                                     }
                                 }
-                            }
-                            break;
-                        case "Search by gender":
-                            String gender = "";
+                            };
+                        }
+                    });
 
-                            gender = viewGender(gender);
-                            if (gender != null) {
-                                for (Movie movies : adminController.getListMovies()) {
-                                    if (movies.getGender().equalsIgnoreCase(gender)) {
-                                        result += movies.getName() + "\n";
-
-                                    }
-
-                                }
-                                for (Serie series : adminController.getListSeries()) {
-                                    if (series.getGender().equalsIgnoreCase(gender)) {
-                                        // Mostrar solo el nombre de la serie
-                                        result += series.getName() + "\n";
-                                    }
-                                }
-                            }
-
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null,
-                                    "Invalid option. Please select a valid option.");
-                            return;
-                    }
-
-                    break;
-                case "exit":
-                    w = 10;
-                default:
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid option. Please select a valid option.");
-                    return;
-            }
-            // Mostrar el resultado de la búsqueda
-            if (!result.isEmpty()) {
-                // Mostrar el resultado en un cuadro de diálogo
-                String selectedMovie = (String) JOptionPane.showInputDialog(null, "Select a movie or series:",
-                        "Catalog", JOptionPane.PLAIN_MESSAGE, null, result.split("\n"), result.split("\n")[0]);
-
-                if (selectedMovie != null) {
-                    // Mostrar opciones adicionales
-                    String[] buttons = { "View Description", "Back" };
-                    int choice = JOptionPane.showOptionDialog(null, "What would you like to do?",
-                            "Options", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                            buttons, buttons[0]);
-
-                    switch (choice) {
-                        case 0:
-                            // Ver descripción de la película o serie
-                            for (Movie movie : adminController.getListMovies()) {
-                                if (movie.getName().equals(selectedMovie)) {
-                                    String name = movie.getName();
-                                    String gender = movie.getGender();
-                                    int duration = movie.getDuration();
-                                    String description = movie.getDescription();
-                                    List<String> listAuthors = movie.getlistAuthors();
-                                    List<String> listActors = movie.getListActors();
-                                    JOptionPane.showMessageDialog(null, "\nName: " + name
-                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
-                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
-                                            + listActors, "Movie Description: ", JOptionPane.INFORMATION_MESSAGE);
-                                    break;
-                                }
-                            }
-                            for (Serie serie : adminController.getListSeries()) {
-                                if (serie.getName().equals(selectedMovie)) {
-                                    String name = serie.getName();
-                                    String gender = serie.getGender();
-                                    int duration = serie.getDuration();
-                                    String description = serie.getDescription();
-                                    List<String> listAuthors = serie.getlistAuthors();
-                                    List<String> listActors = serie.getListActors();
-                                    List<Chapter> listChapters = season.getListChapters();
-                                    JOptionPane.showMessageDialog(null, "\nName: " + name
-                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
-                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
-                                            + listActors + "\nListChapters: " + listChapters, "Serie Description: ",
-                                            JOptionPane.INFORMATION_MESSAGE);
-                                    break;
-                                }
-                            }
-                            break;
-                        case 1:
-                            backToMenu = true;
-                            return;
-                        default:
-                            JOptionPane.showMessageDialog(null,
-                                    "Invalid option. Please select a valid option.");
-                            return;
-                    }
+                    resultsTextArea.getChildrenUnmodifiable().clear();
+                    resultsTextArea.getChildrenUnmodifiable().add(seriesListView);
+                } else {
+                    // Implementar la lógica para la búsqueda
+                    resultsTextArea.setText("Función de búsqueda no implementada aún");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No results found for the search.", "Null",
-                        JOptionPane.INFORMATION_MESSAGE);
             }
+        });
 
-        } while (w != 10);
-    }
+        // Diseño de elementos (reemplazar con el diseño deseado)
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(viewOptionsComboBox, actionButton, resultsTextArea);
+        layout.setAlignment(Pos.CENTER);
 
-    public String viewGender(String gender) {
-        String optionHome[] = { "Accion", "Comedia", "Aventura", "Drama", "Terror", "Ficcion" };
-        UIManager.put("OptionPane.cancelButtonText", "Back");
-        UIManager.put("OptionPane.okButtonText", "select");
-        // icono de la imagen
-        ImageIcon icon = new ImageIcon("");
-
-        // Obtener la imagen del ImageIcon original
-        Image originalImage = icon.getImage();
-
-        // Definir el tamaño deseado para la imagen (por ejemplo, 200x200 píxeles)
-        int newWidth = 250;
-        int newHeight = 250;
-
-        // Redimensionar la imagen
-        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
-        // Crear un nuevo ImageIcon a partir de la imagen redimensionada
-        ImageIcon resizedIcon = new ImageIcon(resizedImage);
-
-        String seleccion = (String) JOptionPane.showInputDialog(null, "Select a gender:",
-                "filtering options", JOptionPane.QUESTION_MESSAGE, resizedIcon, optionHome,
-                optionHome[0]);
-        // para que influya en todos
-        UIManager.put("OptionPane.cancelButtonText", "Back");
-        UIManager.put("OptionPane.okButtonText", "Accept");
-        if (seleccion == null) {
-            seleccion = "exit";
-        }
-        switch (seleccion) {
-            case "Accion":
-                gender = "Accion";
-
-                break;
-            case "Comedia":
-                gender = "Comedia";
-
-                break;
-            case "Aventura":
-                gender = "Aventura";
-                break;
-            case "Drama":
-                gender = "Drama";
-                break;
-            case "Terror":
-                gender = "Terror";
-                break;
-            case "Ficcion":
-                gender = "Ficcion";
-
-                break;
-
-            default:
-                JOptionPane.showMessageDialog(null, "Invalid command", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-        return gender;
-
-    }
-
-    public void buscar() {
-
-    }
-
-    public boolean isBackToMenu() {
-        return backToMenu;
+        // Crear y mostrar escena
+        Scene scene = new Scene(layout, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Visita a la vista");
+        primaryStage.show();
     }
 }

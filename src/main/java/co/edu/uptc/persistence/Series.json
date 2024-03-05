@@ -3,8 +3,12 @@
     "name": "LOKI",
     "gender": "Ficcion",
     "duration": 460,
-    "listAuthors": ["Robert"],
-    "listActors": ["Edison"],
+    "listAuthors": [
+      "Robert"
+    ],
+    "listActors": [
+      "Edison"
+    ],
     "description": "LOKI llega a la AVT",
     "listSeason": [
       {
@@ -23,8 +27,12 @@
     "name": "Misterio en la Montaña",
     "gender": "Terror",
     "duration": 460,
-    "listAuthors": ["Steven Johnson"],
-    "listActors": ["Ethan Greene"],
+    "listAuthors": [
+      "Steven Johnson"
+    ],
+    "listActors": [
+      "Ethan Greene"
+    ],
     "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
     "listSeason": [
       {
@@ -36,6 +44,61 @@
           }
         ],
         "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
+      }
+    ]
+  },
+  {
+    "name": "Wanda Vision",
+    "gender": "Comedia",
+    "duration": 300,
+    "listAuthors": [
+      "Stan Lee"
+    ],
+    "listActors": [
+      "Elizabeth Olsen",
+      "Clark Kent"
+    ],
+    "description": "Wanda despues de end game",
+    "listSeason": [
+      {
+        "name": "Wanda esta loca",
+        "listChapters": [
+          {
+            "name": "Piloto",
+            "duration": 45
+          },
+          {
+            "name": "Wanda llora",
+            "duration": 46
+          }
+        ],
+        "description": "Wanda hace un mundo falso"
+      }
+    ]
+  },
+  {
+    "name": "La casa de papel",
+    "gender": "Accion",
+    "duration": 1200,
+    "listAuthors": [
+      "Brenfort",
+      "Carlr sagan"
+    ],
+    "listActors": [
+      "Georgina",
+      "Juan"
+    ],
+    "description": "Atracos en bancos",
+    "listSeason": [
+      {
+        "name": "Berlin",
+        "listChapters": [
+          {
+            "name": "Piloto",
+            "duration": 50
+          }
+        ],
+        "description": "Atracan el Banco nacional de moneda y timbre"
       }
     ]
   }

@@ -8,8 +8,8 @@ public class Season {
     private ArrayList<Chapter> listChapters;
     private String description;
 
-
     public Season() {
+        listChapters = new ArrayList<>();   
     }
 
     public Season(String name, String description, ArrayList<Chapter> listChapters) {
@@ -48,6 +48,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "\nSeason [name=" + name  + ", description=" + description + ",\nlistChapters=" + listChapters +"]";
+        return "\nSeason [name=" + name + ", description=" + description + ",\nlistChapters=" + listChapters + "]";
     }
 }

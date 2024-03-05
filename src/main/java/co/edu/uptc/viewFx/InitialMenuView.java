@@ -1,20 +1,31 @@
 package co.edu.uptc.viewFx;
 
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.User;
 import co.edu.uptc.view.AdminView;
 import co.edu.uptc.view.UserRegisterView;
 import co.edu.uptc.view.ViewVisit;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
 
     static AdminController adminController = new AdminController();
+    static Season season = new Season();
 
     public static void main(String[] args) {
         co.edu.uptc.view.AdminView av = new AdminView(adminController, controler);
@@ -269,7 +280,7 @@ public class InitialMenuView {
                 }
 
                 case "Visit": {
-                    ViewVisit viewVisit = new ViewVisit(adminController);
+                    ViewVisit viewVisit = new ViewVisit(adminController, season);
                     viewVisit.visitView();
                     break;
                 }

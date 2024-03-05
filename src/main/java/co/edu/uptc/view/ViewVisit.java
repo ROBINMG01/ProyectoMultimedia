@@ -8,18 +8,18 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
-import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 
 public class ViewVisit {
-    private Season season;
+    private Season sc;
     private boolean backToMenu = false;
     private AdminController adminController;
 
-    public ViewVisit(AdminController ad) {
+    public ViewVisit(AdminController ad, Season sc) {
         this.adminController = ad;
+        this.sc = sc;
     }
 
     public ViewVisit() {
@@ -157,17 +157,14 @@ public class ViewVisit {
                             }
                             for (Serie serie : adminController.getListSeries()) {
                                 if (serie.getName().equals(selectedMovie)) {
-                                    String name = serie.getName();
-                                    String gender = serie.getGender();
-                                    int duration = serie.getDuration();
-                                    String description = serie.getDescription();
-                                    List<String> listAuthors = serie.getlistAuthors();
-                                    List<String> listActors = serie.getListActors();
-                                    List<Chapter> listChapters = season.getListChapters();
-                                    JOptionPane.showMessageDialog(null, "\nName: " + name
-                                            + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
-                                            + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
-                                            + listActors + "\nListChapters: " + listChapters, "Serie Description: ",
+
+                                    JOptionPane.showMessageDialog(null, "\nName: " + serie.getName()
+                                            + "\nGender: " + serie.getGender() + "\nDuration: " + serie.getDuration()
+                                            + "\nDescription: "
+                                            + serie.getDescription() + "\nListaAuthors: " + serie.getlistAuthors()
+                                            + "\nListActors: "
+                                            + serie.getListActors() + "\nListSeason: " + serie.getListSeason(),
+                                            "Serie Description: ",
                                             JOptionPane.INFORMATION_MESSAGE);
                                     break;
                                 }
