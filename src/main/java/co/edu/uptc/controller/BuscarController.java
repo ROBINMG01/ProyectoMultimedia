@@ -9,7 +9,9 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.utilitaries.Utilitaries;
 import co.edu.uptc.view.ViewVisit;
@@ -19,6 +21,7 @@ public class BuscarController {
     private boolean backToMenu = false;
     private ViewVisit viewVisit;
     private AdminController adminController;
+    private Season season;
 
     public BuscarController(AdminController ad) {
         utilitaries = new Utilitaries();
@@ -135,7 +138,7 @@ public class BuscarController {
                                     String description = serie.getDescription();
                                     List<String> listAuthors = serie.getlistAuthors();
                                     List<String> listActors = serie.getListActors();
-                                    List<String> listChapters = serie.getListChapters();
+                                    List<Chapter> listChapters = season.getListChapters();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
                                             + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
                                             + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
