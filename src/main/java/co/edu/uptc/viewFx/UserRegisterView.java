@@ -1,36 +1,17 @@
-package co.edu.uptc.view;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Window;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
+package co.edu.uptc.viewFx;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.controller.BuscarController;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.controller.UserController;
-import co.edu.uptc.model.Movie;
-import co.edu.uptc.model.Role;
-import co.edu.uptc.model.Serie;
-import co.edu.uptc.model.User;
+import co.edu.uptc.model.*;
+import co.edu.uptc.view.AdminView;
+
+import javax.swing.*;
+import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 // Constructor
 public class UserRegisterView {
@@ -38,11 +19,11 @@ public class UserRegisterView {
     private AdminController ad;
     private User user;
     private ControlerInitialMenuView controlerInitialMenuView;
-    private AdminView adminView;
+    private co.edu.uptc.view.AdminView adminView;
     private Date dateApp;
 
     public UserRegisterView(AdminController ad, User user, ControlerInitialMenuView controlerInitialMenuView,
-            AdminView adminView) {
+                            AdminView adminView) {
         this.ad = ad;
         this.userController = new UserController(ad);
         this.controlerInitialMenuView = controlerInitialMenuView;

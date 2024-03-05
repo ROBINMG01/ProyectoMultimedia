@@ -3,12 +3,8 @@
     "name": "LOKI",
     "gender": "Ficcion",
     "duration": 460,
-    "listAuthors": [
-      "Robert"
-    ],
-    "listActors": [
-      "Edison"
-    ],
+    "listAuthors": ["Robert"],
+    "listActors": ["Edison"],
     "description": "LOKI llega a la AVT",
     "listSeason": [
       {
@@ -27,12 +23,8 @@
     "name": "Misterio en la Montaña",
     "gender": "Terror",
     "duration": 460,
-    "listAuthors": [
-      "Steven Johnson"
-    ],
-    "listActors": [
-      "Ethan Greene"
-    ],
+    "listAuthors": ["Steven Johnson"],
+    "listActors": ["Ethan Greene"],
     "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
     "listSeason": [
       {

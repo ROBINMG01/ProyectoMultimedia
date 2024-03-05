@@ -1,17 +1,14 @@
-package co.edu.uptc.view;
-
-import java.awt.Image;
-import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+package co.edu.uptc.viewFx;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class ViewVisit {
     private Season season;

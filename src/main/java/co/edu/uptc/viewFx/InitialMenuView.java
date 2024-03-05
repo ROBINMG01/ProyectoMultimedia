@@ -48,7 +48,8 @@ public class InitialMenuView {
             UIManager.put("OptionPane.okButtonText", "select");
 
             // icono de la imagen
-            ImageIcon icon = new ImageIcon("src\\co\\edu\\uptc\\image\\logo UPTCine.jpg");
+
+            ImageIcon icon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\logo UPTCine.jpg");
 
             // Obtener la imagen del ImageIcon original
             Image originalImage = icon.getImage();
@@ -103,7 +104,7 @@ public class InitialMenuView {
 
                         // icono de la imagen
 
-                        ImageIcon iconLogin = new ImageIcon("src\\co\\edu\\uptc\\image\\login.png");
+                        ImageIcon iconLogin = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\login.png");
 
                         // Obtener la imagen del ImageIcon original
                         Image login = iconLogin.getImage();
@@ -209,7 +210,7 @@ public class InitialMenuView {
 
                         panel.setBackground(Color.ORANGE);
 
-                        ImageIcon iconChef = new ImageIcon("src\\co\\edu\\uptc\\image\\register.png");
+                        ImageIcon iconChef = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\register.png");
                         Image chefImg = iconChef.getImage();
                         newWidth = 150;
                         newHeight = 150;

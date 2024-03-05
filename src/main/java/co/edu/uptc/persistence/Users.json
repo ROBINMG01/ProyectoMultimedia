@@ -1,26 +1,91 @@
 [
   {
-    "firstName": "Daniel",
-    "lastName": "Rodriguez",
+    "firstName": "1",
+    "lastName": "1",
     "email": "1",
     "password": "1",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
-    "finDateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
+    "dateDeSubscription": "Feb 29, 2024, 10:12:53 AM",
+    "finDateDeSubscription": "Mar 30, 2024, 10:12:53 AM",
     "actieSusciption": "desactive"
   },
   {
-    "firstName": "Daniel",
-    "lastName": "Rodriguez",
-    "email": "A",
-    "password": "A",
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "123",
     "role": "admin",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
-    "finDateDeSubscription": "Mar 3, 2024, 6:39:08 PM",
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "ADMN",
+    "lastName": "Admin",
+    "email": "A",
+    "password": "123",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Andres",
+    "lastName": "Morales",
+    "email": "Andres@gmail.com",
+    "password": "Ca123456789#",
+    "role": "user",
+    "listMoviesFavorites": [
+      {
+        "name": "El origen",
+        "gender": "Ficcion",
+        "duration": 120,
+        "listAuthors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "listActors": [
+          "Robert",
+          "Hemworth",
+          "Carolina"
+        ],
+        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+      }
+    ],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "1",
+    "lastName": "1",
+    "email": "1@gmail.com",
+    "password": "J12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "robin",
+    "lastName": "molina",
+    "email": "robin@gmail.com",
+    "password": "R12345f@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
+    "finDateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
     "actieSusciption": "desactive"
   }
 ]
