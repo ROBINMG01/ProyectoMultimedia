@@ -8,10 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 
 public class ViewVisit {
+    private Season season;
     private boolean backToMenu = false;
     private AdminController adminController;
 
@@ -160,7 +163,7 @@ public class ViewVisit {
                                     String description = serie.getDescription();
                                     List<String> listAuthors = serie.getlistAuthors();
                                     List<String> listActors = serie.getListActors();
-                                    List<String> listChapters = serie.getListChapters();
+                                    List<Chapter> listChapters = season.getListChapters();
                                     JOptionPane.showMessageDialog(null, "\nName: " + name
                                             + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
                                             + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
