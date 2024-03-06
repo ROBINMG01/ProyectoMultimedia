@@ -1,6 +1,6 @@
 package co.edu.uptc.viewFx;
 
-import java.util.List;
+import java.beans.EventHandler;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
@@ -8,7 +8,6 @@ import co.edu.uptc.model.Serie;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
