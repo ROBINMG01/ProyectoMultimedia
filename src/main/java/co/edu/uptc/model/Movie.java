@@ -10,6 +10,45 @@ public class Movie {
     private ArrayList<String> listAuthors;
     private ArrayList<String> listActors;
     private String description;
+    private String director;
+    private int year;
+    private String gener;
+
+    public String getDirector() {
+        return director;
+    }
+
+
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+
+
+    public int getYear() {
+        return year;
+    }
+
+
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+
+
+    public String getGener() {
+        return gener;
+    }
+
+
+
+    public void setGener(String gener) {
+        this.gener = gener;
+    }
+
+
 
     public Movie() {
     }
@@ -25,6 +64,15 @@ public class Movie {
         this.listActors = listActors;
         this.gender = gender;
     }
+
+    public Movie(String name, String director, int year, String gener) {
+        this.name = name;
+        this.director = director;
+        this.year = year;
+        this.gener = gener;
+    }
+
+
 
     public String getName() {
         return name;
