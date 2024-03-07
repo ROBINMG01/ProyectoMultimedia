@@ -7,9 +7,9 @@
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 29, 2024, 10:12:53 AM",
-    "finDateDeSubscription": "Mar 30, 2024, 10:12:53 AM",
-    "actieSusciption": "desactive"
+    "dateDeSubscription": "Mar 6, 2024, 1:20:53 PM",
+    "finDateDeSubscription": "Apr 5, 2024, 1:20:53 PM",
+    "actieSusciption": "active"
   },
   {
     "firstName": "ADMN",
@@ -56,7 +56,8 @@
           "Hemworth",
           "Carolina"
         ],
-        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
+        "year": 0
       }
     ],
     "listSeriesFavorites": [
@@ -114,8 +115,8 @@
         ]
       }
     ],
-    "dateDeSubscription": "Mar 5, 2024, 11:48:45 AM",
-    "finDateDeSubscription": "Apr 4, 2024, 11:48:45 AM",
+    "dateDeSubscription": "Mar 6, 2024, 1:18:15 PM",
+    "finDateDeSubscription": "Apr 5, 2024, 1:18:15 PM",
     "actieSusciption": "active"
   },
   {

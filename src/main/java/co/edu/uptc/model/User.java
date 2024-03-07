@@ -174,4 +174,20 @@ public class User {
                 ", actieSusciption='" + actieSusciption + '\'' +
                 '}';
     }
+
+    public String toStringPDF() {
+        return "Purchase invoice" +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\nfirstName: " + firstName +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\n lastName: " + lastName +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\n email: " + email +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\n dateDeSubscription: " + dateDeSubscription +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\n finDateDeSubscription: " + finDateDeSubscription +
+                "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
+                "\n actieSusciption: " + actieSusciption;
+    }
 }

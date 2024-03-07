@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+
     <groupId>groupId</groupId>
     <artifactId>ProyectoMultimedia</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -24,12 +24,14 @@
             <version>21.0.2</version>
 
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
-<dependency>
-    <groupId>com.lowagie</groupId>
-    <artifactId>itext</artifactId>
-    <version>2.1.7</version>
-</dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>7.1.1</version>
+            <type>pom</type>
+        </dependency>
+        
+
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -38,9 +40,6 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10.1</version>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>

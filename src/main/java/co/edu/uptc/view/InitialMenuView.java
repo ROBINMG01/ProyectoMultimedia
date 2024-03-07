@@ -17,10 +17,12 @@ import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.User;
+import co.edu.uptc.util.DocumentManagement;
 
 public class InitialMenuView {
     static ControlerInitialMenuView controler = new ControlerInitialMenuView();
-
+    @SuppressWarnings("rawtypes")
+    static DocumentManagement documentManagement;
     static AdminController adminController = new AdminController();
     static Season season = new Season();
 
@@ -277,7 +279,7 @@ public class InitialMenuView {
                 }
 
                 case "Visit": {
-                    ViewVisit viewVisit = new ViewVisit(adminController,season);
+                    ViewVisit viewVisit = new ViewVisit(adminController, season);
                     viewVisit.visitView();
                     break;
                 }
