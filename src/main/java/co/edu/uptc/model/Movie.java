@@ -65,13 +65,30 @@ public class Movie {
         this.gender = gender;
     }
 
-    public Movie(String name, String director, int year, String gener) {
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
+            ArrayList<String> listActors, String gender, int year) {
         this.name = name;
-        this.director = director;
+        this.description = description;
+        this.duration = duration;
+        this.listAuthors = listAuthors;
+        this.listActors = listActors;
+        this.gender = gender;
         this.year = year;
-        this.gener = gener;
     }
 
+    public Movie(String name, String gender, int duration, int year) {
+        this.name = name;
+        this.gender = gender;
+        this.duration = duration;
+        this.year = year;
+    }
+
+    public Movie(String name, String director, int year, String gender) {
+        this.name = name;
+        this.gender = gender;
+        this.director = director;
+        this.year = year;
+    }
 
 
     public String getName() {

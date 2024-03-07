@@ -1,0 +1,22 @@
+.button-AMovie:hover {
+    -fx-background-color: #f4ec06; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.button-registro:hover {
+    -fx-background-color: #f4ec06; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.button-VMovie:hover {
+    -fx-background-color: #f4ec06; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+.button-login:hover,
+.button-registro:hover,
+.button-visitante:hover {
+    -fx-scale-x: 2;
+    -fx-scale-y: 2;
+    -fx-background-color: #f4ec06; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}

@@ -43,17 +43,18 @@ public class AdminController {
 
     // ROBIN
     public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender, ArrayList<String> listActors, String file) {
+            String gender, ArrayList<String> listActors, int year) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
         movie.setlistAuthors(listAuthors);
         movie.setListActors(listActors);
         movie.setGender(gender);
+        movie.setYear(year);
 
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
-            saveMovie(listMovies, file);
+            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender, year));
+            saveMovie(listMovies, "Movie");
             return true;
         }
         return false;
