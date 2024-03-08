@@ -16,8 +16,8 @@ public class AdminController {
     private Movie movie;
     private Serie serie;
     private FileManagement FileManager;
-    ObservableList<Movie> listMovies;
-    ObservableList<Serie> listSeries = FXCollections.observableArrayList();
+    ArrayList<Movie> listMovies;
+    ArrayList<Serie> listSeries;
     private ArrayList<String> listAuthors;
     private ArrayList<String> listActors;
     private ArrayList<String> listChaptersTwo;
@@ -30,7 +30,8 @@ public class AdminController {
     // ROBIN
     public AdminController() {
         FileManager = new FileManagement();
-        listMovies = FXCollections.observableArrayList();
+        listMovies = new ArrayList<>();
+        listSeries = new ArrayList<>();
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
@@ -41,8 +42,8 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean  addMovie(String name, String description, int duration, ObservableList<String> listAuthors,
-            String gender, ObservableList<String> listActors, int year) {
+    public boolean  addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
+            String gender, ArrayList<String> listActors, int year) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
@@ -202,7 +203,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-    ObservableList<String> listAuthors, ObservableList<String> listActors, String gender) {
+    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -234,12 +235,12 @@ public class AdminController {
     }
 
     // ROBIN
-    public ObservableList<Movie> showListMovies() {
+    public ArrayList<Movie> showListMovies() {
         return listMovies;
     }
 
     // ROBIN
-    public ObservableList<Serie> showListSeries() {
+    public ArrayList<Serie> showListSeries() {
         return listSeries;
     }
 
@@ -295,19 +296,19 @@ public class AdminController {
         return namesSesons;
     }
 
-    public ObservableList<Movie> getListMovies() {
+    public ArrayList<Movie> getListMovies() {
         return listMovies;
     }
 
-    public void setListMovies(ObservableList<Movie> listMovies) {
+    public void setListMovies(ArrayList<Movie> listMovies) {
         this.listMovies = listMovies;
     }
 
-    public ObservableList<Serie> getListSeries() {
+    public ArrayList<Serie> getListSeries() {
         return listSeries;
     }
 
-    public void setListSeries(ObservableList<Serie> listSeries) {
+    public void setListSeries(ArrayList<Serie> listSeries) {
         this.listSeries = listSeries;
     }
 

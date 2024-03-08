@@ -8,9 +8,9 @@ public class Movie {
     private String name;
     private String gender;
     private int duration;
-    ObservableList<Movie> listMovies;
-    ObservableList<String> listAuthors;
-    ObservableList<String> listActors;
+    ArrayList<Movie> listMovies;
+    ArrayList<String> listAuthors;
+    ArrayList<String> listActors;
     private String description;
     private String director;
     private int year;
@@ -57,8 +57,8 @@ public class Movie {
 
      
 
-    public Movie(String name, String description, int duration, ObservableList<String> listAuthors,
-    ObservableList<String> listActors, String gender, int year) {
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
+    ArrayList<String> listActors, String gender, int year) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -92,19 +92,19 @@ public class Movie {
         this.duration = duration;
     }
 
-    public ObservableList<String> getlistAuthors() {
+    public ArrayList<String> getlistAuthors() {
         return listAuthors;
     }
 
-    public void setlistAuthors(ObservableList<String> listAuthors) {
+    public void setlistAuthors(ArrayList<String> listAuthors) {
         this.listAuthors = listAuthors;
     }
 
-    public ObservableList<Movie> getListMovies() {
+    public ArrayList<Movie> getListMovies() {
         return listMovies;
     }
 
-    public void setListMovies(ObservableList<Movie> listMovies) {
+    public void setListMovies(ArrayList<Movie> listMovies) {
         this.listMovies = listMovies;
     }
 
@@ -116,11 +116,11 @@ public class Movie {
         this.gender = gender;
     }
 
-    public ObservableList<String> getListActors() {
+    public ArrayList<String> getListActors() {
         return listActors;
     }
 
-    public void setListActors(ObservableList<String> listActors) {
+    public void setListActors(ArrayList<String> listActors) {
         this.listActors = listActors;
     }
 

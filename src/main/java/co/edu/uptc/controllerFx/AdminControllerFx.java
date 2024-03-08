@@ -1,6 +1,8 @@
 package co.edu.uptc.controllerFx;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
@@ -20,8 +22,8 @@ public class AdminControllerFx {
 
     private AdminController ac;
     private Movie movie;
-    ObservableList<String> listAuthors = FXCollections.observableArrayList();
-    ObservableList<String> listActors = FXCollections.observableArrayList();
+    ArrayList<String> listAuthors = new ArrayList<>();
+    ArrayList<String> listActors = new ArrayList<>();
     ObservableList<Movie> listMovies;
 
     @FXML
