@@ -36,7 +36,7 @@ public class ViewVisitControllerFx {
 
     @FXML
     private Button buttonAcept;
-    
+
     @FXML
     private Button buttonMovie;
 
@@ -65,7 +65,7 @@ public class ViewVisitControllerFx {
 
     public void initialize() {
         // Inicializar el ComboBox con las opciones de búsqueda
-        List<String> options = List.of("View movies", "View series", "Search");
+        List<String> options = List.of("Action", "Fiction", "Adventure", "Terror", "Comedia");
         comboBoxOptions.getItems().addAll(options);
 
         // Limpiar la lista de resultados al inicio
@@ -73,7 +73,27 @@ public class ViewVisitControllerFx {
     }
 
     @FXML
-    public void handleSearchAction() {
+    public void handleMovieButton() { // Handle movie button click
+        displayMovies();
+    }
+
+    @FXML
+    public void handleSerieButton() { // Handle series button click
+        displaySeries();
+    }
+
+    @FXML
+    public void handleSearchAction() { // Handle search button click
+        handleSearch();
+    }
+
+    @FXML
+    public void handleFilterAction() {
+
+    }
+
+    @FXML
+    public void handleAceptAction() {
         String selectedOption = comboBoxOptions.getSelectionModel().getSelectedItem();
 
         if (selectedOption == null) {
@@ -82,13 +102,19 @@ public class ViewVisitControllerFx {
         }
 
         switch (selectedOption) {
-            case "View movies":
+            case "Action":
                 displayMovies();
                 break;
-            case "View series":
+            case "Fiction":
                 displaySeries();
                 break;
-            case "Search":
+            case "Adventure":
+                handleSearch();
+                break;
+            case "Terror":
+                handleSearch();
+                break;
+            case "Comedia":
                 handleSearch();
                 break;
         }
@@ -153,7 +179,6 @@ public class ViewVisitControllerFx {
         for (Movie movie : movies) {
             if (movie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
                 observableListResults.add(movie.getName());
-                viewMovie(movie.getName());
             }
         }
 

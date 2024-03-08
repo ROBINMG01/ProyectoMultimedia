@@ -5,26 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1ea48e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
    <children>
-      <ComboBox fx:id="comboBoxOptions" layoutX="370.0" layoutY="31.0" prefWidth="150.0" promptText="Select" style="-fx-background-color: #0b7261;" />
+      <ComboBox fx:id="comboBoxOptions" layoutX="516.0" layoutY="31.0" prefHeight="25.0" prefWidth="70.0" promptText="Filter" style="-fx-background-color: #0b7261;" />
       <ListView fx:id="listViewResults" layoutX="14.0" layoutY="85.0" prefHeight="250.0" prefWidth="250.0" />
-      <Button fx:id="buttonAcept" layoutX="531.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSearchAction" style="-fx-background-color: #0b7261;" text="Aceptar" textFill="WHITE">
+      <Button fx:id="buttonAcept" layoutX="458.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleFilterAction" style="-fx-background-color: #0b7261;" text="Acept" textFill="WHITE">
          <font>
             <Font name="Calibri" size="12.0" />
          </font></Button>
       <Label fx:id="detailsLabel" layoutX="343.0" layoutY="85.0" prefHeight="250.0" prefWidth="230.0" style="-fx-background-color: #0b7261;" />
-      <ImageView fx:id="imageView" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="350.0" />
-      <Button fx:id="buttonSerie" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSearchAction" style="-fx-background-color: #0b7261;" text="Series" textFill="WHITE">
+      <ImageView fx:id="imageView" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="350.0" opacity="0.34">
+         <image>
+            <Image url="@../image/Serie.jpeg" />
+         </image></ImageView>
+      <Button fx:id="buttonSerie" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSerieButton" style="-fx-background-color: #0b7261;" text="Series" textFill="WHITE">
          <font>
             <Font name="Calibri" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="buttonMovie" layoutX="74.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSearchAction" style="-fx-background-color: #0b7261;" text="Movies" textFill="WHITE">
+      <Button fx:id="buttonMovie" layoutX="74.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleMovieButton" style="-fx-background-color: #0b7261;" text="Movies" textFill="WHITE">
          <font>
             <Font name="Calibri" size="12.0" />
          </font>
@@ -34,7 +38,7 @@
             <Font name="Calibri" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="inputSearch" alignment="TOP_LEFT" disable="true" layoutX="202.0" layoutY="31.0" onAction="#handleSearchAction" promptText="input text">
+      <TextField fx:id="inputSearch" alignment="TOP_LEFT" disable="true" layoutX="202.0" layoutY="31.0" promptText="input text">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
