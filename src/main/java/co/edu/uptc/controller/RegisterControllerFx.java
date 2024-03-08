@@ -2,7 +2,6 @@ package co.edu.uptc.controller;
 
 import java.io.IOException;
 
-import co.edu.uptc.viewFx.*;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.viewFx.RegisterViewFx;
@@ -58,7 +57,7 @@ public class RegisterControllerFx {
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Formato Vacio, digita el año de la película.");
-            alert.showAndWait();            
+            alert.showAndWait();
             return false;
         }
 
@@ -66,11 +65,11 @@ public class RegisterControllerFx {
         try {
             movieYearInt = Integer.parseInt(movieYearString);
         } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText("Formato Incorrecto, digita bien el año de la película.");
-                alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Formato Incorrecto, digita bien el año de la película.");
+            alert.showAndWait();
             return false;
         }
 

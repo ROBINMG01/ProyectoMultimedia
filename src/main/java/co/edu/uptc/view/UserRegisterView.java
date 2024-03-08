@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Window;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,7 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
+import co.edu.uptc.util.DocumentManagement;
 
 // Constructor
 public class UserRegisterView {
@@ -40,6 +42,7 @@ public class UserRegisterView {
     private ControlerInitialMenuView controlerInitialMenuView;
     private AdminView adminView;
     private Date dateApp;
+    private DocumentManagement documentManagement;
 
     public UserRegisterView(AdminController ad, User user, ControlerInitialMenuView controlerInitialMenuView,
             AdminView adminView) {
@@ -49,6 +52,7 @@ public class UserRegisterView {
         this.user = user;
         this.dateApp = new Date();
         this.adminView = adminView;
+        this.documentManagement = new DocumentManagement();
     }
 
     // Entrada principal
@@ -165,7 +169,8 @@ public class UserRegisterView {
         }
 
         // Colocar imagen
-        ImageIcon movieIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
+        ImageIcon movieIcon = new ImageIcon(
+                "src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
         JLabel movieLabel = new JLabel(movieIcon);
 
         String selectedMovie = (String) JOptionPane.showInputDialog(null, movieLabel, "Movie Catalog",
@@ -320,7 +325,8 @@ public class UserRegisterView {
                 case "Movie":
 
                     // Colocar imagen
-                    ImageIcon movieIcon = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
+                    ImageIcon movieIcon = new ImageIcon(
+                            "src\\main\\java\\co\\edu\\uptc\\image\\13432033-película-tema-de-diseño.jpg");
                     JLabel movieLabel = new JLabel(movieIcon);
 
                     String[] movieOptions = { "View favorites", "Add favorite", "Remove favorite" };
@@ -815,6 +821,7 @@ public class UserRegisterView {
         });
     }
 
+    @SuppressWarnings("unchecked")
     public void suscriptionActive(User user) {
         user.setDateDeSubscription(new Date());
         int attempts = 0;
@@ -896,6 +903,15 @@ public class UserRegisterView {
                                     user.setActieSusciption("active");
                                     // guardar en archivos users
                                     controlerInitialMenuView.saveInfoUser();
+                                    try {
+                                        documentManagement.generatePdf("Factura_de_" + user.getFirstName(),
+                                                controlerInitialMenuView.getUsers(), user, "\nValue: $20.000",
+                                                "\nCardNumber :" +
+                                                        cardNumber);
+                                        JOptionPane.showInputDialog("PDF generated successfully!");
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Incorrect Password", "Error",
