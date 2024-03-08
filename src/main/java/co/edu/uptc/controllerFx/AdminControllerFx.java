@@ -19,13 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class AdminControllerFx {
 
     private AdminController ac;
-    private Movie movie = new Movie();
+    private Movie movie;
     ObservableList<String> listAuthors = FXCollections.observableArrayList();
     ObservableList<String> listActors = FXCollections.observableArrayList();
-
-    public AdminControllerFx(AdminController ac){
-        this.ac = ac;
-    }
+    ObservableList<Movie> listMovies;
 
     @FXML
     private TextField movieName;
@@ -89,16 +86,17 @@ public class AdminControllerFx {
             movie.setDuration(ac.getListMovies().get(i).getDuration());
             movie.setYear(ac.getListMovies().get(i).getYear());*/
 
+            ac = new AdminController();
+            movie = new Movie();
+
            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
            genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
            durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
            yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
            //descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-    
+
            // Obtener las películas del repositorio
-           //tableView.setItems(MovieRepository.getInstance().getMovies());
-           tableView.setItems(ac.showListMovies());
-           tableView.setItems(ac.getListMovies());
+           tableView.setItems(MovieRepository.getInstance().getMovies());
        //}
         
     }
@@ -194,10 +192,10 @@ public class AdminControllerFx {
             return false;
         }
 
-        //String name, String description, int duration, ArrayList<String> listAuthors,
-         //   String gender, ArrayList<String> listActors
+        //String, String, int, ObservableList<String>, ObservableList<String>, String, int
         if (ac.addMovie(movieName.getText(), movieDescription.getText(),movieDurations,listAuthors, movieGender.getText(), listActors,movieYearInt)) {
-            //MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size()-1));
+            //movie = new Movie(movieNameString, movieDescriptionString, movieDurations, listAuthors, listActors, movieGenderString, movieYearInt);
+            MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size()-1));
         }
 
         // Clean fields in case of success

@@ -41,7 +41,7 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean addMovie(String name, String description, int duration, ObservableList<String> listAuthors,
+    public boolean  addMovie(String name, String description, int duration, ObservableList<String> listAuthors,
             String gender, ObservableList<String> listActors, int year) {
         movie.setName(name);
         movie.setDescription(description);
@@ -51,9 +51,10 @@ public class AdminController {
         movie.setGender(gender);
         movie.setYear(year);
 
+        //String name, String description, int duration, ObservableList<String> listAuthors,
+    //ObservableList<String> listActors, String gender
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
             listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender, year));
-            System.out.println("--->"+listMovies);
             saveMovie(listMovies, "Movie");
             return true;
         }
@@ -234,8 +235,6 @@ public class AdminController {
 
     // ROBIN
     public ObservableList<Movie> showListMovies() {
-        System.out.println("con toString-> "+listMovies.toString());
-        System.out.println("Sin toString-> "+listMovies);
         return listMovies;
     }
 
@@ -297,7 +296,6 @@ public class AdminController {
     }
 
     public ObservableList<Movie> getListMovies() {
-        System.out.println(listMovies);
         return listMovies;
     }
 

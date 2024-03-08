@@ -12,9 +12,9 @@
       <TableView fx:id="tableView" layoutY="40.0" prefHeight="360.0" prefWidth="300.0" styleClass="white-form" stylesheets="@../Styles/StyleAMovie.css">
         <columns>
             <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-               <TableColumn fx:id="genderColumn" prefWidth="75.0" text="Genre" />
-               <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
-               <TableColumn fx:id="yearColumn" prefWidth="75.0" text="Year" />
+            <TableColumn fx:id="genderColumn" prefWidth="75.0" text="Genre" />
+            <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
+            <TableColumn fx:id="yearColumn" prefWidth="75.0" text="Year" />
         </columns>
       </TableView>
       <Button layoutX="6.0" layoutY="8.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Movie" />
