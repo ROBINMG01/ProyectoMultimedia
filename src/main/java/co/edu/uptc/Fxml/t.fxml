@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
+   <children>
+      <ComboBox fx:id="comboBoxOptions" layoutX="14.0" layoutY="45.0" prefWidth="150.0" promptText="Select" />
+      <ListView fx:id="listViewResults" layoutX="14.0" layoutY="85.0" prefHeight="250.0" prefWidth="250.0" />
+      <Button fx:id="buttonSearch" layoutX="284.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleSearchAction" text="Aceptar" />
+      <Label fx:id="detailsLabel" layoutX="354.0" layoutY="85.0" prefHeight="250.0" prefWidth="230.0" />
+      <ImageView fx:id="imageView" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="350.0" />
+      <MenuBar layoutY="1.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
