@@ -8,14 +8,16 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.util.FileManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AdminController {
 
     private Movie movie;
     private Serie serie;
     private FileManagement FileManager;
-    private ArrayList<Movie> listMovies;
-    private ArrayList<Serie> listSeries;
+    ObservableList<Movie> listMovies;
+    ObservableList<Serie> listSeries = FXCollections.observableArrayList();
     private ArrayList<String> listAuthors;
     private ArrayList<String> listActors;
     private ArrayList<String> listChaptersTwo;
@@ -28,13 +30,10 @@ public class AdminController {
     // ROBIN
     public AdminController() {
         FileManager = new FileManagement();
-        listMovies = new ArrayList<>();
-        listSeries = new ArrayList<>();
+        listMovies = FXCollections.observableArrayList();
         listAuthors = new ArrayList<>();
         listActors = new ArrayList<>();
         listChaptersTwo = new ArrayList<>();
-        listMovies = new ArrayList<>();
-        listSeries = new ArrayList<>();
         movie = new Movie();
         serie = new Serie();
         season = new Season();
@@ -42,18 +41,21 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender, ArrayList<String> listActors, String file) {
+    public boolean  addMovie(String name, String description, int duration, ObservableList<String> listAuthors,
+            String gender, ObservableList<String> listActors, int year) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
         movie.setlistAuthors(listAuthors);
         movie.setListActors(listActors);
         movie.setGender(gender);
+        movie.setYear(year);
 
+        //String name, String description, int duration, ObservableList<String> listAuthors,
+    //ObservableList<String> listActors, String gender
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender));
-            saveMovie(listMovies, file);
+            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender, year));
+            saveMovie(listMovies, "Movie");
             return true;
         }
         return false;
@@ -200,7 +202,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
+    ObservableList<String> listAuthors, ObservableList<String> listActors, String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -232,12 +234,12 @@ public class AdminController {
     }
 
     // ROBIN
-    public ArrayList<Movie> showListMovies() {
+    public ObservableList<Movie> showListMovies() {
         return listMovies;
     }
 
     // ROBIN
-    public ArrayList<Serie> showListSeries() {
+    public ObservableList<Serie> showListSeries() {
         return listSeries;
     }
 
@@ -293,19 +295,19 @@ public class AdminController {
         return namesSesons;
     }
 
-    public ArrayList<Movie> getListMovies() {
+    public ObservableList<Movie> getListMovies() {
         return listMovies;
     }
 
-    public void setListMovies(ArrayList<Movie> listMovies) {
+    public void setListMovies(ObservableList<Movie> listMovies) {
         this.listMovies = listMovies;
     }
 
-    public ArrayList<Serie> getListSeries() {
+    public ObservableList<Serie> getListSeries() {
         return listSeries;
     }
 
-    public void setListSeries(ArrayList<Serie> listSeries) {
+    public void setListSeries(ObservableList<Serie> listSeries) {
         this.listSeries = listSeries;
     }
 

@@ -87,6 +87,6 @@ public class RegisterControllerFx {
 
     @FXML
     private void showFormCreateMovie() throws IOException {
-        RegisterViewFx.setRoot("createMovie");
+        RegisterViewFx.setRoot("listMovies");
     }
 }
