@@ -11,6 +11,9 @@ public class Serie {
     private ArrayList<String> listActors;
     private String description;
     private ArrayList<Season> listSeason;
+    private String videoUrl;
+
+    
 
     public Serie() {
     }
@@ -93,10 +96,17 @@ public class Serie {
     public void setListSeason(ArrayList<Season> listSeason) {
         this.listSeason = listSeason;
     }
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
 
     @Override
     public String toString() {
-        return "Serie [name=" + name + ", gender=" + gender + ", duration=" + duration + ",\nlistAuthors=" + listAuthors
-                + ",\nlistActors=" + listActors + ",\ndescription=" + description + ",\nlistSeason=" + listSeason + "]";
+        return "Name: " + name + "\nGender: " + gender + "\nDuration: " + duration + "\nListAuthors: " + listAuthors
+                + "\nListActors: " + listActors + "\nDescription: " + description + "\nListSeason: " + listSeason + "]";
     }
 }

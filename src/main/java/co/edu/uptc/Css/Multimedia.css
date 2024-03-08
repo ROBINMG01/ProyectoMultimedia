@@ -1,0 +1,28 @@
+.gradient{
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+}
+.white-form{
+    -fx-background-color: #fff;
+}
+.head-label{
+    -fx-border-color: #1ea48e;
+    -fx-border-width: 0 0 0 5px;
+    -fx-padding: 0 0 0 5px;
+}
+.Multimedia-btn{
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+.Back-btn{
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+.Multimedia-btn:hover, .Back-btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #035e4d, #056b59);
+}

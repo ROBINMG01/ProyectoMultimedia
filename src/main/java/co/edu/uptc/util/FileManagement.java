@@ -59,7 +59,7 @@ public class FileManagement {
         file = new File(filePath + fileName + fileExtension);
         List<Serie> serieAux = new ArrayList<>();
         try (Reader reader = new FileReader(file)) {
-            Type listType = new TypeToken<List<Movie>>() {
+            Type listType = new TypeToken<List<Serie>>() {
             }.getType();
             serieAux = new Gson().fromJson(reader, listType);
         } catch (IOException e) {

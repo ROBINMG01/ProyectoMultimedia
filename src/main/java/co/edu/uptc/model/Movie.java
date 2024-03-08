@@ -18,42 +18,28 @@ public class Movie {
         return director;
     }
 
-
-
     public void setDirector(String director) {
         this.director = director;
     }
-
-
 
     public int getYear() {
         return year;
     }
 
-
-
     public void setYear(int year) {
         this.year = year;
     }
-
-
 
     public String getGener() {
         return gener;
     }
 
-
-
     public void setGener(String gener) {
         this.gener = gener;
     }
 
-
-
     public Movie() {
     }
-
-     
 
     public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
             ArrayList<String> listActors, String gender) {
@@ -71,8 +57,6 @@ public class Movie {
         this.year = year;
         this.gener = gener;
     }
-
-
 
     public String getName() {
         return name;
@@ -132,9 +116,10 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Name = " + name + ".\nGender = " + gender + ".\nDuration = " + duration
-                + ".\nAuthors = " + listAuthors + "\nActors = " + listActors
-                + "\nDescription = " + description;
+        return "Name: " + name + ".\nGender: " + gender + ".\nDuration: " + duration
+                + ".\nAuthors: " + listAuthors + "\nActors: " + listActors
+                + "\nDescription: " + description;
+
     }
-    
+
 }

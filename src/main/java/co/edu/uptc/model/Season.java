@@ -48,6 +48,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "\nSeason [name=" + name  + ", description=" + description + ",\nlistChapters=" + listChapters +"]";
+        return "\nName: " + name  + "\nDescription: " + description + "\nListChapters: " + listChapters+"]";
     }
 }
