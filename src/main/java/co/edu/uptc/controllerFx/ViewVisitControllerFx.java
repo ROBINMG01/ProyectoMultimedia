@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 
@@ -34,7 +35,19 @@ public class ViewVisitControllerFx {
     private ImageView imageView;
 
     @FXML
+    private Button buttonAcept;
+    
+    @FXML
+    private Button buttonMovie;
+
+    @FXML
+    private Button buttonSerie;
+
+    @FXML
     private Button buttonSearch;
+
+    @FXML
+    private TextField inputSearch;
 
     private AdminController adminController;
     private ObservableList<String> observableListResults;
@@ -88,7 +101,7 @@ public class ViewVisitControllerFx {
             observableListResults.add(movie.getName());
         }
         listViewResults.setItems(observableListResults);
-        
+
     }
 
     private void displaySeries() {
