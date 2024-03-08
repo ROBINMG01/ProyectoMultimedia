@@ -6,15 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 public class AdminViewFx extends Application {
-
     private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ListMoviess"), 1370, 690);
+        scene = new Scene(loadFXML("ListMoviesAdmin"), 600, 400);
         stage.setScene(scene);
         stage.show();
     }

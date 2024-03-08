@@ -5,6 +5,8 @@ import java.io.IOException;
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
+import co.edu.uptc.model.Serie;
+import co.edu.uptc.model.SerieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,19 +21,31 @@ public class AdminControllerSerieFx {
     private AdminController ac = new AdminController();
 
     @FXML
-    private TextField movieName;
+    private TextField serieName;
 
     @FXML
-    private TextField movieDescription;
+    private TextField serieDescription;
 
     @FXML
-    private TextField movieGender;
+    private TextField serieGender;
 
     @FXML
-    private TextField movieDuration;
+    private TextField serieDuration;
 
     @FXML
-    private TextField movieYear;
+    private TextField serieYear;
+
+    @FXML
+    private TextField SerieNameSeason;
+
+    @FXML
+    private TextField serieDescriptionSeason;
+
+    @FXML
+    private TextField serieNameChapter;
+
+    @FXML
+    private TextField serieDescriptionChampter;
 
     @FXML
     private Button saveMovieButton;
@@ -40,7 +54,7 @@ public class AdminControllerSerieFx {
     private Button movieButton;
 
     @FXML
-    private TableView<Movie> tableView;
+    private TableView<Serie> tableView;
 
     @FXML
     private TableColumn<Movie, String> nameColumn;
@@ -53,6 +67,18 @@ public class AdminControllerSerieFx {
 
     @FXML
     private TableColumn<Movie, Integer> descriptionColumn;
+
+    @FXML
+    private TableColumn<Movie, Integer> nameSeasonColumn;
+
+    @FXML
+    private TableColumn<Movie, Integer> descriptionSeasonColumn;
+
+    @FXML
+    private TableColumn<Movie, Integer> nameChapterColumn;
+
+    @FXML
+    private TableColumn<Movie, Integer> descriptionChapterColumn;
 
     @FXML
     private TableColumn<Movie, String> yearColumn;
@@ -68,10 +94,12 @@ public class AdminControllerSerieFx {
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         //descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         // Obtener las películas del repositorio
-        tableView.setItems(MovieRepository.getInstance().getMovies());
+        tableView.setItems(SerieRepository.getInstance().getSeries());
     }
 
     @FXML
@@ -80,10 +108,10 @@ public class AdminControllerSerieFx {
     }
 
     @FXML
-    private boolean saveMovie() throws IOException {
-        String movieNameString = movieName.getText();
+    private boolean saveSerie() throws IOException {
+        String serieNameString = serieName.getText();
 
-        if (movieNameString == null || movieNameString.isEmpty()) {
+        if (serieNameString == null || serieNameString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -92,9 +120,9 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        String movieDescriptionString = movieDescription.getText();
+        String serieDescriptionString =serieDescription.getText();
 
-        if (movieDescriptionString == null || movieDescriptionString.isEmpty()) {
+        if (serieDescriptionString == null || serieDescriptionString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -103,9 +131,9 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        String movieGenderString = movieGender.getText();
+        String serieGenderString = serieGender.getText();
 
-        if (movieGenderString == null || movieGenderString.isEmpty()) {
+        if (serieGenderString == null || serieGenderString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -114,12 +142,12 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        String movieDurationString = movieDuration.getText();
+        String serieDurationString = serieDuration.getText();
 
-        Integer movieDurations;
+        Integer serieDurations;
 
         try {
-            movieDurations = Integer.parseInt(movieDurationString);
+            serieDurations = Integer.parseInt(serieDurationString);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -130,10 +158,10 @@ public class AdminControllerSerieFx {
         }
 
 
-        Integer movieYearInt;
-        String movieYearString = movieYear.getText();
+        Integer serieYearInt;
+        String serieYearString = serieYear.getText();
         try {
-            movieYearInt = Integer.parseInt(movieYearString);
+            serieYearInt = Integer.parseInt(serieYearString);
         } catch (NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -145,15 +173,15 @@ public class AdminControllerSerieFx {
 
         //String name, String description, int duration, ArrayList<String> listAuthors,
          //   String gender, ArrayList<String> listActors
-        if (ac.addMovie(movieName.getText(), movieDescription.getText(),movieDurations,null, movieGender.getText(), null,movieYearInt)) {
-            MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size()-1));
+        if (ac.addSerie(serieNameString, serieDescriptionString, serieDurations, null, serieGenderString, null, serieGenderString, serieDescriptionString, serieDurationString, 0, serieYearString)) {
+            SerieRepository.getInstance().addSerie(ac.getListSeries().get(ac.getListSeries().size()-1));
         }
 
         // Clean fields in case of success
-        movieName.clear();
-        movieGender.clear();
-        movieDuration.clear();
-        movieYear.clear();
+        serieName.clear();
+        serieGender.clear();
+        serieDuration.clear();
+        serieYear.clear();
 
         AdminViewFx.setRoot("listSeries");
         return true;
@@ -161,6 +189,6 @@ public class AdminControllerSerieFx {
 
     @FXML
     private void showMovie() throws IOException {
-        AdminViewFx.setRoot("ListMoviess");
+        AdminViewFx.setRoot("ListMoviesAdmin");
     }
 }

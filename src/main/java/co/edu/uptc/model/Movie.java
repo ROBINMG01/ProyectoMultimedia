@@ -2,13 +2,15 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+
 public class Movie {
     private String name;
     private String gender;
     private int duration;
-    private ArrayList<Movie> listMovies;
-    private ArrayList<String> listAuthors;
-    private ArrayList<String> listActors;
+    private ObservableList<Movie> listMovies;
+    private ObservableList<String> listAuthors;
+    private ObservableList<String> listActors;
     private String description;
     private String director;
     private int year;
@@ -55,8 +57,8 @@ public class Movie {
 
      
 
-    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> listActors, String gender) {
+    public Movie(String name, String description, int duration, ObservableList<String> listAuthors,
+    ObservableList<String> listActors, String gender) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -65,8 +67,8 @@ public class Movie {
         this.gender = gender;
     }
 
-    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> listActors, String gender, int year) {
+    public Movie(String name, String description, int duration, ObservableList<String> listAuthors,
+    ObservableList<String> listActors, String gender, int year) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -115,19 +117,19 @@ public class Movie {
         this.duration = duration;
     }
 
-    public ArrayList<String> getlistAuthors() {
+    public ObservableList<String> getlistAuthors() {
         return listAuthors;
     }
 
-    public void setlistAuthors(ArrayList<String> listAuthors) {
+    public void setlistAuthors(ObservableList<String> listAuthors) {
         this.listAuthors = listAuthors;
     }
 
-    public ArrayList<Movie> getListMovies() {
+    public ObservableList<Movie> getListMovies() {
         return listMovies;
     }
 
-    public void setListMovies(ArrayList<Movie> listMovies) {
+    public void setListMovies(ObservableList<Movie> listMovies) {
         this.listMovies = listMovies;
     }
 
@@ -139,11 +141,11 @@ public class Movie {
         this.gender = gender;
     }
 
-    public ArrayList<String> getListActors() {
+    public ObservableList<String> getListActors() {
         return listActors;
     }
 
-    public void setListActors(ArrayList<String> listActors) {
+    public void setListActors(ObservableList<String> listActors) {
         this.listActors = listActors;
     }
 

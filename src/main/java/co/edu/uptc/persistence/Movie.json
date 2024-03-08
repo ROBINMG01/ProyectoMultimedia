@@ -1,9 +1,16 @@
 [
   {
-    "name": "ROBINSON",
-    "gender": "ACCIÓN",
-    "duration": 300,
-    "description": "BUENO",
-    "year": 2024
+    "name": "hds",
+    "gender": "hbsdh",
+    "duration": 123,
+    "listAuthors": [
+      "jnjknj"
+    ],
+    "listActors": [
+      "sjndfkjn",
+      "sjndfkjn"
+    ],
+    "description": "ijdifew",
+    "year": 123
   }
 ]

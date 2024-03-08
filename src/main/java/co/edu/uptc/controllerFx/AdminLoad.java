@@ -2,6 +2,7 @@ package co.edu.uptc.controllerFx;
 
 import java.io.IOException;
 
+import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
@@ -11,6 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AdminLoad {
+
+    AdminController ac = new AdminController();
+    AdminControllerFx acf = new AdminControllerFx();
 
     @FXML
     private TableView<Movie> tableView;
@@ -45,5 +49,11 @@ public class AdminLoad {
     @FXML
     private void showFormCreateMovie() throws IOException {
         AdminViewFx.setRoot("ListMoviess");
+    }
+
+    public void loadMovies(){
+        for (int i = 0; i < ac.getListMovies().size(); i++) {
+            acf.initialize();
+        }
     }
 }
