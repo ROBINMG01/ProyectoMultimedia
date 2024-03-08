@@ -86,7 +86,6 @@ public class SearchMovieController {
             stage.show();
 
             Stage myStage = (Stage) this.btnBack.getScene().getWindow();
-
             myStage.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -115,7 +115,7 @@ public class SerieCatalogController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            // Vamos a colocar esta parte del codigo para que ce cierre la ventana
+            // Vamos a colocar esta parte del codigo para que se cierre la ventana
             Stage myStage = (Stage) this.btnBack.getScene().getWindow();
             myStage.close();
 
