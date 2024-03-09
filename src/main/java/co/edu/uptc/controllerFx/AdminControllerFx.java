@@ -2,14 +2,12 @@ package co.edu.uptc.controllerFx;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ArrayList;
+import java.util.List;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -24,7 +22,7 @@ public class AdminControllerFx {
     private Movie movie;
     ArrayList<String> listAuthors = new ArrayList<>();
     ArrayList<String> listActors = new ArrayList<>();
-    ObservableList<Movie> listMovies;
+    List<Movie> list = new ArrayList<>();
 
     @FXML
     private TextField movieName;
@@ -81,26 +79,22 @@ public class AdminControllerFx {
     private TableColumn<Movie, String> yearColumn;
 
     public void initialize() {
-        // Configurar las columnas
-       /*for (int i = 0; i < ac.getListMovies().size(); i++) {
-            movie.setName(ac.getListMovies().get(i).getName());
-            movie.setGender(ac.getListMovies().get(i).getGender());
-            movie.setDuration(ac.getListMovies().get(i).getDuration());
-            movie.setYear(ac.getListMovies().get(i).getYear());*/
+        ac = new AdminController();
 
-            ac = new AdminController();
-            movie = new Movie();
+        ac.getListMovies().addAll(ac.loadMovie("Movie"));
 
-           nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-           genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
-           durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-           yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
-           //descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        if (MovieRepository.getInstance().getMovies().isEmpty()) {
 
-           // Obtener las películas del repositorio
-           tableView.setItems(MovieRepository.getInstance().getMovies());
-       //}
-        
+            MovieRepository.getInstance().getMovies().addAll(ac.getListMovies());
+            tableView.setItems(MovieRepository.getInstance().getMovies());
+        }
+        // Asignar las películas a la tabla
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+
+        tableView.setItems(MovieRepository.getInstance().getMovies());
     }
 
     @FXML
@@ -140,10 +134,10 @@ public class AdminControllerFx {
             movieDurations = Integer.parseInt(movieDurationString);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText("La duracion no es un número, digita bien la duracion de la película.");
-                alert.showAndWait();
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("La duracion no es un número, digita bien la duracion de la película.");
+            alert.showAndWait();
             return false;
         }
 
@@ -152,36 +146,37 @@ public class AdminControllerFx {
         try {
             movieYearInt = Integer.parseInt(movieYearString);
         } catch (NumberFormatException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText("Formato Incorrecto, digita bien el año de la película.");
-                alert.showAndWait();
-            return false;
-        }
-
-        String movieAuthorString = movieAuthor.getText();
-
-        if (movieAuthorString == null || movieAuthorString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("El campo de la descripcion está vacío, por favor ingresa una descripcion para de la película.");
+            alert.setContentText("Formato Incorrecto, digita bien el año de la película.");
             alert.showAndWait();
             return false;
         }
 
-        String movieActorString = movieActor.getText();
+        //String movieAuthorString = movieAuthor.getText();
 
-        if (movieActorString == null || movieActorString.isEmpty()) {
+        if (addAuthor() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("El campo de la descripcion está vacío, por favor ingresa una descripcion para de la película.");
+            alert.setContentText(
+                    "El campo del autor está vacío, por favor ingresa un autor para la película.");
             alert.showAndWait();
             return false;
         }
 
+        //String movieActorString = movieActor.getText();
+
+        if (addActor() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText(
+                    "El campo del actor está vacío, por favor ingresa un actor para la película.");
+            alert.showAndWait();
+            return false;
+        }
 
         String movieDescriptionString = movieDescription.getText();
 
@@ -189,15 +184,19 @@ public class AdminControllerFx {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("El campo de la descripcion está vacío, por favor ingresa una descripcion para de la película.");
+            alert.setContentText(
+                    "El campo de la descripcion está vacío, por favor ingresa una descripcion para de la película.");
             alert.showAndWait();
             return false;
         }
 
-        //String, String, int, ObservableList<String>, ObservableList<String>, String, int
-        if (ac.addMovie(movieName.getText(), movieDescription.getText(),movieDurations,listAuthors, movieGender.getText(), listActors,movieYearInt)) {
-            //movie = new Movie(movieNameString, movieDescriptionString, movieDurations, listAuthors, listActors, movieGenderString, movieYearInt);
-            MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size()-1));
+        // String, String, int, ObservableList<String>, ObservableList<String>, String,
+        // int
+        if (ac.addMovie(movieName.getText(), movieDescription.getText(), movieDurations, listAuthors,
+                movieGender.getText(), listActors, movieYearInt)) {
+            // movie = new Movie(movieNameString, movieDescriptionString, movieDurations,
+            // listAuthors, listActors, movieGenderString, movieYearInt);
+            MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size() - 1));
         }
 
         // Clean fields in case of success
@@ -205,6 +204,8 @@ public class AdminControllerFx {
         movieGender.clear();
         movieDuration.clear();
         movieYear.clear();
+        movieAuthor.clear();
+        movieActor.clear();
 
         AdminViewFx.setRoot("ListMoviesAdmin");
         return true;
@@ -221,47 +222,36 @@ public class AdminControllerFx {
     }
 
     @FXML
-    public boolean addAuthor() throws IOException{
+    public int addAuthor() throws IOException {
         String movieAuthorString = movieAuthor.getText();
 
         if (movieAuthorString == null || movieAuthorString.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("El campo del autor está vacío, por favor ingresa el nombre del autor.");
-            alert.showAndWait();
-            return false;
-        }else{
+            return 0;
+        } else {
             listAuthors.add(movieAuthorString);
-            return true;
+            return 1;
         }
     }
 
     @FXML
-    public boolean addActor() throws IOException{
+    public int addActor() throws IOException {
         String movieActorString = movieActor.getText();
-        listActors.add(movieActorString);
 
         if (movieActorString == null || movieActorString.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("El campo del actor está vacío, por favor ingresa el nombre del actor.");
-            alert.showAndWait();
-            return false;
-        }else{
+            return 0;
+        } else {
             listActors.add(movieActorString);
-            return true;
+            return 1;
         }
     }
 
     @FXML
-    public void newAuthor(){
+    public void newAuthor() {
         movieAuthor.clear();
     }
 
     @FXML
-    public void newActor(){
+    public void newActor() {
         movieActor.clear();
     }
 }

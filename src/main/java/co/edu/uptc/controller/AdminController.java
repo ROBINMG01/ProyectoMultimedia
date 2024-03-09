@@ -8,8 +8,6 @@ import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.util.FileManagement;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class AdminController {
 
@@ -65,7 +63,7 @@ public class AdminController {
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
             ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
-            int durationChapter, String file) {
+            int durationChapter, int year) {
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         ArrayList<Season> listSeason = new ArrayList<>();
@@ -75,6 +73,7 @@ public class AdminController {
         serie.setlistAuthors(listAuthors);
         serie.setGender(gender);
         serie.setListActors(listActors);
+        serie.setYear(year);
 
         chapter.setName(nameChapter);
         chapter.setDuration(durationChapter);
@@ -86,8 +85,8 @@ public class AdminController {
 
         if (serie.getName().equals(name) && serie.getDescription().equals(description)) {
             listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
-            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
-            saveSerie(listSeries, file);
+            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason, year));
+            saveSerie(listSeries, "Series");
             return true;
         }
         return false;

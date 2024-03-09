@@ -13,7 +13,7 @@ public class AdminViewFx extends Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ListMoviesAdmin"), 600, 400);
+        scene = new Scene(loadFXML("ListMoviesAdmin"), 800, 600);
         stage.setScene(scene);
         stage.show();
     }
