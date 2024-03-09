@@ -10,38 +10,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1ea48e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1ea48e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
    <children>
       <ComboBox fx:id="comboBoxOptions" layoutX="516.0" layoutY="31.0" prefHeight="25.0" prefWidth="70.0" promptText="Filter" style="-fx-background-color: #0b7261;" />
-      <ListView fx:id="listViewResults" layoutX="14.0" layoutY="85.0" prefHeight="250.0" prefWidth="250.0" />
-      <Button fx:id="buttonAcept" layoutX="458.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleFilterAction" style="-fx-background-color: #0b7261;" text="Acept" textFill="WHITE">
+      <ListView fx:id="listViewResults" layoutX="14.0" layoutY="85.0" prefHeight="243.0" prefWidth="275.0" />
+      <Button fx:id="buttonAcept" layoutX="449.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleFilterAction" prefHeight="25.0" prefWidth="57.0" style="-fx-background-color: #0b7261;" text="Acept" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="14.0" />
          </font></Button>
-      <Label fx:id="detailsLabel" layoutX="343.0" layoutY="85.0" prefHeight="250.0" prefWidth="230.0" style="-fx-background-color: #0b7261;" />
-      <ImageView fx:id="imageView" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="350.0" opacity="0.34">
+      <Label fx:id="detailsLabel" alignment="BOTTOM_CENTER" layoutX="438.0" layoutY="85.0" prefHeight="451.0" prefWidth="317.0" style="-fx-background-color: #0b7261;" textAlignment="CENTER" textFill="WHITE" />
+      <ImageView fx:id="imageView" fitHeight="116.0" fitWidth="79.0" layoutX="152.0" layoutY="425.0">
          <image>
-            <Image url="@../image/Serie.jpeg" />
+            <Image url="@../image/posterAvengersc.png" />
          </image></ImageView>
       <Button fx:id="buttonSerie" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSerieButton" style="-fx-background-color: #0b7261;" text="Series" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="14.0" />
          </font>
       </Button>
       <Button fx:id="buttonMovie" layoutX="74.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleMovieButton" style="-fx-background-color: #0b7261;" text="Movies" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="14.0" />
          </font>
       </Button>
       <Button fx:id="buttonSearch" layoutX="139.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleSearchAction" style="-fx-background-color: #0b7261;" text="Search" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="12.0" />
+            <Font name="Calibri" size="14.0" />
          </font>
       </Button>
       <TextField fx:id="inputSearch" alignment="TOP_LEFT" disable="true" layoutX="202.0" layoutY="31.0" promptText="input text">
          <font>
-            <Font name="System Italic" size="12.0" />
+            <Font name="System Italic" size="14.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="116.0" fitWidth="108.0" layoutX="27.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/posterDeadpoolc.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="191.0" fitWidth="79.0" layoutX="250.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/posterJokerc.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="237.0" fitWidth="200.0" layoutX="497.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Movie.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

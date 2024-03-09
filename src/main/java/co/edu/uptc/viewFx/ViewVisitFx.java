@@ -14,7 +14,7 @@ public class ViewVisitFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("VisitView"), 600, 400);
+        scene = new Scene(loadFXML("VisitView"), 800, 600);
         stage.setScene(scene);
         stage.show();
     }

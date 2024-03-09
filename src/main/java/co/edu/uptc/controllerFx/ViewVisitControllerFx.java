@@ -2,11 +2,11 @@ package co.edu.uptc.controllerFx;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Serie;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -67,9 +67,13 @@ public class ViewVisitControllerFx {
         // Inicializar el ComboBox con las opciones de búsqueda
         List<String> options = List.of("Action", "Fiction", "Adventure", "Terror", "Comedia");
         comboBoxOptions.getItems().addAll(options);
-
+        // Llamar a tu método displayMovies para inicializar la lista de películas
+        displayMovies();
+        displaySeries();
+        settingListView();
         // Limpiar la lista de resultados al inicio
         listViewResults.getItems().clear();
+
     }
 
     @FXML
@@ -88,8 +92,7 @@ public class ViewVisitControllerFx {
     }
 
     @FXML
-    public void handleFilterAction() {
-
+    public void handleFilterAction() { // Handle Filter click
     }
 
     @FXML
@@ -127,7 +130,6 @@ public class ViewVisitControllerFx {
             observableListResults.add(movie.getName());
         }
         listViewResults.setItems(observableListResults);
-
     }
 
     private void displaySeries() {
@@ -249,13 +251,74 @@ public class ViewVisitControllerFx {
                 String description = movie.getDescription();
                 List<String> listAuthors = movie.getlistAuthors();
                 List<String> listActors = movie.getListActors();
-                JOptionPane.showMessageDialog(null, "\nName: " + name
-                        + "\nGender: " + gender + "\nDuration: " + duration + "\nDescription: "
-                        + description + "\nListaAuthors: " + listAuthors + "\nListActors: "
-                        + listActors, "Movie Description: ", JOptionPane.INFORMATION_MESSAGE);
-                break;
+
+                // Realizar null checks
+                if (name != null && gender != null && description != null && listAuthors != null
+                        && listActors != null) {
+                    // Formatear las listas antes de agregarlas al string
+                    String formattedAuthors = String.join(", ", listAuthors);
+                    String formattedActors = String.join(", ", listActors);
+
+                    // Crear un formato más legible del texto
+                    String movieDetails = String.format(
+                            "Name: %s\nGender: %s\nDuration: %d\nDescription: %s\nListaAuthors: %s\nListActors: %s",
+                            name, gender, duration, description, formattedAuthors, formattedActors);
+
+                    // Mostrar la información en el componente gráfico apropiado
+                    detailsLabel.setText(movieDetails);
+                    break;
+                }
             }
         }
+        for (Serie serie : adminController.getListSeries()) {
+            if (serie.getName().equals(selectedMovie)) {
+                String name = serie.getName();
+                String gender = serie.getGender();
+                int duration = serie.getDuration();
+                String description = serie.getDescription();
+                List<String> listAuthors = serie.getlistAuthors();
+                List<String> listActors = serie.getListActors();
 
+                // Realizar null checks
+                if (name != null && gender != null && description != null && listAuthors != null
+                        && listActors != null) {
+                    // Formatear las listas antes de agregarlas al string
+                    String formattedAuthors = String.join(", ", listAuthors);
+                    String formattedActors = String.join(", ", listActors);
+
+                    // Crear un formato más legible del texto
+                    String movieDetails = String.format(
+                            "Name: %s\nGender: %s\nDuration: %d\nDescription: %s\nListaAuthors: %s\nListActors: %s",
+                            name, gender, duration, description, formattedAuthors, formattedActors);
+
+                    // Mostrar la información en el componente gráfico apropiado
+                    detailsLabel.setText(movieDetails);
+                    break;
+                }
+            }
+        }
     }
+
+    private void settingListView() {
+
+        // Configurar el ListView y la ObservableList
+        listViewResults.setItems(observableListResults);
+
+        // Agregar el ChangeListener para detectar cambios en la selección del ListView
+        listViewResults.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                    // Aquí obtienes el nombre de la película seleccionada
+                    String selectedMovieName = newValue.toString();
+                    viewMovie(selectedMovieName);
+
+                    // Puedes hacer lo que quieras con el nombre de la película, por ejemplo,
+                    // imprimirlo
+                    System.out.println("Película seleccionada: " + selectedMovieName);
+                }
+            }
+        });
+    }
+
 }
