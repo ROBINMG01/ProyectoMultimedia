@@ -13,12 +13,12 @@
    <children>
       <ListView fx:id="listViewResults" layoutX="39.0" layoutY="85.0" prefHeight="243.0" prefWidth="304.0" style="-fx-background-radius: 10px;" styleClass="head-label" />
       <Label fx:id="detailsLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="446.0" layoutY="85.0" lineSpacing="2.0" prefHeight="448.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 15px;" styleClass="head-label" textAlignment="CENTER" />
-      <Button fx:id="buttonSerie" layoutX="38.0" layoutY="31.0" minWidth="53.0" mnemonicParsing="false" onAction="#handleSerieButton" prefHeight="31.0" prefWidth="58.0" styleClass="Button-view" text="Series">
+      <Button fx:id="buttonSerie" layoutX="38.0" layoutY="31.0" minWidth="53.0" mnemonicParsing="false" onAction="#handleSerieButton" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Series">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="buttonMovie" layoutX="103.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleMovieButton" styleClass="Button-view" text="Movies">
+      <Button fx:id="buttonMovie" layoutX="103.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleMovieButton" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Movies">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
@@ -78,7 +78,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button id="buttonBack" layoutX="707.0" layoutY="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" styleClass="Button-view" text="Back">
+      <Button id="buttonBack" layoutX="707.0" layoutY="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Back">
          <font>
             <Font size="14.0" />
          </font>
