@@ -1,105 +1,55 @@
 [
   {
     "name": "LOKI",
-    "gender": "Ficcion",
-    "duration": 460,
+    "gender": "FICCION",
+    "duration": 360,
     "listAuthors": [
-      "Robert"
+      "ROBERTH"
     ],
     "listActors": [
-      "Edison"
+      "ANDERSON"
     ],
-    "description": "LOKI llega a la AVT",
+    "description": "LOKI LLEGA A LA AVT",
     "listSeason": [
       {
-        "name": "Primera Temporada",
+        "name": "TEMPORADA 1",
         "listChapters": [
           {
-            "name": "Capitulo 1",
+            "name": "CAPITULO 1",
             "duration": 45
           }
         ],
-        "description": "Mitad de serie"
+        "description": "PRIMERA PARTE"
       }
-    ]
+    ],
+    "year": 2020
   },
   {
-    "name": "Misterio en la Montaña",
-    "gender": "Terror",
-    "duration": 460,
+    "name": "ted",
+    "gender": "comdeia",
+    "duration": 239,
     "listAuthors": [
-      "Steven Johnson"
+      "andres",
+      "felipe"
     ],
     "listActors": [
-      "Ethan Greene"
+      "daniel",
+      "camilo",
+      "juan"
     ],
-    "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
+    "description": "buena",
     "listSeason": [
       {
-        "name": "El misterio del lago congelado",
+        "name": "temporada q",
         "listChapters": [
           {
-            "name": "El descubrimiento",
-            "duration": 45
+            "name": "capitulo 1",
+            "duration": 123
           }
         ],
-        "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
+        "description": "good"
       }
-    ]
-  },
-  {
-    "name": "Wanda Vision",
-    "gender": "Comedia",
-    "duration": 300,
-    "listAuthors": [
-      "Stan Lee"
     ],
-    "listActors": [
-      "Elizabeth Olsen",
-      "Clark Kent"
-    ],
-    "description": "Wanda despues de end game",
-    "listSeason": [
-      {
-        "name": "Wanda esta loca",
-        "listChapters": [
-          {
-            "name": "Piloto",
-            "duration": 45
-          },
-          {
-            "name": "Wanda llora",
-            "duration": 46
-          }
-        ],
-        "description": "Wanda hace un mundo falso"
-      }
-    ]
-  },
-  {
-    "name": "La casa de papel",
-    "gender": "Accion",
-    "duration": 1200,
-    "listAuthors": [
-      "Brenfort",
-      "Carlr sagan"
-    ],
-    "listActors": [
-      "Georgina",
-      "Juan"
-    ],
-    "description": "Atracos en bancos",
-    "listSeason": [
-      {
-        "name": "Berlin",
-        "listChapters": [
-          {
-            "name": "Piloto",
-            "duration": 50
-          }
-        ],
-        "description": "Atracan el Banco nacional de moneda y timbre"
-      }
-    ]
+    "year": 2024
   }
 ]

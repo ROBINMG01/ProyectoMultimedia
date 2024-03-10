@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.AdminControllerFx">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="gradient" stylesheets="@../Styles/StyleAMovie.css">
+         <children>
+            <Label layoutX="118.0" layoutY="68.0" text="Name" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieName" layoutX="46.0" layoutY="101.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="180.0" text="hola">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="290.0" layoutY="68.0" text="Year" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieYear" layoutX="244.0" layoutY="101.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="120.0" text="2132">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="117.0" layoutY="164.0" text="Genre" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieGender" layoutX="46.0" layoutY="197.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="180.0" />
+            <Label layoutX="246.0" layoutY="164.0" text="Duration (minutes)" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieDuration" layoutX="244.0" layoutY="197.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="120.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="94.0" layoutY="260.0" text="Author Name" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieAuthor" layoutX="46.0" layoutY="293.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="180.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <!-- <Button fx:id="AuthorButton" contentDisplay="TOP" layoutX="225.0" layoutY="270.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" textAlignment="CENTER" /> -->
+            <Button fx:id="newAuthorButton" contentDisplay="TOP" layoutX="244.0" layoutY="292.0" mnemonicParsing="false" onAction="#newAuthor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="New" textAlignment="CENTER" />
+            <Label layoutX="97.0" layoutY="356.0" text="Actor Name" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieActor" layoutX="45.0" layoutY="389.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="180.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <!-- <Button fx:id="ActorButton" layoutX="225.0" layoutY="366.0" mnemonicParsing="false" onAction="#addActor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" /> -->
+            <Button fx:id="newActorButton" contentDisplay="TOP" layoutX="244.0" layoutY="388.0" mnemonicParsing="false" onAction="#newActor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="New" textAlignment="CENTER" />
+            <Label layoutX="169.0" layoutY="452.0" text="Description" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="movieDescription" layoutX="46.0" layoutY="485.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="316.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="saveMovieButton" layoutX="161.0" layoutY="544.0" mnemonicParsing="false" onAction="#saveMovie" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" />
+            <ImageView fitHeight="600.0" fitWidth="400.0" layoutX="400.0">
+               <image>
+                  <Image url="@../image/descarga.jpeg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <Button fx:id="serieButton" layoutX="88.0" layoutY="18.0" mnemonicParsing="false" onAction="#showSerie" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Serie" />
+      <Button layoutX="6.0" layoutY="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Movie" />
+   </children>
+</AnchorPane>
