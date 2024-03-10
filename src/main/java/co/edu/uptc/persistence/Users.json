@@ -1,146 +1,122 @@
 [
   {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1",
-    "password": "1",
+    "firstName": "q",
+    "lastName": "q",
+    "email": "q@gmail.com",
+    "password": "J1051065208d@",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 6, 2024, 1:20:53 PM",
-    "finDateDeSubscription": "Apr 5, 2024, 1:20:53 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "Admin@gmail.com",
-    "password": "123",
-    "role": "admin",
-    "listMoviesFavorites": [],
-    "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "dateDeSubscription": "Mar 8, 2024, 8:28:47 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:28:47 AM",
     "actieSusciption": "desactive"
   },
   {
-    "firstName": "ADMN",
-    "lastName": "Admin",
-    "email": "A",
-    "password": "123",
-    "role": "admin",
+    "firstName": "q",
+    "lastName": "q",
+    "email": "qs@gmail.com",
+    "password": "J1051065208d@",
+    "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "dateDeSubscription": "Mar 8, 2024, 8:28:59 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:28:59 AM",
     "actieSusciption": "desactive"
   },
   {
-    "firstName": "Andres",
-    "lastName": "Morales",
-    "email": "Andres@gmail.com",
-    "password": "Ca123456789#",
-    "role": "user",
-    "listMoviesFavorites": [
-      {
-        "name": "El origen",
-        "gender": "Ficcion",
-        "duration": 120,
-        "listAuthors": [
-          "Robert",
-          "Hemworth",
-          "Carolina"
-        ],
-        "listActors": [
-          "Robert",
-          "Hemworth",
-          "Carolina"
-        ],
-        "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
-        "year": 0
-      }
-    ],
-    "listSeriesFavorites": [
-      {
-        "name": "Wanda Vision",
-        "gender": "Comedia",
-        "duration": 300,
-        "listAuthors": [
-          "Stan Lee"
-        ],
-        "listActors": [
-          "Elizabeth Olsen",
-          "Clark Kent"
-        ],
-        "description": "Wanda despues de end game",
-        "listSeason": [
-          {
-            "name": "Wanda esta loca",
-            "listChapters": [
-              {
-                "name": "Piloto",
-                "duration": 45
-              },
-              {
-                "name": "Wanda llora",
-                "duration": 46
-              }
-            ],
-            "description": "Wanda hace un mundo falso"
-          }
-        ]
-      },
-      {
-        "name": "Misterio en la Montaña",
-        "gender": "Terror",
-        "duration": 460,
-        "listAuthors": [
-          "Steven Johnson"
-        ],
-        "listActors": [
-          "Ethan Greene"
-        ],
-        "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
-        "listSeason": [
-          {
-            "name": "El misterio del lago congelado",
-            "listChapters": [
-              {
-                "name": "El descubrimiento",
-                "duration": 45
-              }
-            ],
-            "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
-          }
-        ]
-      }
-    ],
-    "dateDeSubscription": "Mar 6, 2024, 1:18:15 PM",
-    "finDateDeSubscription": "Apr 5, 2024, 1:18:15 PM",
-    "actieSusciption": "active"
-  },
-  {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "1@gmail.com",
-    "password": "J12345d@",
+    "firstName": "q",
+    "lastName": "q",
+    "email": "qds@gmail.com",
+    "password": "J1051065208d@",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
-    "finDateDeSubscription": "Feb 25, 2024, 11:17:37 PM",
+    "dateDeSubscription": "Mar 8, 2024, 8:29:07 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:29:07 AM",
     "actieSusciption": "desactive"
   },
   {
-    "firstName": "robin",
-    "lastName": "molina",
-    "email": "robin@gmail.com",
-    "password": "R12345f@",
+    "firstName": "camilo",
+    "lastName": "andres",
+    "email": "c@gmail.com",
+    "password": "Ca12345#",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
-    "finDateDeSubscription": "Feb 29, 2024, 10:12:40 AM",
+    "dateDeSubscription": "Mar 8, 2024, 8:32:09 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:32:09 AM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "e",
+    "lastName": "e",
+    "email": "e@gmail.com",
+    "password": "Eq12345#",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 8, 2024, 8:33:17 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:33:17 AM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Juan",
+    "lastName": "juan",
+    "email": "j@gmail.com",
+    "password": "J1051065208d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 1:40:35 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 1:40:35 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "qq",
+    "lastName": "q",
+    "email": "qTY@gmail.com",
+    "password": "j1051065208D@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 3:44:51 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 3:44:51 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Juan",
+    "lastName": "Barrera",
+    "email": "jjj@gmail.com",
+    "password": "J1051065208d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 5:44:54 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 5:44:54 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "w",
+    "lastName": "j",
+    "email": "tt@gmail.com",
+    "password": "J1051065208d@J1051065208d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 5:51:01 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 5:51:01 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "usdfhusdhf",
+    "lastName": "UDHFUSDHFU",
+    "email": "UHSDUSD@gmail.com",
+    "password": "J1051065208d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 5:53:13 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 5:53:13 PM",
     "actieSusciption": "desactive"
   }
 ]
