@@ -26,6 +26,8 @@ public class AdminControllerFx {
 
     @FXML
     private TextField movieName;
+    @FXML
+    private String imageUrl;
 
     @FXML
     private TextField movieDescription;
@@ -199,7 +201,7 @@ public class AdminControllerFx {
         }
 
         if (ac.addMovie(movieName.getText(), movieDescription.getText(), movieDurations, listAuthors,
-                movieGender.getText(), listActors, movieYearInt)) {
+                movieGender.getText(), listActors, imageUrl, movieYearInt)) {
             MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size() - 1));
         }
 

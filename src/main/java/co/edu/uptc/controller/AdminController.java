@@ -40,8 +40,8 @@ public class AdminController {
     }
 
     // ROBIN
-    public boolean  addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
-            String gender, ArrayList<String> listActors, int year) {
+    public boolean addMovie(String name, String description, int duration, ArrayList<String> listAuthors,
+            String gender, ArrayList<String> listActors, String imageUrl, int year) {
         movie.setName(name);
         movie.setDescription(description);
         movie.setDuration(duration);
@@ -50,10 +50,11 @@ public class AdminController {
         movie.setGender(gender);
         movie.setYear(year);
 
-        //String name, String description, int duration, ObservableList<String> listAuthors,
-    //ObservableList<String> listActors, String gender
+        // String name, String description, int duration, ObservableList<String>
+        // listAuthors,
+        // ObservableList<String> listActors, String gender
         if (name.equals(movie.getName()) && duration == movie.getDuration()) {
-            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender, year));
+            listMovies.add(new Movie(name, description, duration, listAuthors, listActors, gender, imageUrl));
             saveMovie(listMovies, "Movie");
             return true;
         }
@@ -63,7 +64,7 @@ public class AdminController {
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
             ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
-            int durationChapter, int year) {
+            int durationChapter, String file, String imageUrl, int year) {
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         ArrayList<Season> listSeason = new ArrayList<>();
@@ -85,8 +86,9 @@ public class AdminController {
 
         if (serie.getName().equals(name) && serie.getDescription().equals(description)) {
             listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
-            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason, year));
-            saveSerie(listSeries, "Series");
+            listSeries
+                    .add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason, imageUrl,year));
+            saveSerie(listSeries, file);
             return true;
         }
         return false;
@@ -99,28 +101,26 @@ public class AdminController {
         ArrayList<Season> listSeason = serie.getListSeason();
         ArrayList<Chapter> listChapter = new ArrayList<>();
 
-        
         for (Season season : listSeason) {
             if (season.getName().equals(nameSeason)) {
                 return false; // La temporada ya existe
             }
         }
-        
-        
+
         listChapter.add(new Chapter(nameChapter, durationChapter));
-        
+
         season.setName(nameChapter);
         season.setDescription(descriptionSeason);
         season.setListChapters(listChapter);
-        
+
         if (season.getName().equals(nameSeason) && season.getDescription().equals(descriptionSeason)) {
             // Si la temporada no existe, crear una nueva temporada
             Season newSeason = new Season(nameSeason, descriptionSeason, listChapter);
             listSeason.add(newSeason);
-    
+
             // Actualizar la lista de temporadas en la serie
             serie.setListSeason(listSeason);
-    
+
             // Actualizar la serie en la lista de series
             listSeries.set(index, serie);
             return true;
@@ -144,24 +144,24 @@ public class AdminController {
         chapter.setName(nameChapter);
         chapter.setDuration(durationChapter);
 
-        if (chapter.getName().equals(nameChapter) && chapter.getDuration()==durationChapter) {
-            
+        if (chapter.getName().equals(nameChapter) && chapter.getDuration() == durationChapter) {
+
             // Si el capítulo no existe, crear un nuevo capítulo
             Chapter newChapter = new Chapter(nameChapter, durationChapter);
             listChapter.add(newChapter);
-    
+
             // Actualizar la lista de capítulos en la temporada
             season.setListChapters(listChapter);
-    
+
             // Actualizar la temporada en la lista de temporadas
             listSeason.set(index2, season);
-    
+
             // Actualizar la serie en la lista de series
             serie.setListSeason(listSeason);
-    
+
             // Actualizar la serie en la lista de series
             listSeries.set(index, serie);
-    
+
             return true;
         }
         return false;
@@ -202,7 +202,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
+            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -321,7 +321,6 @@ public class AdminController {
         return false;
     }
 
-    
     public boolean deleteSerie(String name) {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {

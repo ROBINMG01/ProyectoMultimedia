@@ -1,6 +1,5 @@
 package co.edu.uptc.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -13,26 +12,22 @@ import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
-import co.edu.uptc.utilitaries.Utilitaries;
 import co.edu.uptc.view.ViewVisit;
 
 public class BuscarController {
-    private Utilitaries utilitaries;
+
     private boolean backToMenu = false;
     private ViewVisit viewVisit;
     private AdminController adminController;
     private Season season;
 
     public BuscarController(AdminController ad) {
-        utilitaries = new Utilitaries();
         viewVisit = new ViewVisit();
         this.adminController = ad;
     }
 
     public void buscar() {
         // Catálogo de películas y series con año de lanzamiento y género.
-        ArrayList<Movie> movieCatalog = utilitaries.loadMovies();
-        ArrayList<Serie> seriesCatalog = utilitaries.loadSeries();
 
         // Opciones de búsqueda
         String[] searchOptions = { "Search by name", "Search by gender" };
@@ -115,7 +110,7 @@ public class BuscarController {
                     switch (choice) {
                         case 0:
                             // Ver descripción de la película o serie
-                            for (Movie movie : movieCatalog) {
+                            for (Movie movie : adminController.getListMovies()) {
                                 if (movie.getName().equals(selectedMovie)) {
                                     String name = movie.getName();
                                     String gender = movie.getGender();
@@ -130,7 +125,7 @@ public class BuscarController {
                                     break;
                                 }
                             }
-                            for (Serie serie : seriesCatalog) {
+                            for (Serie serie : adminController.getListSeries()) {
                                 if (serie.getName().equals(selectedMovie)) {
                                     String name = serie.getName();
                                     String gender = serie.getGender();

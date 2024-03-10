@@ -2,8 +2,6 @@ package co.edu.uptc.model;
 
 import java.util.ArrayList;
 
-import javafx.collections.ObservableList;
-
 public class Movie {
     private String name;
     private String gender;
@@ -15,56 +13,57 @@ public class Movie {
     private String director;
     private int year;
     private String gener;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getDirector() {
         return director;
     }
 
-
-
     public void setDirector(String director) {
         this.director = director;
     }
-
-
 
     public int getYear() {
         return year;
     }
 
-
-
     public void setYear(int year) {
         this.year = year;
     }
-
-
 
     public String getGener() {
         return gener;
     }
 
-
-
     public void setGener(String gener) {
         this.gener = gener;
     }
 
-
-
     public Movie() {
     }
 
-     
-
     public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
-    ArrayList<String> listActors, String gender, int year) {
+            ArrayList<String> listActors, String gender, String imageUrl) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.listAuthors = listAuthors;
         this.listActors = listActors;
         this.gender = gender;
+        this.imageUrl = imageUrl;
+    }
+
+    public Movie(String name, String director, int year, String gener) {
+        this.name = name;
+        this.director = director;
         this.year = year;
     }
 
@@ -130,5 +129,5 @@ public class Movie {
                 + ".\nAuthors = " + listAuthors + "\nActors = " + listActors
                 + "\nDescription = " + description;
     }
-    
+
 }

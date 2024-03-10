@@ -20,7 +20,7 @@ public class AdminControllerSerieFx {
     private AdminController ac = new AdminController();
     ArrayList<String> listAuthors = new ArrayList<>();
     ArrayList<String> listActors = new ArrayList<>();
-
+    private String imageUrl;
     @FXML
     private TextField serieName;
 
@@ -275,8 +275,10 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        if (ac.addSerie(serieName.getText(), serieDescription.getText(), serieDurations, listAuthors, serieGender.getText(),
-                listActors, serieNameSeason.getText(), serieDescriptionSeason.getText(), serieNameChapter.getText(), serieDurationInt, serieYearInt)) {
+        if (ac.addSerie(serieName.getText(), serieDescription.getText(), serieDurations, listAuthors,
+                serieGender.getText(),
+                listActors, serieNameSeason.getText(), serieDescriptionSeason.getText(), serieNameChapter.getText(),
+                serieDurationInt, imageUrl, serieDurationCString, serieYearInt)) {
             SerieRepository.getInstance().addSerie(ac.getListSeries().get(ac.getListSeries().size() - 1));
         }
 

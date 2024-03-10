@@ -22,12 +22,75 @@
         "description": "PRIMERA PARTE"
       }
     ],
-    "year": 2020
+    "imageUrl":"/co/edu/uptc/image/posterLokyc.png"
   },
   {
-    "name": "ted",
-    "gender": "comdeia",
-    "duration": 239,
+    "name": "Dark",
+    "gender": "Terror",
+    "duration": 1500,
+    "listAuthors": [
+      "Jantje Friese" , "Baran bo Odar"
+    ],
+    "listActors": [
+      "Jhona","Martha","Mikkel"
+    ],
+    "description": "El principio es el fin y el fin es el principio",
+    "listSeason": [
+        {
+          "name": "Season1",
+          "listChapters": [
+            
+            {
+              "name": "Secretos»",
+              "duration": 45
+            },
+            {
+              "name": "Mentiras",
+              "duration": 45
+            },
+            {
+              "name": "Pasado y presente",
+              "duration": 45
+            },
+            {
+              "name": "Dobles vidas",
+              "duration": 45
+            },
+            {
+              "name": "Verdades",
+              "duration": 45
+            },
+            {
+              "name": "Así fue creado el mundo",
+              "duration": 45
+            },
+            {
+              "name": "Encrucijadas",
+              "duration": 45
+            },
+              {
+                "name": "Cosechas lo que siembras",
+                "duration": 45
+              },
+              {
+                "name": "Todo es ahora",
+                "duration": 45
+              }
+              ,
+              {
+                "name": "Alfa y omega",
+                "duration": 45
+              }
+          ],
+          "description": "El incio de todo o... ¿acaso aquí es donde acaba?"
+        }
+    ],
+    "imageUrl":"/co/edu/uptc/image/posterDarkc.png"
+  },
+  {
+    "name": "Wanda Vision",
+    "gender": "Comedia",
+    "duration": 300,
     "listAuthors": [
       "andres",
       "felipe"
@@ -50,6 +113,34 @@
         "description": "good"
       }
     ],
-    "year": 2024
+    "imageUrl":""
+  },
+  {
+    "name": "La casa de papel",
+    "gender": "Accion",
+    "duration": 1200,
+    "listAuthors": [
+      "Brenfort",
+      "Carlr sagan"
+    ],
+    "listActors": [
+      "Georgina",
+      "Juan"
+    ],
+    "description": "Atracos en bancos",
+    "listSeason": [
+      {
+        "name": "Berlin",
+        "listChapters": [
+          {
+            "name": "Piloto",
+            "duration": 50
+          }
+        ],
+        "description": "Atracan el Banco nacional de moneda y timbre"
+      }
+    ],
+    "imageUrl":"/co/edu/uptc/image/posterLaCasaDePapel.png"
   }
+
 ]
