@@ -47,6 +47,8 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         firstButton.setOnAction(event -> {
             try {
                 Movie movie = getTableView().getItems().get(getIndex());
+                System.out.println(movie.getName());
+                emc.initData(movie);
                 acf.FileEditMovie(movie);
             } catch (IOException e) {
                 e.printStackTrace(); // O manejo de la excepción según sea necesario

@@ -19,7 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class AdminControllerFx {
 
     private AdminController ac;
-    private Movie movie;
+    private Movie movie = new Movie();
     ArrayList<String> listAuthors = new ArrayList<>();
     ArrayList<String> listActors = new ArrayList<>();
     List<Movie> list = new ArrayList<>();
@@ -80,6 +80,20 @@ public class AdminControllerFx {
 
     public void initialize() {
         ac = new AdminController();
+        this.movie = new Movie();
+        if (movie != null) {
+
+            System.out.println("------------DATES----------");
+            System.out.println(movie.getName());
+            System.out.println(movie.getGender());
+            System.out.println(movie.getDuration());
+            System.out.println(movie.getYear());
+
+            movieName.setText(movie.getName());
+            movieGender.setText(movie.getGender());
+            movieDuration.setText(String.valueOf(movie.getDuration()));
+            movieYear.setText(String.valueOf(movie.getYear()));
+        }
 
         ac.getListMovies().addAll(ac.loadMovie("Movie"));
 
@@ -245,6 +259,13 @@ public class AdminControllerFx {
     @FXML
     public void FileEditMovie(Movie movie) throws IOException {
         this.movie = movie;
+
+        System.out.println("------------DATES111111111----------");
+        System.out.println(movie.getName());
+        System.out.println(movie.getGender());
+        System.out.println(movie.getDuration());
+        System.out.println(movie.getYear());
+
         AdminViewFx.setRoot("EditMovie");
     }
 }
