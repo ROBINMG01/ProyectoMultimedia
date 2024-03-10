@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.RegisterControlerFx">
+   <children>
+      <Pane layoutX="-1.0" prefHeight="400.0" prefWidth="309.0" styleClass="gradient" stylesheets="@../Styles/styles.css">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="330.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../image/loginnn.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="346.0" layoutY="-11.0" prefHeight="600.0" prefWidth="470.0" styleClass="fondo" stylesheets="@../Styles/styles.css">
+         <children>
+            <TextField fx:id="firstNameField" layoutX="161.0" layoutY="170.0" promptText="FirstName" />
+            <Label layoutX="47.0" layoutY="49.0" styleClass="head-label" stylesheets="@../Styles/styles.css" text="Register " textFill="WHITE">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lastNameField" layoutX="161.0" layoutY="204.0" promptText="LastName" />
+            <TextField fx:id="emailField" layoutX="161.0" layoutY="238.0" promptText="Email" />
+            <TextField fx:id="passwordField" layoutX="161.0" layoutY="271.0" promptText="Password" />
+            <TextField fx:id="confirmPasswordField" layoutX="161.0" layoutY="306.0" promptText="confirm password" />
+            <Button fx:id="register2" layoutX="202.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="17.0" prefWidth="69.0" styleClass="Back-btn" stylesheets="@../Styles/styles.css" text="Register" />
+         </children>
+      </Pane>
+      <Label fx:id="error" layoutX="361.0" layoutY="399.0" textFill="#f53b3b">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="login" layoutX="100.0" layoutY="223.0" onAction="#handleLoginButton" prefHeight="20.0" prefWidth="80.0" styleClass="Back-btn" stylesheets="@../Styles/styles.css" text="Login">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="register" layoutX="219.0" layoutY="295.0" onAction="#handleInitialButton" prefHeight="20.0" prefWidth="80.0" styleClass="Back-btn" stylesheets="@../Styles/styles.css" text="Initial" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="visit" layoutX="98.0" layoutY="364.0" onAction="#handleVisitanteButton" prefHeight="20.0" prefWidth="80.0" styleClass="Back-btn" stylesheets="@../Styles/styles.css" text="Visit User">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -7,6 +7,7 @@ import co.edu.uptc.model.UserRegister;
 import co.edu.uptc.util.FileManagement;
 
 public class ControlerInitialMenuView extends UserRegister {
+    private String userEmailLoing;
     private ArrayList<User> users;
 
     public ArrayList<User> getUsers() {
@@ -51,7 +52,8 @@ public class ControlerInitialMenuView extends UserRegister {
 
         // Verificar si hay un nombre antes del @
         if (parts.length != 2 || parts[0].isEmpty()) {
-            // El correo electrónico no tiene un nombre antes del @ o no tiene el formato correcto
+            // El correo electrónico no tiene un nombre antes del @ o no tiene el formato
+            // correcto
             return 1;
         }
 
@@ -65,7 +67,6 @@ public class ControlerInitialMenuView extends UserRegister {
         // El correo electrónico es único
         return 0;
     }
-
 
     // verificar que no haya un email repetido
     public int uniqueEmail(String emailToCheck) {
@@ -176,8 +177,7 @@ public class ControlerInitialMenuView extends UserRegister {
         return fileManagement.loadUsersFromJson(file);
     }
 
-
-//metodo que pone fecha limite de subscripcion
+    // metodo que pone fecha limite de subscripcion
 
     public Date dateFinSuscripcion(User user) {
         // Obtener la fecha de suscripción del usuario
@@ -196,15 +196,58 @@ public class ControlerInitialMenuView extends UserRegister {
         return fechaFin;
     }
 
+    // metdodo que guarda info de usuarios
 
-// metdodo que guarda info de usuarios
-
-    public void saveInfoUser(){
+    public void saveInfoUser() {
         // Guardar los usuarios en el archivos
         saveUsers(users, "Users");
     }
+
+
+
+    // metodos que retornan info fx
+    // login
+    // metdodo que retorna el user el cual se usa en la interfaz fx login
+    public void setUserEmail(String userEmail) {
+        this.userEmailLoing = userEmail;
+
     }
 
+    // metodos que retornan info fx
+    public String getUserLogin() {
+        return userEmailLoing;
+    }
 
+    // registrooo
+    private String lastName;
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    private String firstName;
+
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getfirstName() {
+        return firstName;
+    }
+
+    private String email;
+
+    public void setemaillll(String email) {
+        this.email = email;
+    }
+
+    public String getemaillll() {
+        return email;
+    }
+
+    
+}
