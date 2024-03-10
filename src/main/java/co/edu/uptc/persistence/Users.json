@@ -7,8 +7,32 @@
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
-    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "admin",
+    "lastName": "a",
+    "email": "A",
+    "password": "1",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "User",
+    "lastName": "a",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
+    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
     "actieSusciption": "desactive"
   }
 ]
