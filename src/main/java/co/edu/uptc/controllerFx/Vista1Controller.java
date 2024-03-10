@@ -64,7 +64,7 @@ public class Vista1Controller {
 
     private void abrirVista(String fxmlPath) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista
