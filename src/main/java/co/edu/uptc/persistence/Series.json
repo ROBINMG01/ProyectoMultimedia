@@ -100,20 +100,20 @@
       "camilo",
       "juan"
     ],
-    "description": "buena",
+    "description": "Eventos post chasquido de thanos",
     "listSeason": [
       {
-        "name": "temporada q",
+        "name": "Recuerdos",
         "listChapters": [
           {
-            "name": "capitulo 1",
+            "name": "Chapter one",
             "duration": 123
           }
         ],
         "description": "good"
       }
     ],
-    "imageUrl":""
+    "imageUrl":"/co/edu/uptc/image/posterWandaVisionc.png"
   },
   {
     "name": "La casa de papel",
