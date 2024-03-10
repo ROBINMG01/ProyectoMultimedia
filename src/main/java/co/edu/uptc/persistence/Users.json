@@ -2,6 +2,18 @@
   {
     "firstName": "q",
     "lastName": "q",
+    "email": "A",
+    "password": "1",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 8, 2024, 8:28:47 AM",
+    "finDateDeSubscription": "Mar 8, 2024, 8:28:47 AM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "q",
+    "lastName": "q",
     "email": "q@gmail.com",
     "password": "J1051065208d@",
     "role": "user",

@@ -18,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class LoginControlerFx {
     private ControlerInitialMenuView controlerInitialMenuView;
     @FXML
@@ -43,7 +42,7 @@ public class LoginControlerFx {
     public void initialize() {
 
         this.controlerInitialMenuView = new ControlerInitialMenuView();
-       
+
         try {
             controlerInitialMenuView.getUsers().addAll(controlerInitialMenuView.loadUsers("Users"));
         } catch (Exception e) {
@@ -70,95 +69,109 @@ public class LoginControlerFx {
                         // vistaaaaaaaaaaaaaaa de adminnnnnnnnnnnnnnnnnnn
                         // av.menuAdmin();
                         System.out.println("es el propio de propios admin");
-                    }
-                } else {
-                    controlerInitialMenuView.setUserEmail(userField.getText());
-                    // Cargar la vista de login modificadaa para la contrasenia equivocada
-                    try {
-                        FXMLLoader loader = new FXMLLoader(
-                                getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
-                        Parent root = loader.load();
-                        Stage stage = new Stage();
-                        TextField userField = (TextField) loader.getNamespace().get("userField");
-                        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
-                        // Agregar la clase de estilo
-                        passwordField.getStyleClass().add("password-field");
-                        String userCargado = controlerInitialMenuView.getUserLogin();
-                        Label error  = (Label) loader.getNamespace().get("error");
-                        error.setText("Incorrect password");
-                        userField.setText(userCargado);
-                        stage.setScene(new Scene(root));
-                        stage.show();
 
-                        Stage myStage = (Stage) this.register.getScene().getWindow();
-                        myStage.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            } else {
-
-                // JOptionPane.showMessageDialog(null,
-                //         "there is no registered user");
-
+                        // Cargar la vista de login.fxml
                         try {
                             FXMLLoader loader = new FXMLLoader(
-                                    getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
+                                    getClass().getResource("/co/edu/uptc/Fxml/ListMoviesAdmin.fxml"));
                             Parent root = loader.load();
                             Stage stage = new Stage();
-                            // se tienen los objetos a modificar 
-                            TextField userField = (TextField) loader.getNamespace().get("userField");
-                            PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
-                            Label error  = (Label) loader.getNamespace().get("error");
-                            error.setText("there is no registered user");
-                            // Agregar la clase de estilo
-                            passwordField.getStyleClass().add("passwordInitial-field");
-                            userField.getStyleClass().add("password-field");
-                            
                             stage.setScene(new Scene(root));
                             stage.show();
-    
+
                             Stage myStage = (Stage) this.register.getScene().getWindow();
                             myStage.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-    
+                    
 
+                }
+            } else {
+                controlerInitialMenuView.setUserEmail(userField.getText());
+                // Cargar la vista de login modificadaa para la contrasenia equivocada
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = new Stage();
+                    TextField userField = (TextField) loader.getNamespace().get("userField");
+                    PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                    // Agregar la clase de estilo
+                    passwordField.getStyleClass().add("password-field");
+                    String userCargado = controlerInitialMenuView.getUserLogin();
+                    Label error = (Label) loader.getNamespace().get("error");
+                    error.setText("Incorrect password");
+                    userField.setText(userCargado);
+                    stage.setScene(new Scene(root));
+                    stage.show();
 
-
+                    Stage myStage = (Stage) this.register.getScene().getWindow();
+                    myStage.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
         } else {
 
             // JOptionPane.showMessageDialog(null,
-            //         "I don't fill in the spaces correctly ");
+            // "there is no registered user");
 
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                // se tienen los objetos a modificar
+                TextField userField = (TextField) loader.getNamespace().get("userField");
+                PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                Label error = (Label) loader.getNamespace().get("error");
+                error.setText("there is no registered user");
+                // Agregar la clase de estilo
+                passwordField.getStyleClass().add("passwordInitial-field");
+                userField.getStyleClass().add("password-field");
 
-                    try {
-                        FXMLLoader loader = new FXMLLoader(
-                                getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
-                        Parent root = loader.load();
-                        Stage stage = new Stage();
-                        // se tienen los objetos a modificar 
-                        TextField userField = (TextField) loader.getNamespace().get("userField");
-                        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
-                        Label error  = (Label) loader.getNamespace().get("error");
-                        error.setText("I don't fill in the spaces correctly ");
-                        // Agregar la clase de estilo
-                        passwordField.getStyleClass().add("password-field");
-                        userField.getStyleClass().add("password-field");
-                        
-                        stage.setScene(new Scene(root));
-                        stage.show();
+                stage.setScene(new Scene(root));
+                stage.show();
 
-                        Stage myStage = (Stage) this.register.getScene().getWindow();
-                        myStage.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                Stage myStage = (Stage) this.register.getScene().getWindow();
+                myStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
+    }else
+
+    {
+
+        // JOptionPane.showMessageDialog(null,
+        // "I don't fill in the spaces correctly ");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            // se tienen los objetos a modificar
+            TextField userField = (TextField) loader.getNamespace().get("userField");
+            PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+            Label error = (Label) loader.getNamespace().get("error");
+            error.setText("I don't fill in the spaces correctly ");
+            // Agregar la clase de estilo
+            passwordField.getStyleClass().add("password-field");
+            userField.getStyleClass().add("password-field");
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.register.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     }
 

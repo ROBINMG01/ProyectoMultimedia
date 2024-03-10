@@ -318,5 +318,25 @@
     ],
     "description": "P",
     "year": 2
+  },
+  {
+    "name": "el negro ",
+    "gender": "miedo",
+    "duration": 2,
+    "listAuthors": [
+      "juan",
+      "pepe",
+      "pepe",
+      "pepe"
+    ],
+    "listActors": [
+      "robiun",
+      "mono",
+      "monon",
+      "sdsd",
+      "sdsd"
+    ],
+    "description": "guerra de cabezas",
+    "year": 2
   }
 ]
