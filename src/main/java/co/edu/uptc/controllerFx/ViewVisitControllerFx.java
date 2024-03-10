@@ -3,30 +3,30 @@ package co.edu.uptc.controllerFx;
 import java.util.List;
 
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 
 public class ViewVisitControllerFx {
 
     @FXML
-    private ComboBox<String> comboBoxOptions;
+    private ListView<String> listViewResults;
 
     @FXML
-    private ListView<String> listViewResults;
+    private ListView<String> listView2;
 
     @FXML
     private Label detailsLabel;
@@ -35,7 +35,7 @@ public class ViewVisitControllerFx {
     private ImageView imageView;
 
     @FXML
-    private Button buttonAcept;
+    private Button buttonBack;
 
     @FXML
     private Button buttonMovie;
@@ -44,29 +44,26 @@ public class ViewVisitControllerFx {
     private Button buttonSerie;
 
     @FXML
-    private Button buttonSearch;
-
-    @FXML
     private TextField inputSearch;
 
     private AdminController adminController;
     private ObservableList<String> observableListResults;
 
     public ViewVisitControllerFx() {
+        this.imageView = new ImageView();
         this.adminController = new AdminController();
         this.observableListResults = FXCollections.observableArrayList();
+
         try {
             adminController.getListMovies().addAll(adminController.loadMovie("Movie"));
             adminController.getListSeries().addAll(adminController.loadSerie("Series"));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
     }
 
     public void initialize() {
-        // Inicializar el ComboBox con las opciones de búsqueda
-        List<String> options = List.of("Action", "Fiction", "Adventure", "Terror", "Comedia");
-        comboBoxOptions.getItems().addAll(options);
         // Llamar a tu método displayMovies para inicializar la lista de películas
         displayMovies();
         displaySeries();
@@ -87,40 +84,27 @@ public class ViewVisitControllerFx {
     }
 
     @FXML
-    public void handleSearchAction() { // Handle search button click
-        handleSearch();
-    }
+    public void handleSearchOnType(KeyEvent event) {
+        String searchText = inputSearch.getText().toLowerCase();
+        observableListResults.clear();
+        settingListView();
 
-    @FXML
-    public void handleFilterAction() { // Handle Filter click
-    }
-
-    @FXML
-    public void handleAceptAction() {
-        String selectedOption = comboBoxOptions.getSelectionModel().getSelectedItem();
-
-        if (selectedOption == null) {
-            showAlert("Error", "Please select a search option.");
-            return;
+        // Filtrar y mostrar coincidencias en la lista
+        List<Movie> movies = adminController.getListMovies();
+        for (Movie movie : movies) {
+            if (movie.getName().toLowerCase().contains(searchText)) {
+                observableListResults.add(movie.getName());
+            }
         }
 
-        switch (selectedOption) {
-            case "Action":
-                displayMovies();
-                break;
-            case "Fiction":
-                displaySeries();
-                break;
-            case "Adventure":
-                handleSearch();
-                break;
-            case "Terror":
-                handleSearch();
-                break;
-            case "Comedia":
-                handleSearch();
-                break;
+        List<Serie> series = adminController.getListSeries();
+        for (Serie serie : series) {
+            if (serie.getName().toLowerCase().contains(searchText)) {
+                observableListResults.add(serie.getName());
+            }
         }
+
+        listViewResults.setItems(observableListResults);
     }
 
     private void displayMovies() {
@@ -141,161 +125,126 @@ public class ViewVisitControllerFx {
         listViewResults.setItems(observableListResults);
     }
 
-    private void handleSearch() {
-        List<String> choices = List.of("Search by name", "Search by gender");
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Search by name", choices);
-        dialog.setTitle("Search Option");
-        dialog.setHeaderText("Select a search option:");
-        dialog.setContentText("Choose search option:");
-
-        String searchOption = dialog.showAndWait().orElse(null);
-
-        if (searchOption == null) {
-            return;
-        }
-
-        switch (searchOption) {
-            case "Search by name":
-                searchByName();
-                break;
-            case "Search by gender":
-                searchByGender();
-                break;
-        }
-    }
-
-    private void searchByName() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Search by Name");
-        dialog.setHeaderText("Enter the name of the item you want to search:");
-        dialog.setContentText("Name:");
-
-        String searchedItem = dialog.showAndWait().orElse(null);
-
-        if (searchedItem == null) {
-            return;
-        }
-
-        observableListResults.clear();
-        List<Movie> movies = adminController.getListMovies();
-        for (Movie movie : movies) {
-            if (movie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
-                observableListResults.add(movie.getName());
-            }
-        }
-
-        List<Serie> series = adminController.getListSeries();
-        for (Serie serie : series) {
-            if (serie.getName().toLowerCase().contains(searchedItem.toLowerCase())) {
-                observableListResults.add(serie.getName());
-            }
-        }
-
-        listViewResults.setItems(observableListResults);
-
-        if (observableListResults.isEmpty()) {
-            showAlert("Search Result", "No results found for the search.");
-        }
-    }
-
-    private void searchByGender() {
-        List<String> choices = List.of("Action", "Comedy", "Drama", "Horror", "Sci-Fi");
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Action", choices);
-        dialog.setTitle("Search by Gender");
-        dialog.setHeaderText("Select a gender:");
-        dialog.setContentText("Choose gender:");
-
-        String selectedGender = dialog.showAndWait().orElse(null);
-
-        if (selectedGender == null) {
-            return;
-        }
-
-        observableListResults.clear();
-        List<Movie> movies = adminController.getListMovies();
-        for (Movie movie : movies) {
-            if (movie.getGender().equalsIgnoreCase(selectedGender)) {
-                observableListResults.add(movie.getName());
-            }
-        }
-
-        List<Serie> series = adminController.getListSeries();
-        for (Serie serie : series) {
-            if (serie.getGender().equalsIgnoreCase(selectedGender)) {
-                observableListResults.add(serie.getName());
-            }
-        }
-
-        listViewResults.setItems(observableListResults);
-
-        if (observableListResults.isEmpty()) {
-            showAlert("Search Result", "No results found for the search.");
-        }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     public void viewMovie(String selectedMovie) {
-        // Ver descripción de la película o serie
+        ObservableList<String> detailsList = FXCollections.observableArrayList();
+
         for (Movie movie : adminController.getListMovies()) {
             if (movie.getName().equals(selectedMovie)) {
                 String name = movie.getName();
                 String gender = movie.getGender();
                 int duration = movie.getDuration();
                 String description = movie.getDescription();
+                String director = movie.getDirector();
+                int year = movie.getYear();
                 List<String> listAuthors = movie.getlistAuthors();
                 List<String> listActors = movie.getListActors();
 
                 // Realizar null checks
-                if (name != null && gender != null && description != null && listAuthors != null
+                if (name != null && gender != null && description != null 
+                        && listAuthors != null
                         && listActors != null) {
                     // Formatear las listas antes de agregarlas al string
                     String formattedAuthors = String.join(", ", listAuthors);
                     String formattedActors = String.join(", ", listActors);
 
-                    // Crear un formato más legible del texto
-                    String movieDetails = String.format(
-                            "Name: %s\nGender: %s\nDuration: %d\nDescription: %s\nListaAuthors: %s\nListActors: %s",
-                            name, gender, duration, description, formattedAuthors, formattedActors);
+                    detailsList.addAll(
+                            "Name: " + name,
+                            "Gender: " + gender,
+                            "Duration: " + duration,
+                            "Description: " + description,
+                            "Director:" + director,
+                            "Year:" + year,
+                            "Authors: " + formattedAuthors,
+                            "Actors: " + formattedActors);
 
                     // Mostrar la información en el componente gráfico apropiado
-                    detailsLabel.setText(movieDetails);
-                    break;
+                    listView2.setItems(detailsList);
+
+                    // Establecer la imagen correspondiente
+                    setImage(movie.getImageUrl());
+                    return;
                 }
             }
         }
+        int conSeason = 0;
+        int conChapter = 0;
+
         for (Serie serie : adminController.getListSeries()) {
             if (serie.getName().equals(selectedMovie)) {
                 String name = serie.getName();
                 String gender = serie.getGender();
                 int duration = serie.getDuration();
                 String description = serie.getDescription();
+                String imageUrl = serie.getImageUrl();
                 List<String> listAuthors = serie.getlistAuthors();
                 List<String> listActors = serie.getListActors();
+                List<Season> listSeasons = serie.getListSeason();
 
                 // Realizar null checks
                 if (name != null && gender != null && description != null && listAuthors != null
-                        && listActors != null) {
+                        && listActors != null && listSeasons != null) {
                     // Formatear las listas antes de agregarlas al string
                     String formattedAuthors = String.join(", ", listAuthors);
                     String formattedActors = String.join(", ", listActors);
 
-                    // Crear un formato más legible del texto
-                    String movieDetails = String.format(
-                            "Name: %s\nGender: %s\nDuration: %d\nDescription: %s\nListaAuthors: %s\nListActors: %s",
-                            name, gender, duration, description, formattedAuthors, formattedActors);
+                    detailsList.addAll(
+                            "Name: " + name,
+                            "Gender: " + gender,
+                            "Duration: " + duration,
+                            "Description: " + description,
+                            "Authors: " + formattedAuthors,
+                            "Actors: " + formattedActors);
+
+                    // Formatear información de las temporadas
+                    detailsList.add("Seasons:");
+                    for (Season season : listSeasons) {
+                        conSeason += 1;
+                        detailsList.add("Season:" + " [" + (conSeason) + "] " + season.getName() + "\n");
+                        for (Chapter chapter : season.getListChapters()) {
+                            conChapter += 1;
+                            detailsList
+                                    .add("--Chapter:" + " [" + (conChapter) + "] " + chapter.getName() + ": "
+                                            + chapter.getDuration() + " min\n");
+                        }
+                    }
 
                     // Mostrar la información en el componente gráfico apropiado
-                    detailsLabel.setText(movieDetails);
-                    break;
+                    listView2.setItems(detailsList);
+
+                    // Establecer la imagen correspondiente
+                    setImage(imageUrl);
+                    return;
                 }
             }
+        }
+    }
+
+    private void setImage(String imagePath) {
+        // Configurar la imagen en el ImageView
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                Image image = new Image(getClass().getResourceAsStream(imagePath));
+                imageView.setImage(image);
+            } catch (NullPointerException e) {
+                // Si hay un error al cargar la imagen, imprimir la traza de la excepción
+                e.printStackTrace();
+                // Establecer una imagen predeterminada
+                setDefaultImage();
+            }
+        } else {
+            // Puedes establecer una imagen predeterminada si no hay una imagen específica
+            setDefaultImage();
+        }
+    }
+
+    private void setDefaultImage() {
+        try {
+            Image defaultImage = new Image(
+                    getClass().getResourceAsStream("/co/edu/uptc/image/descarga.jpeg"));
+            imageView.setImage(defaultImage);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+
         }
     }
 
@@ -312,10 +261,6 @@ public class ViewVisitControllerFx {
                     // Aquí obtienes el nombre de la película seleccionada
                     String selectedMovieName = newValue.toString();
                     viewMovie(selectedMovieName);
-
-                    // Puedes hacer lo que quieras con el nombre de la película, por ejemplo,
-                    // imprimirlo
-                    System.out.println("Película seleccionada: " + selectedMovieName);
                 }
             }
         });

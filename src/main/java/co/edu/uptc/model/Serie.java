@@ -11,12 +11,13 @@ public class Serie {
     private ArrayList<String> listActors;
     private String description;
     private ArrayList<Season> listSeason;
+    private String imageUrl;
 
     public Serie() {
     }
 
     public Serie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> listActors, String gender, ArrayList<Season> listSeasons) {
+            ArrayList<String> listActors, String gender, ArrayList<Season> listSeasons, String imageUrl) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -24,6 +25,7 @@ public class Serie {
         this.listAuthors = listAuthors;
         this.listActors = listActors;
         this.listSeason = listSeasons;
+        this.imageUrl = imageUrl;
     }
 
     public void addSeason(Season season) {
@@ -92,6 +94,14 @@ public class Serie {
 
     public void setListSeason(ArrayList<Season> listSeason) {
         this.listSeason = listSeason;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

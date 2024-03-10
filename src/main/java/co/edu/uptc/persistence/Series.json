@@ -21,7 +21,8 @@
         ],
         "description": "Mitad de serie"
       }
-    ]
+    ],
+    "imageUrl":"/co/edu/uptc/image/posterJokerc.png"
   },
   {
     "name": "Misterio en la Montaña",
@@ -45,7 +46,8 @@
         ],
         "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
       }
-    ]
+    ],
+    "imageUrl":""
   },
   {
     "name": "Wanda Vision",
@@ -74,7 +76,8 @@
         ],
         "description": "Wanda hace un mundo falso"
       }
-    ]
+    ],
+    "imageUrl":""
   },
   {
     "name": "La casa de papel",
@@ -100,6 +103,8 @@
         ],
         "description": "Atracan el Banco nacional de moneda y timbre"
       }
-    ]
+    ],
+    "imageUrl":""
   }
+
 ]

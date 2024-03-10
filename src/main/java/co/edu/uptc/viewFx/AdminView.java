@@ -1,15 +1,22 @@
 package co.edu.uptc.viewFx;
 
-import co.edu.uptc.controller.AdminController;
-import co.edu.uptc.controller.ControlerInitialMenuView;
-import co.edu.uptc.view.ViewVisit;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.controller.ControlerInitialMenuView;
+import co.edu.uptc.view.ViewVisit;
 
 public class AdminView {
     private AdminController ac;
@@ -31,7 +38,8 @@ public class AdminView {
     public void menuAdmin() {
         boolean condition = false;
 
-        ImageIcon iconSelection = new ImageIcon("src\\main\\java\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
+        ImageIcon iconSelection = new ImageIcon(
+                "src\\main\\java\\co\\edu\\uptc\\image\\Selección pelicula o serie.jpeg");
 
         // Obtener la imagen del ImageIcon original
         Image selection = iconSelection.getImage();
@@ -106,7 +114,8 @@ public class AdminView {
             case "Serie":
                 condition = false;
                 do {
-                    String[] options3 = { "Add Serie", "Add Season", "Add Chapter", "View Series", "Update Series", "deleteSeries", "Exit" };
+                    String[] options3 = { "Add Serie", "Add Season", "Add Chapter", "View Series", "Update Series",
+                            "deleteSeries", "Exit" };
                     String options4 = (String) JOptionPane.showInputDialog(null,
                             "Seleccione una opción:", "Opciones de Administrador",
                             JOptionPane.QUESTION_MESSAGE, b, options3, options3[0]);
@@ -197,6 +206,7 @@ public class AdminView {
         String gender = "";
         String author = "";
         String actor = "";
+        String imageUrl = "";
         int ver = 0;
         boolean exit = false;
         boolean exit2 = false;
@@ -299,7 +309,7 @@ public class AdminView {
 
                             if (!arrayActors().isEmpty()) {
                                 ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
-                                        arrayActors(), "Movie");
+                                        arrayActors(), "Movie", imageUrl);
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -347,6 +357,8 @@ public class AdminView {
         String author = "";
         String actor = "";
         String gender = "";
+        String imageUrl = "";
+
         int ver = 0;
         boolean exit = false;
         boolean exit2 = false;
@@ -472,10 +484,10 @@ public class AdminView {
                             }
                             if (!arrayActors().isEmpty()) {
                                 if (ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
-                                nameSeason, descriptionSeason, nameChapter, duration3, "Series")) {
+                                        nameSeason, descriptionSeason, nameChapter, duration3, "Series", imageUrl)) {
                                     JOptionPane.showMessageDialog(null, "Serie added sucessfully");
                                     exit = true;
-                                }else{
+                                } else {
                                     JOptionPane.showMessageDialog(null, "Serie was not added");
                                     exit = false;
                                 }
@@ -589,14 +601,15 @@ public class AdminView {
                     } else {
                         try {
                             duration2 = Integer.parseInt(durationChapter);
-                            if (ac.addSeason(position, position2, nameSeason, descriptionSeason, nameChapter, duration2)) {
+                            if (ac.addSeason(position, position2, nameSeason, descriptionSeason, nameChapter,
+                                    duration2)) {
                                 JOptionPane.showMessageDialog(null, "Season added sucessfully");
                                 exit = true;
-                            }else{
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Season wasn't added");
                                 exit = false;
                             }
-                            
+
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null,
                                     "No input a number in duration season or duration chapter");
@@ -698,8 +711,8 @@ public class AdminView {
                             duration2 = Integer.parseInt(durationChapter);
                             if (ac.addChapter(position, position2, nameChapter, duration2)) {
                                 JOptionPane.showMessageDialog(null, "Chapter added sucessfully");
-                                exit = true;   
-                            }else{
+                                exit = true;
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Chapter was not added");
                                 exit = false;
                             }
@@ -708,7 +721,7 @@ public class AdminView {
                                     "No input a number in duration chapter");
                             exit = false;
                         }
-                        if (duration2 != 0 && exit == true ) {
+                        if (duration2 != 0 && exit == true) {
                             option = JOptionPane.showConfirmDialog(null,
                                     "Do you want to add another chapter?", "Continue?",
                                     JOptionPane.YES_NO_OPTION);

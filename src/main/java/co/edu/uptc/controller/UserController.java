@@ -17,7 +17,6 @@ public class UserController {
     private ArrayList<Movie> favoriteMovies;
     private ArrayList<Serie> favoriteSeries;
 
-
     public UserController(AdminController ad) {
         listMovies = new ArrayList<>();
         listSeries = new ArrayList<>();
@@ -27,8 +26,8 @@ public class UserController {
     }
 
     public boolean addMovie(String name, String description, int duration,
-            ArrayList<String> authors, ArrayList<String> actors, String gender) {
-        Movie movie = new Movie(name, description, duration, authors, actors, gender);
+            ArrayList<String> authors, ArrayList<String> actors, String gender, String imageUrl) {
+        Movie movie = new Movie(name, description, duration, authors, actors, gender, imageUrl);
         listMovies.add(movie);
 
         return true;
@@ -36,7 +35,7 @@ public class UserController {
 
     public boolean addSerie(String name, String description, int duration, ArrayList<String> listAuthors, String gender,
             ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
-            int durationChapter, String file) {
+            int durationChapter, String file, String imageUrl) {
 
         ArrayList<Chapter> chapters = new ArrayList<>();
         ArrayList<Season> listSeason = new ArrayList<>();
@@ -57,7 +56,8 @@ public class UserController {
 
         if (serie.getName().equals(name) && serie.getDescription().equals(description)) {
             listSeason.add(new Season(nameSeason, descriptionSeason, chapters));
-            listSeries.add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason));
+            listSeries
+                    .add(new Serie(name, description, duration, listAuthors, listActors, gender, listSeason, imageUrl));
             return true;
         }
         return false;
@@ -88,4 +88,3 @@ public class UserController {
     }
 
 }
-

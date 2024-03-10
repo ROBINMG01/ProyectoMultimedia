@@ -13,7 +13,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Los vengadores defenderan la realidad"
+    "description": "Los vengadores defenderan la realidad",
+    "year": 0
   },
   {
     "name": "El caballero de la noche",
@@ -29,7 +30,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "una nueva entrega de nuestro superhéroe enmascarado"
+    "description": "una nueva entrega de nuestro superhéroe enmascarado",
+    "year": 0
   },
   {
     "name": "El origen",
@@ -45,7 +47,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
+    "year": 0
   },
   {
     "name": "Tiempos Violentos",
@@ -61,7 +64,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Tiempos Violentos narra tres historias intercaladas"
+    "description": "Tiempos Violentos narra tres historias intercaladas",
+    "year": 0
   },
   {
     "name": "Fight Club",
@@ -77,7 +81,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca"
+    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
+    "year": 0
   },
   {
     "name": "Sueños de Libertad",
@@ -93,7 +98,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Andrew Dufresne es acusado del asesinato de su mujer"
+    "description": "Andrew Dufresne es acusado del asesinato de su mujer",
+    "year": 0
   },
   {
     "name": "El Padrino",
@@ -109,7 +115,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "América, años 40"
+    "description": "América, años 40",
+    "year": 0
   },
   {
     "name": "Interstellar",
@@ -125,7 +132,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne"
+    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne",
+    "year": 0
   },
   {
     "name": "Matrix",
@@ -141,7 +149,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante"
+    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante",
+    "year": 0
   },
   {
     "name": "Avengers: Endgame",
@@ -157,7 +166,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Los vengadores defenderan la realidad"
+    "description": "Los vengadores defenderan la realidad",
+    "year": 0
   },
   {
     "name": "El caballero de la noche",
@@ -173,7 +183,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "una nueva entrega de nuestro superhéroe enmascarado"
+    "description": "una nueva entrega de nuestro superhéroe enmascarado",
+    "year": 0
   },
   {
     "name": "El origen",
@@ -189,7 +200,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse"
+    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
+    "year": 0
   },
   {
     "name": "Tiempos Violentos",
@@ -205,7 +217,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Tiempos Violentos narra tres historias intercaladas"
+    "description": "Tiempos Violentos narra tres historias intercaladas",
+    "year": 0
   },
   {
     "name": "Fight Club",
@@ -221,7 +234,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca"
+    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
+    "year": 0
   },
   {
     "name": "Sueños de Libertad",
@@ -237,7 +251,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Andrew Dufresne es acusado del asesinato de su mujer"
+    "description": "Andrew Dufresne es acusado del asesinato de su mujer",
+    "year": 0
   },
   {
     "name": "El Padrino",
@@ -253,7 +268,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "América, años 40"
+    "description": "América, años 40",
+    "year": 0
   },
   {
     "name": "Interstellar",
@@ -269,7 +285,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne"
+    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne",
+    "year": 0
   },
   {
     "name": "Matrix",
@@ -285,7 +302,9 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante"
+    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante",
+    "year": 0,
+    "imageUrl": " /co/edu/uptc/image/posterAvengersc.png"
   },
   {
     "name": "Carlos",
@@ -297,6 +316,21 @@
     "listActors": [
       "juan"
     ],
-    "description": "si"
+    "description": "si",
+    "year": 0
+  },
+  {
+    "name": "Goku",
+    "gender": "Accion",
+    "duration": 1,
+    "listAuthors": [
+      "1"
+    ],
+    "listActors": [
+      "1"
+    ],
+    "description": "1",
+    "year": 0,
+    "imageUrl": ""
   }
 ]
