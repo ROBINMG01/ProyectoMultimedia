@@ -5,34 +5,53 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.SearchSerieController">
-    <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-                <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
-                    <children>
-                        <Label layoutX="14.0" layoutY="14.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Search Serie" />
-                        <TextField fx:id="searchName" layoutX="124.0" layoutY="45.0" promptText="Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
-                        <Text layoutX="50.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search name" />
-                        <TableView fx:id="tableSerie" layoutX="58.0" layoutY="100.0" prefHeight="200.0" prefWidth="485.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css">
-                            <columns>
-                                <TableColumn fx:id="nameSerie" prefWidth="117.0" text="Name" />
-                                <TableColumn fx:id="genderSerie" prefWidth="122.0" text="Gender" />
-                                <TableColumn fx:id="durationSerie" minWidth="0.0" prefWidth="119.0" text="Duration" />
-                                <TableColumn fx:id="ListSerie" minWidth="0.0" prefWidth="126.0" text="ListSeason" />
-                            </columns>
-                        </TableView>
-                        <Button fx:id="btnView" layoutX="66.0" layoutY="329.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
-                        <Button fx:id="btnAdd" layoutX="252.0" layoutY="329.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add Favorite" />
-                        <Button fx:id="btnBack" layoutX="468.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Back" />
-                        <Button fx:id="btnSearch" layoutX="277.0" layoutY="43.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search" />
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
-    </children>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.SearchSerieController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <right>
+            <AnchorPane prefHeight="600.0" prefWidth="293.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnBack" layoutX="219.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back" />
+                  <Label layoutY="10.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Project Multimedia" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <ImageView fx:id="imageSearch" fitHeight="342.0" fitWidth="267.0" layoutX="13.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </right>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="55.0" layoutY="26.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Search Serie" />
+                  <Button fx:id="btnView" layoutX="162.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
+                  <Button fx:id="btnAdd" layoutX="38.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add Favorite" />
+                  <TextField fx:id="searchName" layoutX="55.0" layoutY="65.0" prefHeight="25.0" prefWidth="272.0" promptText="Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search name" />
+                  <Button fx:id="btnSearch" layoutX="327.0" layoutY="65.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search" />
+                  <TableView fx:id="tableSerie" layoutX="31.0" layoutY="121.0" prefHeight="359.0" prefWidth="445.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css">
+                     <columns>
+                        <TableColumn fx:id="nameSerie" prefWidth="117.0" text="Name" />
+                        <TableColumn fx:id="genderSerie" prefWidth="103.0" text="Gender" />
+                        <TableColumn fx:id="durationSerie" minWidth="0.0" prefWidth="106.0" text="Duration" />
+                        <TableColumn fx:id="ListSerie" minWidth="0.0" prefWidth="118.0" text="Season" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
 </StackPane>

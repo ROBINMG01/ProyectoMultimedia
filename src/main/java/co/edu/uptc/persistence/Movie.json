@@ -13,7 +13,8 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "Los vengadores defenderan la realidad"
+    "description": "Los vengadores defenderan la realidad",
+    "imageUrl": "/co/edu/uptc/image/PosterSerie.png"
   },
   {
     "name": "El caballero de la noche",
@@ -29,7 +30,9 @@
       "Hemworth",
       "Carolina"
     ],
-    "description": "una nueva entrega de nuestro superhéroe enmascarado"
+    "description": "una nueva entrega de nuestro superhéroe enmascarado",
+    "imageUrl": "/co/edu/uptc/image/PosterMovie.png"
+
   },
   {
     "name": "El origen",

@@ -6,14 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-// import javafx.scene.media.Media;
-// import javafx.scene.media.MediaPlayer;
-// import javafx.scene.media.MediaView;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Serie;
@@ -25,8 +26,11 @@ public class SerieCatalogController {
         abrirVista1();
     }
 
-    // @FXML
-    // private MediaView videoSerie;
+    @FXML
+    private ImageView serieImageView;
+
+    @FXML
+    private Label labelDescription;
 
     private AdminController adminController;
 
@@ -39,50 +43,50 @@ public class SerieCatalogController {
     Serie serie = new Serie();
 
     public void initialize() {
+
+        serieList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Image image = null;
+                if (newSelection.getImageUrl() != null) {
+                    if (newSelection.getImageUrl().startsWith("http")) {
+                        image = new Image(newSelection.getImageUrl());
+                    } else {
+                        image = new Image(getClass().getResourceAsStream(newSelection.getImageUrl()));
+                    }
+                }
+                if (image != null) {
+                    serieImageView.setImage(image);
+                    serieImageView.setFitWidth(324); // Ajusta el ancho a 324
+                    serieImageView.setFitHeight(267); // Ajusta la altura a 267
+                    serieImageView.setPreserveRatio(true); // Mantiene la relación de aspecto
+                }
+            }
+        });
+
         adminController = new AdminController();
         List<Serie> series = adminController.loadSerie("Series");
         serieList.getItems().setAll(series);
 
-        serieList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                abrirDetalleSerie(newSelection);
+        serieList.setCellFactory(param -> new ListCell<Serie>() {
+            @Override
+            protected void updateItem(Serie serie, boolean empty) {
+                super.updateItem(serie, empty);
+
+                if (empty || serie == null) {
+                    setText(null);
+                } else {
+                    setText(serie.getName() + ", " + serie.getDuration() + ", " + serie.getDescription());
+                }
             }
         });
-    }
 
-    private void abrirDetalleSerie(Serie serie) {
-        try {
-            // Cargar la vista de detalles de la serie
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/DetalleSerie.fxml"));
-            Parent detalleSerieView = fxmlLoader.load();
-
-            // Obtener el controlador de la vista de detalles de la serie y pasarle la serie
-            // seleccionada
-            DetalleSerieController controller = fxmlLoader.getController();
-            controller.setSerie(serie);
-
-            // Crear una nueva ventana para la vista de detalles de la serie
-            Stage stage = new Stage();
-            stage.setTitle("Detalles de la serie");
-            stage.setScene(new Scene(detalleSerieView));
-            stage.show();
-            System.out.println("URL del video: " + serie.getVideoUrl());
-
-            // // Verificar que videoSerie no es null
-            // if (videoSerie == null) {
-            //     System.out.println("videoSerie es null");
-            // } else {
-            //     System.out.println("videoSerie no es null");
-            // }
-
-            // // Reproducir el video de la serie seleccionada
-            // Media media = new Media(serie.getVideoUrl());
-            // MediaPlayer mediaPlayer = new MediaPlayer(media);
-            // videoSerie.setMediaPlayer(mediaPlayer);
-            // mediaPlayer.play();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serieList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                serieImageView.setImage(new Image(newSelection.getImageUrl()));
+                labelDescription.setWrapText(true);
+                labelDescription.setText(newSelection.getDescription());
+            }
+        });
     }
 
     private void abrirVista1() {

@@ -6,7 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
@@ -20,14 +23,20 @@ public class MovieCatalogController {
     protected void handleButton(ActionEvent event) {
         abrirVista1();
     }
-    
+
     private AdminController adminController;
 
     @FXML
     private Button btnBack;
-    
+
     @FXML
     private ListView<Movie> movieList;
+
+    @FXML
+    private ImageView imageVideo;
+
+    @FXML
+    private Label labelDescription;
 
     public void initialize() {
         adminController = new AdminController();
@@ -36,9 +45,22 @@ public class MovieCatalogController {
 
         movieList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                abrirDetallePelicula(newSelection);
+                Image image = null;
+                if (newSelection.getImageUrl() != null) {
+                    if (newSelection.getImageUrl().startsWith("http")) {
+                        image = new Image(newSelection.getImageUrl());
+                    } else {
+                        image = new Image(getClass().getResourceAsStream(newSelection.getImageUrl()));
+                    }
+                }
+                if (image != null) {
+                    imageVideo.setImage(image);
+                    
+                }
+                labelDescription.setWrapText(true);
+                labelDescription.setText(newSelection.getDescription());
             }
-        });    
+        });
     }
 
     private void abrirVista1() {
@@ -60,29 +82,9 @@ public class MovieCatalogController {
         }
     }
 
-    private void abrirDetallePelicula(Movie movie) {
-        try {
-            // Cargar la vista de detalles de la película
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/DetallePelicula.fxml"));
-            Parent detallePeliculaView = fxmlLoader.load();
-    
-            // Obtener el controlador de la vista de detalles de la película y pasarle la película seleccionada
-            DetallePeliculaController controller = fxmlLoader.getController();
-            controller.setMovie(movie);
-    
-            // Crear una nueva ventana para la vista de detalles de la película
-            Stage stage = new Stage();
-            stage.setTitle("Detalles de la película");
-            stage.setScene(new Scene(detallePeliculaView));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void closeWindows() {
         try {
-                // Cargar la vista del catálogo de películas
+            // Cargar la vista del catálogo de películas
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent root = fxmlLoader.load();
 
@@ -91,13 +93,13 @@ public class MovieCatalogController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            //Vamos a colocar esta parte del codigo para que ce cierre la ventana
+            // Vamos a colocar esta parte del codigo para que ce cierre la ventana
             Stage myStage = (Stage) this.btnBack.getScene().getWindow();
             myStage.close();
-            
-            } catch (IOException e) {
-                Logger.getLogger(Vista1Controller.class.getName()).severe(e.getMessage());
-            }
-        
+
+        } catch (IOException e) {
+            Logger.getLogger(Vista1Controller.class.getName()).severe(e.getMessage());
+        }
+
     }
 }

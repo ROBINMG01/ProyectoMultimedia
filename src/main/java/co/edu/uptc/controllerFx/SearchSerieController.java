@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.collections.FXCollections;
@@ -59,7 +62,33 @@ public class SearchSerieController {
     private ObservableList<Serie> allSeries;
 
     @FXML
+    private Label labelDescription;
+
+    @FXML
+    private ImageView imageSearch;
+
+    @FXML
     public void initialize() {
+
+        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Image image = null;
+                if (newSelection.getImageUrl() != null) {
+                    if (newSelection.getImageUrl().startsWith("http")) {
+                        image = new Image(newSelection.getImageUrl());
+                    } else {
+                        image = new Image(getClass().getResourceAsStream(newSelection.getImageUrl()));
+                    }
+                }
+                if (image != null) {
+                    imageSearch.setImage(image);
+                    imageSearch.setFitWidth(324); // Ajusta el ancho a 324
+                    imageSearch.setFitHeight(267); // Ajusta la altura a 267
+                    imageSearch.setPreserveRatio(true); // Mantiene la relación de aspecto
+                }
+            }
+        });
+
         nameSerie.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderSerie.setCellValueFactory(new PropertyValueFactory<>("gender"));
         durationSerie.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -67,6 +96,14 @@ public class SearchSerieController {
 
         searchName.textProperty().addListener((observable, oldValue, newValue) -> searchSeries());
         loadSeries();
+
+        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                imageSearch.setImage(new Image(newSelection.getImageUrl()));
+                labelDescription.setWrapText(true);
+                labelDescription.setText(newSelection.getDescription());
+            }
+        });
     }
 
     @FXML

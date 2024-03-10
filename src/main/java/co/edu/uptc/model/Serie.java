@@ -12,8 +12,7 @@ public class Serie {
     private String description;
     private ArrayList<Season> listSeason;
     private String videoUrl;
-
-    
+    private String imageUrl;
 
     public Serie() {
     }
@@ -103,6 +102,15 @@ public class Serie {
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 
     @Override
     public String toString() {

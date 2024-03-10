@@ -17,7 +17,7 @@ public class RegisterViewFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Vista1"), 600, 400);
+        scene = new Scene(loadFXML("Vista1"), 800, 600);
         stage.setScene(scene);
         stage.show();
     }

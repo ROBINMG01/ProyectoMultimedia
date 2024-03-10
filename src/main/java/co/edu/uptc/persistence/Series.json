@@ -21,7 +21,9 @@
         ],
         "description": "Mitad de serie"
       }
-    ]
+    ],
+    "imageUrl": "/co/edu/uptc/image/PosterLoki.jpg"
+
   },
   {
     "name": "Misterio en la Montaña",
@@ -44,7 +46,10 @@
           }
         ],
         "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
+
       }
-    ]
+    ],
+    "imageUrl": "/co/edu/uptc/image/Misterio_de_la_mañana.jpg"
+
   }
 ]

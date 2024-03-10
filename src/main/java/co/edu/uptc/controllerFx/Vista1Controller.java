@@ -2,9 +2,7 @@ package co.edu.uptc.controllerFx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,56 +11,35 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import co.edu.uptc.model.User;
+
 public class Vista1Controller {
 
-    public Vista1Controller() {
-        this.opcionSeleccionada = new TextField();
-    }
-
     @FXML
-    private RadioButton opcion1;
+    private Button option1;
     @FXML
-    private RadioButton opcion2;
+    private Button option2;
     @FXML
-    private RadioButton opcion3;
+    private Button option3;
     @FXML
-    private RadioButton opcion4;
+    private Button option4;
     @FXML
-    private RadioButton opcion5;
+    private Button option5;
     @FXML
-    private RadioButton opcion6;
+    private Button option6;
     @FXML
     private TextField opcionSeleccionada;
-    @FXML
-    private Button btnMultimedia;
 
-    private ToggleGroup opcionesGroup = new ToggleGroup();
-
-    public void initialize() {
-        opcion1.setToggleGroup(opcionesGroup);
-        opcion2.setToggleGroup(opcionesGroup);
-        opcion3.setToggleGroup(opcionesGroup);
-        opcion4.setToggleGroup(opcionesGroup);
-        opcion5.setToggleGroup(opcionesGroup);
-        opcion6.setToggleGroup(opcionesGroup);
-    }
+    private User user;
 
     @FXML
-    private void aceptar() throws IOException {
-        if (opcion1.isSelected()) {
-            abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml");
-        } else if (opcion2.isSelected()) {
-            abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml");
-        } else if (opcion3.isSelected()) {
-            abrirVista("/co/edu/uptc/Fxml/Search.fxml");
-            opcionSeleccionada.setText("Opción 3 seleccionada");
-        } else if (opcion4.isSelected()) {
-            opcionSeleccionada.setText("Opción 4 seleccionada");
-        } else if (opcion5.isSelected()) {
-            opcionSeleccionada.setText("Opción 5 seleccionada");
-        } else if (opcion6.isSelected()) {
-            opcionSeleccionada.setText("Opción 6 seleccionada");
-        }
+    private void initialize() {
+        option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml"));
+        option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml"));
+        option3.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Search.fxml"));
+        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml"));
+        option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml"));
+        option6.setOnAction(event -> opcionSeleccionada.setText("Opción 6 seleccionada"));
     }
 
     private void abrirVista(String fxmlPath) {
@@ -78,7 +55,7 @@ public class Vista1Controller {
             stage.show();
 
             // Cerrar la ventana actual
-            Stage myStage = (Stage) this.btnMultimedia.getScene().getWindow();
+            Stage myStage = (Stage) this.option1.getScene().getWindow();
             myStage.close();
         } catch (IOException e) {
             Logger.getLogger(Vista1Controller.class.getName()).severe(e.getMessage());

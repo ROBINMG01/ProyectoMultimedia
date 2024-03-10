@@ -3,73 +3,111 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.Vista1Controller">
-    <children>
-        <AnchorPane prefHeight="400.0" prefWidth="600.0">
-            <children>
-                <AnchorPane layoutX="250.0" prefHeight="496.0" prefWidth="349.0" styleClass="white-form" stylesheets="@../Css/Multimedia.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-                    <children>
-                        <VBox fx:id="vBox" layoutX="83.0" layoutY="108.0" prefHeight="207.0" prefWidth="182.0" spacing="15.0">
-                            <children>
-                                <RadioButton fx:id="opcion1" text="View movie catalog" />
-                                <RadioButton fx:id="opcion2" text="View serie catalog" />
-                                <RadioButton fx:id="opcion3" text="Search movie and serie" />
-                                <RadioButton fx:id="opcion4" text="View my favorites" />
-                                <RadioButton fx:id="opcion5" text="Account settings" />
-                                <RadioButton fx:id="opcion6" text="Active suscription" />
-                            </children>
-                            <padding>
-                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                            </padding>
-                        </VBox>
-                        <Button fx:id="btnMultimedia" layoutX="56.0" layoutY="326.0" onAction="#aceptar" styleClass="Multimedia-btn" stylesheets="@../Css/Multimedia.css" text="Acept">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.Vista1Controller">
+    <padding>
+        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+    </padding>
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="800.0">
+         <right>
+            <AnchorPane prefHeight="598.0" prefWidth="574.0" styleClass="white-form" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnBack" layoutX="503.0" layoutY="14.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="labelBnda1" layoutX="14.0" layoutY="41.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Select to Option" textAlignment="CENTER" textFill="#1ea48e">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="303.0" layoutY="164.0" prefHeight="420.0" prefWidth="257.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="option4" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View my favorites">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
                         </Button>
-                        <Button fx:id="btnBack" layoutX="218.0" layoutY="326.0" onAction="#aceptar" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Back">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
+                        <Button fx:id="option5" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Account settings">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
                         </Button>
-                        <Label fx:id="labelBnda1" layoutX="54.0" layoutY="63.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Select to Option" textAlignment="CENTER" textFill="#1ea48e">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="3.0" layoutY="6.0" prefHeight="396.0" prefWidth="249.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="1.0">
-                    <children>
-                        <Label fx:id="labelBnda" layoutX="28.0" layoutY="29.0" text="Welcome " textAlignment="CENTER" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="labelBnda2" layoutX="26.0" layoutY="73.0" text="To UPTCine" textAlignment="CENTER" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                  <ImageView fitHeight="207.0" fitWidth="200.0" layoutX="24.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="59.23728942871094" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="141.0">
+                        <Button fx:id="option6" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Active suscription">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="14.0" layoutY="164.0" prefHeight="420.0" prefWidth="265.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="option1" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View Movie catalog">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
+                        </Button>
+                        <Button fx:id="option2" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View serie catalog">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
+                        </Button>
+                        <Button fx:id="option3" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search movie and serie">
+                           <effect>
+                              <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
+                           </effect>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </right>
+         <center>
+            <AnchorPane prefHeight="598.0" prefWidth="303.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="58.0" layoutX="14.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/logo%20UPTCine.jpg" />
                      </image>
                   </ImageView>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
-    </children>
-    <padding>
-        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-    </padding>
+                  <VBox layoutX="10.0" layoutY="24.0" prefHeight="200.0" prefWidth="205.0" spacing="20.0" stylesheets="@../Css/Multimedia.css">
+                     <children>
+                        <Label fx:id="labelBnda" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Welcome " textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelBnda2" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="To UPTCine" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelBnda21" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Daniel" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
 </StackPane>

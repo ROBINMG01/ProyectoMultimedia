@@ -13,6 +13,34 @@ public class Movie {
     private String director;
     private int year;
     private String gener;
+    private String imageUrl;
+
+    
+    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
+            ArrayList<String> listActors, String gender) {
+        this.name = name;
+        this.description = description;
+        this.duration = duration;
+        this.listAuthors = listAuthors;
+        this.listActors = listActors;
+        this.gender = gender;
+    }
+
+    public Movie(String name, String director, int year, String gener) {
+        this.name = name;
+        this.director = director;
+        this.year = year;
+        this.gener = gener;
+    }
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getDirector() {
         return director;
@@ -39,23 +67,6 @@ public class Movie {
     }
 
     public Movie() {
-    }
-
-    public Movie(String name, String description, int duration, ArrayList<String> listAuthors,
-            ArrayList<String> listActors, String gender) {
-        this.name = name;
-        this.description = description;
-        this.duration = duration;
-        this.listAuthors = listAuthors;
-        this.listActors = listActors;
-        this.gender = gender;
-    }
-
-    public Movie(String name, String director, int year, String gener) {
-        this.name = name;
-        this.director = director;
-        this.year = year;
-        this.gener = gener;
     }
 
     public String getName() {
