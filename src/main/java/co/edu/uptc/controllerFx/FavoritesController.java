@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -47,6 +46,16 @@ public class FavoritesController {
     private ListView<ObservableList<Favorite>> listFavoriteGroups;
 
     private Gson gson;
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public FavoritesController(User user) {
+        this.user = user;
+        gson = new Gson();
+    }
 
     @FXML
     public void initialize() {
@@ -150,6 +159,8 @@ public class FavoritesController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent movieCatalogView = fxmlLoader.load();
 
+            FavoritesController controller = fxmlLoader.getController();
+            controller.setUser(user);
             // Crear una nueva ventana para la vista del catálogo de películas
             Stage stage = new Stage();
             stage.setTitle("Catálogo de películas");

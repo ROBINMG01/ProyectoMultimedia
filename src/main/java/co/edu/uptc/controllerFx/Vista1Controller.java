@@ -1,6 +1,4 @@
 package co.edu.uptc.controllerFx;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -37,7 +35,22 @@ public class Vista1Controller {
     private User user;
 
     @FXML
+    private void initialize() {
+        option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml",  new MovieCatalogController(user)));
+        option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml" , new SerieCatalogController(user)));
+        option3.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Search.fxml", new SearchController(user)));
+        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController(user) ));
+        option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml", new SettingsController(user)));
+        option6.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Suscription.fxml", new SuscriptionController(user)));
+    }
+    @FXML
     public void handleButton() {
+        System.out.println("Button clicked!");
+        if (user != null) {
+            System.out.println(user.getEmail());
+        } else {
+            System.out.println("User is null");
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
             Parent root = loader.load();
@@ -50,30 +63,32 @@ public class Vista1Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    @FXML
-    private void initialize() {
-        option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml"));
-        option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml"));
-        option3.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Search.fxml"));
-        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml"));
-        option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml"));
-        option6.setOnAction(event -> opcionSeleccionada.setText("Opción 6 seleccionada"));
+    
+
+    public Vista1Controller(Prueba prueba) {
+        this.user = prueba.getUser();
     }
 
-    private void abrirVista(String fxmlPath) {
+    public Vista1Controller() {
+    }
+
+    public void setUser(Prueba user) {
+        this.user = user.getUser();
+    }
+
+    private void abrirVista(String fxmlPath, Object  controller) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
-
-            // Crear una nueva ventana para la vista
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Project Multimedia");
             stage.setScene(scene);
             stage.show();
-
             // Cerrar la ventana actual
             Stage myStage = (Stage) this.option1.getScene().getWindow();
             myStage.close();

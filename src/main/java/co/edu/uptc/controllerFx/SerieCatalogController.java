@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Serie;
+import co.edu.uptc.model.User;
 
 public class SerieCatalogController {
 
@@ -42,6 +43,8 @@ public class SerieCatalogController {
 
     Serie serie = new Serie();
 
+    private User user;
+
     public void initialize() {
 
         serieList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -62,6 +65,8 @@ public class SerieCatalogController {
                 }
             }
         });
+
+
 
         adminController = new AdminController();
         List<Serie> series = adminController.loadSerie("Series");
@@ -89,8 +94,17 @@ public class SerieCatalogController {
         });
     }
 
+    public SerieCatalogController(User user) {
+        this.user = user;
+    }
+
     private void abrirVista1() {
         try {
+            if (user != null) {
+                System.out.println(user.getEmail());
+            } else {
+                System.out.println("User is null");
+            }
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent SerieCatalogView = fxmlLoader.load();
 
@@ -110,6 +124,11 @@ public class SerieCatalogController {
 
     public void closeWindows() {
         try {
+            if (user != null) {
+                System.out.println(user.getEmail());
+            } else {
+                System.out.println("User is null");
+            }
             // Cargar la vista del catálogo de películas
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent root = fxmlLoader.load();

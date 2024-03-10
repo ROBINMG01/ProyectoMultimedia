@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.User;
 
 public class MovieCatalogController {
     @FXML
@@ -38,6 +39,8 @@ public class MovieCatalogController {
     @FXML
     private Label labelDescription;
 
+    private User user;
+
     public void initialize() {
         adminController = new AdminController();
         List<Movie> movies = adminController.loadMovie("Movie");
@@ -55,7 +58,7 @@ public class MovieCatalogController {
                 }
                 if (image != null) {
                     imageVideo.setImage(image);
-                    
+
                 }
                 labelDescription.setWrapText(true);
                 labelDescription.setText(newSelection.getDescription());
@@ -63,8 +66,18 @@ public class MovieCatalogController {
         });
     }
 
+    public MovieCatalogController(User user) {
+        this.user = user;
+    }
+
+
     private void abrirVista1() {
         try {
+            if (user != null) {
+                System.out.println(user.getEmail());
+            } else {
+                System.out.println("User is null");
+            }
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent movieCatalogView = fxmlLoader.load();
 
@@ -84,6 +97,11 @@ public class MovieCatalogController {
 
     public void closeWindows() {
         try {
+            if (user != null) {
+                System.out.println(user.getEmail());
+            } else {
+                System.out.println("User is null");
+            }
             // Cargar la vista del catálogo de películas
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent root = fxmlLoader.load();

@@ -5,12 +5,12 @@
 
 .button-registro:hover {
     -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
-    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
 }
 
 .button-visitante:hover {
     -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
-    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
 }
 
 .button-login:hover,

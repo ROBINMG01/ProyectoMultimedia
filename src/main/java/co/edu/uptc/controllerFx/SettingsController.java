@@ -52,8 +52,6 @@ public class SettingsController {
 
     @FXML
     private void initialize() {
-
-        user = new User();
     }
 
     private void updateViewWithUserDetails() {
@@ -105,15 +103,25 @@ public class SettingsController {
         abrirVista1();
     }
 
+    
+    public SettingsController(User user) {
+        this.user = user;
+    }
+
     private void abrirVista1() {
         try {
+            if (user != null) {
+                System.out.println(user.getEmail());
+            } else {
+                System.out.println("User is null");
+            }
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-            Parent movieCatalogView = fxmlLoader.load();
+            Parent SettingsController = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista del catálogo de películas
             Stage stage = new Stage();
             stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
+            stage.setScene(new Scene(SettingsController));
             stage.show();
 
             Stage myStage = (Stage) this.btnBack.getScene().getWindow();

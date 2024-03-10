@@ -2,13 +2,12 @@
   {
     "firstName": "a",
     "lastName": "a",
-    "email": "a@gmail.com",
-    "password": "123456Da@",
+    "email": "1",
+    "password": "1",
     "role": "user",
-    "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
-    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
-    "actieSusciption": "desactive"
+    "dateDeSubscription": "Mar 10, 2024, 12:57:42 PM",
+    "finDateDeSubscription": "Mar 10, 2024, 12:57:42 PM",
+    "actieSusciption": "active"
   }
 ]

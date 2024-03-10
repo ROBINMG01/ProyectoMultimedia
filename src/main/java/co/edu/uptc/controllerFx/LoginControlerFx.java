@@ -36,6 +36,8 @@ public class LoginControlerFx {
     @FXML
     private PasswordField passwordField;
 
+    private Vista1Controller vista1Controller;
+
     @FXML
     public void initialize() {
 
@@ -57,15 +59,25 @@ public class LoginControlerFx {
                 if (userr.getPassword().equals(passwordField.getText())) {
 
                     if (userr.getRole() == Role.user) {
+                        Prueba prueba = new Prueba();
+                        prueba.setUser(userr);
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-                            Parent root = loader.load();
+                            // Vista de Login
+                            FXMLLoader loader1 = new FXMLLoader(
+                                    getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+                            Parent root1 = loader1.load();
+
+                            Vista1Controller controller = loader1.getController();
+                            controller.setUser(prueba);
+
+                            // Mostrar la vista que desees, por ejemplo Vista1
                             Stage stage = new Stage();
-                            stage.setScene(new Scene(root));
+                            stage.setScene(new Scene(root1));
                             stage.show();
-                
+
                             Stage myStage = (Stage) this.visit.getScene().getWindow();
                             myStage.close();
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

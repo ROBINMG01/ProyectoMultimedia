@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.SerieCatalogController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -44,7 +46,8 @@
                   <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="447.0">
                      <font>
                         <Font size="14.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <Label layoutX="95.0" layoutY="421.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Description" textFill="WHITE">
                      <font>
                         <Font size="14.0" />

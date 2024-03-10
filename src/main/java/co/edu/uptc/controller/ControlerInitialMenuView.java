@@ -160,6 +160,8 @@ public class ControlerInitialMenuView extends UserRegister {
         return textoEncriptado.toString();
     }
 
+    
+
     public String desencriptar(String textoEncriptado, int clave) {
         // Método para desencriptar un texto encriptado con el cifrado César
         return encriptar(textoEncriptado, -clave);
