@@ -22,32 +22,70 @@
         "description": "Mitad de serie"
       }
     ],
-    "imageUrl":"/co/edu/uptc/image/posterJokerc.png"
+    "imageUrl":"/co/edu/uptc/image/posterLokyc.png"
   },
   {
-    "name": "Misterio en la Montaña",
+    "name": "Dark",
     "gender": "Terror",
-    "duration": 460,
+    "duration": 1500,
     "listAuthors": [
-      "Steven Johnson"
+      "Jantje Friese" , "Baran bo Odar"
     ],
     "listActors": [
-      "Ethan Greene"
+      "Jhona","Martha","Mikkel"
     ],
-    "description": "Una serie de misterio que sigue las aventuras de un grupo de jóvenes detectives",
+    "description": "El principio es el fin y el fin es el principio",
     "listSeason": [
-      {
-        "name": "El misterio del lago congelado",
-        "listChapters": [
-          {
-            "name": "El descubrimiento",
-            "duration": 45
-          }
-        ],
-        "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
-      }
+        {
+          "name": "Season1",
+          "listChapters": [
+            
+            {
+              "name": "Secretos»",
+              "duration": 45
+            },
+            {
+              "name": "Mentiras",
+              "duration": 45
+            },
+            {
+              "name": "Pasado y presente",
+              "duration": 45
+            },
+            {
+              "name": "Dobles vidas",
+              "duration": 45
+            },
+            {
+              "name": "Verdades",
+              "duration": 45
+            },
+            {
+              "name": "Así fue creado el mundo",
+              "duration": 45
+            },
+            {
+              "name": "Encrucijadas",
+              "duration": 45
+            },
+              {
+                "name": "Cosechas lo que siembras",
+                "duration": 45
+              },
+              {
+                "name": "Todo es ahora",
+                "duration": 45
+              }
+              ,
+              {
+                "name": "Alfa y omega",
+                "duration": 45
+              }
+          ],
+          "description": "El incio de todo o... ¿acaso aquí es donde acaba?"
+        }
     ],
-    "imageUrl":""
+    "imageUrl":"/co/edu/uptc/image/posterDarkc.png"
   },
   {
     "name": "Wanda Vision",
@@ -104,7 +142,7 @@
         "description": "Atracan el Banco nacional de moneda y timbre"
       }
     ],
-    "imageUrl":""
+    "imageUrl":"/co/edu/uptc/image/posterLaCasaDePapel.png"
   }
 
 ]

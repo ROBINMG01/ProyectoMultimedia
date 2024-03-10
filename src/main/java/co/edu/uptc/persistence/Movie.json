@@ -4,9 +4,8 @@
     "gender": "Ficcion",
     "duration": 195,
     "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
+      "Mark Ruffo",
+      "Stan Lee"
     ],
     "listActors": [
       "Robert",
@@ -14,323 +13,41 @@
       "Carolina"
     ],
     "description": "Los vengadores defenderan la realidad",
-    "year": 0
+    "year": 2021,
+    "imageUrl":"/co/edu/uptc/image/posterAvengersEndGamec.png"
   },
   {
-    "name": "El caballero de la noche",
+    "name": "Batman: el caballero de la noche",
     "gender": "Accion",
-    "duration": 120,
+    "duration": 140,
     "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
+      "Gregory Manson",
+      "Kim Risharson"
     ],
     "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
+      "Robin Pattinson",
+      "Jogan Jorge",
+      "Carl Maddison"
     ],
     "description": "una nueva entrega de nuestro superhéroe enmascarado",
-    "year": 0
+    "year": 2015,
+    "imageUrl":"/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png"
   },
   {
-    "name": "El origen",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
-    "year": 0
-  },
-  {
-    "name": "Tiempos Violentos",
-    "gender": "Drama",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Tiempos Violentos narra tres historias intercaladas",
-    "year": 0
-  },
-  {
-    "name": "Fight Club",
+    "name": "Spiderman no way home",
     "gender": "Accion",
-    "duration": 120,
+    "duration": 150,
     "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
+    "Stan lee",
+    "Sony produccion"
     ],
     "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
+      "Tom Holand",
+      "Toby Maguire",
+      "Andrew Garfield"
     ],
-    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
-    "year": 0
-  },
-  {
-    "name": "Sueños de Libertad",
-    "gender": "Aventura",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Andrew Dufresne es acusado del asesinato de su mujer",
-    "year": 0
-  },
-  {
-    "name": "El Padrino",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "América, años 40",
-    "year": 0
-  },
-  {
-    "name": "Interstellar",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne",
-    "year": 0
-  },
-  {
-    "name": "Matrix",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante",
-    "year": 0
-  },
-  {
-    "name": "Avengers: Endgame",
-    "gender": "Ficcion",
-    "duration": 195,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Los vengadores defenderan la realidad",
-    "year": 0
-  },
-  {
-    "name": "El caballero de la noche",
-    "gender": "Accion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "una nueva entrega de nuestro superhéroe enmascarado",
-    "year": 0
-  },
-  {
-    "name": "El origen",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Dom Cobb (DiCaprio) es un experto en el arte de apropiarse",
-    "year": 0
-  },
-  {
-    "name": "Tiempos Violentos",
-    "gender": "Drama",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Tiempos Violentos narra tres historias intercaladas",
-    "year": 0
-  },
-  {
-    "name": "Fight Club",
-    "gender": "Accion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca",
-    "year": 0
-  },
-  {
-    "name": "Sueños de Libertad",
-    "gender": "Aventura",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Andrew Dufresne es acusado del asesinato de su mujer",
-    "year": 0
-  },
-  {
-    "name": "El Padrino",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "América, años 40",
-    "year": 0
-  },
-  {
-    "name": "Interstellar",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne",
-    "year": 0
-  },
-  {
-    "name": "Matrix",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante",
-    "year": 0,
-    "imageUrl": " /co/edu/uptc/image/posterAvengersc.png"
-  },
-  {
-    "name": "Carlos",
-    "gender": "Aventura",
-    "duration": 123,
-    "listAuthors": [
-      "so"
-    ],
-    "listActors": [
-      "juan"
-    ],
-    "description": "si",
-    "year": 0
-  },
-  {
-    "name": "Goku",
-    "gender": "Accion",
-    "duration": 1,
-    "listAuthors": [
-      "1"
-    ],
-    "listActors": [
-      "1"
-    ],
-    "description": "1",
-    "year": 0,
-    "imageUrl": ""
+    "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
+    "year": 2022,
+    "imageUrl":"/co/edu/uptc/image/posterSpidermanNoWayHomec.png"
   }
 ]
