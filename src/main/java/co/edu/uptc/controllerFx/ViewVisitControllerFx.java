@@ -1,5 +1,6 @@
 package co.edu.uptc.controllerFx;
 
+import java.io.IOException;
 import java.util.List;
 
 import co.edu.uptc.controller.AdminController;
@@ -12,6 +13,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -19,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class ViewVisitControllerFx {
 
@@ -50,6 +55,7 @@ public class ViewVisitControllerFx {
     private ObservableList<String> observableListResults;
 
     public ViewVisitControllerFx() {
+        this.buttonBack = new Button();
         this.imageView = new ImageView();
         this.adminController = new AdminController();
         this.observableListResults = FXCollections.observableArrayList();
@@ -61,6 +67,22 @@ public class ViewVisitControllerFx {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    public void handleButtonBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.buttonBack.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void initialize() {
@@ -140,7 +162,7 @@ public class ViewVisitControllerFx {
                 List<String> listActors = movie.getListActors();
 
                 // Realizar null checks
-                if (name != null && gender != null && description != null 
+                if (name != null && gender != null && description != null
                         && listAuthors != null
                         && listActors != null) {
                     // Formatear las listas antes de agregarlas al string

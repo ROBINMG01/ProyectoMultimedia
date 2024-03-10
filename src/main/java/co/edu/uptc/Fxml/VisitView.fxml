@@ -78,7 +78,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button id="buttonBack" layoutX="707.0" layoutY="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Back">
+      <Button fx:id="buttonBack" layoutX="707.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleButtonBack" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Back">
          <font>
             <Font size="14.0" />
          </font>

@@ -2,7 +2,6 @@ package co.edu.uptc.viewFx;
 
 import java.io.IOException;
 
-import co.edu.uptc.controller.ControlerInitialMenuView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class InitialMenuViewFx extends Application {
-    private static ControlerInitialMenuView controlerInitialMenuView;
 
     private static Scene scene;
 
