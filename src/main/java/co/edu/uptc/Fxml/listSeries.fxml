@@ -68,7 +68,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="authorButton" contentDisplay="TOP" layoutX="214.0" layoutY="198.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" textAlignment="CENTER" />
+            <!-- <Button fx:id="authorButton" contentDisplay="TOP" layoutX="214.0" layoutY="198.0" mnemonicParsing="false" onAction="#addAuthor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" textAlignment="CENTER" /> -->
             <Button fx:id="newAuthorButton" contentDisplay="TOP" layoutX="296.0" layoutY="198.0" mnemonicParsing="false" onAction="#newAuthor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="New" textAlignment="CENTER" />
             <Label layoutX="66.0" layoutY="250.0" text="Actor Name" textFill="WHITE">
                <font>
@@ -80,7 +80,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="actorButton" layoutX="214.0" layoutY="280.0" mnemonicParsing="false" onAction="#addActor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" />
+            <!-- <Button fx:id="actorButton" layoutX="214.0" layoutY="280.0" mnemonicParsing="false" onAction="#addActor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Save" /> -->
             <Button fx:id="newActorButton" contentDisplay="TOP" layoutX="296.0" layoutY="280.0" mnemonicParsing="false" onAction="#newActor" prefHeight="24.0" prefWidth="68.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="New" textAlignment="CENTER" />
             <Label layoutX="160.0" layoutY="330.0" text="Description" textFill="WHITE">
                <font>

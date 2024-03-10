@@ -23,5 +23,33 @@
       }
     ],
     "year": 2020
+  },
+  {
+    "name": "ted",
+    "gender": "comdeia",
+    "duration": 239,
+    "listAuthors": [
+      "andres",
+      "felipe"
+    ],
+    "listActors": [
+      "daniel",
+      "camilo",
+      "juan"
+    ],
+    "description": "buena",
+    "listSeason": [
+      {
+        "name": "temporada q",
+        "listChapters": [
+          {
+            "name": "capitulo 1",
+            "duration": 123
+          }
+        ],
+        "description": "good"
+      }
+    ],
+    "year": 2024
   }
 ]

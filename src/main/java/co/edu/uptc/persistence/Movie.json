@@ -153,5 +153,170 @@
     ],
     "description": "prueba final",
     "year": 2020
+  },
+  {
+    "name": "PRUEBA1",
+    "gender": "P",
+    "duration": 222,
+    "listAuthors": [
+      "DANIEL",
+      "DANIEL"
+    ],
+    "listActors": [],
+    "description": "JEJE",
+    "year": 2020
+  },
+  {
+    "name": "PRUEBA2",
+    "gender": "DRMA",
+    "duration": 123,
+    "listAuthors": [
+      "JUAN",
+      "JUAN"
+    ],
+    "listActors": [],
+    "description": "WEWW",
+    "year": 123
+  },
+  {
+    "name": "C",
+    "gender": "C",
+    "duration": 3,
+    "listAuthors": [
+      "D",
+      "D"
+    ],
+    "listActors": [],
+    "description": "F",
+    "year": 3
+  },
+  {
+    "name": "D",
+    "gender": "D",
+    "duration": 1,
+    "listAuthors": [
+      "F",
+      "F"
+    ],
+    "listActors": [],
+    "description": "D",
+    "year": 1
+  },
+  {
+    "name": "FF",
+    "gender": "F",
+    "duration": 3,
+    "listAuthors": [
+      "G"
+    ],
+    "listActors": [
+      "G"
+    ],
+    "description": "F",
+    "year": 3
+  },
+  {
+    "name": "p",
+    "gender": "p",
+    "duration": 2,
+    "listAuthors": [
+      "r"
+    ],
+    "listActors": [],
+    "description": "p",
+    "year": 2
+  },
+  {
+    "name": "T",
+    "gender": "T",
+    "duration": 2,
+    "listAuthors": [
+      "W"
+    ],
+    "listActors": [],
+    "description": "T",
+    "year": 2
+  },
+  {
+    "name": "Y",
+    "gender": "Y",
+    "duration": 7,
+    "listAuthors": [
+      "Y",
+      "U"
+    ],
+    "listActors": [],
+    "description": "Y",
+    "year": 6
+  },
+  {
+    "name": "J",
+    "gender": "J",
+    "duration": 2,
+    "listAuthors": [
+      "J"
+    ],
+    "listActors": [],
+    "description": "J",
+    "year": 2
+  },
+  {
+    "name": "CAMILO",
+    "gender": "DRAMA",
+    "duration": 131,
+    "listAuthors": [
+      "FELIPE",
+      "MOLINA"
+    ],
+    "listActors": [],
+    "description": "POR FIN",
+    "year": 2020
+  },
+  {
+    "name": "LOKI",
+    "gender": "FICCION",
+    "duration": 360,
+    "listAuthors": [
+      "ROBERT",
+      "FELIPE",
+      "ANDRES",
+      "ANDRES",
+      "ANDRES"
+    ],
+    "listActors": [
+      "ANDERSON",
+      "DANIEL"
+    ],
+    "description": "LOKI LLEGA A LA AVT",
+    "year": 2020
+  },
+  {
+    "name": "N",
+    "gender": "N",
+    "duration": 1,
+    "listAuthors": [
+      "N",
+      "M"
+    ],
+    "listActors": [
+      "N"
+    ],
+    "description": "N",
+    "year": 1
+  },
+  {
+    "name": "P",
+    "gender": "P",
+    "duration": 2,
+    "listAuthors": [
+      "P",
+      "O",
+      "U"
+    ],
+    "listActors": [
+      "P"
+    ],
+    "description": "P",
+    "year": 2
   }
 ]

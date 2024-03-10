@@ -94,6 +94,10 @@ public class AdminControllerFx {
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
+        TableColumn<Movie, Boolean> column = new TableColumn<>("Edit");
+        column.setCellFactory(tc -> new ButtonCell());
+        tableView.getColumns().add(column);
+
         tableView.setItems(MovieRepository.getInstance().getMovies());
     }
 
@@ -154,9 +158,9 @@ public class AdminControllerFx {
             return false;
         }
 
-        //String movieAuthorString = movieAuthor.getText();
+        String movieAuthorString = movieAuthor.getText();
 
-        if (addAuthor() == 0) {
+        if (movieAuthorString == null || movieAuthorString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -164,11 +168,13 @@ public class AdminControllerFx {
                     "El campo del autor está vacío, por favor ingresa un autor para la película.");
             alert.showAndWait();
             return false;
+        } else {
+            listAuthors.add(movieAuthorString);
         }
 
-        //String movieActorString = movieActor.getText();
+        String movieActorString = movieActor.getText();
 
-        if (addActor() == 0) {
+        if (movieActorString == null || movieActorString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -176,6 +182,8 @@ public class AdminControllerFx {
                     "El campo del actor está vacío, por favor ingresa un actor para la película.");
             alert.showAndWait();
             return false;
+        } else {
+            listActors.add(movieActorString);
         }
 
         String movieDescriptionString = movieDescription.getText();
@@ -190,12 +198,8 @@ public class AdminControllerFx {
             return false;
         }
 
-        // String, String, int, ObservableList<String>, ObservableList<String>, String,
-        // int
         if (ac.addMovie(movieName.getText(), movieDescription.getText(), movieDurations, listAuthors,
                 movieGender.getText(), listActors, movieYearInt)) {
-            // movie = new Movie(movieNameString, movieDescriptionString, movieDurations,
-            // listAuthors, listActors, movieGenderString, movieYearInt);
             MovieRepository.getInstance().addMovie(ac.getListMovies().get(ac.getListMovies().size() - 1));
         }
 
@@ -222,36 +226,25 @@ public class AdminControllerFx {
     }
 
     @FXML
-    public int addAuthor() throws IOException {
-        String movieAuthorString = movieAuthor.getText();
-
-        if (movieAuthorString == null || movieAuthorString.isEmpty()) {
-            return 0;
-        } else {
-            listAuthors.add(movieAuthorString);
-            return 1;
-        }
-    }
-
-    @FXML
-    public int addActor() throws IOException {
-        String movieActorString = movieActor.getText();
-
-        if (movieActorString == null || movieActorString.isEmpty()) {
-            return 0;
-        } else {
-            listActors.add(movieActorString);
-            return 1;
-        }
+    private void showEditMovie() throws IOException {
+        AdminViewFx.setRoot("EditMovie");
     }
 
     @FXML
     public void newAuthor() {
+        listAuthors.add(movieAuthor.getText());
         movieAuthor.clear();
     }
 
     @FXML
     public void newActor() {
+        listActors.add(movieActor.getText());
         movieActor.clear();
+    }
+
+    @FXML
+    public void FileEditMovie(Movie movie) throws IOException {
+        this.movie = movie;
+        AdminViewFx.setRoot("EditMovie");
     }
 }

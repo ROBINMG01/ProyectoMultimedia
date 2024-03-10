@@ -124,8 +124,6 @@ public class AdminControllerSerieFx {
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
-        // descriptionColumn.setCellValueFactory(new
-        // PropertyValueFactory<>("description"));
 
         // Obtener las películas del repositorio
         tableView.setItems(SerieRepository.getInstance().getSeries());
@@ -149,8 +147,8 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        Integer serieYearInt;
         String serieYearString = serieYear.getText();
+        Integer serieYearInt;
         try {
             serieYearInt = Integer.parseInt(serieYearString);
         } catch (NumberFormatException e) {
@@ -200,9 +198,9 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        // String movieAuthorString = movieAuthor.getText();
+        String serieAuthorString = serieAuthor.getText();
 
-        if (addAuthor() == 0) {
+        if (serieAuthorString == null || serieAuthorString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -210,11 +208,13 @@ public class AdminControllerSerieFx {
                     "El campo del autor está vacío, por favor ingresa un autor para la película.");
             alert.showAndWait();
             return false;
+        } else {
+            listAuthors.add(serieAuthorString);
         }
 
-        // String movieActorString = movieActor.getText();
+        String serieActorString = serieActor.getText();
 
-        if (addActor() == 0) {
+        if (serieActorString == null || serieActorString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -222,6 +222,8 @@ public class AdminControllerSerieFx {
                     "El campo del actor está vacío, por favor ingresa un actor para la película.");
             alert.showAndWait();
             return false;
+        } else {
+            listActors.add(serieActorString);
         }
 
         String serieNameSnString = serieNameSeason.getText();
@@ -273,9 +275,6 @@ public class AdminControllerSerieFx {
             return false;
         }
 
-        // String name, String description, int duration, ArrayList<String> listAuthors, String gender,
-        //     ArrayList<String> listActors, String nameSeason, String descriptionSeason, String nameChapter,
-        //     int durationChapter, int year
         if (ac.addSerie(serieName.getText(), serieDescription.getText(), serieDurations, listAuthors, serieGender.getText(),
                 listActors, serieNameSeason.getText(), serieDescriptionSeason.getText(), serieNameChapter.getText(), serieDurationInt, serieYearInt)) {
             SerieRepository.getInstance().addSerie(ac.getListSeries().get(ac.getListSeries().size() - 1));
@@ -297,36 +296,14 @@ public class AdminControllerSerieFx {
     }
 
     @FXML
-    public int addAuthor() throws IOException {
-        String serieAuthorString = serieAuthor.getText();
-
-        if (serieAuthorString == null || serieAuthorString.isEmpty()) {
-            return 0;
-        } else {
-            listAuthors.add(serieAuthorString);
-            return 1;
-        }
-    }
-
-    @FXML
-    public int addActor() throws IOException {
-        String serieActorString = serieActor.getText();
-
-        if (serieActorString == null || serieActorString.isEmpty()) {
-            return 0;
-        } else {
-            listActors.add(serieActorString);
-            return 1;
-        }
-    }
-
-    @FXML
     public void newAuthor() {
+        listAuthors.add(serieAuthor.getText());
         serieAuthor.clear();
     }
 
     @FXML
     public void newActor() {
+        listActors.add(serieActor.getText());
         serieActor.clear();
     }
 }
