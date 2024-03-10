@@ -11,8 +11,6 @@ import javafx.scene.layout.HBox;
 
 public class ButtonCell extends TableCell<Movie, Boolean> {
     private AdminControllerFx acf = new AdminControllerFx();
-    private EditMovieController emc = new EditMovieController();
-    private Movie movie = new Movie();
     private final HBox hbox = new HBox();
     private final Button firstButton = new Button("Botón 1");
     private final Button secondButton = new Button("Botón 2");

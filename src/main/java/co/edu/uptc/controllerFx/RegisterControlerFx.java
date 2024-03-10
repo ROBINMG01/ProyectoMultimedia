@@ -2,12 +2,9 @@ package co.edu.uptc.controllerFx;
 
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -53,7 +50,7 @@ public class RegisterControlerFx {
     @FXML
     public void initialize() {
         this.controlerInitialMenuView = new ControlerInitialMenuView();
-       
+
         try {
             controlerInitialMenuView.getUsers().addAll(controlerInitialMenuView.loadUsers("Users"));
         } catch (Exception e) {
@@ -64,7 +61,6 @@ public class RegisterControlerFx {
 
     @FXML
     private void handleRegisterButtonClick() {
-
 
         if (!firstNameField.getText().isEmpty() && !lastNameField.getText().isEmpty() &&
                 !emailField.getText().isEmpty() && !passwordField.getText().isEmpty() &&
@@ -82,13 +78,14 @@ public class RegisterControlerFx {
                     controlerInitialMenuView.userRegister();
                     showAlert("Registered user");
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
+                        FXMLLoader loader = new FXMLLoader(
+                                getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
                         Parent root = loader.load();
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
                         stage.show();
-            
-                        Stage myStage= (Stage) this.register.getScene().getWindow();
+
+                        Stage myStage = (Stage) this.register.getScene().getWindow();
                         myStage.close();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -254,51 +251,49 @@ public class RegisterControlerFx {
             }
 
         } else {
-             // vitas porque las contrasenias no coinciden
-                // showAlert("Passwords do not match");
+            // vitas porque las contrasenias no coinciden
+            // showAlert("Passwords do not match");
 
-                controlerInitialMenuView.setemaillll(emailField.getText());
-                controlerInitialMenuView.setfirstName(firstNameField.getText());
-                controlerInitialMenuView.setLastName(lastNameField.getText());
+            controlerInitialMenuView.setemaillll(emailField.getText());
+            controlerInitialMenuView.setfirstName(firstNameField.getText());
+            controlerInitialMenuView.setLastName(lastNameField.getText());
 
-                try {
-                    FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = new Stage();
-                    // mostrar el error
-                    String minPassword = "complete all fields";
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                // mostrar el error
+                String minPassword = "complete all fields";
 
-                    Label error = (Label) loader.getNamespace().get("error");
-                    error.setText(minPassword);
-                    error.setFont(new Font("Arial", 10));
-                    TextField emailField = (TextField) loader.getNamespace().get("emailField");
-                    TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
-                    TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-                    TextField passwordField = (TextField) loader.getNamespace().get("passwordField");
-                    TextField cpasswordField = (TextField) loader.getNamespace().get("confirmPasswordField");
-                    // modificar para ver los cambios
-                    emailField.getStyleClass().add("passwordInitial-field");
-                    passwordField.getStyleClass().add("passwordInitial-field");
-                    cpasswordField.getStyleClass().add("passwordInitial-field");
-                    // envio la info cargada previamente
-                    emailField.setText(controlerInitialMenuView.getemaillll());
-                    firstNameField.setText(controlerInitialMenuView.getfirstName());
-                    lastNameField.setText(controlerInitialMenuView.getLastName());
-                    error.setFont(new Font("Arial", 18));
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                Label error = (Label) loader.getNamespace().get("error");
+                error.setText(minPassword);
+                error.setFont(new Font("Arial", 10));
+                TextField emailField = (TextField) loader.getNamespace().get("emailField");
+                TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
+                TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
+                TextField passwordField = (TextField) loader.getNamespace().get("passwordField");
+                TextField cpasswordField = (TextField) loader.getNamespace().get("confirmPasswordField");
+                // modificar para ver los cambios
+                emailField.getStyleClass().add("passwordInitial-field");
+                passwordField.getStyleClass().add("passwordInitial-field");
+                cpasswordField.getStyleClass().add("passwordInitial-field");
+                // envio la info cargada previamente
+                emailField.setText(controlerInitialMenuView.getemaillll());
+                firstNameField.setText(controlerInitialMenuView.getfirstName());
+                lastNameField.setText(controlerInitialMenuView.getLastName());
+                error.setFont(new Font("Arial", 18));
+                stage.setScene(new Scene(root));
+                stage.show();
 
-                    Stage myStage = (Stage) this.register.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Stage myStage = (Stage) this.register.getScene().getWindow();
+                myStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
         }
 
-    
+    }
 
     public void showAlert(String message) {
         // Implementación del método
@@ -315,7 +310,7 @@ public class RegisterControlerFx {
 
     public RegisterControlerFx(ControlerInitialMenuView controlerInitialMenuView) {
         this.controlerInitialMenuView = controlerInitialMenuView;
-      
+
     }
 
     @FXML
@@ -329,9 +324,9 @@ public class RegisterControlerFx {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/LoginInitialFx.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-                PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
-                        // Agregar la clase de estilo
-                        passwordField.getStyleClass().add("passwordInitial-field");
+            PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+            // Agregar la clase de estilo
+            passwordField.getStyleClass().add("passwordInitial-field");
             stage.setScene(new Scene(root));
             stage.show();
 
