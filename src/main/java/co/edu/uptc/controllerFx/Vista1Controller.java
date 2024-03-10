@@ -1,5 +1,6 @@
 package co.edu.uptc.controllerFx;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -30,7 +31,26 @@ public class Vista1Controller {
     @FXML
     private TextField opcionSeleccionada;
 
+    @FXML
+    private Button btnBack;
+
     private User user;
+
+    @FXML
+    public void handleButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void initialize() {
@@ -44,7 +64,7 @@ public class Vista1Controller {
 
     private void abrirVista(String fxmlPath) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/.fxml"));
             Parent root = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista

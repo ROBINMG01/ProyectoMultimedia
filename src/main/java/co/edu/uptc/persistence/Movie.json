@@ -12,12 +12,8 @@
       "wsefb"
     ],
     "description": "Los vengadores defenderan la realidad",
-<<<<<<< HEAD
     "year": 2021,
     "imageUrl":"/co/edu/uptc/image/posterAvengersEndGamec.png"
-=======
-    "imageUrl": "/co/edu/uptc/image/PosterSerie.png"
->>>>>>> feature/JavaFxCreate
   },
   {
     "name": "Batman: el caballero de la noche",
@@ -33,13 +29,8 @@
       "Carl Maddison"
     ],
     "description": "una nueva entrega de nuestro superhéroe enmascarado",
-<<<<<<< HEAD
     "year": 2015,
     "imageUrl":"/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png"
-=======
-    "imageUrl": "/co/edu/uptc/image/PosterMovie.png"
-
->>>>>>> feature/JavaFxCreate
   },
   {
     "name": "Spiderman no way home",
@@ -54,76 +45,8 @@
       "Toby Maguire",
       "Andrew Garfield"
     ],
-<<<<<<< HEAD
     "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
     "year": 2022,
     "imageUrl":"/co/edu/uptc/image/posterSpidermanNoWayHomec.png"
-=======
-    "description": "Dolph Lundgren se entrena un poco mientras ayuda a Rebecca"
-  },
-  {
-    "name": "Sueños de Libertad",
-    "gender": "Aventura",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Andrew Dufresne es acusado del asesinato de su mujer"
-  },
-  {
-    "name": "El Padrino",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "América, años 40"
-  },
-  {
-    "name": "Interstellar",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": "Inspirada en la teoría del experto en relatividad Kip Stepehen Thorne"
-  },
-  {
-    "name": "Matrix",
-    "gender": "Ficcion",
-    "duration": 120,
-    "listAuthors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "listActors": [
-      "Robert",
-      "Hemworth",
-      "Carolina"
-    ],
-    "description": " La película es cinética, atmosférica, visualmente impresionante y alucinante"
->>>>>>> feature/JavaFxCreate
   }
 ]

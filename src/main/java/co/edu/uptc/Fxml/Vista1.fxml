@@ -21,7 +21,7 @@
          <right>
             <AnchorPane prefHeight="598.0" prefWidth="574.0" styleClass="white-form" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnBack" layoutX="503.0" layoutY="14.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back">
+                  <Button fx:id="btnBack" onAction="#handleButton" layoutX="503.0" layoutY="14.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Sign off">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -22,12 +22,7 @@
         "description": "PRIMERA PARTE"
       }
     ],
-<<<<<<< HEAD
-    "imageUrl":"/co/edu/uptc/image/posterLokyc.png"
-=======
     "imageUrl": "/co/edu/uptc/image/PosterLoki.jpg"
-
->>>>>>> feature/JavaFxCreate
   },
   {
     "name": "Dark",
@@ -115,7 +110,6 @@
             "duration": 123
           }
         ],
-<<<<<<< HEAD
         "description": "good"
       }
     ],
@@ -147,14 +141,6 @@
       }
     ],
     "imageUrl":"/co/edu/uptc/image/posterLaCasaDePapel.png"
-=======
-        "description": "Los detectives descubren un antiguo secreto enterrado bajo el hielo de un lago congelado"
-
-      }
-    ],
-    "imageUrl": "/co/edu/uptc/image/Misterio_de_la_mañana.jpg"
-
->>>>>>> feature/JavaFxCreate
   }
 
 ]

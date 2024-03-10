@@ -57,12 +57,18 @@ public class LoginControlerFx {
                 if (userr.getPassword().equals(passwordField.getText())) {
 
                     if (userr.getRole() == Role.user) {
-                        /////// aca va la vista del usuaario reguistrado
-                        System.out.println("es un usuario ");
-                        // UserRegisterView ur = new UserRegisterView(adminController, userr,
-                        // controler, av);
-
-                        // ur.userRegisterView();
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+                            Parent root = loader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                
+                            Stage myStage = (Stage) this.visit.getScene().getWindow();
+                            myStage.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else if (userr.getRole() == Role.admin) {
                         // vistaaaaaaaaaaaaaaa de adminnnnnnnnnnnnnnnnnnn
                         // av.menuAdmin();

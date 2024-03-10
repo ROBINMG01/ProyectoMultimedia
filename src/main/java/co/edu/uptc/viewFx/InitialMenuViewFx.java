@@ -2,6 +2,7 @@ package co.edu.uptc.viewFx;
 
 import java.io.IOException;
 
+import co.edu.uptc.controllerFx.Vista1Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +25,7 @@ public class InitialMenuViewFx extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterViewFx.class.getResource("/co/edu/uptc/Fxml/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Vista1Controller.class.getResource("/co/edu/uptc/Fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

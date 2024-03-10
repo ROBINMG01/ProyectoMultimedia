@@ -64,7 +64,7 @@ public class SerieCatalogController {
         });
 
         adminController = new AdminController();
-        List<Serie> series = adminController.loadSerie("Series.json");
+        List<Serie> series = adminController.loadSerie("Series");
         serieList.getItems().setAll(series);
 
         serieList.setCellFactory(param -> new ListCell<Serie>() {
