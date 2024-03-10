@@ -201,7 +201,20 @@ public class BuscarController {
         }
     }
 
+    public ArrayList<Movie> getMovies() {
+        return adminController.getListMovies();
+    }
     public boolean isBackToMenu() {
         return backToMenu;
+    }
+
+    public ArrayList<Movie> buscar(String movieName) {
+        ArrayList<Movie> result = new ArrayList<>();
+        for (Movie movie : adminController.getListMovies()) {
+            if (movie.getName().toLowerCase().contains(movieName.toLowerCase())) {
+                result.add(movie);
+            }
+        }
+        return result;
     }
 }

@@ -48,6 +48,10 @@ public class Season {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "\nSeason [name=" + name + ", description=" + description + ",\nlistChapters=" + listChapters + "]";
+=======
+        return "\nName: " + name  + "\nDescription: " + description + "\nListChapters: " + listChapters+"]";
+>>>>>>> feature/JavaFxCreate
     }
 }

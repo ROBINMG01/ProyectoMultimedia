@@ -1,7 +1,19 @@
 [
   {
-    "firstName": "q",
-    "lastName": "q",
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
+    "email": "1",
+    "password": "1",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 7, 2024, 7:20:15 AM",
+    "finDateDeSubscription": "Mar 9, 2024, 7:20:15 AM",
+    "actieSusciption": "active"
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
     "email": "A",
     "password": "1",
     "role": "admin",

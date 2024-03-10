@@ -11,6 +11,7 @@ public class Serie {
     private ArrayList<String> listActors;
     private String description;
     private ArrayList<Season> listSeason;
+<<<<<<< HEAD
     private String imageUrl;
     private int year;
 
@@ -21,6 +22,10 @@ public class Serie {
     public void setYear(int year) {
         this.year = year;
     }
+=======
+    private String videoUrl;
+    private String imageUrl;
+>>>>>>> feature/JavaFxCreate
 
     public Serie() {
     }
@@ -105,6 +110,22 @@ public class Serie {
     public void setListSeason(ArrayList<Season> listSeason) {
         this.listSeason = listSeason;
     }
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 
     public String getImageUrl() {
         return imageUrl;
@@ -116,7 +137,7 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "Serie [name=" + name + ", gender=" + gender + ", duration=" + duration + ",\nlistAuthors=" + listAuthors
-                + ",\nlistActors=" + listActors + ",\ndescription=" + description + ",\nlistSeason=" + listSeason + "]";
+        return "Name: " + name + "\nGender: " + gender + "\nDuration: " + duration + "\nListAuthors: " + listAuthors
+                + "\nListActors: " + listActors + "\nDescription: " + description + "\nListSeason: " + listSeason + "]";
     }
 }
