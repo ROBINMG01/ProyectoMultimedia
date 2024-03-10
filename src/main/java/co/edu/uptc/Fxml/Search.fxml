@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.SearchController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="327.0" layoutY="14.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Option">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="43.0" prefHeight="21.0" prefWidth="64.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="MOVIE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imageMovie" fitHeight="435.0" fitWidth="317.0" layoutX="29.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/PosterMovie.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="getMovie" layoutX="29.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Get In" />
+               </children>
+            </AnchorPane>
+         </center>
+         <right>
+            <AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Search" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="getSerie" layoutX="22.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Get In" />
+                  <Label layoutX="17.0" layoutY="43.0" prefHeight="21.0" prefWidth="64.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="SERIE" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnBack" layoutX="332.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back" />
+                  <ImageView fx:id="imageSerie" fitHeight="435.0" fitWidth="317.0" layoutX="17.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/PosterSerie.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</StackPane>
