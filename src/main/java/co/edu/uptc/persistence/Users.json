@@ -1,13 +1,14 @@
 [
   {
-    "firstName": "a",
-    "lastName": "a",
+    "firstName": "q",
+    "lastName": "q",
     "email": "1",
     "password": "1",
     "role": "user",
+    "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 10, 2024, 12:57:42 PM",
-    "finDateDeSubscription": "Mar 10, 2024, 12:57:42 PM",
-    "actieSusciption": "active"
+    "dateDeSubscription": "Mar 10, 2024, 11:46:27 PM",
+    "finDateDeSubscription": "Mar 10, 2024, 11:46:27 PM",
+    "actieSusciption": "desactive"
   }
 ]
