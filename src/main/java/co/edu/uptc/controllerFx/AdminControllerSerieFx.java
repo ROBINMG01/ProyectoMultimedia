@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import co.edu.uptc.controller.AdminController;
+import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.SerieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
@@ -22,6 +24,8 @@ import javafx.stage.Stage;
 public class AdminControllerSerieFx {
 
     private AdminController ac = new AdminController();
+    private Serie serie;
+    private EditSerieController esc;
     ArrayList<String> listAuthors = new ArrayList<>();
     ArrayList<String> listActors = new ArrayList<>();
 
@@ -106,13 +110,21 @@ public class AdminControllerSerieFx {
     @FXML
     private TableColumn<Serie, String> yearColumn;
 
-    /*
-     * String name, String description, int duration, ArrayList<String> listAuthors,
-     * String gender,
-     * ArrayList<String> listActors, String nameSeason, String descriptionSeason,
-     * String nameChapter,
-     * int durationChapter, String file
-     */
+    public AdminControllerSerieFx() {
+        this.ac = new AdminController();
+        this.esc = new EditSerieController();
+        this.durationColumn = new TableColumn<>();
+        this.genderColumn = new TableColumn<>();
+        this.nameColumn = new TableColumn<>();
+        this.yearColumn = new TableColumn<>();
+        this.tableView = new TableView<>();
+        this.serieName = new TextField();
+        this.serieGender = new TextField();
+        this.serieDuration = new TextField();
+        this.serieYear = new TextField();
+        this.serie = new Serie();
+    }
+
     public void initialize() {
         ac = new AdminController();
 
@@ -128,6 +140,10 @@ public class AdminControllerSerieFx {
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+
+        TableColumn<Serie, Boolean> editColumn = new TableColumn<>("Edit");
+        editColumn.setCellFactory(tc -> new ButtonCellSerie());
+        tableView.getColumns().add(editColumn);
 
         // Obtener las películas del repositorio
         tableView.setItems(SerieRepository.getInstance().getSeries());
@@ -311,6 +327,24 @@ public class AdminControllerSerieFx {
         Stage myStage = (Stage) this.movieButton.getScene().getWindow();
         myStage.close();
         //AdminViewFx.setRoot("ListMoviesAdmin");
+    }
+
+    @FXML
+    public void fileEditSerie(Serie serie) throws IOException {
+        esc.help(serie);
+        // AdminViewFx.setRoot("EditMovie");
+    }
+
+        @FXML
+    public void deleteMovie(Serie serie) {
+        ac.getListSeries().addAll(ac.loadSerie("Series"));
+        for (int index = 0; index < SerieRepository.getInstance().getSeries().size(); index++) {
+            if (SerieRepository.getInstance().getSeries().get(index).getName().equals(serie.getName())) {
+                SerieRepository.getInstance().getSeries().remove(index);
+                ac.deleteSerie(serie.getName());
+                tableView.refresh();
+            }
+        }
     }
 
     @FXML

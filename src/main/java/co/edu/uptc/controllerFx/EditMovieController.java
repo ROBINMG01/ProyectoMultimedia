@@ -7,16 +7,21 @@ import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -49,26 +54,31 @@ public class EditMovieController {
     @FXML
     private TextField movieActor;
 
-@FXML
-private Button saveSerieButton;
+    @FXML
+    private Button saveSerieButton;
 
-@FXML
-private Button movieButton;
+    @FXML
+    private Button movieButton;
 
-@FXML
-private Button serieButton;
+    @FXML
+    private Button serieButton;
 
-@FXML
-private Button authorButton;
+    @FXML
+    private Button authorButton;
 
-@FXML
-private Button newAuthorButton;
+    @FXML
+    private Button newAuthorButton;
 
-@FXML
-private Button actorButton;
+    @FXML
+    private Button actorButton;
 
-@FXML
-private Button newActorButton;
+    @FXML
+    private Button newActorButton;
+
+    //@FXML
+    //private JCheckBox menuButton;
+    @FXML
+    private MenuButton menuButton;
 
     @FXML
     private TableView<Movie> tableView;
@@ -84,6 +94,8 @@ private Button newActorButton;
 
     @FXML
     private TableColumn<Movie, String> yearColumn;
+
+    private ArrayList<String> listMenu = new ArrayList<>();
 
     public EditMovieController() {
         this.ac = new AdminController();
@@ -101,9 +113,6 @@ private Button newActorButton;
     }
 
     public void help(Movie movie) {
-        System.out.println("----------------------------------------------------------");
-        System.out.println("----->" + movie.getName());
-        System.out.println("-----------------------------------------------");
         String name = movie.getName();
 
         try {
@@ -140,6 +149,8 @@ private Button newActorButton;
 
     public void initialize(Movie movie) {
         ac.getListMovies().addAll(ac.loadMovie("Movie"));
+
+        //menuButton.getItems().addAll(opcion1, opcion2, opcion3);
         // help(movie);
 
         // if (movie != null) {
@@ -209,12 +220,12 @@ private Button newActorButton;
         Stage myStage = (Stage) this.movieButton.getScene().getWindow();
         myStage.close();
         myStage.close();
-        //AdminViewFx.setRoot("listSeries");
+        // AdminViewFx.setRoot("listSeries");
     }
 
     @FXML
     private void showMovie() throws IOException {
-        //avf.loadFXML("ListMoviesAdmin");
+        // avf.loadFXML("ListMoviesAdmin");
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/co/edu/uptc/Fxml/ListMoviesAdmin.fxml"));
@@ -230,7 +241,7 @@ private Button newActorButton;
 
         Stage myStage = (Stage) this.movieButton.getScene().getWindow();
         myStage.close();
-        //AdminViewFx.setRoot("ListMoviesAdmin");
+        // AdminViewFx.setRoot("ListMoviesAdmin");
     }
 
     @FXML
