@@ -1,0 +1,6 @@
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uptc.controllerFx.ChapterListController">
+    <ListView fx:id="chapterList" />
+    <Button fx:id="btnBack" onAction="#handleButtonBack" text="Volver" />
+</AnchorPane>

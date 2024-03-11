@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="gradient" stylesheets="@../css/Multimedia.css"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.VideoController">
+    <children>
+        <MediaView fx:id="mediaView" fitHeight="600.0" fitWidth="800.0" preserveRatio="false" />
+        <Button fx:id="buttonRetroceder" layoutX="314.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonRetroceder" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Retroceder" />
+        <Button fx:id="buttonAdelantar" layoutX="219.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonAdelantar" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Adelantar" />
+        <Button fx:id="buttonStop" layoutX="86.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonStop" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Stop" />
+        <Button fx:id="buttonPlay" layoutX="145.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonPlay" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Play" />
+        <Button fx:id="buttonBack" layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonBack" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Back" />
+    </children>
+    <padding>
+        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+    </padding>
+</AnchorPane>

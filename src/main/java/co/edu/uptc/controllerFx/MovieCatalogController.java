@@ -31,6 +31,9 @@ public class MovieCatalogController {
     private Button btnBack;
 
     @FXML
+    private Button verPeliculaButton;
+
+    @FXML
     private ListView<Movie> movieList;
 
     @FXML
@@ -66,21 +69,58 @@ public class MovieCatalogController {
         });
     }
 
+    @FXML
+    private void handleVerPeliculaButton() {
+        Movie selectedMovie = movieList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            String selectedMovieUrl = selectedMovie.getVideoUrl();
+            if (selectedMovieUrl != null) {
+                openMovieWindow(selectedMovieUrl);}
+            else{}
+        }
+    }
+
+    private void openMovieWindow(String selectedMovieName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+            Parent root = loader.load();
+
+            // Puedes pasar información adicional al controlador de la nueva ventana si es
+            // necesario
+            VideoController videoController = loader.getController();
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el
+                                                          // controlador de la película
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Catalog Movie");
+            stage.setScene(scene);
+            stage.show();
+
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.verPeliculaButton.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public MovieCatalogController(User user) {
         this.user = Prueba.getInstance().getUser();
     }
 
-public void setUser(User user){
-    this.user = user;
+    public MovieCatalogController() {
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     private void abrirVista1() {
         try {
-            if (user != null) {
-                System.out.println(user.getEmail());
-            } else {
-                System.out.println("User is null");
-            }
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+
             Parent movieCatalogView = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista del catálogo de películas
@@ -99,11 +139,6 @@ public void setUser(User user){
 
     public void closeWindows() {
         try {
-            if (user != null) {
-                System.out.println(user.getEmail());
-            } else {
-                System.out.println("User is null");
-            }
             // Cargar la vista del catálogo de películas
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
             Parent root = fxmlLoader.load();

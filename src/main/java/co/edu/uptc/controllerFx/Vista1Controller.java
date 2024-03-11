@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.logging.Logger;
-
 import co.edu.uptc.model.User;
 
 public class Vista1Controller {
@@ -74,7 +73,7 @@ public class Vista1Controller {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Project Multimedia");
+            stage.setTitle("User Register");
             stage.setScene(scene);
             stage.show();
             // Cerrar la ventana actual

@@ -10,7 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <right>
@@ -25,11 +27,13 @@
                   <ImageView fx:id="imageVideo" fitHeight="342.0" fitWidth="267.0" layoutX="16.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
                      <effect>
                         <ColorAdjust />
-                     </effect></ImageView>
+                     </effect>
+                  </ImageView>
                   <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="447.0">
                      <font>
                         <Font size="14.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <Label layoutX="95.0" layoutY="421.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Description" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
@@ -44,8 +48,8 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="viewMovie" layoutX="180.0" layoutY="496.0" onAction="#handleButton" styleClass="Multimedia-btn" stylesheets="@../Css/Multimedia.css" text="View movie" />
-                  <Button fx:id="viewMovie1" layoutX="55.0" layoutY="496.0" onAction="#handleButton" styleClass="Multimedia-btn" stylesheets="@../Css/Multimedia.css" text="View trailer" />
+                  <Button fx:id="verPeliculaButton" layoutX="154.0" layoutY="496.0" mnemonicParsing="false" onAction="#handleVerPeliculaButton" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="View pelicula" />
+                  <Button fx:id="viewTrailer" layoutX="55.0" layoutY="496.0" onAction="#handleVerPeliculaButton" styleClass="Multimedia-btn" stylesheets="@../Css/Multimedia.css" text="View trailer" />
                   <Label layoutX="55.0" layoutY="26.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Catalog of the Movies">
                      <font>
                         <Font size="14.0" />

@@ -11,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +37,7 @@ public class SerieCatalogController {
     private AdminController adminController;
 
     @FXML
-    private Button btnBack;
+    private Button btnBack, btnViewButton;
 
     @FXML
     private ListView<Serie> serieList;
@@ -66,8 +67,6 @@ public class SerieCatalogController {
             }
         });
 
-
-
         adminController = new AdminController();
         List<Serie> series = adminController.loadSerie("Series");
         serieList.getItems().setAll(series);
@@ -92,6 +91,65 @@ public class SerieCatalogController {
                 labelDescription.setText(newSelection.getDescription());
             }
         });
+    }
+
+    @FXML
+    protected void handleViewButton(MouseEvent event) {
+        Serie selectedSerie = serieList.getSelectionModel().getSelectedItem();
+        if (selectedSerie != null) {
+            openChapterListView(selectedSerie);
+        }
+    }
+
+    private void openChapterListView(Serie serie) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/ChapterListView.fxml"));
+            ChapterListController chapterListController = new ChapterListController();
+            fxmlLoader.setController(chapterListController);
+            Parent chapterListView = fxmlLoader.load();
+            chapterListController.setSerie(serie);
+            // Aquí debes abrir la nueva vista
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleVerPeliculaButton() {
+        Serie selectedMovie = serieList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            String selectedMovieUrl = selectedMovie.getVideoUrl();
+            if (selectedMovieUrl != null) {
+                openMovieWindow(selectedMovieUrl);
+            } else {
+            }
+        }
+    }
+
+    private void openMovieWindow(String selectedMovieName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SerieSerie.fxml"));
+            Parent root = loader.load();
+
+            // Puedes pasar información adicional al controlador de la nueva ventana si es
+            // necesario
+            VideoController videoController = loader.getController();
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el
+                                                          // controlador de la película
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Catalog Movie");
+            stage.setScene(scene);
+            stage.show();
+
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.btnViewButton.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public SerieCatalogController(User user) {
