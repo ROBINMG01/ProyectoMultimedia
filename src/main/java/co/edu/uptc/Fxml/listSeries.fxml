@@ -18,8 +18,9 @@
                <TableColumn fx:id="yearColumn" prefWidth="60.0" text="Year" />
         </columns>
       </TableView>
-      <Button fx:id="movieButton" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#showMovie" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Movie" />
-      <Button layoutX="88.0" layoutY="8.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Serie" />
+      <Button layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Home" />
+      <Button fx:id="movieButton"  onAction="#showMovie" layoutX="90.0" layoutY="8.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Movie" />
+      <Button layoutX="174.0" layoutY="8.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="82.0" styleClass="Back-btn" stylesheets="@../Styles/StyleAMovie.css" text="Serie" />
       <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="gradient" stylesheets="@../Styles/StyleAMovie.css">
          <children>
             <Label layoutX="87.0" layoutY="10.0" text="Name" textFill="WHITE">

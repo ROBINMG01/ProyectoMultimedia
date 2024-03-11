@@ -8,12 +8,16 @@ import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.SerieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class AdminControllerSerieFx {
 
@@ -292,7 +296,21 @@ public class AdminControllerSerieFx {
 
     @FXML
     private void showMovie() throws IOException {
-        AdminViewFx.setRoot("ListMoviesAdmin");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/ListMoviesAdmin.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Stage myStage = (Stage) this.movieButton.getScene().getWindow();
+        myStage.close();
+        //AdminViewFx.setRoot("ListMoviesAdmin");
     }
 
     @FXML

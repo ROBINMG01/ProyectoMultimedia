@@ -315,6 +315,7 @@ public class AdminController {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listMovies.get(i).getName().equals(name)) {
                 listMovies.remove(i);
+                loadMovie("Movie");
                 return true;
             }
         }
