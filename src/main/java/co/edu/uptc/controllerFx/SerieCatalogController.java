@@ -11,7 +11,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
@@ -94,7 +93,7 @@ public class SerieCatalogController {
     }
 
     @FXML
-    protected void handleViewButton(MouseEvent event) {
+    public void handleViewButton(ActionEvent event) {
         Serie selectedSerie = serieList.getSelectionModel().getSelectedItem();
         if (selectedSerie != null) {
             openChapterListView(selectedSerie);
@@ -104,11 +103,20 @@ public class SerieCatalogController {
     private void openChapterListView(Serie serie) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/ChapterListView.fxml"));
-            ChapterListController chapterListController = new ChapterListController();
-            fxmlLoader.setController(chapterListController);
-            Parent chapterListView = fxmlLoader.load();
+            Parent root = fxmlLoader.load();
+
+            ChapterListController chapterListController = fxmlLoader.getController();
             chapterListController.setSerie(serie);
-            // Aquí debes abrir la nueva vista
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Catalog Movie");
+            stage.setScene(scene);
+            stage.show();
+
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.btnViewButton.getScene().getWindow();
+            myStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

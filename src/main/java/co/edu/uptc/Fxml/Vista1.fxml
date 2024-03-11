@@ -21,7 +21,7 @@
          <right>
             <AnchorPane prefHeight="598.0" prefWidth="574.0" styleClass="white-form" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnBack" onAction="#handleButton" layoutX="503.0" layoutY="14.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Sign off">
+                  <Button fx:id="btnBack" layoutX="503.0" layoutY="14.0" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Sign off">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -90,17 +90,17 @@
                      <children>
                         <Label fx:id="labelBnda" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Welcome " textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
                         <Label fx:id="labelBnda2" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="To UPTCine" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelBnda21" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Daniel" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="welcomeLabel" prefHeight="100.0" prefWidth="170.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Daniel" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="Times New Roman" size="36.0" />
                            </font>
                         </Label>
                      </children>

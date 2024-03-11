@@ -41,12 +41,7 @@ public class SearchController {
     }
     @FXML
     protected void handleButton(ActionEvent event) {
-        try {
-            if (user != null) {
-                System.out.println(user.getEmail());
-            } else {
-                System.out.println("User is null");
-            }
+        try { 
             // Cargar las imágenes
             Image imageMovie = new Image("co/edu/uptc/image/PosterMovie.png");
             this.imageMovie.setImage(imageMovie);

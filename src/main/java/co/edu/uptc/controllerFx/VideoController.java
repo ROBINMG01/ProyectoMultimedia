@@ -43,6 +43,8 @@ public class VideoController {
     private MediaPlayer mediaPlayer;
     private String videoPath; // Ruta de tu archivo de video
 
+    
+
     @FXML
     public void initialize() {
         Timeline hideButtonsTimeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> {
