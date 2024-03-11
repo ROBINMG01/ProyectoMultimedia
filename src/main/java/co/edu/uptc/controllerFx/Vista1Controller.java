@@ -45,12 +45,6 @@ public class Vista1Controller {
     }
     @FXML
     public void handleButton() {
-        System.out.println("Button clicked!");
-        if (user != null) {
-            System.out.println(user.getEmail());
-        } else {
-            System.out.println("User is null");
-        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
             Parent root = loader.load();
@@ -65,18 +59,12 @@ public class Vista1Controller {
         }
 
     }
-
-    
-
-    public Vista1Controller(Prueba prueba) {
-        this.user = prueba.getUser();
-    }
-
     public Vista1Controller() {
+        this.user = Prueba.getInstance().getUser();
     }
 
-    public void setUser(Prueba user) {
-        this.user = user.getUser();
+    public void setUser(User user) {
+        this.user = user;
     }
 
     private void abrirVista(String fxmlPath, Object  controller) {

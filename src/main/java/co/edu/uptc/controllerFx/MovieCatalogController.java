@@ -67,10 +67,12 @@ public class MovieCatalogController {
     }
 
     public MovieCatalogController(User user) {
-        this.user = user;
+        this.user = Prueba.getInstance().getUser();
     }
 
-
+public void setUser(User user){
+    this.user = user;
+    }
     private void abrirVista1() {
         try {
             if (user != null) {

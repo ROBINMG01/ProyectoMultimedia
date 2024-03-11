@@ -39,22 +39,15 @@ public class SuscriptionController {
     @FXML
     private void handleBackButton(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-            Parent previousView = fxmlLoader.load();
-
-            // Obtén el controlador de la vista y establece el usuario
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1  .fxml"));
+            Parent root = fxmlLoader.load();
+        
             SuscriptionController controller = fxmlLoader.getController();
-            controller.setUser(user);
-
-            // Crear una nueva ventana para la vista anterior
+            controller.setUser(user); // Aquí pasas el usuario a SuscriptionController
+        
             Stage stage = new Stage();
-            stage.setTitle("Vista 1");
-            stage.setScene(new Scene(previousView));
+            stage.setScene(new Scene(root));
             stage.show();
-
-            // Cerrar la vista actual
-            Stage currentStage = (Stage) btnBack.getScene().getWindow();
-            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
