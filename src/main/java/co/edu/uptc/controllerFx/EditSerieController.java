@@ -36,25 +36,37 @@ public class EditSerieController {
     private TextField serieGender;
 
     @FXML
-    private TextField serieDuration;
-
-    @FXML
-    private TextField serieYear;
-
-    @FXML
     private TextField serieAuthor;
 
     @FXML
     private TextField serieActor;
 
     @FXML
+    private TextField serieDuration;
+
+    @FXML
+    private TextField serieYear;
+
+    @FXML
+    private TextField serieNameSeason;
+
+    @FXML
+    private TextField serieDescriptionSeason;
+
+    @FXML
+    private TextField serieNameChapter;
+
+    @FXML
+    private TextField serieDurationChapter;
+
+    @FXML
     private Button saveSerieButton;
 
     @FXML
-    private Button serieButton;
+    private Button movieButton;
 
     @FXML
-    private Button movieButton;
+    private Button serieButton;
 
     @FXML
     private Button authorButton;
@@ -68,11 +80,6 @@ public class EditSerieController {
     @FXML
     private Button newActorButton;
 
-    //@FXML
-    //private JCheckBox menuButton;
-    @FXML
-    private MenuButton menuButton;
-
     @FXML
     private TableView<Serie> tableView;
 
@@ -84,6 +91,21 @@ public class EditSerieController {
 
     @FXML
     private TableColumn<Serie, Integer> durationColumn;
+
+    @FXML
+    private TableColumn<Serie, Integer> descriptionColumn;
+
+    @FXML
+    private TableColumn<Serie, Integer> nameSeasonColumn;
+
+    @FXML
+    private TableColumn<Serie, Integer> descriptionSeasonColumn;
+
+    @FXML
+    private TableColumn<Serie, Integer> nameChapterColumn;
+
+    @FXML
+    private TableColumn<Serie, Integer> descriptionChapterColumn;
 
     @FXML
     private TableColumn<Serie, String> yearColumn;
@@ -114,8 +136,25 @@ public class EditSerieController {
             Parent root = loader.load();
 
             serieName = (TextField) loader.getNamespace().get("serieName");
+            serieYear = (TextField) loader.getNamespace().get("serieYear");
+            serieGender = (TextField) loader.getNamespace().get("serieGender");
+            serieDuration = (TextField) loader.getNamespace().get("serieDuration");
+            serieDescription = (TextField) loader.getNamespace().get("serieDescription");
+
+            serieNameSeason = (TextField) loader.getNamespace().get("serieNameSeason");
+            serieDescriptionSeason = (TextField) loader.getNamespace().get("serieDescriptionSeason");
+            serieNameChapter = (TextField) loader.getNamespace().get("serieNameChapter");
+            serieDurationChapter = (TextField) loader.getNamespace().get("serieDurationChapter");
 
             serieName.setText(serie.getName());
+            serieYear.setText(String.valueOf(serie.getYear()));
+            serieGender.setText(serie.getGender());
+            serieDuration.setText(String.valueOf(serie.getDuration()));
+            serieDescription.setText(serie.getDescription());
+
+            /// Autor, Actor, NombreTemporada, DescripcionTemporada, NombreCapitulo,
+            /// DuracionCapitulo son arrays toca con un menu desplegable
+            // serieNameSeason.setText(serie.get);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -143,7 +182,7 @@ public class EditSerieController {
     public void initialize(Serie serie) {
         ac.getListSeries().addAll(ac.loadSerie("Series"));
 
-        //menuButton.getItems().addAll(opcion1, opcion2, opcion3);
+        // menuButton.getItems().addAll(opcion1, opcion2, opcion3);
         // help(serie);
 
         // if (serie != null) {
@@ -178,11 +217,15 @@ public class EditSerieController {
     @FXML
     private boolean saveserie() throws IOException {
 
-
-        /*if (ac.addSerie(serieName.getText(), serieDescription.getText(), serieDurations, listAuthors, serieGender.getText(),
-        listActors, serieNameSeason.getText(), serieDescriptionSeason.getText(), serieNameChapter.getText(), serieDurationInt, serieYearInt)) {
-            serieRepository.getInstance().addserie(ac.getListseries().get(ac.getListseries().size() - 1));
-        }*/
+        /*
+         * if (ac.addSerie(serieName.getText(), serieDescription.getText(),
+         * serieDurations, listAuthors, serieGender.getText(),
+         * listActors, serieNameSeason.getText(), serieDescriptionSeason.getText(),
+         * serieNameChapter.getText(), serieDurationInt, serieYearInt)) {
+         * serieRepository.getInstance().addserie(ac.getListseries().get(ac.
+         * getListseries().size() - 1));
+         * }
+         */
 
         // Clean fields on success
         clearInputFields();

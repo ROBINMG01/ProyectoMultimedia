@@ -113,7 +113,7 @@ public class EditMovieController {
     }
 
     public void help(Movie movie) {
-        String name = movie.getName();
+        //String name = movie.getName();
 
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -121,8 +121,18 @@ public class EditMovieController {
             Parent root = loader.load();
 
             movieName = (TextField) loader.getNamespace().get("movieName");
+            movieYear = (TextField) loader.getNamespace().get("movieYear");
+            movieGender = (TextField) loader.getNamespace().get("movieGender");
+            movieDuration = (TextField) loader.getNamespace().get("movieDuration");
+            movieDescription = (TextField) loader.getNamespace().get("movieDescription");
 
             movieName.setText(movie.getName());
+            movieYear.setText(String.valueOf(movie.getYear()));
+            movieGender.setText(movie.getGender());
+            movieDuration.setText(String.valueOf(movie.getDuration()));
+            movieDescription.setText(movie.getDescription());
+
+            //Falta Autor y actor que son arrays, toca con menu desplegable
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -217,7 +227,7 @@ public class EditMovieController {
             e.printStackTrace();
         }
 
-        Stage myStage = (Stage) this.movieButton.getScene().getWindow();
+        Stage myStage = (Stage) this.serieButton.getScene().getWindow();
         myStage.close();
         myStage.close();
         // AdminViewFx.setRoot("listSeries");

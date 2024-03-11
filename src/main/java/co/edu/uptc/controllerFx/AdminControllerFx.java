@@ -317,13 +317,4 @@ public class AdminControllerFx {
             }
         }
     }
-
-    private void clearInputFields() {
-        movieName.clear();
-        movieGender.clear();
-        movieDuration.clear();
-        movieYear.clear();
-        movieAuthor.clear();
-        movieActor.clear();
-    }
 }
