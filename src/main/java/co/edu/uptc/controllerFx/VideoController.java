@@ -1,11 +1,15 @@
 package co.edu.uptc.controllerFx;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -30,15 +34,22 @@ public class VideoController {
 
     @FXML
     private Button buttonRetroceder;
+    @FXML
+    private Button buttonBack;
 
     private MediaPlayer mediaPlayer;
     private String videoPath; // Ruta de tu archivo de video
 
     @FXML
     public void initialize() {
-        // Establecer la ruta del video aquí (reemplazar con la ruta real de tu archivo
-        // de video)
-        videoPath = "src/main/java/co/edu/uptc/image/1124.mp4"; // Ejemplo de ruta
+        // No es necesario cargar el video en el método initialize si no lo vas a
+        // reproducir de inmediato
+    }
+
+    public void playVideo(String videoPath) {
+        // Establecer la ruta del video
+
+        this.videoPath = videoPath;
 
         try {
             // Crear un objeto Media
@@ -49,16 +60,44 @@ public class VideoController {
 
             // Vincular el media player al MediaView
             mediaView.setMediaPlayer(mediaPlayer);
+
+            // Reproducir el video automáticamente al cargarlo
+            mediaPlayer.play();
+            buttonPlay.setText("Pause");
+
+            // Añadir un Listener para detectar el final del video y detener la reproducción
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.stop();
+                buttonPlay.setText("Play");
+            });
         } catch (Exception ex) {
             Logger.getLogger(VideoController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al cargar el video: " + ex.getMessage());
         }
     }
+
+    @FXML
+    public void handleButtonBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/VisitView.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.buttonBack.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void handleButtonPlay(ActionEvent event) {
         MediaPlayer.Status status = mediaPlayer.getStatus();
-        
-        if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.READY || status == MediaPlayer.Status.STOPPED) {
+
+        if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.READY
+                || status == MediaPlayer.Status.STOPPED) {
             mediaPlayer.play();
             buttonPlay.setText("Pause");
         } else {
@@ -66,7 +105,6 @@ public class VideoController {
             buttonPlay.setText("Play");
         }
     }
-    
 
     @FXML
     public void handleButtonStop(ActionEvent event) {

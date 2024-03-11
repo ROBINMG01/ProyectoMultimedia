@@ -50,12 +50,15 @@ public class ViewVisitControllerFx {
 
     @FXML
     private TextField inputSearch;
+    @FXML
+    private Button verPeliculaButton;
 
     private AdminController adminController;
     private ObservableList<String> observableListResults;
 
     public ViewVisitControllerFx() {
         this.buttonBack = new Button();
+        this.verPeliculaButton = new Button();
         this.imageView = new ImageView();
         this.adminController = new AdminController();
         this.observableListResults = FXCollections.observableArrayList();
@@ -93,6 +96,20 @@ public class ViewVisitControllerFx {
         // Limpiar la lista de resultados al inicio
         listViewResults.getItems().clear();
 
+        // Configurar el botón "Ver Película"
+        verPeliculaButton.setDisable(true);
+
+        // Agregar el ChangeListener para detectar cambios en la selección del ListView
+        listViewResults.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Habilitar el botón "Ver Película"
+                verPeliculaButton.setDisable(false);
+            } else {
+                // Deshabilitar el botón si no hay ninguna selección
+                verPeliculaButton.setDisable(true);
+            }
+        });
+
     }
 
     @FXML
@@ -127,6 +144,25 @@ public class ViewVisitControllerFx {
         }
 
         listViewResults.setItems(observableListResults);
+    }
+
+    @FXML
+    private void handleVerPeliculaButton() {
+        String selectedMovieName = listViewResults.getSelectionModel().getSelectedItem();
+        if (selectedMovieName != null) {
+            // Aquí deberías abrir la nueva ventana para la película
+            for (Movie movie : adminController.getListMovies()) {
+                if (movie.getName().equals(selectedMovieName)) {
+                    openMovieWindow(movie.getVideoUrl());
+                }
+            }
+            for (Serie serie : adminController.getListSeries()) {
+                if (serie.getName().equals(selectedMovieName)) {
+                    openMovieWindow(serie.getVideoUrl());
+                }
+            }
+
+        }
     }
 
     private void displayMovies() {
@@ -181,7 +217,6 @@ public class ViewVisitControllerFx {
 
                     // Mostrar la información en el componente gráfico apropiado
                     listView2.setItems(detailsList);
-
                     // Establecer la imagen correspondiente
                     setImage(movie.getImageUrl());
                     return;
@@ -286,6 +321,32 @@ public class ViewVisitControllerFx {
                 }
             }
         });
+    }
+
+    private void openMovieWindow(String selectedMovieName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+            Parent root = loader.load();
+
+            // Puedes pasar información adicional al controlador de la nueva ventana si es
+            // necesario
+            VideoController videoController = loader.getController();
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el
+                                                          // controlador de la película
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Project Multimedia");
+            stage.setScene(scene);
+            stage.show();
+
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.verPeliculaButton.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

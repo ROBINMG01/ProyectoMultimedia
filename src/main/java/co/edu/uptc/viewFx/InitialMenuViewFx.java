@@ -15,7 +15,7 @@ public class InitialMenuViewFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("vistaInitialMenu"));
+        scene = new Scene(loadFXML("VisitView"));
         stage.setScene(scene);
         stage.show();
     }
@@ -25,7 +25,8 @@ public class InitialMenuViewFx extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Vista1Controller.class.getResource("/co/edu/uptc/Fxml/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                Vista1Controller.class.getResource("/co/edu/uptc/Fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

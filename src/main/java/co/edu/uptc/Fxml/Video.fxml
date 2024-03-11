@@ -2,14 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.media.MediaView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="gradient" stylesheets="@../css/Multimedia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.VideoController">
    <children>
-      <Button fx:id="buttonRetroceder" layoutX="39.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleButtonRetroceder" text="Retroceder" />
-      <Button fx:id="buttonAdelantar" layoutX="23.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleButtonAdelantar" text="Adelantar" />
-      <Button fx:id="buttonStop" layoutX="54.0" layoutY="408.0" mnemonicParsing="false" onAction="#handleButtonStop" text="Stop" />
-      <Button fx:id="buttonPlay" layoutX="24.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonPlay" text="Play" />
-      <MediaView fx:id="mediaView" fitHeight="500.0" fitWidth="500.0" layoutX="119.0" layoutY="50.0" />
+      <Pane layoutX="69.0" layoutY="5.0" prefHeight="401.0" prefWidth="593.0" style="-fx-background-color: black;" />
+      <Button fx:id="buttonRetroceder" layoutX="243.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonRetroceder" style="-fx-background-radius: 50px;" styleClass="login-btn" text="Retroceder" />
+      <Button fx:id="buttonAdelantar" layoutX="340.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonAdelantar" style="-fx-background-radius: 50px;" styleClass="login-btn" text="Adelantar" />
+      <Button fx:id="buttonStop" layoutX="166.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonStop" style="-fx-background-radius: 50px;" styleClass="login-btn" text="Stop" />
+      <Button fx:id="buttonPlay" layoutX="86.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonPlay" style="-fx-background-radius: 50px;" styleClass="login-btn" text="Play" />
+      <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="500.0" layoutX="86.0" layoutY="42.0" />
+      <Button fx:id="buttonBack" layoutX="635.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleButtonBack" style="-fx-background-radius: 50px;" styleClass="Back-btn" text="Back" />
    </children>
 </AnchorPane>
