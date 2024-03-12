@@ -202,11 +202,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-<<<<<<< HEAD
-            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
-=======
-    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender, int year) {
->>>>>>> feature/AdminViewFx
+            ArrayList<String> listAuthors, ArrayList<String> listActors, String gender, int year) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
