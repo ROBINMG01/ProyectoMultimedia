@@ -13,7 +13,8 @@
     ],
     "description": "Los vengadores defenderan la realidad",
     "year": 2021,
-    "imageUrl":"/co/edu/uptc/image/posterAvengersEndGamec.png"
+    "imageUrl": "/co/edu/uptc/image/posterAvengersEndGamec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
   },
   {
     "name": "Batman: el caballero de la noche",
@@ -30,15 +31,16 @@
     ],
     "description": "una nueva entrega de nuestro superhéroe enmascarado",
     "year": 2015,
-    "imageUrl":"/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png"
+    "imageUrl": "/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/Batman.mp4"
   },
   {
     "name": "Spiderman no way home",
     "gender": "Accion",
     "duration": 150,
     "listAuthors": [
-    "Stan lee",
-    "Sony produccion"
+      "Stan lee",
+      "Sony produccion"
     ],
     "listActors": [
       "Tom Holand",
@@ -47,6 +49,20 @@
     ],
     "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
     "year": 2022,
-    "imageUrl":"/co/edu/uptc/image/posterSpidermanNoWayHomec.png"
+    "imageUrl": "/co/edu/uptc/image/posterSpidermanNoWayHomec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/SpidermanNoWayHome.mp4"
+  },
+  {
+    "name": "Juan y sus aventruras",
+    "gender": "miedo",
+    "duration": 3,
+    "listAuthors": [
+      "Juan"
+    ],
+    "listActors": [
+      "juyan"
+    ],
+    "description": "sdasd",
+    "year": 0
   }
 ]

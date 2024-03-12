@@ -15,6 +15,16 @@ public class User {
     private Date dateDeSubscription;
     private Date finDateDeSubscription;
     private String actieSusciption;
+    private ArrayList<String> listSeriesFavoritesNames;
+    private ArrayList<String> listMoviesFavoritesNames;
+
+    public ArrayList<String> getListSeriesFavoritesNames() {
+        return listSeriesFavoritesNames;
+    }
+
+    public ArrayList<String> getListMoviesFavoritesNames() {
+        return listMoviesFavoritesNames;
+    }
 
     public User(String firstName, String lastName, String email, String password, Role role) {
         this.firstName = firstName;
@@ -131,6 +141,14 @@ public class User {
         return false;
     }
 
+    public void setListMoviesFavoritesNames(ArrayList<String> listMoviesFavoritesNames) {
+        this.listMoviesFavoritesNames = listMoviesFavoritesNames;
+    }
+
+    public void setListSeriesFavoritesNames(ArrayList<String> listSeriesFavoritesNames) {
+        this.listSeriesFavoritesNames = listSeriesFavoritesNames;
+    }
+
     // metodo que elimona una pelicula
 
     public void deleteMovie(String namemovie, User user) {
@@ -157,6 +175,15 @@ public class User {
         }
         listSeriesFavorites.remove(mm);
         user.setListSeriesFavorites(listSeriesFavorites);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        return email.equals(user.email); // Compare only email for equality
     }
 
     @Override

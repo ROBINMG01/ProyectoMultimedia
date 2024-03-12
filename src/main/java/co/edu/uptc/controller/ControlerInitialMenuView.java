@@ -1,5 +1,6 @@
 package co.edu.uptc.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import co.edu.uptc.model.User;
@@ -160,6 +161,8 @@ public class ControlerInitialMenuView extends UserRegister {
         return textoEncriptado.toString();
     }
 
+    
+
     public String desencriptar(String textoEncriptado, int clave) {
         // Método para desencriptar un texto encriptado con el cifrado César
         return encriptar(textoEncriptado, -clave);
@@ -200,6 +203,9 @@ public class ControlerInitialMenuView extends UserRegister {
 
     public void saveInfoUser() {
         // Guardar los usuarios en el archivos
+      for (User user : users) {
+          System.out.println(user.toString());
+      }
         saveUsers(users, "Users");
     }
 
@@ -249,5 +255,27 @@ public class ControlerInitialMenuView extends UserRegister {
         return email;
     }
 
-    
+      // Método para convertir la fecha al formato deseado
+    public  String formatearFecha(Date fecha) {
+        // Definimos el formato de salida de la fecha
+        SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy"); // Este es el formato que deseas
+        
+        // Convertimos la fecha al formato deseado
+        String fechaFormateada = formatoSalida.format(fecha);
+        
+        // Retornamos la fecha formateada
+        return fechaFormateada;
+    }
+
+    // remplazar el malditoooo usuario 
+
+    public void rempazoUser(User user){
+        for (User userr : users) {
+            if(userr.getEmail().equals(user.getEmail())){
+                users.remove(userr);
+                users.add(user);
+            }
+            saveUsers(users, "Users");
+        }
+    }
 }

@@ -5,12 +5,12 @@
 
 .button-registro:hover {
     -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
-    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
 }
 
 .button-visitante:hover {
     -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
-    -fx-text-fill: (0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
 }
 
 .button-login:hover,
@@ -86,6 +86,13 @@
  /* Espaciado interno */
 }
 
+
+.register-field {
+    -fx-background-color: #1c7bf8; /* Color de fondo blanco */
+    -fx-border-color: #1100ff; /* Color del borde rojo */
+    -fx-border-radius: 5px; /* Radio del borde */
+    -fx-padding: 5px; /* Espaciado interno */
+}
 .fondo {
     -fx-background-color: linear-gradient(to bottom right,#011310,  #042d27, #044238,#0d6758, #0f6f5f,#044238,#042d27,#011310   );
 

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class InitialMenuControllerFx {
@@ -28,6 +29,13 @@ public class InitialMenuControllerFx {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            // para que la contraseña sea blanca
+            PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+            // modificar para ver los cambios
+            passwordField.getStyleClass().add("passwordInitial-field");
+            PasswordField confirmPasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
+            // modificar para ver los cambios
+            confirmPasswordField.getStyleClass().add("passwordInitial-field");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -64,8 +72,10 @@ public class InitialMenuControllerFx {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/VisitView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+           
             stage.setScene(new Scene(root));
             stage.show();
+          
 
             Stage myStage = (Stage) this.visit.getScene().getWindow();
             myStage.close();

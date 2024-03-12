@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.User;
 
 public class MovieCatalogController {
     @FXML
@@ -30,6 +31,9 @@ public class MovieCatalogController {
     private Button btnBack;
 
     @FXML
+    private Button verPeliculaButton;
+
+    @FXML
     private ListView<Movie> movieList;
 
     @FXML
@@ -37,6 +41,8 @@ public class MovieCatalogController {
 
     @FXML
     private Label labelDescription;
+
+    private User user;
 
     public void initialize() {
         adminController = new AdminController();
@@ -55,7 +61,7 @@ public class MovieCatalogController {
                 }
                 if (image != null) {
                     imageVideo.setImage(image);
-                    
+
                 }
                 labelDescription.setWrapText(true);
                 labelDescription.setText(newSelection.getDescription());
@@ -63,9 +69,58 @@ public class MovieCatalogController {
         });
     }
 
+    @FXML
+    private void handleVerPeliculaButton() {
+        Movie selectedMovie = movieList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            String selectedMovieUrl = selectedMovie.getVideoUrl();
+            if (selectedMovieUrl != null) {
+                openMovieWindow(selectedMovieUrl);
+            } else {
+            }
+        }
+    }
+
+    private void openMovieWindow(String selectedMovieName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+            VideoController videoController = new VideoController();
+            loader.setController(videoController); // Establece el controlador antes de cargar el archivo FXML
+            Parent root = loader.load();
+    
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el controlador de la película
+            videoController.setOriginalView("MovieCatalogController"); // Aquí
+    
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Catalog Movie");
+            stage.setScene(scene);
+            stage.show();
+    
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.verPeliculaButton.getScene().getWindow();
+            myStage.close();
+    
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public MovieCatalogController(User user) {
+        this.user = Prueba.getInstance().getUser();
+    }
+
+    public MovieCatalogController() {
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     private void abrirVista1() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+
             Parent movieCatalogView = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista del catálogo de películas

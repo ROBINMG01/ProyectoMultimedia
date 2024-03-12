@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Serie;
+import co.edu.uptc.model.User;
+import javafx.scene.Node;
 
 public class SerieCatalogController {
 
@@ -35,12 +37,21 @@ public class SerieCatalogController {
     private AdminController adminController;
 
     @FXML
-    private Button btnBack;
+    private Button btnBack, btnViewButton;
 
     @FXML
     private ListView<Serie> serieList;
 
     Serie serie = new Serie();
+
+    private User user;
+
+    public SerieCatalogController() {
+        this.btnViewButton = new Button();
+    }
+
+    public SerieCatalogController(User user) {
+    }
 
     public void initialize() {
 
@@ -89,25 +100,98 @@ public class SerieCatalogController {
         });
     }
 
-    private void abrirVista1() {
+    @FXML
+    private void handleViewButton(ActionEvent event) {
+        Serie selectedSerie = serieList.getSelectionModel().getSelectedItem();
+        if (selectedSerie != null) {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            openChapterListView(selectedSerie, currentStage);
+        }
+    }
+
+    public void openChapterListView(Serie serie, Stage currentStage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-            Parent SerieCatalogView = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/ChapterListView.fxml"));
+            ChapterListController controller = new ChapterListController();
+            fxmlLoader.setController(controller);
+            Parent root = fxmlLoader.load(); // Esto carga el archivo FXML y inicializa los campos anotados con @FXML
 
-            // Crear una nueva ventana para la vista del catálogo de series
+            controller.setSerie(serie); // Ahora puedes llamar a setSerie()
+
+            currentStage.close();
+
+            // Aquí creas una nueva escena y la muestras en una nueva ventana
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Catálogo de Series");
-            stage.setScene(new Scene(SerieCatalogView));
+            stage.setScene(scene);
             stage.show();
-            // Vamos a colocar esta parte del codigo para que se cierre la ventana
-            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
-
-            myStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @FXML
+    private void handleVerPeliculaButton() {
+        Serie selectedMovie = serieList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            String selectedMovieUrl = selectedMovie.getVideoUrl();
+            if (selectedMovieUrl != null) {
+                openMovieWindow(selectedMovieUrl);
+            } else {
+            }
+        }
+    }
+
+    private void openMovieWindow(String selectedMovieName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SerieSerie.fxml"));
+            Parent root = loader.load();
+
+            // Puedes pasar información adicional al controlador de la nueva ventana si es
+            // necesario
+            VideoController videoController = loader.getController();
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el
+                                                          // controlador de la película
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Catalog Movie");
+            stage.setScene(scene);
+            stage.show();
+
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.btnViewButton.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Agrega este método setter
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    private void abrirVista1() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Vista1Controller controller = fxmlLoader.getController();
+            controller.setUser(this.user); // Ahora puedes llamar a setUser()
+
+            Stage stage = new Stage();
+            stage.setTitle("Catálogo de Series");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void closeWindows() {
         try {
             // Cargar la vista del catálogo de películas
