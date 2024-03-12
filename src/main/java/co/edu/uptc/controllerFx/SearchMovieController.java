@@ -188,8 +188,6 @@ public class SearchMovieController {
             currentStage.close(); // Cierra la ventana actual
 
             vista1Stage.show();
-
-            vista1Stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

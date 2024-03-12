@@ -328,7 +328,6 @@ public class AdminController {
                 return true;
             }
         }
-        System.out.println("----------------");
         return false;
     }
 

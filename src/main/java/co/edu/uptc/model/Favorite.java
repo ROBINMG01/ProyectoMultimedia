@@ -6,6 +6,7 @@ public class Favorite {
     private int duration;
     private String gender;
     private String type;
+    private Movie originalObject;
 
     
     public Favorite() {
@@ -47,6 +48,15 @@ public class Favorite {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public Object getOriginalObject() {
+        return originalObject;
+    }
+
+    public void setOriginalObject(Movie originalObject) {
+        this.originalObject = originalObject;
+    }
+
     @Override
     public String toString() {
         return "Favorite [name=" + name + ", description=" + description + ", duration=" + duration + ", gender="

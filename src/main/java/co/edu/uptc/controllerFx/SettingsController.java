@@ -138,7 +138,7 @@ public class SettingsController {
             }
 
             try {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 File file = new File("src/main/java/co/edu/uptc/persistence/Users.json");
 
                 // Lee el archivo JSON y conviértelo en una lista de objetos User

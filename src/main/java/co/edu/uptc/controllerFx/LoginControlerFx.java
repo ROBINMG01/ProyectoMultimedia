@@ -83,7 +83,6 @@ public class LoginControlerFx {
                     } else if (userr.getRole() == Role.admin) {
                         // vistaaaaaaaaaaaaaaa de adminnnnnnnnnnnnnnnnnnn
                         // av.menuAdmin();
-                        System.out.println("es el propio de propios admin");
 
                         // Cargar la vista de login.fxml
                         try {

@@ -17,9 +17,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import co.edu.uptc.model.Favorite;
 import co.edu.uptc.model.Movie;
@@ -56,12 +58,14 @@ public class FavoritesController {
     @FXML
     private Button btnDelete;
     @FXML
-    private Button btnTrailer;
+    private Button btnSubmit;
     @FXML
     private Button btnBack;
 
     private ObservableList<Favorite> moviesAndSeries = FXCollections.observableArrayList();
     private ObservableList<Favorite> favorites = FXCollections.observableArrayList();
+
+    private Object originalObject;
 
     private Gson gson;
     private User user;
@@ -71,32 +75,19 @@ public class FavoritesController {
         abrirVista1();
     }
 
-    public FavoritesController(User user) {
-        this.user = user;
-        this.gson = new Gson();
-    }
-
     public void setUser(User user) {
         this.user = user;
+        loadFavoritesFromUser();
         loadMoviesAndSeries();
     }
 
-    public FavoritesController(){
-        this.nameColumn = new TableColumn<>();
-        this.durationColumn = new TableColumn<>();
-        this.genderColumn = new TableColumn<>();
-        this.typeColumn = new TableColumn<>();
-        this.nameFavorite1 = new TableColumn<>();
-        this.durationFavorite1 = new TableColumn<>();
-        this.genderFavorite1 = new TableColumn<>();
-        this.typeFavorite1 = new TableColumn<>();
-        
-
+    public FavoritesController() {
+        this.gson = new Gson();
+        this.user = Prueba.getInstance().getUser();
     }
 
     @FXML
     public void initialize() {
-        // Configurar los CellValueFactory
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -110,29 +101,55 @@ public class FavoritesController {
         tableMovieSerie.setItems(moviesAndSeries);
         tableFavorite.setItems(favorites);
 
-        BtnAdd.setOnAction(event -> addFavorite());
-        btnDelete.setOnAction(event -> deleteFavorite());
-        btnTrailer.setOnAction(event -> viewTrailer());
+        BtnAdd.setOnAction(event -> {
+            addFavorite();
+            saveFavorites();
+        });
+
+        btnDelete.setOnAction(event -> {
+            deleteFavorite();
+            saveFavorites();
+        });
+
+        btnBack.setOnAction(event -> handleButtonBack(event));
+
+        if (user != null) {
+            setUser(user);
+        }
+
     }
 
     private void saveFavorites() {
-        ArrayList<Movie> favoriteMovies = favorites.stream()
-                .filter(favorite -> favorite.getType().equals("Película"))
-                .map(this::convertFavoriteToMovie)
-                .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Serie> favoriteSeries = favorites.stream()
-                .filter(favorite -> favorite.getType().equals("Serie"))
-                .map(this::convertFavoriteToSerie)
-                .collect(Collectors.toCollection(ArrayList::new));
+        // Carga todos los usuarios
+        ArrayList<User> users = loadFromJson("src/main/java/co/edu/uptc/persistence/Users.json",
+                new TypeToken<ArrayList<User>>() {
+                }.getType());
 
-        user.setListMoviesFavorites(favoriteMovies);
-        user.setListSeriesFavorites(favoriteSeries);
-
-        try (FileWriter writer = new FileWriter("co/edu/uptc/persistence/Users.json")) {
-            gson.toJson(user, writer);
-        } catch (IOException e) {
-            e.getMessage();
+        // Encuentra el índice del usuario actual en la lista de usuarios
+        int userIndex = -1;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equals(this.user.getEmail())) {
+                userIndex = i;
+                break;
+            }
         }
+
+        // Si el usuario actual se encontró en la lista de usuarios, actualiza sus
+        // listas de favoritos
+        if (userIndex != -1) {
+            users.set(userIndex, this.user);
+        }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        // Guarda todos los usuarios de nuevo en el archivo
+        try (FileWriter writer = new FileWriter("src/main/java/co/edu/uptc/persistence/Users.json")) {
+            gson.toJson(users, writer);
+        } catch (IOException e) {
+            System.out.println("Error al guardar los favoritos: " + e.getMessage());
+        }
+
+        Prueba.getInstance().setUser(this.user);
     }
 
     private Movie convertFavoriteToMovie(Favorite favorite) {
@@ -155,6 +172,15 @@ public class FavoritesController {
         return serie;
     }
 
+    private void loadFavoritesFromUser() {
+        for (Movie movie : user.getListMoviesFavorites()) {
+            favorites.add(convertMovieToFavorite(movie));
+        }
+        for (Serie serie : user.getListSeriesFavorites()) {
+            favorites.add(convertSerieToFavorite(serie));
+        }
+    }
+
     private void loadMoviesAndSeries() {
         ArrayList<Movie> movies = loadFromJson("src/main/java/co/edu/uptc/persistence/Movie.json",
                 new TypeToken<ArrayList<Movie>>() {
@@ -162,6 +188,7 @@ public class FavoritesController {
         ArrayList<Serie> series = loadFromJson("src/main/java/co/edu/uptc/persistence/Series.json",
                 new TypeToken<ArrayList<Serie>>() {
                 }.getType());
+
         for (Movie movie : movies) {
             Favorite favorite = convertMovieToFavorite(movie);
             moviesAndSeries.add(favorite);
@@ -170,6 +197,8 @@ public class FavoritesController {
             Favorite favorite = convertSerieToFavorite(serie);
             moviesAndSeries.add(favorite);
         }
+        tableMovieSerie.refresh();
+        tableFavorite.refresh();
     }
 
     private <T> ArrayList<T> loadFromJson(String filePath, Type type) {
@@ -177,7 +206,7 @@ public class FavoritesController {
         try {
             list = gson.fromJson(new FileReader(filePath), type);
         } catch (FileNotFoundException e) {
-            System.err.println("No se pudo cargar el archivo: " + e.getMessage());
+            e.getMessage();
         }
         return list;
     }
@@ -188,6 +217,7 @@ public class FavoritesController {
         favorite.setDuration(movie.getDuration());
         favorite.setGender(movie.getGender());
         favorite.setType("Película");
+        favorite.setOriginalObject(movie); // Fix: Use the correct setter method name
         return favorite;
     }
 
@@ -205,6 +235,12 @@ public class FavoritesController {
         if (selectedFavorite != null) {
             favorites.add(selectedFavorite);
             moviesAndSeries.remove(selectedFavorite);
+            // Actualiza el objeto User con las nuevas películas y series favoritas
+            if (selectedFavorite.getType().equals("Película")) {
+                user.getListMoviesFavorites().add(convertFavoriteToMovie(selectedFavorite));
+            } else if (selectedFavorite.getType().equals("Serie")) {
+                user.getListSeriesFavorites().add(convertFavoriteToSerie(selectedFavorite));
+            }
         }
     }
 
@@ -213,24 +249,38 @@ public class FavoritesController {
         if (selectedFavorite != null) {
             favorites.remove(selectedFavorite);
             moviesAndSeries.add(selectedFavorite);
+
+            // Actualizar el objeto User con los favoritos eliminados
+            if (selectedFavorite.getType().equals("Película")) {
+                List<Movie> movieFavorites = user.getListMoviesFavorites();
+                movieFavorites = movieFavorites.stream()
+                        .filter(movie -> !movie.getName().equals(selectedFavorite.getName()))
+                        .collect(Collectors.toList());
+                user.setListMoviesFavorites(new ArrayList<>(movieFavorites));
+            } else if (selectedFavorite.getType().equals("Serie")) {
+                List<Serie> serieFavorites = user.getListSeriesFavorites();
+                serieFavorites = serieFavorites.stream()
+                        .filter(serie -> !serie.getName().equals(selectedFavorite.getName()))
+                        .collect(Collectors.toList());
+                user.setListSeriesFavorites(new ArrayList<>(serieFavorites));
+            }
+            saveFavorites();
         }
     }
 
-    private void viewTrailer() {
-        Favorite selectedFavorite = tableMovieSerie.getSelectionModel().getSelectedItem();
-        if (selectedFavorite != null) {
-            // Aquí puedes agregar la lógica para ver el tráiler de la serie o película
-            // seleccionada
-            // Por ejemplo, podrías abrir un nuevo navegador con la URL del tráiler
-        }
-    }
+    // private void viewTrailer() {
+    // Favorite selectedFavorite =
+    // tableMovieSerie.getSelectionModel().getSelectedItem();
+    // if (selectedFavorite != null) {
+    // // Aquí puedes agregar la lógica para ver el tráiler de la serie o película
+    // // seleccionada
+    // // Por ejemplo, podrías abrir un nuevo navegador con la URL del tráiler
+    // }
+    // }
 
     private void abrirVista1() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-
-            Vista1Controller vista1Controller = new Vista1Controller();
-            fxmlLoader.setController(vista1Controller);
 
             Parent vista1View = fxmlLoader.load();
 
