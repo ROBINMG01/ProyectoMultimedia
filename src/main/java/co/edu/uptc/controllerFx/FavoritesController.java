@@ -66,18 +66,32 @@ public class FavoritesController {
     private Gson gson;
     private User user;
 
-    public FavoritesController() {
-        gson = new Gson();
-    }
-
     @FXML
     public void handleButtonBack(ActionEvent event) {
         abrirVista1();
     }
 
+    public FavoritesController(User user) {
+        this.user = user;
+        this.gson = new Gson();
+    }
+
     public void setUser(User user) {
         this.user = user;
         loadMoviesAndSeries();
+    }
+
+    public FavoritesController(){
+        this.nameColumn = new TableColumn<>();
+        this.durationColumn = new TableColumn<>();
+        this.genderColumn = new TableColumn<>();
+        this.typeColumn = new TableColumn<>();
+        this.nameFavorite1 = new TableColumn<>();
+        this.durationFavorite1 = new TableColumn<>();
+        this.genderFavorite1 = new TableColumn<>();
+        this.typeFavorite1 = new TableColumn<>();
+        
+
     }
 
     @FXML

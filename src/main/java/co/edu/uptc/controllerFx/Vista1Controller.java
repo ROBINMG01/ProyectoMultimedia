@@ -41,7 +41,7 @@ public class Vista1Controller {
         option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml", new MovieCatalogController(user)));
         option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml", new SerieCatalogController(user)));
         option3.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Search.fxml", new SearchController(user)));
-        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController()));
+        // option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController(user)));
         option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml", new SettingsController(user)));
         option6.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Suscription.fxml", new SuscriptionController(user)));
         welcomeLabel.setText(user.getFirstName());
@@ -63,6 +63,22 @@ public class Vista1Controller {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    public void handleFavoriteView(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Favorites.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.option4.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Vista1Controller() {

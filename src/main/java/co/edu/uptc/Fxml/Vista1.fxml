@@ -35,7 +35,7 @@
                   </Label>
                   <VBox layoutX="303.0" layoutY="164.0" prefHeight="420.0" prefWidth="257.0" spacing="10.0">
                      <children>
-                        <Button fx:id="option4" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View my favorites">
+                        <Button fx:id="option4" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" onAction="#handleFavoriteView" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View my favorites">
                            <effect>
                               <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
                            </effect>

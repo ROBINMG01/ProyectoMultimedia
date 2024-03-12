@@ -59,7 +59,6 @@
                   </VBox>
                   <VBox layoutX="62.0" layoutY="386.0" prefHeight="107.0" prefWidth="60.0" spacing="60.0">
                      <children>
-                        <Label fx:id="txtCVV" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="CVV" />
                         <TextField fx:id="txtCVV" promptText="00/00" styleClass="login-btn" stylesheets="@../Css/Multimedia.css" />
                      </children>
                   </VBox>
