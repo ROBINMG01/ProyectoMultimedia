@@ -50,7 +50,7 @@ public class UserController {
         chapter.setName(nameChapter);
         chapter.setDuration(durationChapter);
 
-        chapters.add(new Chapter(nameChapter, durationChapter));
+        chapters.add(new Chapter(nameChapter, durationChapter, imageUrl));
         season.setName(nameSeason);
         season.setDescription(descriptionSeason);
         season.setListChapters(chapters);
