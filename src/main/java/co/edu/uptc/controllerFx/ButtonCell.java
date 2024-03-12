@@ -17,6 +17,7 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
     private final HBox hbox;
     private final Button firstButton;
     private final Button secondButton;
+    private String nameMovie;
 
     public ButtonCell() {
         this.acf = new AdminControllerFx();
@@ -44,14 +45,12 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         secondButton.setGraphic(imagenBotton2);
 
         firstButton.setOnAction(event -> {
-            
+
             Movie movie = getTableView().getItems().get(getIndex());
-            //emc.active(movie);
-            //emc.initialize(movie);
             try {
                 if (movie != null) {
                     Stage myStage = (Stage) this.firstButton.getScene().getWindow();
-                            myStage.close();
+                    myStage.close();
                     acf.fileEditMovie(movie);
                 }
             } catch (IOException e) {
@@ -61,7 +60,7 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
 
         secondButton.setOnAction(event -> {
             Movie movie = getTableView().getItems().get(getIndex());
-            //emc.initialize(movie);
+            // emc.initialize(movie);
             if (movie != null) {
                 acf.deleteMovie(movie);
             }
@@ -78,5 +77,9 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         } else {
             setGraphic(hbox);
         }
+    }
+
+    public String nameMovie() {
+        return nameMovie;
     }
 }

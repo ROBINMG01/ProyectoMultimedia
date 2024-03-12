@@ -24,8 +24,8 @@ import javafx.stage.Stage;
 public class AdminControllerFx {
 
     private AdminController ac;
-    private Movie movie;
     private EditMovieController emc;
+    private Movie movie;
     private ArrayList<String> listAuthors = new ArrayList<>();
     private ArrayList<String> listActors = new ArrayList<>();
 
@@ -244,9 +244,8 @@ public class AdminControllerFx {
         return true;
     }
 
-    @FXML
-    private void showFormCreateMovie() throws IOException {
-        AdminViewFx.setRoot("ListMoviesAdmin");
+    public String nameMovie(String name){
+        return name;
     }
 
     @FXML
@@ -268,6 +267,7 @@ public class AdminControllerFx {
         // AdminViewFx.setRoot("listSeries");
     }
 
+    
     @FXML
     private void showEditMovie() throws IOException {
         try {
@@ -302,7 +302,8 @@ public class AdminControllerFx {
 
     @FXML
     public void fileEditMovie(Movie movie) throws IOException {
-        emc.help(movie);
+        //emc.help(movie);
+        emc.initialize(movie);
         // AdminViewFx.setRoot("EditMovie");
     }
 

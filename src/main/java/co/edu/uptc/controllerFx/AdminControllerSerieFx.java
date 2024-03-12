@@ -332,7 +332,6 @@ public class AdminControllerSerieFx {
     @FXML
     public void fileEditSerie(Serie serie) throws IOException {
         esc.help(serie);
-        // AdminViewFx.setRoot("EditMovie");
     }
 
         @FXML

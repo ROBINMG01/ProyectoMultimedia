@@ -1,14 +1,5 @@
 [
   {
-    "name": "avengers",
-    "gender": "drama",
-    "duration": 213,
-    "listAuthors": [],
-    "listActors": [],
-    "description": "beunaaa",
-    "year": 2020
-  },
-  {
     "name": "Ted1",
     "gender": "comedia",
     "duration": 70,
@@ -20,15 +11,41 @@
   {
     "name": "TED 2",
     "gender": "Comedia",
-    "duration": 65,
+    "duration": 75,
     "listAuthors": [
-      "Felipe"
+      "Daniel",
+      "felipe",
+      "juan",
+      "Sebastian",
+      "peña",
+      "felipeeeee",
+      "felipeeeee"
     ],
     "listActors": [
-      "Andres",
-      "Juan"
+      "simon",
+      "gomez",
+      "camilo",
+      "Granados",
+      "luz",
+      "simon",
+      "simon"
     ],
     "description": "Ted es un oso que cobro vida",
+    "year": 0
+  },
+  {
+    "name": "Avengers",
+    "gender": "Ficcion",
+    "duration": 234,
+    "listAuthors": [
+      "Danilo",
+      "Kevin"
+    ],
+    "listActors": [
+      "Felipe",
+      "Juan"
+    ],
+    "description": "Heroes Unidos",
     "year": 2020
   }
 ]

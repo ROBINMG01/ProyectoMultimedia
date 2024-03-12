@@ -202,7 +202,7 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
-    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
+    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender, int year) {
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -211,6 +211,8 @@ public class AdminController {
             listMovies.get(position).setlistAuthors(listAuthors);
             listMovies.get(position).setListActors(listActors);
             listMovies.get(position).setGender(gender);
+            listMovies.get(position).setYear(year);
+            saveMovie(listMovies, "Movie");
             return true;
         }
         return false;
