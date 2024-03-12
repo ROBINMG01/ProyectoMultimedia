@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import co.edu.uptc.model.Favorite;
 import co.edu.uptc.model.Movie;
@@ -138,6 +139,8 @@ public class FavoritesController {
         if (userIndex != -1) {
             users.set(userIndex, this.user);
         }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         // Guarda todos los usuarios de nuevo en el archivo
         try (FileWriter writer = new FileWriter("src/main/java/co/edu/uptc/persistence/Users.json")) {

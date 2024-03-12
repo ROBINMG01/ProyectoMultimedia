@@ -5,9 +5,27 @@
     "email": "1",
     "password": "1",
     "role": "user",
-    "listMoviesFavorites": [],
+    "listMoviesFavorites": [
+      {
+        "name": "Juan y sus aventruras",
+        "gender": "miedo",
+        "duration": 3,
+        "year": 0
+      }
+    ],
     "listSeriesFavorites": [
-      { "name": "Dark", "gender": "Terror", "duration": 1500, "year": 0 }
+      {
+        "name": "Dark",
+        "gender": "Terror",
+        "duration": 1500,
+        "year": 0
+      },
+      {
+        "name": "Dark",
+        "gender": "Terror",
+        "duration": 1500,
+        "year": 0
+      }
     ],
     "dateDeSubscription": "Mar 11, 2024, 11:41:38 PM",
     "finDateDeSubscription": "Mar 11, 2024, 11:41:38 PM",
