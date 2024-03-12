@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "robin",
+    "lastName": "molina",
+    "email": "robin@gmail.com",
+    "password": "Q12345d@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 12, 2024, 5:04:35 AM",
+    "finDateDeSubscription": "Apr 11, 2024, 5:04:35 AM",
+    "actieSusciption": "active"
+  },
+  {
+    "firstName": "robin",
+    "lastName": "molina",
+    "email": "1",
+    "password": "1",
+    "role": "admin",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 12, 2024, 5:04:35 AM",
+    "finDateDeSubscription": "Apr 11, 2024, 5:04:35 AM",
+    "actieSusciption": "active"
+  }
+]

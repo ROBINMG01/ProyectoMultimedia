@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="811.0" styleClass="gradient" stylesheets="@../css/Multimedia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
+   <children>
+      <ListView fx:id="listViewResults" layoutX="39.0" layoutY="85.0" prefHeight="243.0" prefWidth="304.0" style="-fx-background-radius: 10px;" styleClass="head-label" />
+      <Label fx:id="detailsLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="446.0" layoutY="85.0" lineSpacing="2.0" prefHeight="448.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 15px;" styleClass="head-label" textAlignment="CENTER" />
+      <Button fx:id="buttonSerie" layoutX="38.0" layoutY="31.0" minWidth="53.0" mnemonicParsing="false" onAction="#handleSerieButton" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Series">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonMovie" layoutX="103.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleMovieButton" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Movies">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="inputSearch" alignment="TOP_LEFT" layoutX="170.0" layoutY="32.0" onKeyReleased="#handleSearchOnType" promptText="input text">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="114.0" fitWidth="77.0" layoutX="33.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/posterAvengersc.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="114.0" fitWidth="77.0" layoutX="152.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/posterDeadpoolc.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="114.0" fitWidth="77.0" layoutX="273.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" styleClass="Multimedia.css">
+         <image>
+            <Image url="@../image/posterJokerc.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="144.0" layoutY="502.0" text="¡GRAN ESTRENO!" textFill="WHITE">
+         <font>
+            <Font name="Segoe Script Bold" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="262.0" layoutY="502.0" text="¡GRAN ESTRENO!" textFill="WHITE">
+         <font>
+            <Font name="Segoe Script Bold" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="518.0" text="03/04- 2:30Pm" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="518.0" text="04/09- 4:30Pm" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="518.0" text="23/011- 8:30Pm" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="502.0" text="¡GRAN ESTRENO!" textFill="WHITE">
+         <font>
+            <Font name="Segoe Script Bold" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="461.0" layoutY="96.0" prefHeight="20.0" prefWidth="111.0" styleClass="head-label" text="Description:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonBack" layoutX="707.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleButtonBack" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 25px;" styleClass="Back-btn" text="Back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imageView" fitHeight="181.0" fitWidth="120.0" layoutX="539.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="listView2" layoutX="462.0" layoutY="328.0" prefHeight="195.0" prefWidth="287.0" style="-fx-background-radius: 25px;" />
+
+   </children>
+</AnchorPane>

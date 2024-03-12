@@ -4,6 +4,11 @@
 .mtj.tmp/
 *.class
 *.jar
+bin/co/edu/uptc/view/AdminView.class
+bin/co/edu/uptc/view/InitialMenuView.class
+bin/co/edu/uptc/view/InitialMenuView.class
+InitialMenuView.class
+AdminView.class
 *.war
 *.ear
 *.nar
@@ -84,3 +89,8 @@ nb-configuration.xml
 ##############################
 .DS_Store
 bin/co/edu/uptc/view/AdminView.class
+<<<<<<< HEAD
+=======
+bin/co/edu/uptc/view/AdminView.class
+bin/co/edu/uptc/view/InitialMenuView.class
+>>>>>>> develop

@@ -1,0 +1,99 @@
+.button-login:hover {
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.button-registro:hover {
+    -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.button-visitante:hover {
+    -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.button-login:hover,
+.button-registro:hover,
+.button-visitante:hover {
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    -fx-background-color: #05ffd5; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+    -fx-text-fill: rgb(0, 0, 0); /* Cambia el color del texto cuando el mouse está sobre el botón */
+}
+
+.gradient{
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+}
+.gradientinitial{
+    -fx-background-color: linear-gradient(to bottom right, #27b39b, #2cd1b5);
+}
+.white-form{
+    -fx-background-color: #fff;
+}
+.head-label{
+    -fx-border-color: #1ea48e;
+    -fx-border-width: 0 0 0 5px;
+    -fx-padding: 0 0 0 5px;
+}
+.Multimedia-btn{
+    -fx-background-color: linear-gradient(to bottom right, #0b7261, #1ea48e);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+.Back-btn{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    -fx-background-color: linear-gradient(to bottom right, #054e42, #1ea48e);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+.Multimedia-btn:hover, .Back-btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #034438, #056b59);
+}
+.Backloinitial-btn{
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    -fx-background-color: linear-gradient(to bottom right, #709690, #bfede5);
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+
+
+/* Estilo para el PasswordField */
+.password-field {
+    -fx-background-color: #ed6f6f; /* Color de fondo blanco */
+    -fx-border-color: #ff0000; /* Color del borde rojo */
+    -fx-border-radius: 5px; /* Radio del borde */
+    -fx-padding: 5px; /* Espaciado interno */
+}
+
+/* Estilo para el PasswordField cuando está enfocado */
+.password-field:focused {
+    -fx-border-color: #ffffff; 
+    -fx-background-color: #fbfbfb; /* Cambia el color del borde a blanco */
+}
+
+.passwordInitial-field {
+    -fx-background-color: #ffffff; /* Color de fondo blanco */
+    -fx-border-color: #ffffff; /* Color del borde rojo */
+ /* Espaciado interno */
+}
+
+
+.register-field {
+    -fx-background-color: #1c7bf8; /* Color de fondo blanco */
+    -fx-border-color: #1100ff; /* Color del borde rojo */
+    -fx-border-radius: 5px; /* Radio del borde */
+    -fx-padding: 5px; /* Espaciado interno */
+}
+.fondo {
+    -fx-background-color: linear-gradient(to bottom right,#011310,  #042d27, #044238,#0d6758, #0f6f5f,#044238,#042d27,#011310   );
+
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnBack" layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButton" styleClass="gradient" stylesheets="@../Css/Multimedia.css" text="&lt;Back" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <VBox layoutX="79.0" layoutY="78.0" prefHeight="333.0" prefWidth="282.0" spacing="20.0">
+                     <children>
+                        <Label styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Name" />
+                        <TextField fx:id="firstName" promptText="First Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                        <TextField fx:id="lastName" prefHeight="25.0" prefWidth="257.0" promptText="Last Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                        <Label styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Email" />
+                        <TextField fx:id="email" promptText="name@gmail.com" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                        <Label styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Pasword" />
+                        <TextField fx:id="password1" promptText="Password" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                        <TextField fx:id="password2" promptText="Confirm Password" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnSubmit" layoutX="189.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleSubmitButton" styleClass="gradient" stylesheets="@../Css/Multimedia.css" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="464.0" layoutY="566.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Project Multimedia">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imageSetting" fitHeight="150.0" fitWidth="137.0" layoutX="417.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Actor.jpeg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="236.0" prefWidth="172.0" spacing="20.0">
+                     <children>
+                        <Label styleClass="head-label" stylesheets="@../css/Multimedia.css" text="Welcome " textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="head-label" stylesheets="@../css/Multimedia.css" text="Settings" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="welcomeLabel" prefHeight="100.0" prefWidth="170.0" styleClass="head-label" stylesheets="@../css/Multimedia.css" text="Daniel" textFill="WHITE">
+                           <font>
+                              <Font name="Times New Roman" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </BorderPane.margin>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</StackPane>

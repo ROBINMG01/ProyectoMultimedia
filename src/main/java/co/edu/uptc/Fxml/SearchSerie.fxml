@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.SearchSerieController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <right>
+            <AnchorPane prefHeight="600.0" prefWidth="293.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnBack" layoutX="219.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back" />
+                  <Label layoutY="10.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Project Multimedia" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imageSearch" fitHeight="342.0" fitWidth="267.0" layoutX="13.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="serieImageView" fitHeight="324.0" fitWidth="267.0" layoutX="18.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="194.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="82.0" />
+                  <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="95.0" layoutY="421.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </right>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="55.0" layoutY="26.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Search Serie" />
+                  <Button fx:id="btnView" layoutX="230.0" layoutY="503.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
+                  <TextField fx:id="searchName" layoutX="55.0" layoutY="65.0" prefHeight="25.0" prefWidth="272.0" promptText="Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search name" />
+                  <Button fx:id="btnSearch" layoutX="327.0" layoutY="63.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search" />
+                  <ListView fx:id="listViewSeries" layoutX="55.0" layoutY="119.0" prefHeight="363.0" prefWidth="412.0" styleClass="gradient" stylesheets="@../css/Multimedia.css" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

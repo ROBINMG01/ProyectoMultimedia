@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Cosas Extañas",
+    "gender": "Miedo",
+    "duration": 1243,
+    "listAuthors": [
+      "Mark Ruffo",
+      "Stan Lee",
+      "Mark Ruffo"
+    ],
+    "listActors": [
+      "wsefb",
+      "wsefb",
+      "wsefb"
+    ],
+    "description": "Los vengadores defenderan la realidad",
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/posterAvengersEndGamec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
+  },
+  {
+    "name": "Batman: el caballero de la noche",
+    "gender": "Accion",
+    "duration": 140,
+    "listAuthors": [
+      "Gregory Manson",
+      "Kim Risharson"
+    ],
+    "listActors": [
+      "Robin Pattinson",
+      "Jogan Jorge",
+      "Carl Maddison"
+    ],
+    "description": "una nueva entrega de nuestro superhÃ©roe enmascarado",
+    "year": 2015,
+    "imageUrl": "/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/Batman.mp4"
+  },
+  {
+    "name": "Spiderman no way home",
+    "gender": "Accion",
+    "duration": 150,
+    "listAuthors": [
+      "Stan lee",
+      "Sony produccion"
+    ],
+    "listActors": [
+      "Tom Holand",
+      "Toby Maguire",
+      "Andrew Garfield"
+    ],
+    "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
+    "year": 2022,
+    "imageUrl": "/co/edu/uptc/image/posterSpidermanNoWayHomec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/SpidermanNoWayHome.mp4"
+  }
+]
