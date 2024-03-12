@@ -160,12 +160,13 @@ public class User {
     }
 
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         User user = (User) o;
         return email.equals(user.email); // Compare only email for equality
     }
-    
 
     @Override
     public String toString() {
@@ -186,16 +187,16 @@ public class User {
     public String toStringPDF() {
         return "Purchase invoice" +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\nfirstName: " + firstName +
+                "\nFirst name: " + firstName +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\n lastName: " + lastName +
+                "\n Last name: " + lastName +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\n email: " + email +
+                "\n Email: " + email +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\n dateDeSubscription: " + dateDeSubscription +
+                "\n Date De Subscription: " + dateDeSubscription +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\n finDateDeSubscription: " + finDateDeSubscription +
+                "\n Fin Date De Subscription: " + finDateDeSubscription +
                 "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n" +
-                "\n actieSusciption: " + actieSusciption;
+                "\n Actie Susciption: " + actieSusciption;
     }
 }
