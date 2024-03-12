@@ -90,11 +90,11 @@ public class SuscriptionController {
                     && !txtCVV.getText().isEmpty()) {
                 // validar que las contrasenias sean igualees
                 if (password.getText().equals(user.getPassword())) {
-                    System.out.println("activarrrrrrrrrrrrrrrrrr");
+                 
 
                     // enviar la activacion
                     user.setActieSusciption("active");
-                    JOptionPane.showMessageDialog(null, user.toString());
+                  
 
                     controlerInitialMenuView.rempazoUser(user);
 

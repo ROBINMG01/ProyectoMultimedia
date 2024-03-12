@@ -2,27 +2,32 @@ package co.edu.uptc.controllerFx;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MovieRepository;
 import co.edu.uptc.viewFx.AdminViewFx;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 public class AdminControllerFx {
 
     private AdminController ac;
+    private EditMovieController emc;
     private Movie movie;
-    ArrayList<String> listAuthors = new ArrayList<>();
-    ArrayList<String> listActors = new ArrayList<>();
-    List<Movie> list = new ArrayList<>();
+    private ArrayList<String> listAuthors = new ArrayList<>();
+    private ArrayList<String> listActors = new ArrayList<>();
 
     @FXML
     private TextField movieName;
@@ -48,7 +53,10 @@ public class AdminControllerFx {
     private TextField movieActor;
 
     @FXML
-    private Button saveMovieButton;
+    private Button saveSerieButton;
+
+    @FXML
+    private Button movieButton;
 
     @FXML
     private Button serieButton;
@@ -57,10 +65,13 @@ public class AdminControllerFx {
     private Button authorButton;
 
     @FXML
-    private Button actorButton;
+    private Button homeButton;
 
     @FXML
     private Button newAuthorButton;
+
+    @FXML
+    private Button actorButton;
 
     @FXML
     private Button newActorButton;
@@ -80,32 +91,60 @@ public class AdminControllerFx {
     @FXML
     private TableColumn<Movie, String> yearColumn;
 
+    public AdminControllerFx() {
+        this.ac = new AdminController();
+        this.emc = new EditMovieController();
+        this.durationColumn = new TableColumn<>();
+        this.genderColumn = new TableColumn<>();
+        this.nameColumn = new TableColumn<>();
+        this.yearColumn = new TableColumn<>();
+        this.tableView = new TableView<>();
+        this.movieName = new TextField();
+        this.movieGender = new TextField();
+        this.movieDuration = new TextField();
+        this.movieYear = new TextField();
+        this.movie = new Movie();
+    }
+
     public void initialize() {
-        ac = new AdminController();
 
         ac.getListMovies().addAll(ac.loadMovie("Movie"));
 
         if (MovieRepository.getInstance().getMovies().isEmpty()) {
-
             MovieRepository.getInstance().getMovies().addAll(ac.getListMovies());
             tableView.setItems(MovieRepository.getInstance().getMovies());
         }
-        // Asignar las películas a la tabla
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        TableColumn<Movie, Boolean> column = new TableColumn<>("Edit");
-        column.setCellFactory(tc -> new ButtonCell());
-        tableView.getColumns().add(column);
+        TableColumn<Movie, Boolean> editColumn = new TableColumn<>("Edit");
+        editColumn.setCellFactory(tc -> new ButtonCell());
+        tableView.getColumns().add(editColumn);
 
         tableView.setItems(MovieRepository.getInstance().getMovies());
     }
 
+
+
     @FXML
-    private void showFormCreateMovies() throws IOException {
-        AdminViewFx.setRoot("ListMoviess");
+    private void home(){
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Stage myStage = (Stage) this.homeButton.getScene().getWindow();
+        myStage.close();
     }
 
     @FXML
@@ -138,6 +177,14 @@ public class AdminControllerFx {
 
         try {
             movieDurations = Integer.parseInt(movieDurationString);
+            if (movieDurations < 1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("Duration invalid");
+                alert.showAndWait();
+                return false;
+            }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -217,19 +264,48 @@ public class AdminControllerFx {
         return true;
     }
 
-    @FXML
-    private void showFormCreateMovie() throws IOException {
-        AdminViewFx.setRoot("ListMoviesAdmin");
+    public String nameMovie(String name){
+        return name;
     }
 
     @FXML
     private void showSerie() throws IOException {
-        AdminViewFx.setRoot("listSeries");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/listSeries.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Stage myStage = (Stage) this.serieButton.getScene().getWindow();
+        myStage.close();
+        // AdminViewFx.setRoot("listSeries");
     }
 
+    
     @FXML
     private void showEditMovie() throws IOException {
-        AdminViewFx.setRoot("EditMovie");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/EditMovie.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Stage myStage = (Stage) this.movieButton.getScene().getWindow();
+        myStage.close();
+        // AdminViewFx.setRoot("EditMovie");
     }
 
     @FXML
@@ -245,8 +321,21 @@ public class AdminControllerFx {
     }
 
     @FXML
-    public void FileEditMovie(Movie movie) throws IOException {
-        this.movie = movie;
-        AdminViewFx.setRoot("EditMovie");
+    public void fileEditMovie(Movie movie) throws IOException {
+        //emc.help(movie);
+        emc.initialize(movie);
+        // AdminViewFx.setRoot("EditMovie");
+    }
+
+    @FXML
+    public void deleteMovie(Movie movie) {
+        ac.getListMovies().addAll(ac.loadMovie("Movie"));
+        for (int index = 0; index < MovieRepository.getInstance().getMovies().size(); index++) {
+            if (MovieRepository.getInstance().getMovies().get(index).getName().equals(movie.getName())) {
+                MovieRepository.getInstance().getMovies().remove(index);
+                ac.deleteMovie(movie.getName());
+                tableView.refresh();
+            }
+        }
     }
 }

@@ -1,18 +1,20 @@
 [
   {
-    "name": "dfjknsj",
-    "gender": "qjdvj",
+    "name": "Cosas Extañas",
+    "gender": "Miedo",
     "duration": 1243,
     "listAuthors": [
       "Mark Ruffo",
-      "Stan Lee"
+      "Stan Lee",
+      "Mark Ruffo"
     ],
     "listActors": [
+      "wsefb",
       "wsefb",
       "wsefb"
     ],
     "description": "Los vengadores defenderan la realidad",
-    "year": 2021,
+    "year": 0,
     "imageUrl": "/co/edu/uptc/image/posterAvengersEndGamec.png",
     "videoUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
   },
@@ -51,18 +53,5 @@
     "year": 2022,
     "imageUrl": "/co/edu/uptc/image/posterSpidermanNoWayHomec.png",
     "videoUrl": "src/main/java/co/edu/uptc/image/SpidermanNoWayHome.mp4"
-  },
-  {
-    "name": "Juan y sus aventruras",
-    "gender": "miedo",
-    "duration": 3,
-    "listAuthors": [
-      "Juan"
-    ],
-    "listActors": [
-      "juyan"
-    ],
-    "description": "sdasd",
-    "year": 0
   }
 ]

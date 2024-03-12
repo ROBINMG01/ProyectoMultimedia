@@ -272,8 +272,6 @@ public class ControlerInitialMenuView extends UserRegister {
     public void rempazoUser(User user){
         for (User userr : users) {
             if(userr.getEmail().equals(user.getEmail())){
-                System.out.println("si entraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                System.out.println("----------------------------------------------------->"+user.getActieSusciption());
                 users.remove(userr);
                 users.add(user);
             }
