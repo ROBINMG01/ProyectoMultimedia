@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import co.edu.uptc.model.Serie;
 import java.lang.reflect.Type;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
 
 public class SearchSerieController {
 
@@ -58,10 +59,12 @@ public class SearchSerieController {
 
     @FXML
     public void initialize() {
+        
+        searchName.textProperty().addListener((observable, oldValue, newValue) -> searchSeries());
         listViewSeries.setCellFactory(param -> new ListCell<>() {
             private ImageView imageView = new ImageView();
             private Text text = new Text();
-        
+
             @Override
             protected void updateItem(Serie serie, boolean empty) {
                 super.updateItem(serie, empty);
@@ -70,7 +73,7 @@ public class SearchSerieController {
                     setGraphic(null);
                 } else {
                     imageView.setImage(new Image(serie.getImageUrl()));
-                    imageView.setFitWidth(100);  // Establece el ancho de la imagen a 100
+                    imageView.setFitWidth(100); // Establece el ancho de la imagen a 100
                     imageView.setFitHeight(100); // Establece la altura de la imagen a 100
                     imageView.setPreserveRatio(true); // Mantiene la relación de aspecto de la imagen
                     text.setText(serie.getName());
@@ -84,29 +87,35 @@ public class SearchSerieController {
         loadSeries();
     }
 
+    private Stage searchStage = null; // Guarda una referencia a la ventana de Vista1
+
     @FXML
-    protected void handleButton(ActionEvent event) {
-        abrirVista1();
-    }
+protected void handleButton(ActionEvent event) {
+    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    abrirSearch(currentStage);
+}
 
-    private void abrirVista1() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Search.fxml"));
-            Parent movieCatalogView = fxmlLoader.load();
+private void abrirSearch(Stage currentStage) {
+    try {
+        // Comprueba si la ventana ya existe
+        if (searchStage == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+            Parent searchView = fxmlLoader.load();
 
-            // Crear una nueva ventana para la vista del catálogo de películas
-            Stage stage = new Stage();
-            stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
-            stage.show();
-
-            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
-
-            myStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // Crear una nueva ventana para la vista de Search
+            searchStage = new Stage();
+            searchStage.setTitle("Búsqueda");
+            searchStage.setScene(new Scene(searchView));
         }
+
+        currentStage.close(); // Cierra la ventana actual
+
+        searchStage.show();
+
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     private void loadSeries() {
         Gson gson = new Gson();

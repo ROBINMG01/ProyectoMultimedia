@@ -24,10 +24,10 @@
                         </Label>
                         <TableView fx:id="tableMovieSerie" layoutX="26.0" layoutY="66.0" prefHeight="418.0" prefWidth="367.0">
                             <columns>
-                                <TableColumn fx:id="name" prefWidth="87.0" text="Name" />
-                                <TableColumn fx:id="duration" prefWidth="105.0" text="Duration" />
-                                <TableColumn fx:id="gender" prefWidth="98.0" text="Gender" />
-                                <TableColumn fx:id="type" prefWidth="76.0" text="Type" />
+                                <TableColumn fx:id="nameColumn" prefWidth="87.0" text="Name" />
+                                <TableColumn fx:id="durationColumn" prefWidth="105.0" text="Duration" />
+                                <TableColumn fx:id="genderColumn" prefWidth="98.0" text="Gender" />
+                                <TableColumn fx:id="typeColumn" prefWidth="76.0" text="Type" />
                             </columns>
                         </TableView>
                         <Button fx:id="BtnAdd" layoutX="26.0" layoutY="522.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add" />
@@ -45,7 +45,7 @@
                             </columns>
                         </TableView>
                         <Button fx:id="btnDelete" layoutX="179.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Delete" />
-                        <Button fx:id="btnTrailer" layoutX="29.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Ver trailer" />
+                        <Button fx:id="btnSubmit" layoutX="29.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Save" />
                     </children>
                 </AnchorPane>
             </children>

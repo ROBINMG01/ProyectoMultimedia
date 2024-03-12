@@ -43,6 +43,6 @@ public class Chapter {
     public String toString() {
         return "Chapter: " +
                 "\nName: '" + name + '\'' +
-                ", Duration: " + duration + ", Trailer: " + trailerUrl;
+                ", Duration: " + duration;
     }
 }
