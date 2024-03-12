@@ -1,56 +1,57 @@
 [
   {
-    "name": "Ted1",
-    "gender": "comedia",
-    "duration": 70,
-    "listAuthors": [],
-    "listActors": [],
-    "description": "good",
-    "year": 2015
-  },
-  {
-    "name": "TED 2",
-    "gender": "Comedia",
-    "duration": 75,
+    "name": "Cosas Extañas",
+    "gender": "Miedo",
+    "duration": 1243,
     "listAuthors": [
-      "Daniel",
-      "Robinson",
-      "juan",
-      "Sebastian",
-      "perla",
-      "felipeG",
-      "Maricela",
-      "Barrera",
-      "Daniel"
+      "Mark Ruffo",
+      "Stan Lee",
+      "Mark Ruffo"
     ],
     "listActors": [
-      "gomez",
-      "camilo",
-      "Granados",
-      "luz",
-      "Juliana",
-      "Victor",
-      "Tatiana",
-      "camila",
-      "Valentina",
-      "gomez"
+      "wsefb",
+      "wsefb",
+      "wsefb"
     ],
-    "description": "Ted es un oso que cobro vida",
-    "year": 0
+    "description": "Los vengadores defenderan la realidad",
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/posterAvengersEndGamec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
   },
   {
-    "name": "Avengers",
-    "gender": "Ficcion",
-    "duration": 234,
+    "name": "Batman: el caballero de la noche",
+    "gender": "Accion",
+    "duration": 140,
     "listAuthors": [
-      "Danilo",
-      "Kevin"
+      "Gregory Manson",
+      "Kim Risharson"
     ],
     "listActors": [
-      "Felipe",
-      "Juan"
+      "Robin Pattinson",
+      "Jogan Jorge",
+      "Carl Maddison"
     ],
-    "description": "Heroes Unidos",
-    "year": 2020
+    "description": "una nueva entrega de nuestro superhÃ©roe enmascarado",
+    "year": 2015,
+    "imageUrl": "/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/Batman.mp4"
+  },
+  {
+    "name": "Spiderman no way home",
+    "gender": "Accion",
+    "duration": 150,
+    "listAuthors": [
+      "Stan lee",
+      "Sony produccion"
+    ],
+    "listActors": [
+      "Tom Holand",
+      "Toby Maguire",
+      "Andrew Garfield"
+    ],
+    "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
+    "year": 2022,
+    "imageUrl": "/co/edu/uptc/image/posterSpidermanNoWayHomec.png",
+    "videoUrl": "src/main/java/co/edu/uptc/image/SpidermanNoWayHome.mp4"
   }
 ]

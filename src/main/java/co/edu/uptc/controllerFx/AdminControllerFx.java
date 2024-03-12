@@ -65,6 +65,9 @@ public class AdminControllerFx {
     private Button authorButton;
 
     @FXML
+    private Button homeButton;
+
+    @FXML
     private Button newAuthorButton;
 
     @FXML
@@ -124,9 +127,24 @@ public class AdminControllerFx {
         tableView.setItems(MovieRepository.getInstance().getMovies());
     }
 
+
+
     @FXML
-    private void showFormCreateMovies() throws IOException {
-        AdminViewFx.setRoot("ListMovies");
+    private void home(){
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uptc/Fxml/vistaInitialMenu.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Stage myStage = (Stage) this.homeButton.getScene().getWindow();
+        myStage.close();
     }
 
     @FXML
