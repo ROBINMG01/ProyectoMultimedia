@@ -1,24 +1,21 @@
 package co.edu.uptc.controllerFx;
 
-
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Logger;
 
-import co.edu.uptc.controller.AdminController;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Serie;
 
@@ -30,6 +27,19 @@ public class ChapterListController {
     @FXML
     private Button btnBack;
 
+    @FXML
+    public void handleViewButton(ActionEvent event) {
+        Chapter selectedChapter = chapterList.getSelectionModel().getSelectedItem();
+        if (selectedChapter != null) {
+            openChapter(selectedChapter);
+        }
+    }
+
+    private void openChapter(Chapter chapter) {
+        // Aquí debes implementar la lógica para abrir el capítulo seleccionado.
+        // Esto podría implicar abrir una nueva vista o reproducir un video, dependiendo de tu aplicación.
+    }
+    
     private Serie currentSerie;
 
     public void setSerie(Serie serie) {
@@ -38,7 +48,25 @@ public class ChapterListController {
     }
 
     private void updateChapterList() {
-        // Aquí debes actualizar la lista de capítulos basada en la serie actual
+        // Obtén la lista de capítulos de la serie actual
+        List<Chapter> chapters = (currentSerie != null) ? currentSerie.getChapters() : new ArrayList<>();
+
+        // Comprueba si chapters es null antes de llamar a setAll()
+        if (chapters != null) {
+            // Actualiza la ListView con los capítulos
+            chapterList.getItems().setAll(chapters);
+        } else {
+            // Si chapters es null, limpia la ListView
+            chapterList.getItems().clear();
+        }
+    }
+
+    public List<Chapter> getChapters() {
+        if (currentSerie != null) {
+            return currentSerie.getChapters();
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     @FXML
@@ -49,5 +77,35 @@ public class ChapterListController {
     @FXML
     protected void handleChapterSelection(MouseEvent event) {
         // Aquí debes abrir la vista del reproductor de video para el capítulo seleccionado
+    }
+
+    public void loadSeries() {
+        String filePath = "src/main/java/co/edu/uptc/persistence/Series.json"; // Reemplaza esto con la ruta a tu archivo JSON
+
+        try (Reader reader = Files.newBufferedReader(Paths.get(filePath))) {
+            Gson gson = new Gson();
+
+            JsonObject series = gson.fromJson(reader, JsonObject.class);
+
+            // Ahora puedes acceder a los datos en el objeto JSON
+            String name = series.get("name").getAsString();
+            JsonArray listSeason = series.getAsJsonArray("listSeason");
+
+            // Suponiendo que solo hay una temporada
+            JsonObject season1 = listSeason.get(0).getAsJsonObject();
+            JsonArray listChapters = season1.getAsJsonArray("listChapters");
+
+            // Ahora puedes crear tus objetos Chapter y agregarlos a chapterList
+            for (int i = 0; i < listChapters.size(); i++) {
+                JsonObject chapter = listChapters.get(i).getAsJsonObject();
+                String chapterName = chapter.get("name").getAsString();
+                int duration = chapter.get("duration").getAsInt();
+
+                Chapter newChapter = new Chapter(chapterName, duration);
+                chapterList.getItems().add(newChapter);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -159,6 +159,14 @@ public class User {
         user.setListSeriesFavorites(listSeriesFavorites);
     }
 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email); // Compare only email for equality
+    }
+    
+
     @Override
     public String toString() {
         return "User{" +

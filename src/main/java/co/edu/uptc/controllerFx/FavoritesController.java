@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TableColumn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,6 +52,7 @@ public class FavoritesController {
 
     public void setUser(User user) {
         this.user = user;
+        loadFavorites;
     }
 
     public FavoritesController(User user) {
@@ -130,19 +133,37 @@ public class FavoritesController {
     }
 
     private void deleteFavorite() {
-        // Obtén el favorito seleccionado
-        Favorite selectedFavorite = favoriteTable.getSelectionModel().getSelectedItem();
-        if (selectedFavorite != null) {
-            // Elimina el favorito seleccionado
-            favorites.remove(selectedFavorite);
+        // Aquí puedes agregar la lógica para eliminar una serie o película de los favoritos
+        // Por ejemplo, podrías mostrar un diálogo para que el usuario elija entre eliminar una serie o una película
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Serie", "Movie");
+        dialog.setTitle("Delete Favorite");
+        dialog.setHeaderText("Would you like to delete a series or a movie?");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            String selectedOption = result.get();
+            if (selectedOption.equals("Serie")) {
+                removeSeriesFavorite(user);
+            } else if (selectedOption.equals("Movie")) {
+                removeMovieFavorite(user);
+            }
         }
     }
 
     private void addFavorite() {
-        // Crea un nuevo favorito
-        Favorite newFavorite = new Favorite();
-        // Añade el nuevo favorito a la lista
-        favorites.add(newFavorite);
+        // Aquí puedes agregar la lógica para añadir una serie o película a los favoritos
+        // Por ejemplo, podrías mostrar un diálogo para que el usuario elija entre añadir una serie o una película
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Serie", "Movie");
+        dialog.setTitle("Add Favorite");
+        dialog.setHeaderText("Would you like to add a series or a movie?");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            String selectedOption = result.get();
+            if (selectedOption.equals("Serie")) {
+                addSeriesFavorite(user);
+            } else if (selectedOption.equals("Movie")) {
+                addMovieFavorite(user);
+            }
+        }
     }
 
     private void viewFavorite() {

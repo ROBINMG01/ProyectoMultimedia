@@ -1,6 +1,7 @@
 package co.edu.uptc.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Serie {
     private String name;
@@ -14,6 +15,15 @@ public class Serie {
     private int year;
     private String videoUrl;
     private String imageUrl;
+    private List<Chapter> chapters;
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
+    }
 
     public String getImageUrl() {
         return imageUrl;

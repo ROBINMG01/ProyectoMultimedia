@@ -1,6 +1,7 @@
 package co.edu.uptc.controllerFx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +28,8 @@ public class Vista1Controller {
     private Button option6;
     @FXML
     private TextField opcionSeleccionada;
-
+    @FXML
+    private Label welcomeLabel;
     @FXML
     private Button btnBack;
 
@@ -41,6 +43,8 @@ public class Vista1Controller {
         option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController(user) ));
         option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml", new SettingsController(user)));
         option6.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Suscription.fxml", new SuscriptionController(user)));
+        welcomeLabel.setText(user.getFirstName());
+
     }
     @FXML
     public void handleButton() {

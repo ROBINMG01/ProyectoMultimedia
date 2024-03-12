@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import co.edu.uptc.controller.ControlerInitialMenuView;
 import co.edu.uptc.model.Role;
 import co.edu.uptc.model.User;
+import co.edu.uptc.viewFx.InitialMenuViewFx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,10 +35,10 @@ public class RegisterControlerFx {
     private TextField emailField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
-    private TextField confirmPasswordField;
+    private PasswordField confirmPasswordField;
 
     @FXML
     private Button register;
@@ -76,13 +77,18 @@ public class RegisterControlerFx {
                 int uniqueEmail = controlerInitialMenuView.uniqueEmail(emailField.getText());
 
                 if (emailRevi == 0 && validePassworMin == 0 && uniqueEmail == 0) {
+                   
+                   ////// envio el user al control de la logica
                     controlerInitialMenuView
                             .user(new User(firstNameField.getText(), lastNameField.getText(), emailField.getText(),
                                     passwordField.getText(), Role.user));
                     controlerInitialMenuView.userRegister();
-                    showAlert("Registered user");
+                    ///
+                    ////
+                  
+                   
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/MessageRegisterUser.fxml"));
                         Parent root = loader.load();
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
@@ -93,7 +99,9 @@ public class RegisterControlerFx {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    ////
+                    ////
+                    
                 } else if (uniqueEmail == 2) {
                     /// error por el email usado ya esta usado
                     controlerInitialMenuView.setfirstName(firstNameField.getText());
@@ -110,7 +118,12 @@ public class RegisterControlerFx {
                         TextField emailField = (TextField) loader.getNamespace().get("emailField");
                         TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
                         TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-
+                        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                        PasswordField cpasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
+                        // modificar para ver los cambios
+                       
+                        passwordField.getStyleClass().add("passwordInitial-field");
+                        cpasswordField.getStyleClass().add("passwordInitial-field");
                         // modificar para ver los cambios
                         emailField.getStyleClass().add("password-field");
                         // envio la info cargada previamente
@@ -146,7 +159,12 @@ public class RegisterControlerFx {
                         TextField emailField = (TextField) loader.getNamespace().get("emailField");
                         TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
                         TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-
+                        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                        PasswordField cpasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
+                        // modificar para ver los cambios
+                       
+                        passwordField.getStyleClass().add("passwordInitial-field");
+                        cpasswordField.getStyleClass().add("passwordInitial-field");
                         // modificar para ver los cambios
                         emailField.getStyleClass().add("password-field");
                         // envio la info cargada previamente
@@ -191,7 +209,9 @@ public class RegisterControlerFx {
                         TextField emailField = (TextField) loader.getNamespace().get("emailField");
                         TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
                         TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-                        TextField passwordField = (TextField) loader.getNamespace().get("passwordField");
+                        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                        PasswordField cpasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
+                        cpasswordField.getStyleClass().add("passwordInitial-field");  cpasswordField.getStyleClass().add("passwordInitial-field");
                         // modificar para ver los cambios
                         emailField.getStyleClass().add("passwordInitial-field");
                         passwordField.getStyleClass().add("password-field");
@@ -232,8 +252,8 @@ public class RegisterControlerFx {
                     TextField emailField = (TextField) loader.getNamespace().get("emailField");
                     TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
                     TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-                    TextField passwordField = (TextField) loader.getNamespace().get("passwordField");
-                    TextField cpasswordField = (TextField) loader.getNamespace().get("confirmPasswordField");
+                    PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                    PasswordField cpasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
                     // modificar para ver los cambios
                     emailField.getStyleClass().add("passwordInitial-field");
                     passwordField.getStyleClass().add("password-field");
@@ -275,8 +295,8 @@ public class RegisterControlerFx {
                     TextField emailField = (TextField) loader.getNamespace().get("emailField");
                     TextField firstNameField = (TextField) loader.getNamespace().get("firstNameField");
                     TextField lastNameField = (TextField) loader.getNamespace().get("lastNameField");
-                    TextField passwordField = (TextField) loader.getNamespace().get("passwordField");
-                    TextField cpasswordField = (TextField) loader.getNamespace().get("confirmPasswordField");
+                    PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+                    PasswordField cpasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
                     // modificar para ver los cambios
                     emailField.getStyleClass().add("passwordInitial-field");
                     passwordField.getStyleClass().add("passwordInitial-field");
@@ -344,7 +364,18 @@ public class RegisterControlerFx {
 
     @FXML
     private void handleVisitanteButton() {
-        System.out.println("poner lo de visitantyeeeeeeeej");
+             try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/VisitView.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.visit.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

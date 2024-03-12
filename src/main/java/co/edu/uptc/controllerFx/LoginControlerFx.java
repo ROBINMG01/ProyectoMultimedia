@@ -191,24 +191,42 @@ public class LoginControlerFx {
 
     @FXML
     private void handleRegistroButton() {
-        // Cargar la vista de login.fxml
+       // Cargar la vista de login.fxml
+       try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        // para que la contraseña sea blanca
+        PasswordField passwordField = (PasswordField) loader.getNamespace().get("passwordField");
+        // modificar para ver los cambios
+        passwordField.getStyleClass().add("passwordInitial-field");
+        PasswordField confirmPasswordField = (PasswordField) loader.getNamespace().get("confirmPasswordField");
+        // modificar para ver los cambios
+        confirmPasswordField.getStyleClass().add("passwordInitial-field");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Stage myStage = (Stage) this.register.getScene().getWindow();
+        myStage.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+
+    @FXML
+    private void handleVisitanteButton() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/RegisterInitial.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/VisitView.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
 
-            Stage myStage = (Stage) this.register.getScene().getWindow();
+            Stage myStage = (Stage) this.visit.getScene().getWindow();
             myStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void handleVisitanteButton() {
-        showAlert("Usuario Visitante Button Pressed");
     }
 
     @FXML
