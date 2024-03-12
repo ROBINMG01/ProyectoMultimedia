@@ -8,6 +8,8 @@ public class Prueba1 {
     private int year;
     private ArrayList<String> listAuthors;
     private ArrayList<String> listActors;
+    private String optionAuthor;
+    private String optionActor;
 
     public Prueba1() {
         // constructor privado
@@ -54,5 +56,21 @@ public class Prueba1 {
 
     public void setListActors(ArrayList<String> listActors) {
         this.listActors = listActors;
+    }
+
+    public String getOptionAuthor() {
+        return optionAuthor;
+    }
+
+    public void setOptionAuthor(String optionAuthor) {
+        this.optionAuthor = optionAuthor;
+    }
+
+    public String getOptionActor() {
+        return optionActor;
+    }
+
+    public void setOptionActor(String optionActor) {
+        this.optionActor = optionActor;
     }
 }

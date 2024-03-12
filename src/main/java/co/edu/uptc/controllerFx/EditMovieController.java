@@ -61,6 +61,12 @@ public class EditMovieController {
     private Button authorButton;
 
     @FXML
+    private Button deleteAuthor;
+
+    @FXML
+    private Button deleteActor;
+
+    @FXML
     private Button newAuthorButton;
 
     @FXML
@@ -98,6 +104,8 @@ public class EditMovieController {
 
     private int year;
     private String nameMovieFirst;
+    private String optionAuthor;
+    private String optionActor;
 
     public EditMovieController() {
         this.ac = new AdminController();
@@ -117,7 +125,7 @@ public class EditMovieController {
         this.nameMovieFirst = "";
     }
 
-    public void initialize(Movie movie) { 
+    public void initialize(Movie movie) {
         ac.getListMovies().addAll(ac.loadMovie("Movie"));
 
         if (MovieRepository.getInstance().getMovies().isEmpty()) {
@@ -132,7 +140,6 @@ public class EditMovieController {
         Prueba1.getInstance().setListAuthors(listAuthors);
         Prueba1.getInstance().setListActors(listActors);
 
-        
         nameMovieFirst = movie.getName();
         Prueba1.getInstance().setNameMovie(nameMovieFirst);
 
@@ -171,14 +178,24 @@ public class EditMovieController {
             movieActor.getSelectionModel().selectFirst();
             selectedActor.setText(movieActor.getValue());
 
+            optionAuthor = movieAuthor.getItems().get(0);
+            Prueba1.getInstance().setOptionAuthor(optionAuthor);
+
             movieAuthor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
+                    optionAuthor = newValue.toString();
+                    Prueba1.getInstance().setOptionAuthor(optionAuthor);
                     selectedAuthor.setText(newValue.toString()); // Mostrar la opción seleccionada en el TextField
                 }
             });
 
+            optionActor = movieActor.getItems().get(0);
+            Prueba1.getInstance().setOptionActor(optionActor);
+
             movieActor.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
+                    optionActor = newValue.toString();
+                    Prueba1.getInstance().setOptionActor(optionActor);
                     selectedActor.setText(newValue.toString()); // Mostrar la opción seleccionada en el TextField
                 }
             });
@@ -305,14 +322,14 @@ public class EditMovieController {
         year = Prueba1.getInstance().getYear();
         if (ac.updateMovie(nameMovieFirst, movieName.getText(), movieDescription.getText(), movieDurations, listAuthors,
                 listActors, movieGenderString, year)) {
-            MovieRepository.getInstance().updateMovie(nameMovieFirst, movieName.getText(), movieDescription.getText(), movieDurations, listAuthors,
-            listActors, movieGenderString, year);
+            MovieRepository.getInstance().updateMovie(nameMovieFirst, movieName.getText(), movieDescription.getText(),
+                    movieDurations, listAuthors,
+                    listActors, movieGenderString, year);
             tableView.refresh();
             showMovie();
         }
         return true;
     }
-
 
     @FXML
     private void showSerie() throws IOException {
@@ -355,65 +372,79 @@ public class EditMovieController {
 
     @FXML
     public void newAuthor() {
-        if (listAuthors.contains(selectedAuthor.getText())) {
+        if (Prueba1.getInstance().getListAuthors().contains(selectedAuthor.getText())) {
             selectedAuthor.clear();
         } else {
-            listAuthors.add(selectedAuthor.getText());
-            System.out.println("SELECT-->"+selectedAuthor.getText());
-            //selectedAuthor.clear();
+            Prueba1.getInstance().getListAuthors().add(selectedAuthor.getText());
+            movieAuthor.getItems().clear();
+            movieAuthor.getItems().addAll(Prueba1.getInstance().getListAuthors());
+            selectedAuthor.clear();
+            movieAuthor.getSelectionModel().selectFirst();
         }
     }
 
     @FXML
     public void newActor() {
-        if (listActors.contains(selectedActor.getText())) {
+        if (Prueba1.getInstance().getListActors().contains(selectedActor.getText())) {
             selectedActor.clear();
         } else {
-            listActors.add(selectedActor.getText());
-            System.out.println("SELECT-->"+selectedActor.getText());
+            Prueba1.getInstance().getListActors().add(selectedActor.getText());
+            movieActor.getItems().clear();
+            movieActor.getItems().addAll(Prueba1.getInstance().getListActors());
+            selectedActor.clear();
+            movieActor.getSelectionModel().selectFirst();
         }
     }
 
     @FXML
     public void deleteAuthor() {
-
-        for (int index = 0; index < listAuthors.size(); index++) {
-            if (listAuthors.get(index).equals(selectedAuthor.toString())) {
-                listAuthors.remove(index);
+        for (int index = 0; index < Prueba1.getInstance().getListAuthors().size(); index++) {
+            if (Prueba1.getInstance().getListAuthors().get(index).equals(selectedAuthor.getText())) {
+                Prueba1.getInstance().getListAuthors().remove(index);
+                movieAuthor.getItems().clear();
+                movieAuthor.getItems().addAll(Prueba1.getInstance().getListAuthors());
+                selectedAuthor.clear();
+                movieAuthor.getSelectionModel().selectFirst();
             }
         }
     }
 
     @FXML
     public void deleteActor() {
-        for (int index = 0; index < listActors.size(); index++) {
-            if (listActors.get(index).equals(selectedActor.toString())) {
-                listActors.remove(index);
+        for (int index = 0; index < Prueba1.getInstance().getListActors().size(); index++) {
+            if (Prueba1.getInstance().getListActors().get(index).equals(selectedActor.getText())) {
+                Prueba1.getInstance().getListActors().remove(index);
+                movieActor.getItems().clear();
+                movieActor.getItems().addAll(Prueba1.getInstance().getListActors());
+                selectedActor.clear();
+                movieActor.getSelectionModel().selectFirst();
             }
         }
     }
 
-    public void choiceBox(){
-        
-    }
-
     @FXML
     public void saveAuthor() {
-        if (listAuthors.contains(selectedAuthor.getText())) {
-            selectedAuthor.clear();
-        } else {
-            listAuthors.add(selectedAuthor.getText());
-            //selectedAuthor.clear();
+        for (int index = 0; index < Prueba1.getInstance().getListAuthors().size(); index++) {
+            if (Prueba1.getInstance().getListAuthors().get(index).equals(Prueba1.getInstance().getOptionAuthor())) {
+                Prueba1.getInstance().getListAuthors().set(index, selectedAuthor.getText());
+                movieAuthor.getItems().clear();
+                movieAuthor.getItems().addAll(Prueba1.getInstance().getListAuthors());
+                selectedAuthor.clear();
+                movieAuthor.getSelectionModel().selectFirst();
+            }
         }
     }
 
     @FXML
     public void saveActor() {
-        if (listActors.contains(selectedActor.getText())) {
-            selectedActor.clear();
-        } else {
-            listActors.add(selectedActor.getText());
-            //selectedActor.clear();
+        for (int index = 0; index < Prueba1.getInstance().getListActors().size(); index++) {
+            if (Prueba1.getInstance().getListActors().get(index).equals(Prueba1.getInstance().getOptionActor())) {
+                Prueba1.getInstance().getListActors().set(index, selectedActor.getText());
+                movieActor.getItems().clear();
+                movieActor.getItems().addAll(Prueba1.getInstance().getListActors());
+                selectedActor.clear();
+                movieActor.getSelectionModel().selectFirst();
+            }
         }
     }
 }
