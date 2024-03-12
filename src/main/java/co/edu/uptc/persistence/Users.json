@@ -22,5 +22,17 @@
     "dateDeSubscription": "Mar 11, 2024, 2:11:47 AM",
     "finDateDeSubscription": "Mar 11, 2024, 2:11:47 AM",
     "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "d",
+    "lastName": "d",
+    "email": "d@gmail.com",
+    "password": "123456Da@",
+    "role": "user",
+    "listMoviesFavorites": [],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 11, 2024, 11:29:31 PM",
+    "finDateDeSubscription": "Mar 11, 2024, 11:29:31 PM",
+    "actieSusciption": "desactive"
   }
 ]

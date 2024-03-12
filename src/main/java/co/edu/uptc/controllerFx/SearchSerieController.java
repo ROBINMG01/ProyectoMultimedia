@@ -55,13 +55,13 @@ public class SearchSerieController {
 
     @FXML
     private ListView<Serie> listViewSeries;
-    
+
     @FXML
     public void initialize() {
         listViewSeries.setCellFactory(param -> new ListCell<>() {
             private ImageView imageView = new ImageView();
             private Text text = new Text();
-
+        
             @Override
             protected void updateItem(Serie serie, boolean empty) {
                 super.updateItem(serie, empty);
@@ -70,12 +70,17 @@ public class SearchSerieController {
                     setGraphic(null);
                 } else {
                     imageView.setImage(new Image(serie.getImageUrl()));
+                    imageView.setFitWidth(100);  // Establece el ancho de la imagen a 100
+                    imageView.setFitHeight(100); // Establece la altura de la imagen a 100
+                    imageView.setPreserveRatio(true); // Mantiene la relación de aspecto de la imagen
                     text.setText(serie.getName());
                     VBox vbox = new VBox(imageView, text);
                     setGraphic(vbox);
                 }
             }
         });
+        btnSearch.setOnAction(event -> searchSeries());
+
         loadSeries();
     }
 
