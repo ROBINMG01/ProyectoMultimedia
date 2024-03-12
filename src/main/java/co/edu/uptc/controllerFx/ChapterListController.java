@@ -1,22 +1,25 @@
 package co.edu.uptc.controllerFx;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.uptc.model.Chapter;
+import co.edu.uptc.model.ChapterModel;
+import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 
 public class ChapterListController {
@@ -24,22 +27,24 @@ public class ChapterListController {
     @FXML
     private ListView<Chapter> chapterList;
 
+    private ChapterModel chapterModel;
+
+    private SerieCatalogController serieCatalogController;
+
     @FXML
     private Button btnBack;
 
     @FXML
-    public void handleViewButton(ActionEvent event) {
-        Chapter selectedChapter = chapterList.getSelectionModel().getSelectedItem();
-        if (selectedChapter != null) {
-            openChapter(selectedChapter);
-        }
+    public void initialize() {
+        chapterModel = ChapterModel.getInstance();
+        chapterList.setItems(chapterModel.getChapters());
     }
 
     private void openChapter(Chapter chapter) {
-        // Aquí debes implementar la lógica para abrir el capítulo seleccionado.
-        // Esto podría implicar abrir una nueva vista o reproducir un video, dependiendo de tu aplicación.
+        Pane contentContainer = (Pane) chapterList.getScene().lookup("#contenedor_contenido");
+        contentContainer.setVisible(true);
     }
-    
+
     private Serie currentSerie;
 
     public void setSerie(Serie serie) {
@@ -48,17 +53,15 @@ public class ChapterListController {
     }
 
     private void updateChapterList() {
-        // Obtén la lista de capítulos de la serie actual
-        List<Chapter> chapters = (currentSerie != null) ? currentSerie.getChapters() : new ArrayList<>();
-
-        // Comprueba si chapters es null antes de llamar a setAll()
-        if (chapters != null) {
-            // Actualiza la ListView con los capítulos
-            chapterList.getItems().setAll(chapters);
-        } else {
-            // Si chapters es null, limpia la ListView
-            chapterList.getItems().clear();
+        List<Chapter> chapters = new ArrayList<>();
+        if (currentSerie != null && currentSerie.getListSeason() != null) {
+            for (Season season : currentSerie.getListSeason()) {
+                if (season.getListChapters() != null) {
+                    chapters.addAll(season.getListChapters());
+                }
+            }
         }
+        chapterList.getItems().setAll(chapters);
     }
 
     public List<Chapter> getChapters() {
@@ -70,42 +73,84 @@ public class ChapterListController {
     }
 
     @FXML
-    protected void handleButtonBack(ActionEvent event) {
-        // Aquí debes volver a la vista del catálogo de series
+    private void handleButtonBack(ActionEvent event) throws IOException {
+        // Get the reference to the previous view
+        Stage stage = (Stage) chapterList.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SerieCatalogView.fxml"));
+        if (serieCatalogController == null) {
+            serieCatalogController = new SerieCatalogController();
+        }
+        fxmlLoader.setController(serieCatalogController);
+        Parent root = fxmlLoader.load();
+
+        stage.getScene().setRoot(root);
+
+        stage.setTitle("Catálogo de Series");
     }
 
     @FXML
-    protected void handleChapterSelection(MouseEvent event) {
-        // Aquí debes abrir la vista del reproductor de video para el capítulo seleccionado
+    private void handleViewButton(ActionEvent event) {
+        Chapter selectedChapter = chapterList.getSelectionModel().getSelectedItem();
+        if (selectedChapter != null) {
+            // Abre la ventana del reproductor de video y reproduce el tráiler del capítulo
+            // seleccionado
+            openVideoWindow(selectedChapter.getTrailerUrl());
+        }
     }
 
-    public void loadSeries() {
-        String filePath = "src/main/java/co/edu/uptc/persistence/Series.json"; // Reemplaza esto con la ruta a tu archivo JSON
+    private void openVideoWindow(String videoUrl) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+            VideoController videoController = new VideoController();
+            loader.setController(videoController);
+            Parent root = loader.load();
 
-        try (Reader reader = Files.newBufferedReader(Paths.get(filePath))) {
-            Gson gson = new Gson();
+            videoController.playVideo(videoUrl);
+            videoController.setOriginalView("ChapterListController");
 
-            JsonObject series = gson.fromJson(reader, JsonObject.class);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Reproductor de video");
+            stage.setScene(scene);
+            stage.show();
 
-            // Ahora puedes acceder a los datos en el objeto JSON
-            String name = series.get("name").getAsString();
-            JsonArray listSeason = series.getAsJsonArray("listSeason");
+            // Cerrar la ventana actual
+            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
+            myStage.close();
 
-            // Suponiendo que solo hay una temporada
-            JsonObject season1 = listSeason.get(0).getAsJsonObject();
-            JsonArray listChapters = season1.getAsJsonArray("listChapters");
-
-            // Ahora puedes crear tus objetos Chapter y agregarlos a chapterList
-            for (int i = 0; i < listChapters.size(); i++) {
-                JsonObject chapter = listChapters.get(i).getAsJsonObject();
-                String chapterName = chapter.get("name").getAsString();
-                int duration = chapter.get("duration").getAsInt();
-
-                Chapter newChapter = new Chapter(chapterName, duration);
-                chapterList.getItems().add(newChapter);
-            }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void loadChapters(List<Chapter> chapters) {
+        chapterModel.setChapters(FXCollections.observableArrayList(chapters));
+    }
+
+    @FXML
+    private void handleChapterSelection(MouseEvent event) {
+        Chapter selectedChapter = chapterList.getSelectionModel().getSelectedItem();
+
+        // Highlight the selected item
+        chapterList.getSelectionModel().select(selectedChapter);
+
+        // Load additional information of the chapter
+        if (selectedChapter != null) {
+            // Show basic information of the chapter
+            Label chapterNameLabel = (Label) chapterList.getScene().lookup("#nombre_capitulo");
+            chapterNameLabel.setText(selectedChapter.getName());
+
+            Label chapterDurationLabel = (Label) chapterList.getScene().lookup("#duracion_capitulo");
+            chapterDurationLabel.setText(String.format("%d minutes", selectedChapter.getDuration()));
+
+            // Enable the "View chapter" button
+            Button viewChapterButton = (Button) chapterList.getScene().lookup("#ver_capitulo");
+            viewChapterButton.setDisable(false);
+        } else {
+            // Disable the "View chapter" button
+            Button viewChapterButton = (Button) chapterList.getScene().lookup("#ver_capitulo");
+            viewChapterButton.setDisable(true);
         }
     }
 }

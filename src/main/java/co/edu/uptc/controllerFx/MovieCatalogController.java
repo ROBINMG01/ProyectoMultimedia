@@ -75,32 +75,32 @@ public class MovieCatalogController {
         if (selectedMovie != null) {
             String selectedMovieUrl = selectedMovie.getVideoUrl();
             if (selectedMovieUrl != null) {
-                openMovieWindow(selectedMovieUrl);}
-            else{}
+                openMovieWindow(selectedMovieUrl);
+            } else {
+            }
         }
     }
 
     private void openMovieWindow(String selectedMovieName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+            VideoController videoController = new VideoController();
+            loader.setController(videoController); // Establece el controlador antes de cargar el archivo FXML
             Parent root = loader.load();
-
-            // Puedes pasar información adicional al controlador de la nueva ventana si es
-            // necesario
-            VideoController videoController = loader.getController();
-            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el
-                                                          // controlador de la película
-
+    
+            videoController.playVideo(selectedMovieName); // Suponiendo que tengas un método setMovieName en el controlador de la película
+            videoController.setOriginalView("MovieCatalogController"); // Aquí
+    
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setTitle("Catalog Movie");
             stage.setScene(scene);
             stage.show();
-
+    
             // Cerrar la ventana actual
             Stage myStage = (Stage) this.verPeliculaButton.getScene().getWindow();
             myStage.close();
-
+    
         } catch (IOException e) {
             e.printStackTrace();
         }

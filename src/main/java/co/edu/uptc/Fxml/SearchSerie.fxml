@@ -2,8 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,9 +21,21 @@
                   <Label layoutY="10.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Project Multimedia" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <ImageView fx:id="imageSearch" fitHeight="342.0" fitWidth="267.0" layoutX="13.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="serieImageView" fitHeight="324.0" fitWidth="267.0" layoutX="18.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="194.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="82.0" />
+                  <Label fx:id="labelDescription" layoutX="15.0" layoutY="447.0" prefHeight="142.0" prefWidth="240.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="95.0" layoutY="421.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Description" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -36,19 +47,11 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="55.0" layoutY="26.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Search Serie" />
-                  <Button fx:id="btnView" layoutX="162.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
-                  <Button fx:id="btnAdd" layoutX="38.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add Favorite" />
+                  <Button fx:id="btnView" layoutX="230.0" layoutY="503.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
                   <TextField fx:id="searchName" layoutX="55.0" layoutY="65.0" prefHeight="25.0" prefWidth="272.0" promptText="Name" styleClass="white-form" stylesheets="@../Css/Multimedia.css" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search name" />
-                  <Button fx:id="btnSearch" layoutX="327.0" layoutY="65.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search" />
-                  <TableView fx:id="tableSerie" layoutX="31.0" layoutY="121.0" prefHeight="359.0" prefWidth="445.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css">
-                     <columns>
-                        <TableColumn fx:id="nameSerie" prefWidth="117.0" text="Name" />
-                        <TableColumn fx:id="genderSerie" prefWidth="103.0" text="Gender" />
-                        <TableColumn fx:id="durationSerie" minWidth="0.0" prefWidth="106.0" text="Duration" />
-                        <TableColumn fx:id="ListSerie" minWidth="0.0" prefWidth="118.0" text="Season" />
-                     </columns>
-                  </TableView>
+                  <Button fx:id="btnSearch" layoutX="327.0" layoutY="63.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Search" />
+                  <ListView fx:id="listViewSeries" layoutX="55.0" layoutY="119.0" prefHeight="363.0" prefWidth="412.0" styleClass="gradient" stylesheets="@../css/Multimedia.css" />
                </children>
             </AnchorPane>
          </center>

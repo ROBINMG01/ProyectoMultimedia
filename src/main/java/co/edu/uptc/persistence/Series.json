@@ -107,7 +107,8 @@
         "listChapters": [
           {
             "name": "capitulo 1",
-            "duration": 123
+            "duration": 123,
+            "trailerUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
           }
         ],
         "description": "good"

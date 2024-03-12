@@ -8,9 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
-    xmlns="http://javafx.com/javafx/21"
-    xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -21,23 +19,30 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnVisualice" layoutX="256.0" layoutY="523.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Visualice" />
-                        <TableView fx:id="favoriteTable" layoutX="26.0" layoutY="66.0" prefHeight="418.0" prefWidth="440.0">
+                        <TableView fx:id="tableMovieSerie" layoutX="26.0" layoutY="66.0" prefHeight="418.0" prefWidth="367.0">
                             <columns>
-                                <TableColumn fx:id="nameFavorite" prefWidth="107.0" text="Name" />
-                                <TableColumn fx:id="durationFavorite" prefWidth="112.0" text="Duration" />
-                                <TableColumn fx:id="genderFavorite" prefWidth="71.0" text="Gender" />
-                                <TableColumn fx:id="typeFavorite" prefWidth="149.0" text="Type" />
+                                <TableColumn fx:id="name" prefWidth="87.0" text="Name" />
+                                <TableColumn fx:id="duration" prefWidth="105.0" text="Duration" />
+                                <TableColumn fx:id="gender" prefWidth="98.0" text="Gender" />
+                                <TableColumn fx:id="type" prefWidth="76.0" text="Type" />
                             </columns>
                         </TableView>
-                        <Button fx:id="btnDelete" layoutX="445.0" layoutY="523.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Delete" />
-                        <Button fx:id="btnView" layoutX="175.0" layoutY="523.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View" />
-                        <Button fx:id="BtnAdd" layoutX="361.0" layoutY="523.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add" />
+                        <Button fx:id="BtnAdd" layoutX="26.0" layoutY="522.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Add" />
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="550.0" prefHeight="600.0" prefWidth="250.0" styleClass="gradient" stylesheets="@../Css/Multimedia.css">
                     <children>
                         <Button fx:id="btnBack" layoutX="177.0" layoutY="14.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Back" />
+                        <TableView fx:id="tableFavorite" layoutX="-126.0" layoutY="67.0" prefHeight="418.0" prefWidth="367.0">
+                            <columns>
+                                <TableColumn fx:id="nameFavorite1" prefWidth="87.0" text="Name" />
+                                <TableColumn fx:id="durationFavorite1" prefWidth="105.0" text="Duration" />
+                                <TableColumn fx:id="genderFavorite1" prefWidth="98.0" text="Gender" />
+                                <TableColumn fx:id="typeFavorite1" prefWidth="76.0" text="Type" />
+                            </columns>
+                        </TableView>
+                        <Button fx:id="btnDelete" layoutX="179.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Delete" />
+                        <Button fx:id="btnTrailer" layoutX="29.0" layoutY="519.0" mnemonicParsing="false" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="Ver trailer" />
                     </children>
                 </AnchorPane>
             </children>
