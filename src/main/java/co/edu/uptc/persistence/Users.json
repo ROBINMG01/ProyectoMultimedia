@@ -1,9 +1,9 @@
 [
   {
-    "firstName": "1",
-    "lastName": "1",
-    "email": "A",
-    "password": "A",
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
+    "email": "1",
+    "password": "1",
     "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
@@ -12,9 +12,9 @@
     "actieSusciption": "desactive"
   },
   {
-    "firstName": "Nestor",
-    "lastName": "Silva",
-    "email": "1",
+    "firstName": "Daniel",
+    "lastName": "sILVA",
+    "email": "2@gmail.com",
     "password": "1",
     "role": "user",
     "listMoviesFavorites": [],

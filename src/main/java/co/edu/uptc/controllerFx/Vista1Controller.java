@@ -1,4 +1,5 @@
 package co.edu.uptc.controllerFx;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,15 +38,16 @@ public class Vista1Controller {
 
     @FXML
     private void initialize() {
-        option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml",  new MovieCatalogController(user)));
-        option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml" , new SerieCatalogController(user)));
+        option1.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/MovieCatalogView.fxml", new MovieCatalogController(user)));
+        option2.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/SerieCatalogView.fxml", new SerieCatalogController(user)));
         option3.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Search.fxml", new SearchController(user)));
-        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController(user) ));
+        option4.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Favorites.fxml", new FavoritesController()));
         option5.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Settings.fxml", new SettingsController(user)));
         option6.setOnAction(event -> abrirVista("/co/edu/uptc/Fxml/Suscription.fxml", new SuscriptionController(user)));
         welcomeLabel.setText(user.getFirstName());
 
     }
+
     @FXML
     public void handleButton() {
         try {
@@ -62,6 +64,7 @@ public class Vista1Controller {
         }
 
     }
+
     public Vista1Controller() {
         this.user = Prueba.getInstance().getUser();
     }
@@ -70,10 +73,13 @@ public class Vista1Controller {
         this.user = user;
     }
 
-    private void abrirVista(String fxmlPath, Object  controller) {
+    private void abrirVista(String fxmlPath, Object controller) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             fxmlLoader.setController(controller);
+            if (controller instanceof FavoritesController) {
+                ((FavoritesController) controller).setUser(user);
+            }
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();

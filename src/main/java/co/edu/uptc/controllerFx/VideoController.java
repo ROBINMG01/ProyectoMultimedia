@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import co.edu.uptc.model.Chapter;
+import co.edu.uptc.model.ChapterModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.input.MouseEvent;
 
 public class VideoController {
@@ -41,9 +45,8 @@ public class VideoController {
     private Button buttonBack;
 
     private MediaPlayer mediaPlayer;
+    private String originalView;
     private String videoPath; // Ruta de tu archivo de video
-
-    
 
     @FXML
     public void initialize() {
@@ -93,33 +96,41 @@ public class VideoController {
             Logger.getLogger(VideoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
-    public void handleButtonBack(ActionEvent event) {
-        abrirVista1();
+
+    public void setOriginalView(String originalView) {
+        this.originalView = originalView;
     }
 
-    private void abrirVista1() {
+    @FXML
+    public void handleButtonBack(ActionEvent event) {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
         try {
-            if (mediaPlayer != null) {
-                mediaPlayer.stop();
-                mediaPlayer.dispose();
+            FXMLLoader fxmlLoader;
+            if (originalView.equals("SearchMovieController")) {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SearchMovie.fxml"));
+                SearchMovieController searchMovieController = new SearchMovieController();
+                fxmlLoader.setController(searchMovieController);
+            } else if (originalView.equals("ChapterListController")) {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/ChapterListView.fxml"));
+                ChapterListController chapterListController = new ChapterListController();
+                fxmlLoader.setController(chapterListController);
+                
+            } else {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/MovieCatalogView.fxml"));
+                MovieCatalogController movieCatalogController = new MovieCatalogController();
+                fxmlLoader.setController(movieCatalogController);
             }
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/MovieCatalogView.fxml"));
-
-            MovieCatalogController movieCatalogController = new MovieCatalogController();
-            fxmlLoader.setController(movieCatalogController);
-
-            Parent movieCatalogView = fxmlLoader.load();
-
-            // Crear una nueva ventana para la vista del catálogo de películas
+            Parent view = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
-            stage.show();
-
-            Stage myStage = (Stage) this.buttonBack.getScene().getWindow();
-
-            myStage.close();
+            stage.setScene(new Scene(view));
+            Platform.runLater(() -> {
+                stage.show();
+                Stage myStage = (Stage) this.buttonBack.getScene().getWindow();
+                myStage.close();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

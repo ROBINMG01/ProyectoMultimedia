@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="811.0" styleClass="Panel-view" stylesheets="@../css/Multimedia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
+<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="811.0" styleClass="gradient" stylesheets="@../css/Multimedia.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.ViewVisitControllerFx">
    <children>
       <ListView fx:id="listViewResults" layoutX="39.0" layoutY="85.0" prefHeight="243.0" prefWidth="304.0" style="-fx-background-radius: 10px;" styleClass="head-label" />
       <Label fx:id="detailsLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="446.0" layoutY="85.0" lineSpacing="2.0" prefHeight="448.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 15px;" styleClass="head-label" textAlignment="CENTER" />

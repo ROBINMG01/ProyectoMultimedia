@@ -13,26 +13,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import co.edu.uptc.controller.AdminController;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.User;
-
-import java.lang.reflect.Type;
+import javafx.scene.Node;
 
 public class SearchMovieController {
 
@@ -122,16 +113,33 @@ public class SearchMovieController {
 
     @FXML
     protected void handleButton(ActionEvent event) {
-        abrirVista1();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirVista1(currentStage);
     }
 
     @FXML
     protected void handleViewButton(ActionEvent event) {
         Movie selectedMovie = tableMovie.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {
-            // Abrir la ventana del reproductor de video
-            abrirVideoPlayer(selectedMovie.getVideoUrl()); // Reemplaza "url" con el atributo que almacena la URL del video
-                                                      // en la clase Movie
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
+                VideoController videoController = new VideoController();
+                loader.setController(videoController);
+                Parent videoView = loader.load();
+
+                Stage stage = new Stage();
+                stage.setTitle("Reproductor de video");
+                stage.setScene(new Scene(videoView));
+
+                videoController = loader.getController();
+                videoController.playVideo(selectedMovie.getVideoUrl());
+                videoController.setOriginalView("SearchMovieController"); // Aquí
+
+                ((Node)(event.getSource())).getScene().getWindow().hide();
+
+                stage.show();            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -139,13 +147,16 @@ public class SearchMovieController {
         try {
             // Crear una nueva ventana para el reproductor de video
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Video.fxml"));
-            Parent root = loader.load();
+            VideoController videoController = new VideoController();
+            loader.setController(videoController);
+            Parent videoView = loader.load();
+
             Stage stage = new Stage();
             stage.setTitle("Reproductor de video");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(videoView));
 
             // Obtener el controlador del video
-            VideoController videoController = loader.getController();
+            VideoController videoController1 = loader.getController();
 
             // Pasar la ruta del video al controlador
             videoController.playVideo(videoPath);
@@ -159,28 +170,33 @@ public class SearchMovieController {
         }
     }
 
-    private void abrirVista1() {
+    private Stage vista1Stage = null; // Guarda una referencia a la ventana de Vista1
+
+    private void abrirVista1(Stage currentStage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+            // Comprueba si la ventana ya existe
+            if (vista1Stage == null) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+                Parent movieCatalogView = fxmlLoader.load();
 
-            Parent movieCatalogView = fxmlLoader.load();
+                // Crear una nueva ventana para la vista del catálogo de películas
+                vista1Stage = new Stage();
+                vista1Stage.setTitle("Catálogo de películas");
+                vista1Stage.setScene(new Scene(movieCatalogView));
+            }
 
-            // Crear una nueva ventana para la vista del catálogo de películas
-            Stage stage = new Stage();
-            stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
-            stage.show();
+            currentStage.close(); // Cierra la ventana actual
 
-            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
+            vista1Stage.show();
 
-            myStage.close();
+            vista1Stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void searchMovies() {
+    protected void searchMovies() {
         String searchText = searchName.getText().toLowerCase();
 
         ObservableList<Movie> filteredMovies = FXCollections.observableArrayList(
@@ -195,10 +211,12 @@ public class SearchMovieController {
         try {
             // Cargar la vista del catálogo de películas
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Search.fxml"));
-            Parent root = fxmlLoader.load();
+            SearchController searchController = new SearchController(user);
+            fxmlLoader.setController(searchController);
+            Parent searchView = fxmlLoader.load();
 
             // Crear una nueva ventana para la vista del catálogo de películas
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(searchView);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();

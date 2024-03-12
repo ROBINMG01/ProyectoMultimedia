@@ -2,22 +2,22 @@ package co.edu.uptc.controllerFx;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,82 +27,145 @@ import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
 import java.lang.reflect.Type;
+import java.io.IOException;
 
 public class FavoritesController {
 
     @FXML
-    private ListView<Favorite> listFavorite;
-
+    private TableView<Favorite> tableMovieSerie;
     @FXML
-    private TableView<Favorite> favoriteTable;
-
+    private TableView<Favorite> tableFavorite;
     @FXML
-    private Button btnVisualice, btnDelete, BtnAdd, btnView, btnBack;
-
+    private TableColumn<Favorite, String> nameColumn;
     @FXML
-    private TableColumn<Favorite, String> nameFavorite, durationFavorite, genderFavorite, typeFavorite;
+    private TableColumn<Favorite, String> durationColumn;
+    @FXML
+    private TableColumn<Favorite, String> genderColumn;
+    @FXML
+    private TableColumn<Favorite, String> typeColumn;
+    @FXML
+    private TableColumn<Favorite, String> nameFavorite1;
+    @FXML
+    private TableColumn<Favorite, String> durationFavorite1;
+    @FXML
+    private TableColumn<Favorite, String> genderFavorite1;
+    @FXML
+    private TableColumn<Favorite, String> typeFavorite1;
+    @FXML
+    private Button BtnAdd;
+    @FXML
+    private Button btnDelete;
+    @FXML
+    private Button btnTrailer;
+    @FXML
+    private Button btnBack;
 
+    private ObservableList<Favorite> moviesAndSeries = FXCollections.observableArrayList();
     private ObservableList<Favorite> favorites = FXCollections.observableArrayList();
-
-    @FXML
-    private ListView<ObservableList<Favorite>> listFavoriteGroups;
 
     private Gson gson;
     private User user;
 
-    public void setUser(User user) {
-        this.user = user;
-        loadFavorites;
-    }
-
-    public FavoritesController(User user) {
-        this.user = user;
+    public FavoritesController() {
         gson = new Gson();
     }
 
     @FXML
+    public void handleButtonBack(ActionEvent event) {
+        abrirVista1();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        loadMoviesAndSeries();
+    }
+
+    @FXML
     public void initialize() {
-        loadUsers();
-        setupButtonListeners();
-    }
+        // Configurar los CellValueFactory
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-    private void loadUsers() {
-        Type userListType = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        ArrayList<User> userList = null;
-        try {
-            userList = gson.fromJson(new FileReader("src/main/java/co/edu/uptc/persistence/Users.json"), userListType);
-        } catch (FileNotFoundException e) {
-            // Maneja la excepción de una manera más significativa
-            System.err.println("No se pudo cargar el archivo de usuarios: " + e.getMessage());
-            return;
-        }
-        convertUsersToFavorites(userList);
-        listFavorite.setItems(favorites);
-        favoriteTable.setItems(favorites);
-    }
+        nameFavorite1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        durationFavorite1.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        genderFavorite1.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        typeFavorite1.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-    private void convertUsersToFavorites(ArrayList<User> userList) {
-        for (User user : userList) {
-            ArrayList<Movie> favoriteMovies = user.getListMoviesFavorites();
-            ArrayList<Serie> favoriteSeries = user.getListSeriesFavorites();
-            for (Movie movie : favoriteMovies) {
-                Favorite favorite = convertMovieToFavorite(movie);
-                favorites.add(favorite);
-            }
-            for (Serie serie : favoriteSeries) {
-                Favorite favorite = convertSerieToFavorite(serie);
-                favorites.add(favorite);
-            }
-        }
-    }
+        tableMovieSerie.setItems(moviesAndSeries);
+        tableFavorite.setItems(favorites);
 
-    private void setupButtonListeners() {
-        btnVisualice.setOnAction(event -> visualiceFavorite());
-        btnDelete.setOnAction(event -> deleteFavorite());
         BtnAdd.setOnAction(event -> addFavorite());
-        btnView.setOnAction(event -> viewFavorite());
-        btnBack.setOnAction(event -> goBack());
+        btnDelete.setOnAction(event -> deleteFavorite());
+        btnTrailer.setOnAction(event -> viewTrailer());
+    }
+
+    private void saveFavorites() {
+        ArrayList<Movie> favoriteMovies = favorites.stream()
+                .filter(favorite -> favorite.getType().equals("Película"))
+                .map(this::convertFavoriteToMovie)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Serie> favoriteSeries = favorites.stream()
+                .filter(favorite -> favorite.getType().equals("Serie"))
+                .map(this::convertFavoriteToSerie)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        user.setListMoviesFavorites(favoriteMovies);
+        user.setListSeriesFavorites(favoriteSeries);
+
+        try (FileWriter writer = new FileWriter("co/edu/uptc/persistence/Users.json")) {
+            gson.toJson(user, writer);
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+
+    private Movie convertFavoriteToMovie(Favorite favorite) {
+        Movie movie = new Movie();
+        movie.setName(favorite.getName());
+        movie.setDuration(favorite.getDuration());
+        movie.setGender(favorite.getGender());
+        // Aquí puedes agregar cualquier otro campo que necesites copiar de Favorite a
+        // Movie
+        return movie;
+    }
+
+    private Serie convertFavoriteToSerie(Favorite favorite) {
+        Serie serie = new Serie();
+        serie.setName(favorite.getName());
+        serie.setDuration(favorite.getDuration());
+        serie.setGender(favorite.getGender());
+        // Aquí puedes agregar cualquier otro campo que necesites copiar de Favorite a
+        // Serie
+        return serie;
+    }
+
+    private void loadMoviesAndSeries() {
+        ArrayList<Movie> movies = loadFromJson("src/main/java/co/edu/uptc/persistence/Movie.json",
+                new TypeToken<ArrayList<Movie>>() {
+                }.getType());
+        ArrayList<Serie> series = loadFromJson("src/main/java/co/edu/uptc/persistence/Series.json",
+                new TypeToken<ArrayList<Serie>>() {
+                }.getType());
+        for (Movie movie : movies) {
+            Favorite favorite = convertMovieToFavorite(movie);
+            moviesAndSeries.add(favorite);
+        }
+        for (Serie serie : series) {
+            Favorite favorite = convertSerieToFavorite(serie);
+            moviesAndSeries.add(favorite);
+        }
+    }
+
+    private <T> ArrayList<T> loadFromJson(String filePath, Type type) {
+        ArrayList<T> list = new ArrayList<>();
+        try {
+            list = gson.fromJson(new FileReader(filePath), type);
+        } catch (FileNotFoundException e) {
+            System.err.println("No se pudo cargar el archivo: " + e.getMessage());
+        }
+        return list;
     }
 
     private Favorite convertMovieToFavorite(Movie movie) {
@@ -123,74 +186,49 @@ public class FavoritesController {
         return favorite;
     }
 
-    private void visualiceFavorite() {
-        // Obtén el favorito seleccionado
-        Favorite selectedFavorite = favoriteTable.getSelectionModel().getSelectedItem();
+    private void addFavorite() {
+        Favorite selectedFavorite = tableMovieSerie.getSelectionModel().getSelectedItem();
         if (selectedFavorite != null) {
-            // Visualiza el favorito seleccionado
-            System.out.println("Visualizando favorito: " + selectedFavorite);
+            favorites.add(selectedFavorite);
+            moviesAndSeries.remove(selectedFavorite);
         }
     }
 
     private void deleteFavorite() {
-        // Aquí puedes agregar la lógica para eliminar una serie o película de los favoritos
-        // Por ejemplo, podrías mostrar un diálogo para que el usuario elija entre eliminar una serie o una película
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Serie", "Movie");
-        dialog.setTitle("Delete Favorite");
-        dialog.setHeaderText("Would you like to delete a series or a movie?");
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            String selectedOption = result.get();
-            if (selectedOption.equals("Serie")) {
-                removeSeriesFavorite(user);
-            } else if (selectedOption.equals("Movie")) {
-                removeMovieFavorite(user);
-            }
-        }
-    }
-
-    private void addFavorite() {
-        // Aquí puedes agregar la lógica para añadir una serie o película a los favoritos
-        // Por ejemplo, podrías mostrar un diálogo para que el usuario elija entre añadir una serie o una película
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Serie", "Movie");
-        dialog.setTitle("Add Favorite");
-        dialog.setHeaderText("Would you like to add a series or a movie?");
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            String selectedOption = result.get();
-            if (selectedOption.equals("Serie")) {
-                addSeriesFavorite(user);
-            } else if (selectedOption.equals("Movie")) {
-                addMovieFavorite(user);
-            }
-        }
-    }
-
-    private void viewFavorite() {
-        // Obtén el favorito seleccionado
-        Favorite selectedFavorite = favoriteTable.getSelectionModel().getSelectedItem();
+        Favorite selectedFavorite = tableFavorite.getSelectionModel().getSelectedItem();
         if (selectedFavorite != null) {
-            // Visualiza el favorito seleccionado
-            System.out.println("Visualizando favorito: " + selectedFavorite);
+            favorites.remove(selectedFavorite);
+            moviesAndSeries.add(selectedFavorite);
         }
     }
 
-    private void goBack() {
+    private void viewTrailer() {
+        Favorite selectedFavorite = tableMovieSerie.getSelectionModel().getSelectedItem();
+        if (selectedFavorite != null) {
+            // Aquí puedes agregar la lógica para ver el tráiler de la serie o película
+            // seleccionada
+            // Por ejemplo, podrías abrir un nuevo navegador con la URL del tráiler
+        }
+    }
+
+    private void abrirVista1() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
-            Parent movieCatalogView = fxmlLoader.load();
 
-            FavoritesController controller = fxmlLoader.getController();
-            controller.setUser(user);
-            // Crear una nueva ventana para la vista del catálogo de películas
+            Vista1Controller vista1Controller = new Vista1Controller();
+            fxmlLoader.setController(vista1Controller);
+
+            Parent vista1View = fxmlLoader.load();
+
+            // Crear una nueva ventana para la vista 1
             Stage stage = new Stage();
-            stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
+            stage.setTitle("Vista 1");
+            stage.setScene(new Scene(vista1View));
             stage.show();
 
-            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
-
-            myStage.close();
+            // Cerrar la ventana actual
+            Stage currentStage = (Stage) this.btnBack.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

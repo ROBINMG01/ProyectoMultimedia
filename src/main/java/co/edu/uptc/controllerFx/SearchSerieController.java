@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import co.edu.uptc.model.Serie;
 import java.lang.reflect.Type;
+import javafx.scene.text.Text;
 
 public class SearchSerieController {
 
@@ -44,21 +45,6 @@ public class SearchSerieController {
     @FXML
     private Button btnSearch;
 
-    @FXML
-    private TableView<Serie> tableSerie;
-
-    @FXML
-    private TableColumn<Serie, String> nameSerie;
-
-    @FXML
-    private TableColumn<Serie, String> genderSerie;
-
-    @FXML
-    private TableColumn<Serie, String> durationSerie;
-
-    @FXML
-    private TableColumn<Serie, String> ListSerie;
-
     private ObservableList<Serie> allSeries;
 
     @FXML
@@ -68,42 +54,29 @@ public class SearchSerieController {
     private ImageView imageSearch;
 
     @FXML
+    private ListView<Serie> listViewSeries;
+    
+    @FXML
     public void initialize() {
+        listViewSeries.setCellFactory(param -> new ListCell<>() {
+            private ImageView imageView = new ImageView();
+            private Text text = new Text();
 
-        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                Image image = null;
-                if (newSelection.getImageUrl() != null) {
-                    if (newSelection.getImageUrl().startsWith("http")) {
-                        image = new Image(newSelection.getImageUrl());
-                    } else {
-                        image = new Image(getClass().getResourceAsStream(newSelection.getImageUrl()));
-                    }
-                }
-                if (image != null) {
-                    imageSearch.setImage(image);
-                    imageSearch.setFitWidth(324); // Ajusta el ancho a 324
-                    imageSearch.setFitHeight(267); // Ajusta la altura a 267
-                    imageSearch.setPreserveRatio(true); // Mantiene la relación de aspecto
+            @Override
+            protected void updateItem(Serie serie, boolean empty) {
+                super.updateItem(serie, empty);
+                if (empty || serie == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    imageView.setImage(new Image(serie.getImageUrl()));
+                    text.setText(serie.getName());
+                    VBox vbox = new VBox(imageView, text);
+                    setGraphic(vbox);
                 }
             }
         });
-
-        nameSerie.setCellValueFactory(new PropertyValueFactory<>("name"));
-        genderSerie.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        durationSerie.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        ListSerie.setCellValueFactory(new PropertyValueFactory<>("ListSeason"));
-
-        searchName.textProperty().addListener((observable, oldValue, newValue) -> searchSeries());
         loadSeries();
-
-        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                imageSearch.setImage(new Image(newSelection.getImageUrl()));
-                labelDescription.setWrapText(true);
-                labelDescription.setText(newSelection.getDescription());
-            }
-        });
     }
 
     @FXML
@@ -143,7 +116,7 @@ public class SearchSerieController {
                 allSeries.clear();
             }
             allSeries.addAll(serieList);
-            tableSerie.setItems(allSeries);
+            listViewSeries.setItems(allSeries);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,6 +131,6 @@ public class SearchSerieController {
                         .filter(serie -> serie.getName().toLowerCase().contains(searchText))
                         .collect(Collectors.toList()));
 
-        tableSerie.setItems(filteredSeries);
+        listViewSeries.setItems(filteredSeries);
     }
 }

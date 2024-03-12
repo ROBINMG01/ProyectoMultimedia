@@ -39,9 +39,15 @@ public class SearchController {
     public void setUser(User user) {
         this.user = user;
     }
+
     @FXML
     protected void handleButton(ActionEvent event) {
-        try { 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SearchMovie.fxml"));
+            SearchMovieController searchMovieController = new SearchMovieController();
+            fxmlLoader.setController(searchMovieController);
+            Parent root = fxmlLoader.load();
+
             // Cargar las imágenes
             Image imageMovie = new Image("co/edu/uptc/image/PosterMovie.png");
             this.imageMovie.setImage(imageMovie);
@@ -49,12 +55,13 @@ public class SearchController {
             this.imageSerie.setImage(imageSerie);
 
             Stage stage = new Stage();
-            FXMLLoader fxmlLoader;
             Parent view;
             Object controller;
 
             if (event.getSource() == getMovie) {
                 fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/SearchMovie.fxml"));
+                searchMovieController = new SearchMovieController();
+                fxmlLoader.setController(searchMovieController);
                 view = fxmlLoader.load();
                 controller = fxmlLoader.getController();
                 if (controller instanceof SearchController) {

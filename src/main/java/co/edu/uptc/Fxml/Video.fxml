@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="gradient" stylesheets="@../css/Multimedia.css"
     xmlns="http://javafx.com/javafx/21"
-    xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.VideoController">
+    xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <MediaView fx:id="mediaView" fitHeight="600.0" fitWidth="800.0" preserveRatio="false" />
         <Button fx:id="buttonRetroceder" layoutX="314.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonRetroceder" styleClass="Back-btn" stylesheets="@../css/Multimedia.css" text="Retroceder" />
