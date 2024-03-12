@@ -1,14 +1,65 @@
 [
   {
-    "firstName": "a",
-    "lastName": "a",
+    "firstName": "Juan",
+    "lastName": "Barrera",
     "email": "1",
     "password": "1",
     "role": "user",
+    "listMoviesFavorites": [
+      {
+        "name": "Juan y sus aventruras",
+        "gender": "miedo",
+        "duration": 3,
+        "year": 0
+      }
+    ],
+    "listSeriesFavorites": [
+      {
+        "name": "Dark",
+        "gender": "Terror",
+        "duration": 1500,
+        "year": 0
+      },
+      {
+        "name": "Dark",
+        "gender": "Terror",
+        "duration": 1500,
+        "year": 0
+      }
+    ],
+    "dateDeSubscription": "Mar 11, 2024, 11:41:38 PM",
+    "finDateDeSubscription": "Mar 11, 2024, 11:41:38 PM",
+    "actieSusciption": "desactive"
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Rodriguez",
+    "email": "2",
+    "password": "2",
+    "role": "user",
+    "listMoviesFavorites": [
+      {
+        "name": "Spiderman no way home",
+        "gender": "Accion",
+        "duration": 150,
+        "year": 0
+      }
+    ],
+    "listSeriesFavorites": [],
+    "dateDeSubscription": "Mar 12, 2024, 12:54:18 AM",
+    "finDateDeSubscription": "Apr 11, 2024, 12:54:18 AM",
+    "actieSusciption": "active"
+  },
+  {
+    "firstName": "curry",
+    "lastName": "ronaldo",
+    "email": "2",
+    "password": "2",
+    "role": "user",
     "listMoviesFavorites": [],
     "listSeriesFavorites": [],
-    "dateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
-    "finDateDeSubscription": "Mar 9, 2024, 11:17:20 PM",
-    "actieSusciption": "desactive"
+    "dateDeSubscription": "Mar 12, 2024, 4:10:51 AM",
+    "finDateDeSubscription": "Apr 11, 2024, 4:10:51 AM",
+    "actieSusciption": "active"
   }
 ]

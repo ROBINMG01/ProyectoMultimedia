@@ -14,6 +14,15 @@ public class Movie {
     private int year;
     private String gener;
     private String imageUrl;
+    private String videoUrl;
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -125,9 +134,9 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Name = " + name + ".\nGender = " + gender + ".\nDuration = " + duration
-                + ".\nAuthors = " + listAuthors + "\nActors = " + listActors
-                + "\nDescription = " + description;
+        return "Name: " + name + ".\nGender: " + gender + ".\nDuration: " + duration
+                + ".\nAuthors: " + listAuthors + "\nActors: " + listActors
+                + "\nDescription: " + description;
     }
 
 }

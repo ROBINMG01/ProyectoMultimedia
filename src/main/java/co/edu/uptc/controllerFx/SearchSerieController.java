@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +26,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import co.edu.uptc.model.Serie;
 import java.lang.reflect.Type;
+import javafx.scene.text.Text;
+import javafx.scene.Node;
 
 public class SearchSerieController {
 
@@ -44,21 +46,6 @@ public class SearchSerieController {
     @FXML
     private Button btnSearch;
 
-    @FXML
-    private TableView<Serie> tableSerie;
-
-    @FXML
-    private TableColumn<Serie, String> nameSerie;
-
-    @FXML
-    private TableColumn<Serie, String> genderSerie;
-
-    @FXML
-    private TableColumn<Serie, String> durationSerie;
-
-    @FXML
-    private TableColumn<Serie, String> ListSerie;
-
     private ObservableList<Serie> allSeries;
 
     @FXML
@@ -68,67 +55,67 @@ public class SearchSerieController {
     private ImageView imageSearch;
 
     @FXML
-    public void initialize() {
-
-        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                Image image = null;
-                if (newSelection.getImageUrl() != null) {
-                    if (newSelection.getImageUrl().startsWith("http")) {
-                        image = new Image(newSelection.getImageUrl());
-                    } else {
-                        image = new Image(getClass().getResourceAsStream(newSelection.getImageUrl()));
-                    }
-                }
-                if (image != null) {
-                    imageSearch.setImage(image);
-                    imageSearch.setFitWidth(324); // Ajusta el ancho a 324
-                    imageSearch.setFitHeight(267); // Ajusta la altura a 267
-                    imageSearch.setPreserveRatio(true); // Mantiene la relación de aspecto
-                }
-            }
-        });
-
-        nameSerie.setCellValueFactory(new PropertyValueFactory<>("name"));
-        genderSerie.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        durationSerie.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        ListSerie.setCellValueFactory(new PropertyValueFactory<>("ListSeason"));
-
-        searchName.textProperty().addListener((observable, oldValue, newValue) -> searchSeries());
-        loadSeries();
-
-        tableSerie.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                imageSearch.setImage(new Image(newSelection.getImageUrl()));
-                labelDescription.setWrapText(true);
-                labelDescription.setText(newSelection.getDescription());
-            }
-        });
-    }
+    private ListView<Serie> listViewSeries;
 
     @FXML
-    protected void handleButton(ActionEvent event) {
-        abrirVista1();
+    public void initialize() {
+        
+        searchName.textProperty().addListener((observable, oldValue, newValue) -> searchSeries());
+        listViewSeries.setCellFactory(param -> new ListCell<>() {
+            private ImageView imageView = new ImageView();
+            private Text text = new Text();
+
+            @Override
+            protected void updateItem(Serie serie, boolean empty) {
+                super.updateItem(serie, empty);
+                if (empty || serie == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    imageView.setImage(new Image(serie.getImageUrl()));
+                    imageView.setFitWidth(100); // Establece el ancho de la imagen a 100
+                    imageView.setFitHeight(100); // Establece la altura de la imagen a 100
+                    imageView.setPreserveRatio(true); // Mantiene la relación de aspecto de la imagen
+                    text.setText(serie.getName());
+                    VBox vbox = new VBox(imageView, text);
+                    setGraphic(vbox);
+                }
+            }
+        });
+        btnSearch.setOnAction(event -> searchSeries());
+
+        loadSeries();
     }
 
-    private void abrirVista1() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Search.fxml"));
-            Parent movieCatalogView = fxmlLoader.load();
+    private Stage searchStage = null; // Guarda una referencia a la ventana de Vista1
 
-            // Crear una nueva ventana para la vista del catálogo de películas
-            Stage stage = new Stage();
-            stage.setTitle("Catálogo de películas");
-            stage.setScene(new Scene(movieCatalogView));
-            stage.show();
+    @FXML
+protected void handleButton(ActionEvent event) {
+    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    abrirSearch(currentStage);
+}
 
-            Stage myStage = (Stage) this.btnBack.getScene().getWindow();
+private void abrirSearch(Stage currentStage) {
+    try {
+        // Comprueba si la ventana ya existe
+        if (searchStage == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/co/edu/uptc/Fxml/Vista1.fxml"));
+            Parent searchView = fxmlLoader.load();
 
-            myStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // Crear una nueva ventana para la vista de Search
+            searchStage = new Stage();
+            searchStage.setTitle("Búsqueda");
+            searchStage.setScene(new Scene(searchView));
         }
+
+        currentStage.close(); // Cierra la ventana actual
+
+        searchStage.show();
+
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     private void loadSeries() {
         Gson gson = new Gson();
@@ -143,7 +130,7 @@ public class SearchSerieController {
                 allSeries.clear();
             }
             allSeries.addAll(serieList);
-            tableSerie.setItems(allSeries);
+            listViewSeries.setItems(allSeries);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,6 +145,6 @@ public class SearchSerieController {
                         .filter(serie -> serie.getName().toLowerCase().contains(searchText))
                         .collect(Collectors.toList()));
 
-        tableSerie.setItems(filteredSeries);
+        listViewSeries.setItems(filteredSeries);
     }
 }

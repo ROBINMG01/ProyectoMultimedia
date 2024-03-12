@@ -107,13 +107,14 @@
         "listChapters": [
           {
             "name": "capitulo 1",
-            "duration": 123
+            "duration": 123,
+            "trailerUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
           }
         ],
         "description": "good"
       }
     ],
-    "imageUrl":""
+    "imageUrl":"/co/edu/uptc/image/posterLaCasaDePapel.png"
   },
   {
     "name": "La casa de papel",
