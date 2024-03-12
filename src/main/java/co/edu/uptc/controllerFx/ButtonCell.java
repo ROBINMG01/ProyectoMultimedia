@@ -55,7 +55,6 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
 
         secondButton.setOnAction(event -> {
             // Lógica para el segundo botón
-            System.out.println("Botón 2 clickeado");
         });
     }
 

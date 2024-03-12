@@ -308,8 +308,8 @@ public class AdminView {
                             }
 
                             if (!arrayActors().isEmpty()) {
-                                ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
-                                        arrayActors(), "Movie", imageUrl);
+                                // ac.addMovie(name, description, dutation2, arrayAuthors(), gender,
+                                //         arrayActors(), "Movie", imageUrl);
                                 JOptionPane.showMessageDialog(null, "Movie added sucessfully");
                                 exit = true;
                             } else {
@@ -481,21 +481,21 @@ public class AdminView {
                                 exit = verification();
                                 ver = 0;
                             }
-                            if (!arrayActors().isEmpty()) {
-                                if (ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
-                                        nameSeason, descriptionSeason, nameChapter, duration3, "Series", imageUrl)) {
-                                    JOptionPane.showMessageDialog(null, "Serie added sucessfully");
-                                    exit = true;
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Serie was not added");
-                                    exit = false;
-                                }
-                            } else if (!arrayChapters().isEmpty()) {
-                                JOptionPane.showMessageDialog(null,
-                                        "The series was not added because there are no actors");
-                                exit = verification();
-                                ver = 0;
-                            }
+                            // if (!arrayActors().isEmpty()) {
+                            //     // if (ac.addSerie(name, description, duration2, arrayAuthors(), gender, arrayActors(),
+                            //     //         nameSeason, descriptionSeason, nameChapter, duration3, "Series", imageUrl)) {
+                            //     //     JOptionPane.showMessageDialog(null, "Serie added sucessfully");
+                            //     //     exit = true;
+                            //     } else {
+                            //         JOptionPane.showMessageDialog(null, "Serie was not added");
+                            //         exit = false;
+                            //     }
+                            // } else if (!arrayChapters().isEmpty()) {
+                            //     JOptionPane.showMessageDialog(null,
+                            //             "The series was not added because there are no actors");
+                            //     exit = verification();
+                            //     ver = 0;
+                            // }
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(null,
                                     "No input a number in duration season or duration chapter");

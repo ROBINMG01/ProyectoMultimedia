@@ -79,7 +79,7 @@ public class AdminController {
         chapter.setName(nameChapter);
         chapter.setDuration(durationChapter);
 
-        chapters.add(new Chapter(nameChapter, durationChapter));
+        chapters.add(new Chapter(nameChapter, durationChapter, imageUrl));
         season.setName(nameSeason);
         season.setDescription(descriptionSeason);
         season.setListChapters(chapters);
@@ -107,7 +107,7 @@ public class AdminController {
             }
         }
 
-        listChapter.add(new Chapter(nameChapter, durationChapter));
+        listChapter.add(new Chapter(nameChapter, durationChapter, nameChapter));
 
         season.setName(nameChapter);
         season.setDescription(descriptionSeason);
@@ -147,7 +147,7 @@ public class AdminController {
         if (chapter.getName().equals(nameChapter) && chapter.getDuration() == durationChapter) {
 
             // Si el capítulo no existe, crear un nuevo capítulo
-            Chapter newChapter = new Chapter(nameChapter, durationChapter);
+            Chapter newChapter = new Chapter(nameChapter, durationChapter, nameChapter);
             listChapter.add(newChapter);
 
             // Actualizar la lista de capítulos en la temporada
@@ -328,7 +328,6 @@ public class AdminController {
                 return true;
             }
         }
-        System.out.println("----------------");
         return false;
     }
 

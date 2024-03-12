@@ -12,16 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.Vista1Controller">
-    <padding>
-        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-    </padding>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controllerFx.Vista1Controller">
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <right>
             <AnchorPane prefHeight="598.0" prefWidth="574.0" styleClass="white-form" stylesheets="@../Css/Multimedia.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnBack" onAction="#handleButton" layoutX="503.0" layoutY="14.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Sign off">
+                  <Button fx:id="btnBack" layoutX="503.0" layoutY="14.0" onAction="#handleButton" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="&lt;Sign off">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -33,7 +35,7 @@
                   </Label>
                   <VBox layoutX="303.0" layoutY="164.0" prefHeight="420.0" prefWidth="257.0" spacing="10.0">
                      <children>
-                        <Button fx:id="option4" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View my favorites">
+                        <Button fx:id="option4" mnemonicParsing="false" prefHeight="131.0" prefWidth="253.0" onAction="#handleFavoriteView" styleClass="Back-btn" stylesheets="@../Css/Multimedia.css" text="View my favorites">
                            <effect>
                               <ColorAdjust brightness="-0.35" contrast="0.54" hue="-0.02" />
                            </effect>
@@ -90,17 +92,17 @@
                      <children>
                         <Label fx:id="labelBnda" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Welcome " textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
                         <Label fx:id="labelBnda2" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="To UPTCine" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelBnda21" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Daniel" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="welcomeLabel" prefHeight="100.0" prefWidth="170.0" styleClass="head-label" stylesheets="@../Css/Multimedia.css" text="Daniel" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="Times New Roman" size="36.0" />
                            </font>
                         </Label>
                      </children>
