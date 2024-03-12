@@ -1,0 +1,182 @@
+[
+  {
+    "name": "LOKI",
+    "gender": "FICCION",
+    "duration": 360,
+    "listAuthors": [
+      "ROBERTH"
+    ],
+    "listActors": [
+      "ANDERSON"
+    ],
+    "description": "LOKI LLEGA A LA AVT",
+    "listSeason": [
+      {
+        "name": "TEMPORADA 1",
+        "listChapters": [
+          {
+            "name": "CAPITULO 1",
+            "duration": 45
+          }
+        ],
+        "description": "PRIMERA PARTE"
+      }
+    ],
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/PosterLoki.jpg"
+  },
+  {
+    "name": "Dark",
+    "gender": "Terror",
+    "duration": 1500,
+    "listAuthors": [
+      "Jantje Friese",
+      "Baran bo Odar"
+    ],
+    "listActors": [
+      "Jhona",
+      "Martha",
+      "Mikkel"
+    ],
+    "description": "El principio es el fin y el fin es el principio",
+    "listSeason": [
+      {
+        "name": "Season1",
+        "listChapters": [
+          {
+            "name": "Secretos»",
+            "duration": 45
+          },
+          {
+            "name": "Mentiras",
+            "duration": 45
+          },
+          {
+            "name": "Pasado y presente",
+            "duration": 45
+          },
+          {
+            "name": "Dobles vidas",
+            "duration": 45
+          },
+          {
+            "name": "Verdades",
+            "duration": 45
+          },
+          {
+            "name": "Así fue creado el mundo",
+            "duration": 45
+          },
+          {
+            "name": "Encrucijadas",
+            "duration": 45
+          },
+          {
+            "name": "Cosechas lo que siembras",
+            "duration": 45
+          },
+          {
+            "name": "Todo es ahora",
+            "duration": 45
+          },
+          {
+            "name": "Alfa y omega",
+            "duration": 45
+          }
+        ],
+        "description": "El incio de todo o... ¿acaso aquí es donde acaba?"
+      }
+    ],
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/posterDarkc.png"
+  },
+  {
+    "name": "Wanda Vision",
+    "gender": "Comedia",
+    "duration": 300,
+    "listAuthors": [
+      "andres",
+      "felipe"
+    ],
+    "listActors": [
+      "daniel",
+      "camilo",
+      "juan"
+    ],
+    "description": "buena",
+    "listSeason": [
+      {
+        "name": "temporada q",
+        "listChapters": [
+          {
+            "name": "capitulo 1",
+            "duration": 123,
+            "trailerUrl": "src/main/java/co/edu/uptc/image/AvengerEndGame.mp4"
+          }
+        ],
+        "description": "good"
+      }
+    ],
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/posterLaCasaDePapel.png"
+  },
+  {
+    "name": "La casa de papel",
+    "gender": "Accion",
+    "duration": 1200,
+    "listAuthors": [
+      "Brenfort",
+      "Carlr sagan"
+    ],
+    "listActors": [
+      "Georgina",
+      "Juan"
+    ],
+    "description": "Atracos en bancos",
+    "listSeason": [
+      {
+        "name": "Berlin",
+        "listChapters": [
+          {
+            "name": "Piloto",
+            "duration": 50
+          }
+        ],
+        "description": "Atracan el Banco nacional de moneda y timbre"
+      }
+    ],
+    "year": 0,
+    "imageUrl": "/co/edu/uptc/image/posterLaCasaDePapel.png"
+  },
+  {
+    "name": "tierra",
+    "gender": "dsgjg",
+    "duration": 123,
+    "listAuthors": [
+      "victor",
+      "victor",
+      "victor"
+    ],
+    "listActors": [
+      "daniel",
+      "daniel",
+      "daniel"
+    ],
+    "description": "buena",
+    "listSeason": [
+      {
+        "name": "tempo 1",
+        "listChapters": [
+          {
+            "name": "hjbdsgkjn",
+            "duration": 12,
+            "trailerUrl": "12"
+          }
+        ],
+        "description": "ff"
+      }
+    ],
+    "year": 2010,
+    "imageUrl": "12"
+  }
+]
