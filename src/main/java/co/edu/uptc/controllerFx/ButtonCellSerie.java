@@ -3,6 +3,7 @@ package co.edu.uptc.controllerFx;
 import java.io.IOException;
 
 import co.edu.uptc.model.Movie;
+import co.edu.uptc.model.Serie;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
@@ -10,19 +11,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class ButtonCell extends TableCell<Movie, Boolean> {
-    private final AdminControllerFx acf;
-    private final EditMovieController emc;
-    private final Movie movie;
+public class ButtonCellSerie extends TableCell<Serie, Boolean> {
+    private final AdminControllerSerieFx acsf;
+    private final EditSerieController esc;
+    private final Serie serie;
     private final HBox hbox;
     private final Button firstButton;
     private final Button secondButton;
-    private String nameMovie;
 
-    public ButtonCell() {
-        this.acf = new AdminControllerFx();
-        this.emc = new EditMovieController();
-        this.movie = new Movie();
+    public ButtonCellSerie() {
+        this.acsf = new AdminControllerSerieFx();
+        this.esc = new EditSerieController();
+        this.serie = new Serie();
         this.hbox = new HBox();
         this.firstButton = new Button("Botón 1");
         this.secondButton = new Button("Botón 2");
@@ -45,13 +45,15 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         secondButton.setGraphic(imagenBotton2);
 
         firstButton.setOnAction(event -> {
-
-            Movie movie = getTableView().getItems().get(getIndex());
+            
+            Serie serie = getTableView().getItems().get(getIndex());
+            //emc.active(movie);
+            //emc.initialize(movie);
             try {
-                if (movie != null) {
+                if (serie != null) {
                     Stage myStage = (Stage) this.firstButton.getScene().getWindow();
-                    myStage.close();
-                    acf.fileEditMovie(movie);
+                            myStage.close();
+                    acsf.fileEditSerie(serie);
                 }
             } catch (IOException e) {
                 e.printStackTrace(); // O manejo de la excepción según sea necesario
@@ -59,10 +61,10 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         });
 
         secondButton.setOnAction(event -> {
-            Movie movie = getTableView().getItems().get(getIndex());
-            // emc.initialize(movie);
-            if (movie != null) {
-                acf.deleteMovie(movie);
+            Serie serie = getTableView().getItems().get(getIndex());
+            //emc.initialize(movie);
+            if (serie != null) {
+                acsf.deleteMovie(serie);
             }
         });
 
@@ -77,9 +79,5 @@ public class ButtonCell extends TableCell<Movie, Boolean> {
         } else {
             setGraphic(hbox);
         }
-    }
-
-    public String nameMovie() {
-        return nameMovie;
     }
 }

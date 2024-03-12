@@ -1,52 +1,56 @@
 [
   {
-    "name": "dfjknsj",
-    "gender": "qjdvj",
-    "duration": 1243,
-    "listAuthors": [
-      "Mark Ruffo",
-      "Stan Lee"
-    ],
-    "listActors": [
-      "wsefb",
-      "wsefb"
-    ],
-    "description": "Los vengadores defenderan la realidad",
-    "year": 2021,
-    "imageUrl":"/co/edu/uptc/image/posterAvengersEndGamec.png"
+    "name": "Ted1",
+    "gender": "comedia",
+    "duration": 70,
+    "listAuthors": [],
+    "listActors": [],
+    "description": "good",
+    "year": 2015
   },
   {
-    "name": "Batman: el caballero de la noche",
-    "gender": "Accion",
-    "duration": 140,
+    "name": "TED 2",
+    "gender": "Comedia",
+    "duration": 75,
     "listAuthors": [
-      "Gregory Manson",
-      "Kim Risharson"
+      "Daniel",
+      "Robinson",
+      "juan",
+      "Sebastian",
+      "perla",
+      "felipeG",
+      "Maricela",
+      "Barrera",
+      "Daniel"
     ],
     "listActors": [
-      "Robin Pattinson",
-      "Jogan Jorge",
-      "Carl Maddison"
+      "gomez",
+      "camilo",
+      "Granados",
+      "luz",
+      "Juliana",
+      "Victor",
+      "Tatiana",
+      "camila",
+      "Valentina",
+      "gomez"
     ],
-    "description": "una nueva entrega de nuestro superhéroe enmascarado",
-    "year": 2015,
-    "imageUrl":"/co/edu/uptc/image/posterBatmanElCaballeroDeLaNochec.png"
+    "description": "Ted es un oso que cobro vida",
+    "year": 0
   },
   {
-    "name": "Spiderman no way home",
-    "gender": "Accion",
-    "duration": 150,
+    "name": "Avengers",
+    "gender": "Ficcion",
+    "duration": 234,
     "listAuthors": [
-    "Stan lee",
-    "Sony produccion"
+      "Danilo",
+      "Kevin"
     ],
     "listActors": [
-      "Tom Holand",
-      "Toby Maguire",
-      "Andrew Garfield"
+      "Felipe",
+      "Juan"
     ],
-    "description": "Atacan nuestra realidad, enemigos nuevos, amigos conocidos",
-    "year": 2022,
-    "imageUrl":"/co/edu/uptc/image/posterSpidermanNoWayHomec.png"
+    "description": "Heroes Unidos",
+    "year": 2020
   }
 ]

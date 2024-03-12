@@ -202,7 +202,11 @@ public class AdminController {
 
     // ROBIN
     public boolean updateMovie(String name, String nameUpdate, String description, int duration,
+<<<<<<< HEAD
             ArrayList<String> listAuthors, ArrayList<String> listActors, String gender) {
+=======
+    ArrayList<String> listAuthors, ArrayList<String> listActors, String gender, int year) {
+>>>>>>> feature/AdminViewFx
         if (searchMovie(name) != -1) {
             int position = searchMovie(name);
             listMovies.get(position).setName(nameUpdate);
@@ -211,6 +215,8 @@ public class AdminController {
             listMovies.get(position).setlistAuthors(listAuthors);
             listMovies.get(position).setListActors(listActors);
             listMovies.get(position).setGender(gender);
+            listMovies.get(position).setYear(year);
+            saveMovie(listMovies, "Movie");
             return true;
         }
         return false;
@@ -295,6 +301,13 @@ public class AdminController {
         return namesSesons;
     }
 
+    public boolean verificationMovies(){
+        if (listMovies.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
     public ArrayList<Movie> getListMovies() {
         return listMovies;
     }
@@ -315,6 +328,7 @@ public class AdminController {
         for (int i = 0; i < listMovies.size(); i++) {
             if (listMovies.get(i).getName().equals(name)) {
                 listMovies.remove(i);
+                saveMovie(listMovies, "Movie");
                 return true;
             }
         }
@@ -322,13 +336,14 @@ public class AdminController {
     }
 
     public boolean deleteSerie(String name) {
+        
         for (int i = 0; i < listMovies.size(); i++) {
             if (listSeries.get(i).getName().equals(name)) {
                 listSeries.remove(i);
                 return true;
             }
+            
         }
-        System.out.println("----------------");
         return false;
     }
 
